@@ -1,7 +1,5 @@
-<section id="hero-animated" class="hero-animated d-flex align-items-center">
-    <div class="container d-flex flex-column justify-content-center align-items-center text-center position-relative"
-         data-aos="zoom-out">
-        <img src="assets/img/hero-carousel/hero-carousel-3.svg" class="img-fluid animated">
+<section id="hero-fullscreen" class="hero-fullscreen d-flex align-items-center">
+    <div class="container d-flex flex-column align-items-center position-relative" data-aos="zoom-out">
         <h2 class="text-center">PORTAL ESCRITURA</h2>
         <p>
             Sua forma mais rápida e eficiente de localizar a Escritura Pública de um imóvel
@@ -23,42 +21,49 @@
 <section id="featured-services" class="featured-services">
     <div class="container">
 
-        <div class="row gy-4">
+        <div class="row gy-4 d-md-flex justify-content-md-center">
 
-            <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out">
+            <div class="col-xl-2 col-md-6 col-12 text-center" data-aos="zoom-out">
                 <div class="service-item position-relative">
                     <div class="icon"><i class="bi bi-activity icon"></i></div>
-                    <h4><a href="" class="stretched-link">Lorem Ipsum</a></h4>
-                    <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
+                    <h3><a href="" class="stretched-link">145</a></h3>
+                    <h5>Cartórios Interligados</h5>
                 </div>
             </div><!-- End Service Item -->
 
-            <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out" data-aos-delay="200">
+            <div class="col-xl-2 col-md-6 col-12 text-center" data-aos="zoom-out" data-aos-delay="200">
                 <div class="service-item position-relative">
                     <div class="icon"><i class="bi bi-bounding-box-circles icon"></i></div>
-                    <h4><a href="" class="stretched-link">Sed ut perspici</a></h4>
-                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
+                    <h3><a href="" class="stretched-link">2.297.619</a></h3>
+                    <h5>Pesquisas Realizadas</h5>
                 </div>
             </div><!-- End Service Item -->
 
-            <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out" data-aos-delay="400">
+            <div class="col-xl-2 col-md-6 col-12 text-center" data-aos="zoom-out" data-aos-delay="400">
                 <div class="service-item position-relative">
                     <div class="icon"><i class="bi bi-calendar4-week icon"></i></div>
-                    <h4><a href="" class="stretched-link">Magni Dolores</a></h4>
-                    <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p>
+                    <h3><a href="" class="stretched-link">1.162.296</a></h3>
+                    <h5>Imóveis Cadastrados</h5>
                 </div>
             </div><!-- End Service Item -->
 
-            <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out" data-aos-delay="600">
+            <div class="col-xl-2 col-md-6 col-12 text-center" data-aos="zoom-out" data-aos-delay="600">
                 <div class="service-item position-relative">
                     <div class="icon"><i class="bi bi-broadcast icon"></i></div>
-                    <h4><a href="" class="stretched-link">Nemo Enim</a></h4>
-                    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</p>
+                    <h3><a href="" class="stretched-link">13.430.583</a></h3>
+                    <h5>Tabelionatos de Notas</h5>
+                </div>
+            </div><!-- End Service Item -->
+
+            <div class="col-xl-2 col-md-6 col-12 text-center" data-aos="zoom-out" data-aos-delay="600">
+                <div class="service-item position-relative">
+                    <div class="icon"><i class="bi bi-broadcast icon"></i></div>
+                    <h3><a href="" class="stretched-link">16.981.122</a></h3>
+                    <h5>Total de Escrituras Inseridas</h5>
                 </div>
             </div><!-- End Service Item -->
 
         </div>
-
     </div>
 </section><!-- End Featured Services Section -->
 
@@ -67,7 +72,7 @@
     <div class="container" data-aos="fade-up">
 
         <div class="section-header">
-            <h2>About Us</h2>
+            <h2>Sobre nós</h2>
             <p>Architecto nobis eos vel nam quidem vitae temporibus voluptates qui hic deserunt iusto omnis nam
                 voluptas asperiores sequi tenetur dolores incidunt enim voluptatem magnam cumque fuga.</p>
         </div>
