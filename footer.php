@@ -6,7 +6,7 @@
 
                 <div class="col-lg-3 col-md-6">
                     <div class="footer-info">
-                        <h3>HeroBiz</h3>
+                        <h4>Portal escrituras</h4>
                         <p>
                             A108 Adam Street <br>
                             NY 535022, USA<br><br>
@@ -20,7 +20,8 @@
                     <h4>Serviços</h4>
                     <ul>
                         <li><i class="bi bi-chevron-right"></i> <a href="busca-gratis">Busca grátis</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#">Solicitação de escritura</a></li>
+                        <li><i class="bi bi-chevron-right"></i> <a href="cadastro-do-tabelionato">Solicitação de
+                                escritura</a></li>
                     </ul>
                 </div>
 

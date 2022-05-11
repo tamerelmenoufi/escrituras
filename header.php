@@ -1,7 +1,7 @@
 <header id="header" class="header" data-scrollto-offset="0">
     <div class="container-fluid d-flex align-items-center justify-content-between">
 
-        <a href="index.html" class="logo d-flex align-items-center scrollto me-auto me-lg-0">
+        <a href="/escrituras" class="logo d-flex align-items-center scrollto me-auto me-lg-0">
             <!-- Uncomment the line below if you also wish to use an image logo -->
             <!-- <img src="assets/img/logo.png" alt=""> -->
             <h1>Portal escrituras<span>.</span></h1>
@@ -16,13 +16,13 @@
                     </a>
                     <ul>
                         <li><a href="busca-escritura">Busca Grátis</a></li>
-                        <li><a href="index-2.html">Solicitação de Escritura</a></li>
+                        <li><a href="cadastro-do-tabelionato">Solicitação de Escritura</a></li>
                     </ul>
                 </li>
                 <li><a class="nav-link scrollto" href="index.html#portfolio">Suporte</a></li>
-                <li><a class="nav-link scrollto" href="index.html#about">Seja membro</a></li>
-                <li><a class="nav-link scrollto" href="index.html#contact">Contato</a></li>
-                <li><a class="nav-link scrollto" href="index.html#team">Login</a></li>
+                <li><a class="nav-link scrollto" href="seja-membro">Seja membro</a></li>
+                <li><a class="nav-link scrollto" href="contato">Contato</a></li>
+                <li><a class="nav-link scrollto" href="login">Login</a></li>
             </ul>
             <i class="bi bi-list mobile-nav-toggle d-none"></i>
         </nav><!-- .navbar -->

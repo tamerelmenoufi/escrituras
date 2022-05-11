@@ -8,7 +8,13 @@
         </p>
         <div class="d-flex">
             <a href="#about" class="btn scrollto btn-lg">Busca Grátis</a>
-            <a href="#" class="glightbox btn btn-primary btn-lg">Solicite Certidão </a>
+            <a
+                    href="#"
+                    class="glightbox btn btn-lg text-white"
+                    style="background: var(--color-primary)"
+            >
+                Solicite Certidão
+            </a>
         </div>
     </div>
 </section>

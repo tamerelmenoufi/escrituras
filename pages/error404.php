@@ -1,1 +1,1 @@
-<h1 class="text-center text-danger">Página não encontrada</h1>
+<h1 class="text-center text-danger py-5">Página não encontrada</h1>
