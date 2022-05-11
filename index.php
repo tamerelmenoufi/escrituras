@@ -53,7 +53,7 @@
     if ($rota === 'main') {
         include "main.php";
     } else if (file_exists("pages/{$rota}.php")) {
-        include "pages/{$rotas}.php";
+        include "pages/{$rota}.php";
     } else {
         include "pages/error404.php";
     }

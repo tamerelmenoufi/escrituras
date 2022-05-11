@@ -1,1 +1,1 @@
-<h1 class="text-center text-danger" style="margin:15% 0">Página não encontrada</h1>
+<h1 class="text-center text-danger">Página não encontrada</h1>
