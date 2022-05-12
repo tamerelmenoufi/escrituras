@@ -48,11 +48,6 @@
 <main id="main">
     <?php
 
-    print_r($_GET);
-
-    exit();
-    /////////////////
-
     $rotas = explode(',', $_GET['url'] ?: 'main');
     $rota = $rotas[0];
 
