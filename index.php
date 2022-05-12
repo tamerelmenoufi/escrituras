@@ -48,7 +48,7 @@
 <main id="main">
     <?php
 
-    print_r($_GET['url']);
+    print_r($_GET);
 
     exit();
     /////////////////
