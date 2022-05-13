@@ -1,7 +1,7 @@
 <header id="header" class="header" data-scrollto-offset="0">
     <div class="container-fluid d-flex align-items-center justify-content-between">
 
-        <a href="/escrituras" class="logo d-flex align-items-center scrollto me-auto me-lg-0">
+        <a href="./" class="logo d-flex align-items-center scrollto me-auto me-lg-0">
             <!-- Uncomment the line below if you also wish to use an image logo -->
             <!-- <img src="assets/img/logo.png" alt=""> -->
             <h1>Portal escrituras<span>.</span></h1>
@@ -9,7 +9,7 @@
 
         <nav id="navbar" class="navbar">
             <ul>
-                <li><a class="nav-link scrollto" href="/escrituras/">Início</a></li>
+                <li><a class="nav-link scrollto" href="./">Início</a></li>
                 <li class="dropdown">
                     <a href="#">
                         <span>Serviços</span> <i class="bi bi-chevron-down dropdown-indicator"></i>
