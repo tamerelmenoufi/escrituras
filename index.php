@@ -47,7 +47,7 @@
 <!-- ======= main ======= -->
 <main id="main">
     <?php
-
+    ////////////////
     $rotas = explode(',', $_GET['url'] ?: 'main');
     $rota = $rotas[0];
 
