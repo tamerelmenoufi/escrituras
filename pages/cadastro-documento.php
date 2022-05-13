@@ -140,25 +140,31 @@
                             >
                         </div>
 
-                        <div class="mb-3">
-                            <label for="vendedor_rg" class="form-label">RG</label>
-                            <input
-                                    type="text"
-                                    class="form-control"
-                                    id="vendedor_rg"
-                                    aria-describedby="vendedor_rg"
-                            >
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="vendedor_rg" class="form-label">RG</label>
+                                    <input
+                                            type="text"
+                                            class="form-control"
+                                            id="vendedor_rg"
+                                            aria-describedby="vendedor_rg"
+                                    >
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="vendedor_cpf" class="form-label">CPF</label>
+                                    <input
+                                            type="text"
+                                            class="form-control"
+                                            id="vendedor_cpf"
+                                            aria-describedby="vendedor_cpf"
+                                    >
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="mb-3">
-                            <label for="vendedor_cpf" class="form-label">CPF</label>
-                            <input
-                                    type="text"
-                                    class="form-control"
-                                    id="vendedor_cpf"
-                                    aria-describedby="vendedor_cpf"
-                            >
-                        </div>
 
                         <div class="mb-3">
                             <label for="vendedor_cnpj" class="form-label">CNPJ</label>
@@ -170,15 +176,123 @@
                             >
                         </div>
 
-                        <div class="mb-3">
-                            <label for="vendedor_inscricao_estadual" class="form-label">Inscrição estadual</label>
-                            <input
-                                    type="text"
-                                    class="form-control"
-                                    id="vendedor_inscricao_estadual"
-                                    aria-describedby="vendedor_inscricao_estadual"
-                            >
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="vendedor_inscricao_estadual" class="form-label">Inscrição
+                                        estadual</label>
+                                    <input
+                                            type="text"
+                                            class="form-control"
+                                            id="vendedor_inscricao_estadual"
+                                            aria-describedby="vendedor_inscricao_estadual"
+                                    >
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="vendedor_inscricao_municipal" class="form-label">Inscrição
+                                        municipal</label>
+                                    <input
+                                            type="text"
+                                            class="form-control"
+                                            id="vendedor_inscricao_municipal"
+                                            aria-describedby="vendedor_inscricao_municipal"
+                                    >
+                                </div>
+                            </div>
                         </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label for="vendedor_estado" class="form-label">Estado</label>
+                                    <input
+                                            type="text"
+                                            class="form-control"
+                                            id="vendedor_estado"
+                                            aria-describedby="vendedor_estado"
+                                    >
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label for="vendedor_cidade" class="form-label">Cidade</label>
+                                    <input
+                                            type="text"
+                                            class="form-control"
+                                            id="vendedor_cidade"
+                                            aria-describedby="vendedor_cidade"
+                                    >
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label for="vendedor_bairro" class="form-label">Bairro</label>
+                                    <input
+                                            type="text"
+                                            class="form-control"
+                                            id="vendedor_bairro"
+                                            aria-describedby="vendedor_bairro"
+                                    >
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="co-md-3">
+                                    <div class="mb-3">
+                                        <label for="vendedor_rua" class="form-label">Rua</label>
+                                        <input
+                                                type="text"
+                                                class="form-control"
+                                                id="vendedor_rua"
+                                                aria-describedby="vendedor_rua"
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label for="vendedor_numero" class="form-label">Número</label>
+                                    <input
+                                            type="text"
+                                            class="form-control"
+                                            id="vendedor_numero"
+                                            aria-describedby="vendedor_numero"
+                                    >
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label for="vendedor_telefone" class="form-label">Telefone</label>
+                                    <input
+                                            type="text"
+                                            class="form-control"
+                                            id="vendedor_telefone"
+                                            aria-describedby="vendedor_telefone"
+                                    >
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="mb-3">
+                                    <label for="vendedor_email" class="form-label">E-Mail</label>
+                                    <input
+                                            type="text"
+                                            class="form-control"
+                                            id="vendedor_email"
+                                            aria-describedby="vendedor_email"
+                                    >
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                     <!-- Vendedor -->
 
