@@ -1317,9 +1317,11 @@
     <div class="container">
 
         <div class="section-header">
-            <h2>Contact Us</h2>
-            <p>Ea vitae aspernatur deserunt voluptatem impedit deserunt magnam occaecati dssumenda quas ut ad
-                dolores adipisci aliquam.</p>
+            <h2>Entre em contato conosco</h2>
+            <p>
+                Ela rejeita a vida, abandona o prazer, a impede, abandona a grande alma cega daqueles a quem ela poderia
+                ganhar alguma dor.
+            </p>
         </div>
 
     </div>
@@ -1336,14 +1338,16 @@
             <div class="col-lg-4">
 
                 <div class="info">
-                    <h3>Get in touch</h3>
-                    <p>Et id eius voluptates atque nihil voluptatem enim in tempore minima sit ad mollitia commodi
-                        minus.</p>
+                    <h3>Entrar em contato</h3>
+                    <p>
+                        Em outras palavras, seus prazeres não são nada e prazer, pois pelo menos há pelo menos uma
+                        suavidade de conveniência.
+                    </p>
 
                     <div class="info-item d-flex">
                         <i class="bi bi-geo-alt flex-shrink-0"></i>
                         <div>
-                            <h4>Location:</h4>
+                            <h4>Localização:</h4>
                             <p>A108 Adam Street, New York, NY 535022</p>
                         </div>
                     </div><!-- End Info Item -->
@@ -1359,7 +1363,7 @@
                     <div class="info-item d-flex">
                         <i class="bi bi-phone flex-shrink-0"></i>
                         <div>
-                            <h4>Call:</h4>
+                            <h4>Ligar:</h4>
                             <p>+1 5589 55488 55</p>
                         </div>
                     </div><!-- End Info Item -->

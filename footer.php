@@ -8,9 +8,9 @@
                     <div class="footer-info">
                         <h4>Portal escrituras</h4>
                         <p>
-                            A108 Adam Street <br>
-                            NY 535022, USA<br><br>
-                            <strong>Phone:</strong> +1 5589 55488 55<br>
+                            Rua brasil <br>
+                            Manaus, AM<br><br>
+                            <strong>Telefone:</strong> +55 (92) 9999-9999<br>
                             <strong>Email:</strong> info@example.com<br>
                         </p>
                     </div>
@@ -35,12 +35,12 @@
                 </div>
 
                 <div class="col-lg-4 col-md-6 footer-newsletter">
-                    <h4>Our Newsletter</h4>
-                    <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
-                    <form action="" method="post">
-                        <input type="email" name="email"><input type="submit" value="Subscribe">
-                    </form>
-
+                    <h4>Portal escrituras</h4>
+                    <p>
+                        O portal escritura foi desenvolvido com a principal finalidade de
+                        localizar de maneira mais rápida e eficiente as escrituras públicas
+                        de imóveis lavradas no Brasil.
+                    </p>
                 </div>
 
             </div>
