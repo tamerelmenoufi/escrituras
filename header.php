@@ -21,6 +21,7 @@
                 </li>
                 <li><a class="nav-link scrollto" href="index.html#portfolio">Suporte</a></li>
                 <li><a class="nav-link scrollto" href="seja-membro">Seja membro</a></li>
+                <li><a class="nav-link scrollto" href="quem-somos">Quem somos</a></li>
                 <li><a class="nav-link scrollto" href="contato">Contato</a></li>
                 <li><a class="nav-link scrollto" href="login">Login</a></li>
             </ul>

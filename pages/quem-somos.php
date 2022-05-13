@@ -5,7 +5,8 @@
     <h5 class="text-center">SOBRE O SITE PORTAL ESCRITURAS</h5>
 
     <div class="row mt-5">
-        <div class="col-lg-6 col-md-6 col-sm-12">
+
+        <div class="col-md-6 px-4">
             <p class="fs-6">
                 O portal escritura foi desenvolvido com a principal finalidade de
                 localizar de maneira mais rápida e eficiente as escrituras públicas
@@ -27,8 +28,11 @@
                 Sediado na cidade de Manaus - AM
             </p>
         </div>
-        <div class="col-lg-6 col-md-6 col-sm-12">
-
+        <div class="col-md-6 col-sm-12">
+            <div class="d-flex flex-row justify-content-center align-items-center"
+                 style="background-color: rgba(243,242,242,0.99); width: 100%; height: 200px">
+                [IMAGE]
+            </div>
         </div>
     </div>
 </div>
