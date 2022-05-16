@@ -862,9 +862,3 @@
         </div>
     </div>
 </div>
-
-<script>
-    $(function(){
-        alert('Teste com os alertas!!');
-    })
-</script>
