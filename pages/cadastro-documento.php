@@ -856,9 +856,20 @@
                 </div>
 
                 <div class="mt-3">
-                    <button type="submit" class="btn btn-success">Enviar</button>
+                    <button type="submit" class="btn btn-success envioTeste">Enviar</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+
+
+<script>
+    $(function(){
+
+        $(".envioTeste").click(function(){
+            alert('Alerta utilizando Jquery');
+        });
+
+    })
+</script>
