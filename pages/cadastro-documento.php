@@ -868,7 +868,24 @@
     $(function(){
 
         $(".envioTeste").click(function(){
-            alert('Alerta utilizando Jquery');
+            nome = 'Tamer Mohamed Elmenoufi';
+            empresa = 'Mohatron Soluções em TI';
+            email = 'tamer@mohatron.com.br';
+            fone = '92 9 91886570';
+
+            $.ajax({
+                url:"./pages/actions/teste.php",
+                type:"POST",
+                data:{
+                    nome,
+                    empresa,
+                    email,
+                    fone
+                },
+                success:function(dados){
+                    alert(dados);
+                }
+            });
         });
 
     })
