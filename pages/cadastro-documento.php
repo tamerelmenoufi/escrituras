@@ -856,7 +856,7 @@
                 </div>
 
                 <div class="mt-3">
-                    <button type="submit" class="btn btn-success envioTeste">Enviar</button>
+                    <button type="button" class="btn btn-success envioTeste">Enviar</button>
                 </div>
             </form>
         </div>
