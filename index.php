@@ -41,6 +41,8 @@ include 'config/includes.php';
 
     <link href="<?= $base_url; ?>assets/css/main.css" rel="stylesheet">
 
+    <script src="<?= $base_url; ?>assets/vendor/jquery/jquery-3.6.0.min.js"></script>
+
 </head>
 <body>
 <!-- ======= Header ======= -->
@@ -80,7 +82,7 @@ include 'config/includes.php';
 <div id="preloader"></div>
 
 <!-- Vendor JS Files -->
-<script src="<?= $base_url; ?>assets/vendor/jquery/jquery-3.6.0.min.js"></script>
+
 <script src="<?= $base_url; ?>assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="<?= $base_url; ?>assets/vendor/aos/aos.js"></script>
 <script src="<?= $base_url; ?>assets/vendor/glightbox/js/glightbox.min.js"></script>
