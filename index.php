@@ -40,9 +40,9 @@ include 'config/includes.php';
     <!-- <link href="assets/css/variables-pink.css" rel="stylesheet"> -->
 
     <link href="<?= $base_url; ?>assets/css/main.css" rel="stylesheet">
-
+    <link href="<?= $base_url; ?>assets/vendor/fontawesome/css/all.css" rel="stylesheet">
     <script src="<?= $base_url; ?>assets/vendor/jquery/jquery-3.6.0.min.js"></script>
-
+    <script src="<?= $base_url; ?>assets/vendor/jquery/jquery.validate.min.js"></script>
 </head>
 <body>
 <!-- ======= Header ======= -->
@@ -89,6 +89,7 @@ include 'config/includes.php';
 <script src="<?= $base_url; ?>assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
 <script src="<?= $base_url; ?>assets/vendor/swiper/swiper-bundle.min.js"></script>
 <script src="<?= $base_url; ?>assets/vendor/php-email-form/validate.js"></script>
+<script src="<?= $base_url; ?>assets/vendor/fontawesome/js/all.js"></script>
 
 <!-- Template Main JS File -->
 <script src="<?= $base_url; ?>assets/js/main.js"></script>
