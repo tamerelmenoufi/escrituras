@@ -43,6 +43,7 @@ include 'config/includes.php';
     <link href="<?= $base_url; ?>assets/vendor/fontawesome/css/all.css" rel="stylesheet">
     <script src="<?= $base_url; ?>assets/vendor/jquery/jquery-3.6.0.min.js"></script>
     <script src="<?= $base_url; ?>assets/vendor/jquery/jquery.validate.min.js"></script>
+    <script src="<?= $base_url; ?>assets/vendor/jquery/jquery.mask.min.js"></script>
 </head>
 <body>
 <!-- ======= Header ======= -->

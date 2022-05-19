@@ -1,3 +1,8 @@
+<?php
+include './config/includes.php';
+
+?>
+
 <div class="container-fluid">
     <h1 class="text-center">Cadastro de documento</h1>
 
@@ -47,39 +52,64 @@
                         <div class="mb-3">
                             <label for="cartorio" class="form-label">Cartório</label>
                             <input
-                                    type="email"
+                                    type="text"
                                     class="form-control"
                                     id="cartorio"
+                                    name="cartorio"
                                     aria-describedby="cartorio"
+                                    required
                             >
                         </div>
 
                         <div class="mb-3">
                             <label for="tipo_documento" class="form-label">Tipo de documento</label>
-                            <input
-                                    type="email"
+                            <select
                                     class="form-control"
                                     id="tipo_documento"
+                                    name="tipo_documento"
                                     aria-describedby="tipo_documento"
+                                    required
                             >
+                                <option value=""></option>
+                                <?php
+                                $query_tipo_documento = "SELECT * FROM aux_tipo_documento WHERE deletado = '1'";
+                                $result = mysqli_query($con, $query_tipo_documento);
+
+                                while ($row = mysqli_fetch_object($result)): ?>
+                                    <option value="<?= $row->codigo ?>"><?= $row->descricao ?></option>
+                                <?php endwhile; ?>
+                            </select>
+
                         </div>
 
                         <div class="mb-3">
                             <label for="tipo_imovel" class="form-label">Tipo de Imóvel</label>
-                            <input
+                            <select
                                     type="text"
                                     class="form-control"
                                     id="tipo_imovel"
+                                    name="tipo_imovel"
                                     aria-describedby="tipo_imovel"
                             >
+                                <option value=""></option>
+                                <?php
+                                $query_tipo_imovel = "SELECT * FROM aux_tipo_imovel WHERE situacao != '1'";
+                                $result = mysqli_query($con, $query_tipo_documento);
+
+                                while ($row = mysqli_fetch_object($result)): ?>
+                                    <option value="<?= $row->codigo ?>"><?= $row->nome ?></option>
+                                <?php endwhile; ?>
+                            </select>
                         </div>
 
                         <div class="mb-3">
                             <label for="nivel_imovel" class="form-label">Nivel do imóvel</label>
                             <input
-                                    type="text"
+                                    type="number"
+                                    min="0"
                                     class="form-control"
                                     id="nivel_imovel"
+                                    name="nivel_imovel"
                                     aria-describedby="nivel_imovel"
                             >
                         </div>
@@ -101,7 +131,9 @@
                                         type="text"
                                         class="form-control"
                                         id="vendedor_tipo"
+                                        name="vendedor_tipo"
                                         aria-describedby="vendedor_tipo"
+                                        required
                                 >
                             </div>
 
@@ -111,7 +143,9 @@
                                         type="text"
                                         class="form-control"
                                         id="vendedor_nome"
+                                        name="vendedor_nome"
                                         aria-describedby="vendedor_nome"
+                                        required
                                 >
                             </div>
 
@@ -123,7 +157,9 @@
                                                 type="text"
                                                 class="form-control"
                                                 id="vendedor_rg"
+                                                name="vendedor_rg"
                                                 aria-describedby="vendedor_rg"
+                                                required
                                         >
                                     </div>
                                 </div>
@@ -182,23 +218,32 @@
                                 <div class="col-md-4">
                                     <div class="mb-3">
                                         <label for="vendedor_estado" class="form-label">Estado</label>
-                                        <input
+                                        <select
                                                 type="text"
                                                 class="form-control"
                                                 id="vendedor_estado"
                                                 aria-describedby="vendedor_estado"
                                         >
+                                            <option value=""></option>
+                                            <?php
+                                            $query_estados = "SELECT * FROM aux_estados WHERE situacao = '0'";
+                                            $result = mysqli_query($con, $query_estados);
+                                            while ($row = mysqli_fetch_object($result)):?>
+                                                <option value="<?= $row->codigo ?>"><?= $row->nome ?></option>
+                                            <?php endwhile; ?>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="mb-3">
                                         <label for="vendedor_cidade" class="form-label">Cidade</label>
-                                        <input
-                                                type="text"
+                                        <select
                                                 class="form-control"
                                                 id="vendedor_cidade"
                                                 aria-describedby="vendedor_cidade"
                                         >
+                                            <option value=""></option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -757,12 +802,15 @@
                         <!-- Endereço -->
                         <div class="mb-3">
                             <label for="estado" class="form-label">Estado</label>
-                            <input
-                                    type="text"
+                            <select
                                     class="form-control"
                                     id="estado"
+                                    name="estado"
                                     aria-describedby="estado"
+                                    required
                             >
+                                <option value=""></option>
+                            </select>
                         </div>
 
                         <div class="mb-3">
@@ -865,6 +913,7 @@
                         </button>
                     </div>
                 </div>
+
             </form>
         </div>
     </div>
@@ -875,6 +924,8 @@
 
 <script>
     $(document).ready(function () {
+        $('#vendedor_cpf').mask('000.000.000-00', {clearIfNotMatch: true});
+
         var registrationForm = $('#form-cadastro-documento');
 
         var formValidate = $('#form-cadastro-documento').validate({
@@ -884,7 +935,7 @@
 
         const wizard = new Enchanter('form-cadastro-documento', {}, {
             onNext: () => {
-                if (!$('#form-cadastro-documento').valid()) {
+                if (!registrationForm.valid()) {
                     formValidate.focusInvalid();
                     return false;
                 }
@@ -894,23 +945,18 @@
 
     $(function () {
 
-        $(".envioTeste").click(function () {
-            nome = 'Tamer Mohamed Elmenoufi';
-            empresa = 'Mohatron Soluções em TI';
-            email = 'tamer@mohatron.com.br';
-            fone = '92 9 91886570';
+        $("#vendedor_estado").change(function () {
+            let estado = $(this).val();
 
             $.ajax({
-                url: "./pages/actions/teste.php",
+                url: "./pages/lista/cidades.php",
                 type: "POST",
                 data: {
-                    nome,
-                    empresa,
-                    email,
-                    fone
+                    estado,
                 },
+                dataType: 'html',
                 success: function (dados) {
-                    alert(dados);
+                    $('#vendedor_cidade').html(dados);
                 }
             });
         });
