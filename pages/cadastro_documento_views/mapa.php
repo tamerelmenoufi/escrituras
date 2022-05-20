@@ -1,4 +1,4 @@
-<div class="mb-3">
+<!--<div class="mb-3">
     <label for="coordenadas" class="form-label">Coordenadas</label>
     <input
         type="text"
@@ -16,4 +16,20 @@
         id="poligono"
         aria-describedby="poligono"
     >
-</div>
+</div>-->
+
+<style>
+    #mapa {
+        position: relative;
+        height: 500px;
+        width: 100%;
+        border: 1px solid;
+    }
+</style>
+
+
+<div id="map"></div>
+
+<script>
+
+</script>

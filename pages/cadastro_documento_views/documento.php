@@ -6,7 +6,7 @@
             id="cartorio"
             name="cartorio"
             aria-describedby="cartorio"
-            required
+            
     >
 </div>
 
@@ -17,7 +17,7 @@
             id="tipo_documento"
             name="tipo_documento"
             aria-describedby="tipo_documento"
-            required
+            
     >
         <option value=""></option>
         <?php

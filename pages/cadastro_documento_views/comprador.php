@@ -7,8 +7,9 @@
                 type="text"
                 class="form-control"
                 id="comprador_tipo"
+                name="comprador_tipo"
                 aria-describedby="comprador_tipo"
-                required
+
         >
     </div>
 
@@ -18,8 +19,9 @@
                 type="text"
                 class="form-control"
                 id="comprador_nome"
+                name="comprador_nome"
                 aria-describedby="comprador_nome"
-                required
+
         >
     </div>
 
@@ -31,8 +33,9 @@
                         type="text"
                         class="form-control"
                         id="comprador_rg"
+                        name="comprador_rg"
                         aria-describedby="comprador_rg"
-                        required
+
                 >
             </div>
         </div>
@@ -43,8 +46,8 @@
                         type="text"
                         class="form-control"
                         id="comprador_cpf"
+                        name="comprador_cpf"
                         aria-describedby="comprador_cpf"
-                        required
                 >
             </div>
         </div>
@@ -56,6 +59,7 @@
                 type="text"
                 class="form-control"
                 id="comprador_cnpj"
+                name="comprador_cnpj"
                 aria-describedby="comprador_cnpj"
         >
     </div>
@@ -69,6 +73,7 @@
                         type="text"
                         class="form-control"
                         id="comprador_inscricao_estadual"
+                        name="comprador_inscricao_estadual"
                         aria-describedby="comprador_inscricao_estadual"
                 >
             </div>
@@ -81,6 +86,7 @@
                 <input
                         type="text"
                         class="form-control"
+                        name="comprador_inscricao_municipal"
                         id="comprador_inscricao_municipal"
                         aria-describedby="comprador_inscricao_municipal"
                 >
@@ -96,6 +102,7 @@
                         type="text"
                         class="form-control"
                         id="comprador_estado"
+                        name="comprador_estado"
                         aria-describedby="comprador_estado"
                         onchange="select_localidade('comprador_estado','comprador_cidade','cidades')"
                 >
@@ -115,6 +122,7 @@
                 <select
                         class="form-control"
                         id="comprador_cidade"
+                        name="comprador_cidade"
                         aria-describedby="comprador_cidade"
                         onchange="select_localidade('comprador_cidade','comprador_bairro','bairros')"
                 >
@@ -128,6 +136,7 @@
                 <select
                         class="form-control"
                         id="comprador_bairro"
+                        name="comprador_bairro"
                         aria-describedby="comprador_bairro"
                 >
                     <option value=""></option>
@@ -145,6 +154,7 @@
                             type="text"
                             class="form-control"
                             id="comprador_rua"
+                            name="comprador_rua"
                             aria-describedby="comprador_rua"
                     >
                 </div>
@@ -158,6 +168,7 @@
                         type="text"
                         class="form-control"
                         id="comprador_numero"
+                        name="comprador_numero"
                         aria-describedby="comprador_numero"
                 >
             </div>
@@ -172,6 +183,7 @@
                         type="text"
                         class="form-control"
                         id="comprador_telefone"
+                        name="comprador_telefone"
                         aria-describedby="comprador_telefone"
                 >
             </div>
@@ -183,6 +195,7 @@
                         type="text"
                         class="form-control"
                         id="comprador_email"
+                        name="comprador_email"
                         aria-describedby="comprador_email"
                 >
             </div>
@@ -197,6 +210,7 @@
                 type="checkbox"
                 value=""
                 id="check-comprador-procurador"
+                name="check-comprador-procurador"
                 onclick="exibiContainer(this,'comprador-procurador-container')"
         >
         <label class="form-check-label" for="check-comprador-procurador">
@@ -214,6 +228,7 @@
                 type="text"
                 class="form-control"
                 id="comprador_procurador_tipo"
+                name="comprador_procurador_tipo"
                 aria-describedby="comprador_procurador_tipo"
         >
     </div>
@@ -224,6 +239,7 @@
                 type="text"
                 class="form-control"
                 id="comprador_procurador_nome"
+                name="comprador_procurador_nome"
                 aria-describedby="comprador_procurador_nome"
         >
     </div>
@@ -236,6 +252,7 @@
                         type="text"
                         class="form-control"
                         id="comprador_procurador_rg"
+                        name="comprador_procurador_rg"
                         aria-describedby="comprador_procurador_rg"
                 >
             </div>
@@ -247,6 +264,7 @@
                         type="text"
                         class="form-control"
                         id="comprador_procurador_cpf"
+                        name="comprador_procurador_cpf"
                         aria-describedby="comprador_procurador_cpf"
                 >
             </div>
@@ -259,6 +277,7 @@
                 type="text"
                 class="form-control"
                 id="comprador_procurador_cnpj"
+                name="comprador_procurador_cnpj"
                 aria-describedby="comprador_procurador_cnpj"
         >
     </div>
@@ -271,6 +290,7 @@
                         type="text"
                         class="form-control"
                         id="comprador_procurador_estado"
+                        name="comprador_procurador_estado"
                         aria-describedby="comprador_procurador_estado"
                         onchange="select_localidade('comprador_procurador_estado','comprador_procurador_cidade','cidades')"
                 >
@@ -290,6 +310,7 @@
                 <select
                         class="form-control"
                         id="comprador_procurador_cidade"
+                        name="comprador_procurador_cidade"
                         aria-describedby="comprador_procurador_cidade"
                         onchange="select_localidade('comprador_procurador_cidade','comprador_procurador_bairro','bairros')"
                 >
@@ -303,6 +324,7 @@
                 <select
                         class="form-control"
                         id="comprador_procurador_bairro"
+                        name="comprador_procurador_bairro"
                         aria-describedby="comprador_procurador_bairro"
                 >
                     <option value=""></option>
@@ -320,6 +342,7 @@
                             type="text"
                             class="form-control"
                             id="comprador_procurador_rua"
+                            name="comprador_procurador_rua"
                             aria-describedby="comprador_procurador_rua"
                     >
                 </div>
@@ -333,6 +356,7 @@
                         type="text"
                         class="form-control"
                         id="comprador_procurador_numero"
+                        name="comprador_procurador_numero"
                         aria-describedby="comprador_procurador_numero"
                 >
             </div>
@@ -348,6 +372,7 @@
                         type="text"
                         class="form-control"
                         id="comprador_procurador_telefone"
+                        name="comprador_procurador_telefone"
                         aria-describedby="comprador_procurador_telefone"
                 >
             </div>
@@ -359,6 +384,7 @@
                         type="text"
                         class="form-control"
                         id="comprador_procurador_email"
+                        name="comprador_procurador_email"
                         aria-describedby="comprador_procurador_email"
                 >
             </div>

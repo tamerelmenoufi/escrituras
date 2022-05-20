@@ -14,31 +14,26 @@ include './config/includes.php';
                         <a
                                 class="nav-link active"
                                 id="documento-tab"
-                                data-bs-toggle="tab"
                                 href="#documento">Documento</a>
 
                         <a
                                 class="nav-link"
                                 id="vendedor-tab"
-                                data-bs-toggle="tab"
                                 href="#vendedor">Vendedor</a>
 
                         <a
                                 class="nav-link"
                                 id="comprador-tab"
-                                data-bs-toggle="tab"
                                 href="#comprador">Comprador</a>
 
                         <a
                                 class="nav-link"
                                 id="endereco-tab"
-                                data-bs-toggle="tab"
                                 href="#endereco">Endereço</a>
 
                         <a
                                 class="nav-link"
                                 id="mapa-tab"
-                                data-bs-toggle="tab"
                                 href="#mapa">Mapa</a>
                     </div>
                 </nav>
@@ -123,66 +118,6 @@ include './config/includes.php';
 <script src="assets/js/enchanter.js"></script>
 
 <script>
-    $(document).ready(function () {
-        $('#vendedor_cpf, #vendedor_comprador_cpf, #comprador_cpf, #comprador_procurador_cpf')
-            .mask('000.000.000-00', {clearIfNotMatch: true});
-
-        $('#vendedor_telefone, #vendedor_comprador_telefone, #comprador_telefone, #comprador_procurador_telefone')
-            .mask('(00) 00000-0000', {clearIfNotMatch: true});
-
-        var registrationForm = $('#form-cadastro-documento');
-
-        var formValidate = $('#form-cadastro-documento').validate({
-            errorClass: 'is-invalid',
-            errorPlacement: () => false
-        });
-
-        const wizard = new Enchanter('form-cadastro-documento', {}, {
-            onNext: () => {
-                if (!registrationForm.valid()) {
-                    formValidate.focusInvalid();
-                    return false;
-                }
-            }
-        });
-    });
-
-    $(function () {
-
-        /*$("#vendedor_estado").change(function () {
-            let estado = $(this).val();
-
-            $.ajax({
-                url: "./pages/lista/cidades.php",
-                type: "POST",
-                data: {
-                    estado,
-                },
-                dataType: 'html',
-                success: function (dados) {
-                    $('#vendedor_cidade').html(dados);
-                }
-            });
-        });
-
-        $("#vendedor_cidade").change(function () {
-            let cidade = $(this).val();
-
-            $.ajax({
-                url: "./pages/lista/bairros.php",
-                type: "POST",
-                data: {
-                    cidade,
-                },
-                dataType: 'html',
-                success: function (dados) {
-                    $('#vendedor_bairro').html(dados);
-                }
-            });
-        });*/
-
-
-    });
 
     function select_localidade(select, select_to, url) {
         let valor = $(`#${select}`).val();
@@ -207,4 +142,50 @@ include './config/includes.php';
             container.find('input, select').val('');
         }
     }
+
+    $(document).ready(function () {
+        //Adiciona mascara de CPF
+        $('#vendedor_cpf, #vendedor_comprador_cpf, #comprador_cpf, #comprador_procurador_cpf')
+            .mask('000.000.000-00', {clearIfNotMatch: true});
+        //Adicionar mascara de telefones
+        $('#vendedor_telefone, #vendedor_comprador_telefone, #comprador_telefone, #comprador_procurador_telefone')
+            .mask('(00) 90000-0000', {clearIfNotMatch: true});
+
+        var registrationForm = $('#form-cadastro-documento');
+
+        var formValidate = $('#form-cadastro-documento').validate({
+            errorClass: 'is-invalid',
+            errorPlacement: () => false
+        });
+
+        const wizard = new Enchanter('form-cadastro-documento', {}, {
+            onNext: () => {
+                if (!registrationForm.valid()) {
+                    formValidate.focusInvalid();
+                    return false;
+                }
+            }
+        });
+    });
+
+    $(function () {
+        $("#form-cadastro-documento .nav-link").click(function (e) {
+            e.preventDefault();
+        });
+
+        $("#form-cadastro-documento").submit(function (e) {
+            e.preventDefault();
+
+            $.ajax({
+                url: "./pages/actions/teste.php",
+                method: "POST",
+                data: $(this).serialize(),
+                success: function (data) {
+                    alert("Formulário enviado com sucesso!");
+                }
+            })
+            //console.log($(this).serializeArray());
+        });
+    });
+
 </script>

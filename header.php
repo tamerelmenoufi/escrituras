@@ -17,6 +17,7 @@
                     <ul>
                         <li><a href="busca-escritura">Busca Grátis</a></li>
                         <li><a href="cadastro-do-tabelionato">Solicitação de Escritura</a></li>
+                        <li><a href="cadastro-documento">Cadastro de documento</a></li>
                     </ul>
                 </li>
                 <li><a class="nav-link scrollto" href="index.html#portfolio">Suporte</a></li>

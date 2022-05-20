@@ -44,9 +44,27 @@ include 'config/includes.php';
     <script src="<?= $base_url; ?>assets/vendor/jquery/jquery-3.6.0.min.js"></script>
     <script src="<?= $base_url; ?>assets/vendor/jquery/jquery.validate.min.js"></script>
     <script src="<?= $base_url; ?>assets/vendor/jquery/jquery.mask.min.js"></script>
+    <script
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBSnblPMOwEdteX5UPYXf7XUtJYcbypx6w&callback=initMap&v=weekly&language=pt&region=BR"
+            async
+    ></script>
     <script>
         $(document).ready(function () {
             $.jMaskGlobals.watchDataMask = true;
+
+            let geocoder = new google.maps.Geocoder();
+
+            mapa = new google.maps.Map(document.getElementById("map"), {
+                zoomControl: false,
+                mapTypeControl: false,
+                draggable: true,
+                scaleControl: false,
+                scrollwheel: false,
+                navigationControl: false,
+                streetViewControl: false,
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                fullscreenControl: false,
+            });
         });
     </script>
 </head>

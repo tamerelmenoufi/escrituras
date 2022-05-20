@@ -4,6 +4,7 @@
             type="text"
             class="form-control"
             id="estado"
+            name="estado"
             aria-describedby="estado"
             onchange="select_localidade('estado','cidade','cidades')"
     >
@@ -22,6 +23,7 @@
     <select
             class="form-control"
             id="cidade"
+            name="cidade"
             aria-describedby="cidade"
             onchange="select_localidade('cidade','bairro','bairros')"
     >
@@ -34,6 +36,7 @@
     <select
             class="form-control"
             id="bairro"
+            name="bairro"
             aria-describedby="bairro"
     >
         <option value=""></option>
@@ -46,6 +49,7 @@
             type="text"
             class="form-control"
             id="cep"
+            name="cep"
             aria-describedby="cep"
             data-mask="00000-000"
             data-clearifnotmatch="true"
@@ -59,6 +63,7 @@
             type="text"
             class="form-control"
             id="rua"
+            name="rua"
             aria-describedby="rua"
     >
 </div>
