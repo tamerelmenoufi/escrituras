@@ -1,7 +1,7 @@
 <?php
 include '../../config/ConnectionMySQL.php';
 
-$estado = $_POST['estado'];
+$estado = $_POST['valor'];
 
 $html = '<option value=""></option>';
 

@@ -44,6 +44,11 @@ include 'config/includes.php';
     <script src="<?= $base_url; ?>assets/vendor/jquery/jquery-3.6.0.min.js"></script>
     <script src="<?= $base_url; ?>assets/vendor/jquery/jquery.validate.min.js"></script>
     <script src="<?= $base_url; ?>assets/vendor/jquery/jquery.mask.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $.jMaskGlobals.watchDataMask = true;
+        });
+    </script>
 </head>
 <body>
 <!-- ======= Header ======= -->
