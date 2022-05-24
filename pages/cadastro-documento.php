@@ -3,6 +3,33 @@ include './config/includes.php';
 
 ?>
 
+<script>
+    $(function () {
+        geocoder = new google.maps.Geocoder();
+
+        //@formatter:off
+        mapa = new google.maps.Map(document.getElementById("map"), {
+            zoom              : 8,
+            zoomControl       : false,
+            mapTypeControl    : false,
+            draggable         : true,
+            scaleControl      : false,
+            scrollwheel       : false,
+            navigationControl : false,
+            streetViewControl : false,
+            fullscreenControl : false,
+        });
+
+        marker = new google.maps.Marker({
+            position  : {lat: 0, lng: 0},
+            map       : mapa,
+            title     : "Mapa",
+            draggable : false,
+        });
+
+        //@formatter:on
+    });
+</script>
 <div class="container-fluid">
     <h1 class="text-center">Cadastro de documento</h1>
 

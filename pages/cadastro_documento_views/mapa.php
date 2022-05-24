@@ -19,11 +19,10 @@
 </div>-->
 
 <style>
-    #mapa {
+    #map {
         position: relative;
         height: 500px;
         width: 100%;
-        border: 1px solid;
     }
 </style>
 
@@ -33,17 +32,6 @@
 <script>
     $(function () {
 
-        let geocoder = new google.maps.Geocoder();
 
-        mapa = new google.maps.Map(document.getElementById("map"), {
-            zoomControl: false,
-            mapTypeControl: false,
-            draggable: true,
-            scaleControl: false,
-            scrollwheel: false,
-            navigationControl: false,
-            streetViewControl: false,
-            fullscreenControl: false,
-        });
     });
 </script>

@@ -58,7 +58,7 @@
 
 
 <div class="mb-3">
-    <label for="rua" class="form-label">Rua</label>
+    <label for="rua" class="form-label">Logradouro</label>
     <input
             type="text"
             class="form-control"
@@ -67,3 +67,42 @@
             aria-describedby="rua"
     >
 </div>
+
+<script>
+
+    function initialize() {
+        var input = document.getElementById('rua');
+        var autocomplete = new google.maps.places.Autocomplete(input);
+
+        google.maps.event.addListener(autocomplete, 'place_changed', function () {
+            var place = autocomplete.getPlace();
+
+            //console.log(place.address_components)
+
+            //document.getElementById('city2').value = place.name;
+
+            place_latitude = place.geometry.location.lat();
+            place_longitude = place.geometry.location.lng();
+
+            geocoder.geocode({
+                "address": "Rua padre ramin, Manaus, Amazonas, Brasil",
+                "region": "BR"
+            }, (results, status) => {
+                console.log(results);
+                if (status == google.maps.GeocoderStatus.OK) {
+                    if (results[0]) {
+                        let latitude = results[0].geometry.location.lat();
+                        let longitude = results[0].geometry.location.lng();
+
+                        let location = new google.maps.LatLng(latitude, longitude);
+                        marker.setPosition(location);
+                        mapa.setCenter(location);
+                        mapa.setZoom(18);
+                    }
+                }
+            });
+        });
+    }
+
+    google.maps.event.addDomListener(window, 'load', initialize);
+</script>
