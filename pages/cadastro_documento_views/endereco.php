@@ -77,15 +77,13 @@
         google.maps.event.addListener(autocomplete, 'place_changed', function () {
             var place = autocomplete.getPlace();
 
-            //console.log(place.address_components)
-
             //document.getElementById('city2').value = place.name;
-
+            place_endereco = place['formatted_address'];
             place_latitude = place.geometry.location.lat();
             place_longitude = place.geometry.location.lng();
 
             geocoder.geocode({
-                "address": "Rua padre ramin, Manaus, Amazonas, Brasil",
+                "address": place_endereco,//"Rua padre ramin, Manaus, Amazonas, Brasil",
                 "region": "BR"
             }, (results, status) => {
                 console.log(results);
