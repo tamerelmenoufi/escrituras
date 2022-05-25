@@ -5,27 +5,24 @@ include './config/includes.php';
 
 <script>
     $(function () {
+        marker = null;
+
         geocoder = new google.maps.Geocoder();
 
         //@formatter:off
         mapa = new google.maps.Map(document.getElementById("map"), {
-            zoom              : 8,
-            zoomControl       : false,
+            zoom              : 14,
+            zoomControl       : true,
             mapTypeControl    : false,
             draggable         : true,
             scaleControl      : false,
-            scrollwheel       : false,
+            scrollwheel       : true,
             navigationControl : false,
             streetViewControl : false,
             fullscreenControl : false,
         });
 
-        marker = new google.maps.Marker({
-            position  : {lat: 0, lng: 0},
-            map       : mapa,
-            title     : "Mapa",
-            draggable : false,
-        });
+        marker = new google.maps.Marker();
 
         //@formatter:on
     });
@@ -128,8 +125,8 @@ include './config/includes.php';
                         </button>
 
                         <button
-                                type="submit"
-                                class="btn btn-primary"
+                                type="button"
+                                class="btn btn-primary finish"
                                 data-enchanter="finish"
                         >
                             Finalizar
@@ -212,6 +209,17 @@ include './config/includes.php';
                 }
             })
             //console.log($(this).serializeArray());
+        });
+
+        $(".finish").click(function () {
+            vertices = poligono.getPath();
+
+            for (let i = 0; i < vertices.getLength(); i++) {
+                const xy = vertices.getAt(i);
+
+                console.log("Coordinate " + i + ":<br>" + xy.lat() + "," + xy.lng());
+            }
+
         });
     });
 
