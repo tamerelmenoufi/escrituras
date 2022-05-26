@@ -104,6 +104,17 @@
                             draggable:true,
                         });
 
+
+
+
+                        google.maps.event.addListener(marker, 'dragend', function(marker) {
+                            var latLng = marker.latLng;
+                            alert(`Lat ${latLng.lat()} & Lng ${latLng.lng()}`)
+                        });
+
+
+
+
                     }
                 }
             });
