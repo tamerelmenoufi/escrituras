@@ -96,6 +96,14 @@
                         marker.setPosition(location);
                         mapa.setCenter(location);
                         mapa.setZoom(18);
+
+                        marker = new google.maps.Marker({
+                            position: { lat: latitude, lng: longitude },
+                            map:mapa,
+                            title: "TESTE",
+                            draggable:true,
+                        });
+
                     }
                 }
             });
