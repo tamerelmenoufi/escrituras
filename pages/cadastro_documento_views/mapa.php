@@ -44,7 +44,7 @@
             fillOpacity   : 0.35,
             editable      : true,
         });
-        
+
         poligono.setMap(mapa);
 
         mapa.addListener('click', addLatLng);
