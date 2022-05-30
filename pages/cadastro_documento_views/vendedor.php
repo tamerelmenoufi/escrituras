@@ -225,17 +225,6 @@
     <h4 class="my-2 text-center">Vendedor procurador</h4>
 
     <div class="mb-3">
-        <label for="vendedor_procurador_tipo" class="form-label">Tipo de vendedor</label>
-        <input
-                type="text"
-                class="form-control"
-                id="vendedor_procurador_tipo"
-                name="vendedor_procurador_tipo"
-                aria-describedby="vendedor_procurador_tipo"
-        >
-    </div>
-
-    <div class="mb-3">
         <label for="vendedor_procurador_nome" class="form-label">Nome do vendedor</label>
         <input
                 type="text"
@@ -271,17 +260,6 @@
                 >
             </div>
         </div>
-    </div>
-
-    <div class="mb-3">
-        <label for="vendedor_procurador_cnpj" class="form-label">CNPJ</label>
-        <input
-                type="text"
-                class="form-control"
-                id="vendedor_procurador_cnpj"
-                name="vendedor_procurador_cnpj"
-                aria-describedby="vendedor_procurador_cnpj"
-        >
     </div>
 
     <div class="row">

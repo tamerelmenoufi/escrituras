@@ -223,17 +223,6 @@
     <h4 class="my-2 text-center">Comprador procurador</h4>
 
     <div class="mb-3">
-        <label for="comprador_procurador_tipo" class="form-label">Tipo de comprador</label>
-        <input
-                type="text"
-                class="form-control"
-                id="comprador_procurador_tipo"
-                name="comprador_procurador_tipo"
-                aria-describedby="comprador_procurador_tipo"
-        >
-    </div>
-
-    <div class="mb-3">
         <label for="comprador_procurador_nome" class="form-label">Nome do comprador</label>
         <input
                 type="text"
@@ -269,17 +258,6 @@
                 >
             </div>
         </div>
-    </div>
-
-    <div class="mb-3">
-        <label for="comprador_procurador_cnpj" class="form-label">CNPJ</label>
-        <input
-                type="text"
-                class="form-control"
-                id="comprador_procurador_cnpj"
-                name="comprador_procurador_cnpj"
-                aria-describedby="comprador_procurador_cnpj"
-        >
     </div>
 
     <div class="row">

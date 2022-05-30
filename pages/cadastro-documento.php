@@ -125,7 +125,7 @@ include './config/includes.php';
                         </button>
 
                         <button
-                                type="button"
+                                type="submit"
                                 class="btn btn-primary finish"
                                 data-enchanter="finish"
                         >
@@ -138,6 +138,34 @@ include './config/includes.php';
         </div>
     </div>
 </div>
+<!-- Modal -->
+<div
+        class="modal fade"
+        id="staticBackdrop"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="staticBackdropLabel"
+        aria-hidden="true"
+        style="display: <?= isset($_SESSION['alert']) ? 'block' : 'none'; ?>"
+>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel"><?= $_SESSION['alert']['title'] ?></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <?= $_SESSION['alert']['content']; ?>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Ok</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php unset($_SESSION['alert']) ?>
 
 <script src="assets/js/enchanter.js"></script>
 
@@ -199,27 +227,36 @@ include './config/includes.php';
 
         $("#form-cadastro-documento").submit(function (e) {
             e.preventDefault();
-
-            $.ajax({
-                url: "./pages/actions/teste.php",
-                method: "POST",
-                data: $(this).serialize(),
-                success: function (data) {
-                    alert("Formulário enviado com sucesso!");
-                }
-            })
-            //console.log($(this).serializeArray());
-        });
-
-        $(".finish").click(function () {
             vertices = poligono.getPath();
+            var formData = $(this).serializeArray();
+            var coordenadas = [];
 
             for (let i = 0; i < vertices.getLength(); i++) {
                 const xy = vertices.getAt(i);
 
-                console.log("Coordinate " + i + ":<br>" + xy.lat() + "," + xy.lng());
+                coordenadas.push({
+                    "lat": xy.lat(),
+                    "lng": xy.lng()
+                });
             }
 
+            formData.push({
+                name: "coordenadas",
+                value: coordenadas
+            });
+
+            $.ajax({
+                url: "./pages/actions/actionCadastro_documento.php",
+                method: "POST",
+                data: $(this).serializeArray(),
+                success: function (data) {
+                    if (data === "ok") {
+                        window.location.reload();
+                    } else {
+                        alert('error');
+                    }
+                }
+            });
         });
     });
 
