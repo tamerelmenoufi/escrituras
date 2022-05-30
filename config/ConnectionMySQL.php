@@ -1,13 +1,17 @@
 <?php
 
-// ENDERECO DO SERVIDOR
-const HOST = "localhost";
-// NOME DO SCHEMA DB
-const DBNAME = "portal_escritura";
-// USUARIO
-const USER = "root";
-// SENHA
-const PASSWORD = "";
+
+if ($_SERVER['HTTP_HOST'] === 'localhost' || $_SERVER['HTTP_HOST'] === '10.0.0.115') {
+    define('HOST', 'localhost');
+    define('USER', 'root');
+    define('PASSWORD', '');
+    define('DBNAME', 'portal_escritura');
+} else {
+    define('HOST', 'escrituras.mohatron.com');
+    define('USER', 'root');
+    define('PASSWORD', '53nh@D0B@nc0');
+    define('DBNAME', 'portal_escritura');
+}
 
 
 $con = mysqli_connect(HOST, USER, PASSWORD, DBNAME) or die(mysqli_error($con));
