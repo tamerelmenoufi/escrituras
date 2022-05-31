@@ -139,7 +139,7 @@ include './config/includes.php';
     </div>
 </div>
 <!-- Modal -->
-<div
+<!-- <div
         class="modal fade"
         id="staticBackdrop"
         data-bs-backdrop="static"
@@ -163,7 +163,7 @@ include './config/includes.php';
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 <?php unset($_SESSION['alert']) ?>
 
