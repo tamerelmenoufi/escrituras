@@ -248,7 +248,7 @@ include './config/includes.php';
             $.ajax({
                 url: "./pages/actions/actionCadastro_documento.php",
                 method: "POST",
-                data: $(this).serializeArray(),
+                data: formData, //$(this).serializeArray(),
                 success: function (data) {
                     if (data === "ok") {
                         alert('Dados salvos com sucesso!');
