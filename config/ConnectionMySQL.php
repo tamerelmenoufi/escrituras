@@ -17,7 +17,7 @@ if ($_SERVER['HTTP_HOST'] === 'localhost' || $_SERVER['HTTP_HOST'] === '10.0.0.1
 $con = mysqli_connect(HOST, USER, PASSWORD, DBNAME) or die('Ocorreu erro na conexão'); //mysqli_error($con)
 
 // Check connection
-// if (mysqli_connect_error($con)) {
-//     echo "Failed to connect to MySQL";
-//     exit();
-// }
+if (mysqli_connect_error($con)) {
+    echo "Failed to connect to MySQL";
+    exit();
+}
