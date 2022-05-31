@@ -24,7 +24,7 @@ if (mysqli_query($con, $sql)) {
         "title" => "Error",
         "content" => "Error ao salvar documento"
     ];
-    echo $sql." | error";
+    echo $sql." | errorXXX";
 }
 
 exit();
