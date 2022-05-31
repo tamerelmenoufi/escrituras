@@ -36,7 +36,12 @@
 <script>
     $(function () {
         //@formatter:off
+
+
+        triangleCoords = '[{"lat": -3.1290166608296457,"lng": -60.02377578828007},{"lat": -3.129080937873819,"lng": -60.02377847048909},{"lat": -3.1290889725040736,"lng": -60.02363698396355},{"lat": -3.1290240259078232,"lng": -60.02363229009777},{"lat": -3.1290200085924607,"lng": -60.02371275636822}]';
+
         poligono = new google.maps.Polygon({
+            paths: triangleCoords,
             strokeColor   : "#FF0000",
             fillColor     : "#FF0000",
             strokeOpacity : 0.8,
