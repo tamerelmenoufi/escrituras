@@ -14,7 +14,7 @@ if ($_SERVER['HTTP_HOST'] === 'localhost' || $_SERVER['HTTP_HOST'] === '10.0.0.1
     define('DBNAME', 'portal_escritura');
 }
 
-$con = mysqli_connect(HOST, USER, PASSWORD, DBNAME);
+$con = mysqli_connect(HOST, USER, PASSWORD, DBNAME); //or die(mysqli_error($con));
 
 // Check connection
 if (mysqli_connect_error($con)) {
