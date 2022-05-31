@@ -242,7 +242,7 @@ include './config/includes.php';
 
             formData.push({
                 name: "coordenadas",
-                value: coordenadas //JSON.stringify
+                value: JSON.stringify(coordenadas)
             });
 
             $.ajax({
