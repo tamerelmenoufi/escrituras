@@ -251,6 +251,7 @@ include './config/includes.php';
                 data: $(this).serializeArray(),
                 success: function (data) {
                     if (data === "ok") {
+                        alert('Dados salvos com sucesso!');
                         window.location.reload();
                     } else {
                         alert(data);
