@@ -11,10 +11,10 @@ if ($_SERVER['HTTP_HOST'] === 'localhost' || $_SERVER['HTTP_HOST'] === '10.0.0.1
     define('HOST', 'localhost');
     define('USER', 'root');
     define('PASSWORD', '53nh@D0B@nc0');
-    define('DBNAME', 'portal_escritura');
+    define('DBNAME', 'portal_escrituraX');
 }
 
-$con = mysqli_connect(HOST, USER, PASSWORD, DBNAME) or die(mysqli_error($con)); //
+$con = mysqli_connect(HOST, USER, PASSWORD, DBNAME);
 
 // Check connection
 if (mysqli_connect_error($con)) {
