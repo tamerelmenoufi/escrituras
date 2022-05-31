@@ -253,7 +253,7 @@ include './config/includes.php';
                     if (data === "ok") {
                         window.location.reload();
                     } else {
-                        alert('error');
+                        alert(data);
                     }
                 }
             });
