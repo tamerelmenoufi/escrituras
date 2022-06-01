@@ -371,3 +371,26 @@
         </div>
     </div>
 </div>
+
+<div class="mt-3">
+    <div class="row justify-content-between">
+        <div class="col-auto">
+            <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-enchanter="previous"
+            >
+                Voltar
+            </button>
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary">Salvar</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+
+    });
+</script>

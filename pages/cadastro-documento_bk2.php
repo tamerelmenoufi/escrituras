@@ -64,16 +64,110 @@ include './config/includes.php';
 
                 <div class="tab-content py-4">
 
-                    <div class="tab-pane fade show active content-pane" id="">
+                    <div class="tab-pane fade show active" id="documento">
+
+                        <!-- Documentos-->
+                        <?php include "cadastro_documento_views/documento.php"; ?>
+                        <!-- Documentos-->
+
                     </div>
 
+                    <div class="tab-pane fade" id="vendedor">
+
+                        <!-- Vendedor -->
+                        <?php include "cadastro_documento_views/vendedor.php" ?>
+                        <!-- Vendedor -->
+
+                    </div>
+
+                    <div class="tab-pane fade" id="comprador">
+
+                        <!-- Comprador -->
+                        <?php include "cadastro_documento_views/comprador.php"; ?>
+                        <!-- Comprador -->
+
+                    </div>
+
+                    <div class="tab-pane fade" id="endereco">
+
+                        <!-- Endereço -->
+                        <?php include "cadastro_documento_views/endereco.php" ?>
+                        <!-- Endereço -->
+
+                    </div>
+
+                    <div class="tab-pane fade" id="mapa">
+
+                        <!-- Mapa -->
+                        <?php include "cadastro_documento_views/mapa.php" ?>
+                        <!-- Mapa -->
+
+                    </div>
                 </div>
 
+                <div class="row justify-content-between">
+                    <div class="col-auto">
+                        <button
+                                type="button"
+                                class="btn btn-secondary"
+                                data-enchanter="previous"
+                        >
+                            Voltar
+                        </button>
+                    </div>
+                    <div class="col-auto">
+                        <button
+                                type="button"
+                                class="btn btn-primary"
+                                data-enchanter="next"
+                        >
+                            Proximo
+                        </button>
+
+                        <button
+                                type="submit"
+                                class="btn btn-primary finish"
+                                data-enchanter="finish"
+                        >
+                            Finalizar
+                        </button>
+                    </div>
+                </div>
 
             </form>
         </div>
     </div>
 </div>
+<!-- Modal -->
+<!-- <div
+        class="modal fade"
+        id="staticBackdrop"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="staticBackdropLabel"
+        aria-hidden="true"
+        style="display: <?= isset($_SESSION['alert']) ? 'block' : 'none'; ?>"
+>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel"><?= $_SESSION['alert']['title'] ?></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <?= $_SESSION['alert']['content']; ?>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Ok</button>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<?php unset($_SESSION['alert']) ?>
+
+<script src="assets/js/enchanter.js"></script>
 
 <script>
 
@@ -109,15 +203,21 @@ include './config/includes.php';
         $('#vendedor_telefone, #vendedor_comprador_telefone, #comprador_telefone, #comprador_procurador_telefone')
             .mask('(00) 90000-0000', {clearIfNotMatch: true});
 
-        var doc_id = window.localStorage.getItem('doc_id');
+        var registrationForm = $('#form-cadastro-documento');
 
-        $.ajax({
-            url: "./pages/cadastro_documento/documento.php",
-            data: {doc_id},
-            success: function (data) {
-                $(".content-pane").html(data);
+        var formValidate = $('#form-cadastro-documento').validate({
+            errorClass: 'is-invalid',
+            errorPlacement: () => false
+        });
+
+        const wizard = new Enchanter('form-cadastro-documento', {}, {
+            onNext: () => {
+                if (!registrationForm.valid()) {
+                    formValidate.focusInvalid();
+                    return false;
+                }
             }
-        })
+        });
     });
 
     $(function () {
@@ -127,9 +227,7 @@ include './config/includes.php';
 
         $("#form-cadastro-documento").submit(function (e) {
             e.preventDefault();
-
             vertices = poligono.getPath();
-
             var formData = $(this).serializeArray();
             var coordenadas = [];
 

@@ -1,6 +1,6 @@
 <?php
 
-error_reporting(E_ALL);
+#error_reporting(E_ALL);
 
 if ($_SERVER['HTTP_HOST'] === 'localhost' || $_SERVER['HTTP_HOST'] === '10.0.0.115') {
     define('HOST', 'localhost');
