@@ -1,40 +1,179 @@
-<div class="mb-3">
-    <label for="estado" class="form-label">Estado</label>
-    <select type="text" class="form-control" id="estado" name="estado" aria-describedby="estado" onchange="select_localidade('estado','cidade','cidades')">
-        <option value=""></option>
-        <?php
-        $query_estados = "SELECT * FROM aux_estados WHERE situacao = '1'";
-        $result = mysqli_query($con, $query_estados);
-        while ($row = mysqli_fetch_object($result)) : ?>
-            <option value="<?= $row->codigo ?>"><?= $row->nome ?></option>
-        <?php endwhile; ?>
-    </select>
-</div>
+<?php
+include_once "../../config/includes.php";
 
-<div class="mb-3">
-    <label for="cidade" class="form-label">Cidade</label>
-    <select class="form-control" id="cidade" name="cidade" aria-describedby="cidade" onchange="select_localidade('cidade','bairro','bairros')">
-        <option value=""></option>
-    </select>
-</div>
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    #@formatter:off
+    $data = $_POST;
+    $attr = [];
+    $id   = $data["doc_id"];
+    unset($data["doc_id"]);
 
-<div class="mb-3">
-    <label for="bairro" class="form-label">Bairro</label>
-    <select class="form-control" id="bairro" name="bairro" aria-describedby="bairro">
-        <option value=""></option>
-    </select>
-</div>
+    foreach ($data as $name => $value) {
+        $attr[] = "{$name} = '" . mysqli_real_escape_string($con, $value) . "'";
+    }
 
-<div class="mb-3">
-    <label for="cep" class="form-label">CEP</label>
-    <input type="text" class="form-control" id="cep" name="cep" aria-describedby="cep" data-mask="00000-000" data-clearifnotmatch="true">
-</div>
+    $attr = implode(", ", $attr);
 
+    if($id){
+        $sql = "UPDATE documentos SET {$attr} WHERE codigo = '{$id}'";
+    }else{
+        echo json_encode([
+            "status"      => true,
+            "msg"         => "Error ao salvar",
+            "mysql_error" => mysqli_error($con),
+        ]);
+        exit();
+    }
 
-<div class="mb-3">
-    <label for="rua" class="form-label">Logradouro</label>
-    <input type="text" class="form-control" id="rua" name="rua" aria-describedby="rua">
-</div>
+    if (mysqli_query($con, $sql)) {
+        echo json_encode([
+            "status" => true,
+            "msg"    => "Dados salvo com sucesso",
+        ]);
+    } else {
+        echo json_encode([
+            "status"      => true,
+            "msg"         => "Error ao salvar",
+            "query"       => $sql,
+            "mysql_error" => mysqli_error($con),
+        ]);
+    }
+
+    exit();
+    #@formatter:on
+}
+
+$doc_id = $_GET['doc_id'];
+
+$d = [];
+
+if ($doc_id) {
+    $result = mysqli_query($con, "SELECT * FROM documentos WHERE codigo = '{$doc_id}'");
+    $d = mysqli_fetch_object($result);
+}
+?>
+
+<form id="form-endereco" class="needs-validation" novalidate>
+    <h4 class="my-2 text-center">Endereco</h4>
+
+    <div class="mb-3">
+        <label for="estado" class="form-label">Estado</label>
+        <select
+                type="text"
+                class="form-control"
+                id="estado"
+                name="estado"
+                aria-describedby="estado"
+                onchange="select_localidade('estado','cidade','cidades')"
+        >
+            <option value=""></option>
+            <?php
+            $query_estados = "SELECT * FROM aux_estados WHERE situacao = '1'";
+            $result = mysqli_query($con, $query_estados);
+
+            while ($row = mysqli_fetch_object($result)) : ?>
+                <option
+                        value="<?= $row->codigo ?>"
+                    <?= $row->codigo == $d->estado ? 'selected' : '' ?>
+                ><?= $row->nome ?></option>
+            <?php endwhile; ?>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label for="cidade" class="form-label">Cidade</label>
+        <select
+                class="form-control"
+                id="cidade"
+                name="cidade"
+                aria-describedby="cidade"
+                onchange="select_localidade('cidade','bairro','bairros')"
+        >
+            <option value=""></option>
+
+            <?php
+            if ($d->cidade) {
+                $sql = "SELECT * FROM aux_cidades WHERE estado = '{$d->estado}' AND deletado != '1'";
+                $result = mysqli_query($con, $sql);
+
+                while ($c = mysqli_fetch_object($result)):?>
+                    <option
+                            value="<?= $c->codigo ?>"
+                        <?= $c->codigo == $d->cidade ? 'select' : '' ?>>
+                        <?= $c->descricao ?>
+                    </option>';
+                <?php endwhile;
+            }
+            ?>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label for="bairro" class="form-label">Bairro</label>
+        <select class="form-control" id="bairro" name="bairro" aria-describedby="bairro">
+            <option value=""></option>
+
+            <?php
+            if ($d->bairro) {
+                $sql = "SELECT * FROM aux_bairros WHERE cidade = '{$d->cidade}' AND deletado != '1'";
+                $result = mysqli_query($con, $sql);
+
+                while ($b = mysqli_fetch_object($result)):?>
+                    <option
+                            value="<?= $b->codigo ?>"
+                        <?= $b->codigo == $d->bairro ? 'select' : '' ?>>
+                        <?= $b->descricao ?>
+                    </option>';
+                <?php endwhile;
+            }
+            ?>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label for="cep" class="form-label">CEP</label>
+        <input
+                type="text"
+                class="form-control"
+                id="cep"
+                name="cep"
+                aria-describedby="cep"
+                data-mask="00000-000"
+                data-clearifnotmatch="true"
+                value="<?= $d->cep; ?>"
+        >
+    </div>
+
+    <div class="mb-3">
+        <label for="rua" class="form-label">Logradouro</label>
+        <input
+                type="text"
+                class="form-control"
+                id="rua"
+                name="rua"
+                aria-describedby="rua"
+                value="<?= $d->rua; ?>"
+        >
+    </div>
+
+    <div class="mt-3">
+        <div class="row justify-content-between">
+            <div class="col-auto">
+                <button
+                        voltar
+                        type="button"
+                        class="btn btn-secondary"
+                        data-enchanter="previous"
+                >
+                    Voltar
+                </button>
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary">Salvar</button>
+            </div>
+        </div>
+    </div>
+</form>
 
 <script>
     function initialize() {
@@ -74,9 +213,6 @@
                             draggable: true,
                         });
 
-
-
-
                         google.maps.event.addListener(marker, 'dragend', function(marker) {
                             var latLng = marker.latLng;
                             alert(`Lat ${latLng.lat()} & Lng ${latLng.lng()}`)
@@ -93,4 +229,61 @@
     }
 
     google.maps.event.addDomListener(window, 'load', initialize);
+
+    /* ---------------------------------------*/
+
+    $(function () {
+        var doc_id = window.localStorage.getItem('doc_id');
+
+        $("button[voltar]").click(function () {
+            $.ajax({
+                url: "./pages/cadastro_documento/comprador.php",
+                data: {doc_id},
+                success: function (data) {
+                    $(".content-pane").html(data);
+                }
+            })
+        });
+
+        $("#form-endereco").submit(function (e) {
+            e.preventDefault();
+
+            var form = $(this)[0];
+            var isValid = form.checkValidity();
+
+            if (!isValid) {
+                form.classList.add('was-validated');
+                return false;
+            }
+
+            var formData = $(this).serializeArray();
+
+            if (doc_id) {
+                formData.push({
+                    name: "doc_id",
+                    value: doc_id,
+                });
+            }
+
+            $.ajax({
+                url: "./pages/cadastro_documento/endereco.php",
+                type: "POST",
+                data: formData,
+                dataType: "JSON",
+                success: function (data) {
+                    //window.localStorage.setItem('doc_id', data.codigo);
+
+                    $.ajax({
+                        url: "./pages/cadastro_documento/mapa.php",
+                        type: "GET",
+                        data: {doc_id},
+                        success: function (data) {
+                            $(".content-pane").html(data);
+                        }
+                    });
+                }
+            });
+        });
+    });
+
 </script>

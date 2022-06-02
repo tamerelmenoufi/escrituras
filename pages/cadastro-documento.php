@@ -32,45 +32,44 @@ include './config/includes.php';
 
     <div class="row justify-content-center">
         <div class="col-md-10 col-lg-8 my-4">
-            <form action="" method="post" id="form-cadastro-documento">
-                <nav>
-                    <div class="nav nav-pills nav-fill" id="nav-tab" role="tablist">
-                        <a
-                                class="nav-link active"
-                                id="documento-tab"
-                                href="#documento">Documento</a>
 
-                        <a
-                                class="nav-link"
-                                id="vendedor-tab"
-                                href="#vendedor">Vendedor</a>
+            <nav>
+                <div class="nav nav-pills nav-fill" id="nav-tab" role="tablist">
+                    <a
+                            class="nav-link active"
+                            id="documento-tab"
+                            href="#documento">Documento</a>
 
-                        <a
-                                class="nav-link"
-                                id="comprador-tab"
-                                href="#comprador">Comprador</a>
+                    <a
+                            class="nav-link"
+                            id="vendedor-tab"
+                            href="#vendedor">Vendedor</a>
 
-                        <a
-                                class="nav-link"
-                                id="endereco-tab"
-                                href="#endereco">Endereço</a>
+                    <a
+                            class="nav-link"
+                            id="comprador-tab"
+                            href="#comprador">Comprador</a>
 
-                        <a
-                                class="nav-link"
-                                id="mapa-tab"
-                                href="#mapa">Mapa</a>
-                    </div>
-                </nav>
+                    <a
+                            class="nav-link"
+                            id="endereco-tab"
+                            href="#endereco">Endereço</a>
 
-                <div class="tab-content py-4">
+                    <a
+                            class="nav-link"
+                            id="mapa-tab"
+                            href="#mapa">Mapa</a>
+                </div>
+            </nav>
 
-                    <div class="tab-pane fade show active content-pane" id="">
-                    </div>
+            <div class="tab-content py-4">
 
+                <div class="tab-pane fade show active content-pane" id="">
                 </div>
 
+            </div>
 
-            </form>
+
         </div>
     </div>
 </div>
@@ -102,12 +101,6 @@ include './config/includes.php';
     }
 
     $(document).ready(function () {
-        //Adiciona mascara de CPF
-        $('#vendedor_cpf, #vendedor_comprador_cpf, #comprador_cpf, #comprador_procurador_cpf')
-            .mask('000.000.000-00', {clearIfNotMatch: true});
-        //Adicionar mascara de telefones
-        $('#vendedor_telefone, #vendedor_comprador_telefone, #comprador_telefone, #comprador_procurador_telefone')
-            .mask('(00) 90000-0000', {clearIfNotMatch: true});
 
         var doc_id = window.localStorage.getItem('doc_id');
 
@@ -121,11 +114,15 @@ include './config/includes.php';
     });
 
     $(function () {
+
+        //Adicionar mascara de telefones
+        $('#vendedor_telefone, #vendedor_comprador_telefone, #comprador_telefone, #comprador_procurador_telefone')
+            .mask('(00) 90000-0000', {clearIfNotMatch: true});
         $("#form-cadastro-documento .nav-link").click(function (e) {
             e.preventDefault();
         });
 
-        $("#form-cadastro-documento").submit(function (e) {
+        /*$("#form-cadastro-documento").submit(function (e) {
             e.preventDefault();
 
             vertices = poligono.getPath();
@@ -160,7 +157,7 @@ include './config/includes.php';
                     }
                 }
             });
-        });
+        });*/
     });
 
 </script>

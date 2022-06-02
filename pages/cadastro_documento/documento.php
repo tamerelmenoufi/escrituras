@@ -21,10 +21,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if (mysqli_query($con, $sql)) {
+        $id = $id ?:mysqli_insert_id($con);
+
         echo json_encode([
             "status" => true,
             "msg"    => "Dados salvo com sucesso",
-            "codigo" => mysqli_insert_id($con),
+            "codigo" => $id,
         ]);
     } else {
         echo json_encode([
@@ -47,6 +49,7 @@ if ($doc_id) {
     $result = mysqli_query($con, "SELECT * FROM documentos WHERE codigo = '{$doc_id}'");
     $d = mysqli_fetch_object($result);
 }
+
 ?>
 <form id="form-documento" class="needs-validation" novalidate>
     <div class="mb-3">
@@ -58,7 +61,6 @@ if ($doc_id) {
                 name="cartorio"
                 aria-describedby="cartorio"
                 value="<?= $d->cartorio; ?>"
-                required
         >
     </div>
 
@@ -132,6 +134,7 @@ if ($doc_id) {
         </div>
     </div>
 </form>
+
 <script>
     $(function () {
 
@@ -150,10 +153,12 @@ if ($doc_id) {
 
             var formData = $(this).serializeArray();
 
-            formData.push({
-                name: "doc_id",
-                value: doc_id,
-            });
+            if (doc_id) {
+                formData.push({
+                    name: "doc_id",
+                    value: doc_id,
+                });
+            }
 
             $.ajax({
                 url: "./pages/cadastro_documento/documento.php",
