@@ -1,22 +1,16 @@
-<!--<div class="mb-3">
-    <label for="coordenadas" class="form-label">Coordenadas</label>
-    <input
-        type="text"
-        class="form-control"
-        id="coordenadas"
-        aria-describedby="coordenadas"
-    >
-</div>
+<?php
+include_once "../../config/includes.php";
 
-<div class="mb-3">
-    <label for="poligono" class="form-label">Poligono</label>
-    <input
-        type="text"
-        class="form-control"
-        id="poligono"
-        aria-describedby="poligono"
-    >
-</div>-->
+
+$doc_id = $_GET['doc_id'];
+
+$d = [];
+
+if ($doc_id) {
+    $result = mysqli_query($con, "SELECT * FROM documentos WHERE codigo = '{$doc_id}'");
+    $d = mysqli_fetch_object($result);
+}
+?>
 
 <style>
     #map {
@@ -32,11 +26,60 @@
         Map
     </div>
 </div>
+<?= $_SESSION['local']; ?>
+<div class="mt-3">
+    <div class="row justify-content-between">
+        <div class="col-auto">
+            <button
+                    voltar
+                    type="button"
+                    class="btn btn-secondary"
+                    data-enchanter="previous"
+            >
+                Voltar
+            </button>
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary">Salvar</button>
+        </div>
+    </div>
+</div>
+
 
 <script>
     $(function () {
         //@formatter:off
+        var doc_id = window.localStorage.getItem('doc_id');
 
+        $("button[voltar]").click(function () {
+            $.ajax({
+                url: "./pages/cadastro_documento/endereco.php",
+                data: {doc_id},
+                success: function (data) {
+                    $(".content-pane").html(data);
+                }
+            })
+        });
+
+        marker = null;
+
+        geocoder = new google.maps.Geocoder();
+
+        //@formatter:off
+        mapa = new google.maps.Map(document.getElementById("map"), {
+            center            : {lat : -3.068910, lng : -59.943659},
+            zoom              : 14,
+            zoomControl       : true,
+            mapTypeControl    : false,
+            draggable         : true,
+            scaleControl      : false,
+            scrollwheel       : true,
+            navigationControl : false,
+            streetViewControl : false,
+            fullscreenControl : false,
+        });
+
+        marker = new google.maps.Marker();
 
         triangleCoords = [
     {
@@ -60,7 +103,6 @@
         "lng": -60.02371275636822
     }
 ];
-
 
         poligono = new google.maps.Polygon({
             paths: triangleCoords,
@@ -131,8 +173,6 @@
                 htmlStr = poligono.getPath().getAt(i).toUrlValue(5) + "<br>";
                 //console.log(htmlStr);
             }
-
-
         }
 
         const centerControlDiv = document.createElement("div");

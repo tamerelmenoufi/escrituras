@@ -3,30 +3,6 @@ include './config/includes.php';
 
 ?>
 
-<script>
-    $(function () {
-        marker = null;
-
-        geocoder = new google.maps.Geocoder();
-
-        //@formatter:off
-        mapa = new google.maps.Map(document.getElementById("map"), {
-            zoom              : 14,
-            zoomControl       : true,
-            mapTypeControl    : false,
-            draggable         : true,
-            scaleControl      : false,
-            scrollwheel       : true,
-            navigationControl : false,
-            streetViewControl : false,
-            fullscreenControl : false,
-        });
-
-        marker = new google.maps.Marker();
-
-        //@formatter:on
-    });
-</script>
 <div class="container-fluid">
     <h1 class="text-center">Cadastro de documento</h1>
 
@@ -116,8 +92,6 @@ include './config/includes.php';
     $(function () {
 
         //Adicionar mascara de telefones
-        $('#vendedor_telefone, #vendedor_comprador_telefone, #comprador_telefone, #comprador_procurador_telefone')
-            .mask('(00) 90000-0000', {clearIfNotMatch: true});
         $("#form-cadastro-documento .nav-link").click(function (e) {
             e.preventDefault();
         });

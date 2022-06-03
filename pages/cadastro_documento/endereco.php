@@ -6,7 +6,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data = $_POST;
     $attr = [];
     $id   = $data["doc_id"];
-    unset($data["doc_id"]);
+    $_SESSION['local'] = $data["local"];
+
+    unset($data["doc_id"], $data["local"]);
 
     foreach ($data as $name => $value) {
         $attr[] = "{$name} = '" . mysqli_real_escape_string($con, $value) . "'";
@@ -176,63 +178,68 @@ if ($doc_id) {
 </form>
 
 <script>
-    function initialize() {
-        //@formatter:off
-        var input = document.getElementById('rua');
-        var autocomplete = new google.maps.places.Autocomplete(input);
 
-        google.maps.event.addListener(autocomplete, 'place_changed', function() {
-            var place = autocomplete.getPlace();
-
-            place_endereco = place['formatted_address'];
-            place_latitude = place.geometry.location.lat();
-            place_longitude = place.geometry.location.lng();
-
-            geocoder.geocode({
-                "address": place_endereco,
-                "region": "BR"
-            }, (results, status) => {
-                if (status == google.maps.GeocoderStatus.OK) {
-
-                    if (results[0]) {
-                        let latitude = results[0].geometry.location.lat();
-                        let longitude = results[0].geometry.location.lng();
-                        let location = new google.maps.LatLng(latitude, longitude);
-
-                        marker.setPosition(location);
-                        mapa.setCenter(location);
-                        mapa.setZoom(18);
-
-                        marker = new google.maps.Marker({
-                            position: {
-                                lat: latitude,
-                                lng: longitude
-                            },
-                            map: mapa,
-                            title: "TESTE",
-                            draggable: true,
-                        });
-
-                        google.maps.event.addListener(marker, 'dragend', function(marker) {
-                            var latLng = marker.latLng;
-                            alert(`Lat ${latLng.lat()} & Lng ${latLng.lng()}`)
-                        });
-
-
-
-
-                    }
-                }
-            });
-        });
-        //@formatter:on
-    }
-
-    google.maps.event.addDomListener(window, 'load', initialize);
+    //google.maps.event.addDomListener(window, 'load', initialize);
 
     /* ---------------------------------------*/
 
     $(function () {
+
+        local = null;
+
+        function initialize() {
+            //@formatter:off
+            var input = document.getElementById('rua');
+            var autocomplete = new google.maps.places.Autocomplete(input);
+
+            google.maps.event.addListener(autocomplete, 'place_changed', function() {
+                var place = autocomplete.getPlace();
+
+                place_endereco = place['formatted_address'];
+                place_latitude = place.geometry.location.lat();
+                place_longitude = place.geometry.location.lng();
+
+                var geocoder = new google.maps.Geocoder();
+
+                geocoder.geocode({
+                    "address": place_endereco,
+                    "region": "BR"
+                }, (results, status) => {
+                    if (status == google.maps.GeocoderStatus.OK) {
+
+                        if (results[0]) {
+                            let latitude = results[0].geometry.location.lat();
+                            let longitude = results[0].geometry.location.lng();
+                            local = new google.maps.LatLng(latitude, longitude);
+
+                            /*marker.setPosition(location);
+                            mapa.setCenter(location);
+                            mapa.setZoom(18);
+
+                            marker = new google.maps.Marker({
+                                position: {
+                                    lat: latitude,
+                                    lng: longitude
+                                },
+                                map: mapa,
+                                title: "TESTE",
+                                draggable: true,
+                            });*/
+
+                            /*google.maps.event.addListener(marker, 'dragend', function(marker) {
+                                var latLng = marker.latLng;
+                                alert(`Lat ${latLng.lat()} & Lng ${latLng.lng()}`)
+                            });*/
+
+                        }
+                    }
+                });
+            });
+            //@formatter:on
+        }
+
+        initialize();
+
         var doc_id = window.localStorage.getItem('doc_id');
 
         $("button[voltar]").click(function () {
@@ -251,12 +258,18 @@ if ($doc_id) {
             var form = $(this)[0];
             var isValid = form.checkValidity();
 
+
             if (!isValid) {
                 form.classList.add('was-validated');
                 return false;
             }
 
             var formData = $(this).serializeArray();
+
+            formData.push({
+                name: "local",
+                value: local,
+            });
 
             if (doc_id) {
                 formData.push({
