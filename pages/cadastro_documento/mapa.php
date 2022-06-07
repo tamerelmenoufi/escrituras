@@ -1,7 +1,6 @@
 <?php
 include_once "../../config/includes.php";
 
-
 $doc_id = $_GET['doc_id'];
 
 $d = [];
@@ -26,14 +25,17 @@ if ($doc_id) {
         Map
     </div>
 </div>
-<?= $_SESSION['local']; ?>
+<div>
+    <p>deelod</p>
+    <?= $_SESSION['local']; ?>
+</div>
 <div class="mt-3">
     <div class="row justify-content-between">
         <div class="col-auto">
             <button
                     voltar
                     type="button"
-                    class="btn btn-secondary"
+                    class="btn btn-secondary btn_prev"
                     data-enchanter="previous"
             >
                 Voltar
@@ -44,7 +46,6 @@ if ($doc_id) {
         </div>
     </div>
 </div>
-
 
 <script>
     $(function () {
@@ -79,7 +80,15 @@ if ($doc_id) {
             fullscreenControl : false,
         });
 
-        marker = new google.maps.Marker();
+        marker = new google.maps.Marker({
+            position: {
+                lat: latitude,
+                lng: longitude
+            },
+            map: mapa,
+            title: "TESTE",
+            draggable: true,
+        });
 
         triangleCoords = [
     {
@@ -105,7 +114,6 @@ if ($doc_id) {
 ];
 
         poligono = new google.maps.Polygon({
-            paths: triangleCoords,
             strokeColor   : "#FF0000",
             fillColor     : "#FF0000",
             strokeOpacity : 0.8,

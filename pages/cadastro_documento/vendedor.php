@@ -512,14 +512,14 @@ if ($doc_id) {
                 <button
                         voltar
                         type="button"
-                        class="btn btn-secondary"
+                        class="btn btn-secondary btn_prev"
                         data-enchanter="previous"
                 >
                     Voltar
                 </button>
             </div>
             <div class="col-auto">
-                <button type="submit" class="btn btn-primary">Salvar</button>
+                <button type="submit" class="btn btn-primary btn_next">Salvar</button>
             </div>
         </div>
     </div>

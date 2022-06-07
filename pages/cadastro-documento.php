@@ -77,6 +77,26 @@ include './config/includes.php';
     }
 
     $(document).ready(function () {
+        $("#nav-tab a").click(function (e) {
+            e.preventDefault();
+        });
+
+        $(document).on("click", ".btn_next", function (e) {
+
+            var next_tab = $('#nav-tab > .active')
+
+            $('#nav-tab').find('a').removeClass('active');
+            next_tab.next('a').addClass('active');
+        });
+
+        $(document).on("click", ".btn_prev", function (e) {
+
+            var prev_tab = $('#nav-tab > .active');
+
+            $('#nav-tab').find('a').removeClass('active');
+            prev_tab.prev('a').addClass('active');
+
+        });
 
         var doc_id = window.localStorage.getItem('doc_id');
 
@@ -86,15 +106,13 @@ include './config/includes.php';
             success: function (data) {
                 $(".content-pane").html(data);
             }
-        })
+        });
     });
 
     $(function () {
 
         //Adicionar mascara de telefones
-        $("#form-cadastro-documento .nav-link").click(function (e) {
-            e.preventDefault();
-        });
+
 
         /*$("#form-cadastro-documento").submit(function (e) {
             e.preventDefault();

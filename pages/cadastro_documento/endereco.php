@@ -6,8 +6,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data = $_POST;
     $attr = [];
     $id   = $data["doc_id"];
-    $_SESSION['local'] = $data["local"];
-
+    $_SESSION["local"]    = $data["coordenadas"];
+    $data["coordenadas"]  = json_encode($data["coordenadas"]);
     unset($data["doc_id"], $data["local"]);
 
     foreach ($data as $name => $value) {
@@ -164,14 +164,14 @@ if ($doc_id) {
                 <button
                         voltar
                         type="button"
-                        class="btn btn-secondary"
+                        class="btn btn-secondary btn_prev"
                         data-enchanter="previous"
                 >
                     Voltar
                 </button>
             </div>
             <div class="col-auto">
-                <button type="submit" class="btn btn-primary">Salvar</button>
+                <button type="submit" class="btn btn-primary btn_next">Salvar</button>
             </div>
         </div>
     </div>
@@ -185,7 +185,7 @@ if ($doc_id) {
 
     $(function () {
 
-        local = null;
+        local = '<?= $d->coordenadas; ?>';
 
         function initialize() {
             //@formatter:off
@@ -210,8 +210,11 @@ if ($doc_id) {
                         if (results[0]) {
                             let latitude = results[0].geometry.location.lat();
                             let longitude = results[0].geometry.location.lng();
-                            local = new google.maps.LatLng(latitude, longitude);
+                            let location = new google.maps.LatLng(latitude, longitude);
 
+                            local = {lat : location.lat(), lng : location.lng()};
+
+                            //console.log(local.lat());
                             /*marker.setPosition(location);
                             mapa.setCenter(location);
                             mapa.setZoom(18);
@@ -266,9 +269,11 @@ if ($doc_id) {
 
             var formData = $(this).serializeArray();
 
+            console.log(local);
+
             formData.push({
-                name: "local",
-                value: local,
+                name: "coordenadas",
+                value: JSON.stringify(local),
             });
 
             if (doc_id) {

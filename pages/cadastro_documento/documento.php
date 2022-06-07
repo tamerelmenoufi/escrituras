@@ -130,7 +130,7 @@ if ($doc_id) {
 
     <div class="mb-3">
         <div class="d-flex flex-row justify-content-end">
-            <button type="submit" class="btn btn-primary">Salvar</button>
+            <button type="submit" class="btn btn-primary btn_next">Salvar</button>
         </div>
     </div>
 </form>
