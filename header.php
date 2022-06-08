@@ -24,12 +24,17 @@
                 <li><a class="nav-link scrollto" href="seja-membro">Seja membro</a></li>
                 <li><a class="nav-link scrollto" href="quem-somos">Quem somos</a></li>
                 <li><a class="nav-link scrollto" href="contato">Contato</a></li>
-                <li><a class="nav-link scrollto" href="login">Login</a></li>
+                <?php if (!isset($_SESSION['usuario'])) { ?>
+                    <li><a class="nav-link scrollto" href="login">Login</a></li>
+                <?php } else { ?>
+                    <li><a class="nav-link logout" href="#">Sair</a></li>
+                <?php } ?>
             </ul>
             <i class="bi bi-list mobile-nav-toggle d-none"></i>
         </nav><!-- .navbar -->
         <a class="btn-getstarted scrollto" href="index.html#about">Cadastre-se</a>
     </div>
 </header><!-- End Header -->
+
 
 

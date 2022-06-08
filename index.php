@@ -3,10 +3,10 @@ include 'config/includes.php';
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
-    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
     <title>Portal escrituras</title>
@@ -20,8 +20,10 @@ include 'config/includes.php';
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&display=swap"
-          rel="stylesheet">
+    <link
+            href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&display=swap"
+            rel="stylesheet"
+    >
 
     <!-- Vendor CSS Files -->
     <link href="<?= $base_url; ?>assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -40,6 +42,7 @@ include 'config/includes.php';
     <!-- <link href="assets/css/variables-pink.css" rel="stylesheet"> -->
 
     <link href="<?= $base_url; ?>assets/css/main.css" rel="stylesheet">
+    <link href="<?= $base_url; ?>assets/css/styles.css?c=<?= uniqid() ?>" rel="stylesheet">
     <link href="<?= $base_url; ?>assets/vendor/fontawesome/css/all.css" rel="stylesheet">
     <script src="<?= $base_url; ?>assets/vendor/jquery/jquery-3.6.0.min.js"></script>
     <script src="<?= $base_url; ?>assets/vendor/jquery/jquery.validate.min.js"></script>
@@ -49,6 +52,21 @@ include 'config/includes.php';
         $(document).ready(function () {
             $.jMaskGlobals.watchDataMask = true;
 
+            $(".logout").click(function (e) {
+                e.preventDefault();
+
+                $.ajax({
+                    url: "./pages/actions/actionLogout.php",
+                    method: "POST",
+                    data: {acao: "logout"},
+                    success: function (data) {
+
+                        console.log(data);
+                        return false;
+                        window.location.href = '<?= $base_url; ?>';
+                    }
+                })
+            });
         });
     </script>
 </head>
