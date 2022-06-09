@@ -76,6 +76,11 @@ include './config/includes.php';
         }
     }
 
+    function initExibiContainer(value, id_container) {
+        console.log('teste');
+        if (value === '1') $(`#${id_container}`).show();
+    }
+
     $(document).ready(function () {
         $("#nav-tab a").click(function (e) {
             e.preventDefault();

@@ -6,8 +6,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data = $_POST;
     $attr = [];
     $id   = $data["doc_id"];
-    $_SESSION["local"]    = $data["coordenadas"];
-    $data["coordenadas"]  = json_encode($data["coordenadas"]);
+
+    $coordenadas_temp  = json_decode($data["coordenadas"], true) ?: [];
+    $data["coordenadas_temp"] = json_encode($coordenadas_temp);
+
     unset($data["doc_id"], $data["local"]);
 
     foreach ($data as $name => $value) {
@@ -50,7 +52,8 @@ $doc_id = $_GET['doc_id'];
 $d = [];
 
 if ($doc_id) {
-    $result = mysqli_query($con, "SELECT * FROM documentos WHERE codigo = '{$doc_id}'");
+    $colunas = implode(", ", ["codigo", "estado", "cidade", "bairro", "cep", "rua"]);
+    $result = mysqli_query($con, "SELECT {$colunas} FROM documentos WHERE codigo = '{$doc_id}'");
     $d = mysqli_fetch_object($result);
 }
 ?>
@@ -95,14 +98,14 @@ if ($doc_id) {
 
             <?php
             if ($d->cidade) {
-                $sql = "SELECT * FROM aux_cidades WHERE estado = '{$d->estado}' AND deletado != '1'";
+                $sql = "SELECT codigo, nome FROM aux_cidades WHERE estado = '{$d->estado}' AND situacao = '1'";
                 $result = mysqli_query($con, $sql);
 
                 while ($c = mysqli_fetch_object($result)):?>
                     <option
                             value="<?= $c->codigo ?>"
-                        <?= $c->codigo == $d->cidade ? 'select' : '' ?>>
-                        <?= $c->descricao ?>
+                        <?= $c->codigo == $d->cidade ? 'selected' : '' ?>>
+                        <?= $c->nome ?>
                     </option>';
                 <?php endwhile;
             }
@@ -117,14 +120,14 @@ if ($doc_id) {
 
             <?php
             if ($d->bairro) {
-                $sql = "SELECT * FROM aux_bairros WHERE cidade = '{$d->cidade}' AND deletado != '1'";
+                $sql = "SELECT codigo, nome FROM aux_bairros WHERE cidade = '{$d->cidade}' AND situacao = '1'";
                 $result = mysqli_query($con, $sql);
 
                 while ($b = mysqli_fetch_object($result)):?>
                     <option
                             value="<?= $b->codigo ?>"
-                        <?= $b->codigo == $d->bairro ? 'select' : '' ?>>
-                        <?= $b->descricao ?>
+                        <?= $b->codigo == $d->bairro ? 'selected' : '' ?>>
+                        <?= $b->nome ?>
                     </option>';
                 <?php endwhile;
             }
@@ -212,7 +215,7 @@ if ($doc_id) {
                             let longitude = results[0].geometry.location.lng();
                             let location = new google.maps.LatLng(latitude, longitude);
 
-                            local = {lat : location.lat(), lng : location.lng()};
+                            local = {"lat" : location.lat(), "lng" : location.lng()};
 
                             //console.log(local.lat());
                             /*marker.setPosition(location);
@@ -269,8 +272,6 @@ if ($doc_id) {
 
             var formData = $(this).serializeArray();
 
-            console.log(local);
-
             formData.push({
                 name: "coordenadas",
                 value: JSON.stringify(local),
@@ -287,7 +288,7 @@ if ($doc_id) {
                 url: "./pages/cadastro_documento/endereco.php",
                 type: "POST",
                 data: formData,
-                dataType: "JSON",
+                //dataType: "JSON",
                 success: function (data) {
                     //window.localStorage.setItem('doc_id', data.codigo);
 

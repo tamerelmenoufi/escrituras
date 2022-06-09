@@ -21,15 +21,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if (mysqli_query($con, $sql)) {
-        $id = $id ?:mysqli_insert_id($con);
+        $codigo = $id ?:mysqli_insert_id($con);
 
         echo json_encode([
             "status" => true,
             "msg"    => "Dados salvo com sucesso",
-            "codigo" => $id,
+            "codigo" => $codigo,
         ]);
     } else {
         echo json_encode([
+            "codigo" => $codigo,
             "status"      => true,
             "msg"         => "Error ao salvar",
             "query"       => $sql,
@@ -166,6 +167,7 @@ if ($doc_id) {
                 data: formData,
                 dataType: "JSON",
                 success: function (data) {
+                    console.log(data.codigo);
                     window.localStorage.setItem('doc_id', data.codigo);
 
                     $.ajax({

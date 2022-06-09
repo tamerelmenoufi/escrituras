@@ -6,7 +6,7 @@ $doc_id = $_GET['doc_id'];
 $d = [];
 
 if ($doc_id) {
-    $result = mysqli_query($con, "SELECT * FROM documentos WHERE codigo = '{$doc_id}'");
+    $result = mysqli_query($con, "SELECT coordenadas_temp FROM documentos WHERE codigo = '{$doc_id}'");
     $d = mysqli_fetch_object($result);
 }
 ?>
@@ -19,16 +19,12 @@ if ($doc_id) {
     }
 </style>
 
-
 <div id="map">
     <div style="border-style: solid; border-color: rgb(52, 86, 132) rgb(108, 157, 223) rgb(108, 157, 223) rgb(52, 86, 132); border-width: 1px; font-size: 12px; font-weight: bold;">
         Map
     </div>
 </div>
-<div>
-    <p>deelod</p>
-    <?= $_SESSION['local']; ?>
-</div>
+
 <div class="mt-3">
     <div class="row justify-content-between">
         <div class="col-auto">

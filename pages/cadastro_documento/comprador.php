@@ -6,6 +6,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data = $_POST;
     $attr = [];
     $id   = $data["doc_id"];
+    $data['comprador_procurador_check'] = $data['comprador_procurador_check'] ? '1' : '0';
+
     unset($data["doc_id"]);
 
     foreach ($data as $name => $value) {
@@ -239,9 +241,15 @@ if ($doc_id) {
 
     <div class="mb-3">
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="check-comprador-procurador"
-                   name="check-comprador-procurador" onclick="exibiContainer(this,'comprador-procurador-container')">
-            <label class="form-check-label" for="check-comprador-procurador">
+            <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="comprador_procurador_check"
+                    name="comprador_procurador_check"
+                    onclick="exibiContainer(this,'comprador-procurador-container')"
+            >
+            <label class="form-check-label" for="comprador_procurador_check">
                 Comprador procurador?
             </label>
         </div>
@@ -411,6 +419,8 @@ if ($doc_id) {
 
 <script>
     $(function () {
+        initExibiContainer("<?= $d->comprador_procurador_check?>", "comprador_procurador-container");
+
         $('#comprador_cpf, #comprador_procurador_cpf')
             .mask('000.000.000-00', {clearIfNotMatch: true});
 

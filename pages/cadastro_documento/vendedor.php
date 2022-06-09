@@ -6,6 +6,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data = $_POST;
     $attr = [];
     $id   = $data["doc_id"];
+    $data['vendedor_procurador_check'] = $data['vendedor_procurador_check'] ? '1' : '0';
+
     unset($data["doc_id"]);
 
     foreach ($data as $name => $value) {
@@ -24,6 +26,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
        ]);
        exit();
     }
+
+
 
     if (mysqli_query($con, $sql)) {
         echo json_encode([
@@ -169,7 +173,7 @@ if ($doc_id) {
                     >
                         <option value=""></option>
                         <?php
-                        $query_estados = "SELECT * FROM aux_estados WHERE situacao = '1'";
+                        $query_estados = "SELECT codigo, nome FROM aux_estados WHERE situacao = '1'";
                         $result = mysqli_query($con, $query_estados);
                         while ($row = mysqli_fetch_object($result)):?>
                             <option
@@ -194,14 +198,14 @@ if ($doc_id) {
                         <option value=""></option>
                         <?php
                         if ($d->vendedor_cidade) {
-                            $sql = "SELECT * FROM aux_cidades WHERE estado = '{$d->vendedor_estado}' AND deletado != '1'";
+                            $sql = "SELECT codigo, nome FROM aux_cidades WHERE estado = '{$d->vendedor_estado}' AND situacao = '1'";
                             $result = mysqli_query($con, $sql);
 
                             while ($c = mysqli_fetch_object($result)):?>
                                 <option
                                         value="<?= $c->codigo ?>"
-                                    <?= $c->codigo == $d->vendedor_estado ? 'select' : '' ?>>
-                                    <?= $c->descricao ?>
+                                    <?= $c->codigo == $d->vendedor_cidade ? 'selected' : '' ?>>
+                                    <?= $c->nome ?>
                                 </option>';
                             <?php endwhile;
                         }
@@ -217,19 +221,18 @@ if ($doc_id) {
                             id="vendedor_bairro"
                             name="vendedor_bairro"
                             aria-describedby="vendedor_bairro"
-                            value="<?= $d->vendedor_bairro; ?>"
                     >
                         <option value=""></option>
                         <?php
                         if ($d->vendedor_bairro) {
-                            $sql = "SELECT * FROM aux_bairros WHERE cidade = '{$d->vendedor_cidade}' AND deletado != '1'";
+                            $sql = "SELECT codigo, nome FROM aux_bairros WHERE cidade = '{$d->vendedor_cidade}' AND situacao = '1'";
                             $result = mysqli_query($con, $sql);
 
                             while ($b = mysqli_fetch_object($result)):?>
                                 <option
                                         value="<?= $b->codigo ?>"
-                                    <?= $b->codigo == $d->vendedor_bairro ? 'select' : '' ?>>
-                                    <?= $b->descricao ?>
+                                    <?= $b->codigo == $d->vendedor_bairro ? 'selected' : '' ?>>
+                                    <?= $b->nome ?>
                                 </option>';
                             <?php endwhile;
                         }
@@ -306,12 +309,12 @@ if ($doc_id) {
                     class="form-check-input"
                     type="checkbox"
                     value=""
-                    id="check-vendedor-procurador"
-                    name="check-vendedor-procurador"
+                    id="vendedor_procurador_check"
+                    name="vendedor_procurador_check"
                     onclick="exibiContainer(this,'vendedor_procurador-container')"
             >
-            <label class="form-check-label" for="check-vendedor-procurador">
-                Vendedor procurador
+            <label class="form-check-label" for="vendedor_procurador_check">
+                Vendedor procurador?
             </label>
         </div>
     </div>
@@ -374,7 +377,7 @@ if ($doc_id) {
                     >
                         <option value=""></option>
                         <?php
-                        $query_estados = "SELECT * FROM aux_estados WHERE situacao = '1'";
+                        $query_estados = "SELECT codigo, nome FROM aux_estados WHERE situacao = '1'";
                         $result = mysqli_query($con, $query_estados);
                         while ($row = mysqli_fetch_object($result)):?>
                             <option
@@ -399,14 +402,14 @@ if ($doc_id) {
 
                         <?php
                         if ($d->vendedor_procurador_cidade) {
-                            $sql = "SELECT * FROM aux_cidades WHERE estado = '{$d->vendedor_procurador_estado}' AND deletado != '1'";
+                            $sql = "SELECT codigo, nome FROM aux_cidades WHERE estado = '{$d->vendedor_procurador_estado}' AND situacao = '1'";
                             $result = mysqli_query($con, $sql);
 
                             while ($c = mysqli_fetch_object($result)):?>
                                 <option
                                         value="<?= $c->codigo ?>"
-                                    <?= $c->codigo == $d->vendedor_procurador_cidade ? 'select' : '' ?>>
-                                    <?= $c->descricao ?>
+                                    <?= $c->codigo == $d->vendedor_procurador_cidade ? 'selected' : '' ?>>
+                                    <?= $c->nome ?>
                                 </option>';
                             <?php endwhile;
                         }
@@ -426,14 +429,14 @@ if ($doc_id) {
                         <option value=""></option>
                         <?php
                         if ($d->vendedor_bairro) {
-                            $sql = "SELECT * FROM aux_bairros WHERE cidade = '{$d->vendedor_procurador_cidade}' AND deletado != '1'";
+                            $sql = "SELECT * FROM aux_bairros WHERE cidade = '{$d->vendedor_procurador_cidade}' AND situacao = '1'";
                             $result = mysqli_query($con, $sql);
 
                             while ($b = mysqli_fetch_object($result)):?>
                                 <option
                                         value="<?= $b->codigo ?>"
-                                    <?= $b->codigo == $d->vendedor_procurador_bairro ? 'select' : '' ?>>
-                                    <?= $b->descricao ?>
+                                    <?= $b->codigo == $d->vendedor_procurador_bairro ? 'selected' : '' ?>>
+                                    <?= $b->nome ?>
                                 </option>';
                             <?php endwhile;
                         }
@@ -527,6 +530,10 @@ if ($doc_id) {
 
 <script>
     $(function () {
+        $("#vendedor_procurador_check").prop("checked", <?= $d->vendedor_procurador_check ? true : false?>);
+
+        initExibiContainer("<?= $d->vendedor_procurador_check?>", "vendedor_procurador-container");
+
         $('#vendedor_cpf, #vendedor_comprador_cpf')
             .mask('000.000.000-00', {clearIfNotMatch: true});
 
@@ -558,12 +565,18 @@ if ($doc_id) {
 
             var formData = $(this).serializeArray();
 
+
             if (doc_id) {
                 formData.push({
                     name: "doc_id",
                     value: doc_id,
                 });
             }
+
+            formData.push({
+                name: "vendedor_procurador_check",
+                value: $("#vendedor_procurador_check").is(":checked"),
+            });
 
             $.ajax({
                 url: "./pages/cadastro_documento/vendedor.php",
