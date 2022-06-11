@@ -133,8 +133,8 @@ if ($doc_id) {
 
         mapa.addListener('click', addLatLng);
 
+        //Aqui a função que remove o polígono com o click sobre a área do polígono
         google.maps.event.addListener(poligono, "click", function(){
-            alert('clicado path 7');
             Limpa = [];
             poligono.setPath(Limpa);
         });
