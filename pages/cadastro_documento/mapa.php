@@ -151,7 +151,7 @@ if ($doc_id) {
         function addLatLng(e) {
             var path = poligono.getPath();
             path.push(e.latLng);
-            alert(path);
+            getPolygonCoords();
         }
 
         // ** Função para criar botão para resetar poligono **
@@ -195,7 +195,7 @@ if ($doc_id) {
             var htmlStr = "";
             for (var i = 0; i < len; i++) {
                 htmlStr = poligono.getPath().getAt(i).toUrlValue(5) + "<br>";
-                //console.log(htmlStr);
+                console.log(htmlStr);
             }
         }
 
