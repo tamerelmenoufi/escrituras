@@ -110,6 +110,7 @@ if ($doc_id) {
 ];
 
         poligono = new google.maps.Polygon({
+            paths : triangleCoords,
             strokeColor   : "#FF0000",
             fillColor     : "#FF0000",
             strokeOpacity : 0.8,
