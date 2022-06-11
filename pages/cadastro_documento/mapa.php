@@ -192,12 +192,12 @@ if ($doc_id) {
 
         function getPolygonCoords() {
             var len = poligono.getPath().getLength();
-            var htmlStr = "";
+            var htmlStr = [];
             for (var i = 0; i < len; i++) {
                 htmlStr = poligono.getPath().getAt(i).toUrlValue(5) ;
             }
-            console.log(poligono.getPath());
-            console.log(htmlStr+"<hr>");
+            console.log(poligono.getPath().getAt());
+            console.log(htmlStr);
         }
 
         const centerControlDiv = document.createElement("div");
