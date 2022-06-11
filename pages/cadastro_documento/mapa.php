@@ -134,8 +134,8 @@ if ($doc_id) {
         mapa.addListener('click', addLatLng);
 
         google.maps.event.addListener(poligono, "click", function(){
-            alert('clicado novo');
-            poligono = [];
+            alert('clicado');
+            poligono.paths(null);
         });
 
         google.maps.event.addListener(poligono, "dragend", getPolygonCoords);
