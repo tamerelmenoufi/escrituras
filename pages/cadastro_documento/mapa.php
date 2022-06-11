@@ -107,7 +107,7 @@ if ($doc_id) {
                                         codigo:'<?=$d->codigo?>',
                                         lat:Lat,
                                         lng:Lng,
-                                        acao:'coordendas'
+                                        acao:'coordenadas'
                                     },
                                     success: function (data) {
                                         alert(data);
