@@ -194,9 +194,10 @@ if ($doc_id) {
             var len = poligono.getPath().getLength();
             var htmlStr = "";
             for (var i = 0; i < len; i++) {
-                htmlStr = poligono.getPath().getAt(i).toUrlValue(5) + "<br>";
-                console.log(htmlStr);
+                htmlStr = poligono.getPath().getAt(i).toUrlValue(5) ;
             }
+            console.log(poligono.getPath());
+            console.log(htmlStr+"<hr>");
         }
 
         const centerControlDiv = document.createElement("div");
