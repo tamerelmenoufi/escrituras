@@ -110,7 +110,7 @@ if ($doc_id) {
                                         acao:'coordendas'
                                     },
                                     success: function (data) {
-                                        $.alert(data);
+                                        alert(data);
                                     }
                                 })
 
