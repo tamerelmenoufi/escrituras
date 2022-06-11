@@ -76,7 +76,7 @@ if ($doc_id) {
         //@formatter:off
         mapa = new google.maps.Map(document.getElementById("map"), {
             center            : <?=(($d->coordenadas)?:'{lat : 0, lng : 0}')?>,
-            zoom              : 14,
+            zoom              : 18,
             zoomControl       : true,
             mapTypeControl    : false,
             draggable         : true,
