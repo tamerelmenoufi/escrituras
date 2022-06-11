@@ -1,7 +1,7 @@
 <?php
 include_once "../../config/includes.php";
 
-if($_POST['acao'] == 'coordendas'){
+if($_POST['acao'] == 'coordenadas'){
     $coordendas = '{"Lat":'.$_POST['lat'].', "Lng": '.$_POST['lng'].'}';
     echo $q = "update documentos set coordendas = '{$coordendas}' where codigo = '{$_POST['codigo']}'";
     mysqli_query($con, $q);
