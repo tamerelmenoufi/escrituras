@@ -3,7 +3,7 @@ include_once "../../config/includes.php";
 
 if($_POST['acao'] == 'coordenadas'){
     $coordendas = '{"lat":'.$_POST['lat'].', "lng": '.$_POST['lng'].'}';
-    echo $q = "update documentos set coordenadas = '{$coordendas}' where codigo = '{$_POST['codigo']}'";
+    $q = "update documentos set coordenadas = '{$coordendas}' where codigo = '{$_POST['codigo']}'";
     mysqli_query($con, $q);
     exit();
 }
@@ -111,7 +111,7 @@ if ($doc_id) {
                                         acao:'coordenadas'
                                     },
                                     success: function (data) {
-                                        alert(data);
+                                        // alert(data);
                                     }
                                 })
 
@@ -132,6 +132,10 @@ if ($doc_id) {
         poligono.setMap(mapa);
 
         mapa.addListener('click', addLatLng);
+
+        google.maps.event.addListener(poligono, "click", function(){
+            alert('clicado');
+        });
 
         google.maps.event.addListener(poligono, "dragend", getPolygonCoords);
         google.maps.event.addListener(poligono, "dragend", getPolygonCoords);
