@@ -136,7 +136,7 @@ if ($doc_id) {
         google.maps.event.addListener(poligono, "click", function(){
             alert('clicado path 6');
             Limpa = [];
-            poligono.getPath(Limpa);
+            poligono.setPath(Limpa);
         });
 
         google.maps.event.addListener(poligono, "dragend", getPolygonCoords);
