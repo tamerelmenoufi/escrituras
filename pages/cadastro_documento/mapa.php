@@ -89,7 +89,7 @@ if ($doc_id) {
 
         google.maps.event.addListener(marker, 'dragend', function(marker) {
                                 var latLng = marker.latLng;
-                                alert(`{Lat ${latLng.lat()} , Lng ${latLng.lng()}}`)
+                                alert(`{"Lat" : ${latLng.lat()} , "Lng" : ${latLng.lng()}}`)
 
                                 // $.ajax({
                                 //     url: "./pages/cadastro_documento/mapa.php",
