@@ -87,6 +87,8 @@ if ($doc_id) {
             fullscreenControl : false,
         });
 
+        //Define as corrdendas de acordo com a informação resgatada no ...
+        // ... banco ou define as coordendas no ponto zero
         marker = new google.maps.Marker({
             position: <?=(($d->coordenadas)?:'{lat : 0, lng : 0}')?>,
             map: mapa,
@@ -94,7 +96,7 @@ if ($doc_id) {
             draggable: true,
         });
 
-
+        //Ao remover o Marker ele redefine no banco as cooredendas alteradas na função abaixo
         google.maps.event.addListener(marker, 'dragend', function(marker) {
                                 var latLng = marker.latLng;
                                 // coordendas = `{"Lat" : ${latLng.lat()} , "Lng" : ${latLng.lng()}}`;
@@ -149,6 +151,7 @@ if ($doc_id) {
         function addLatLng(e) {
             var path = poligono.getPath();
             path.push(e.latLng);
+            alert(path);
         }
 
         // ** Função para criar botão para resetar poligono **
