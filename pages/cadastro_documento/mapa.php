@@ -78,8 +78,8 @@ if ($doc_id) {
 
         marker = new google.maps.Marker({
             position: {
-                lat: latitude,
-                lng: longitude
+                lat: -3.068910,
+                lng: -59.943659
             },
             map: mapa,
             title: "TESTE",
