@@ -89,7 +89,20 @@ if ($doc_id) {
 
         google.maps.event.addListener(marker, 'dragend', function(marker) {
                                 var latLng = marker.latLng;
-                                alert(`Lat ${latLng.lat()} & Lng ${latLng.lng()}`)
+                                alert(latLng)
+
+                                // $.ajax({
+                                //     url: "./pages/cadastro_documento/mapa.php",
+                                //     data: {
+                                //         codigo:'<?=$d->codigo?>',
+                                //         coordenadas:latLng,
+                                //         acao:'coordendas'
+                                //     },
+                                //     success: function (data) {
+
+                                //     }
+                                // })
+
                             });
 
         triangleCoords = <?=(($d->poligono)?:'null')?>;
