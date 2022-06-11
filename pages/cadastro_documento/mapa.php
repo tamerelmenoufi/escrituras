@@ -86,6 +86,12 @@ if ($doc_id) {
             draggable: true,
         });
 
+
+        google.maps.event.addListener(marker, 'dragend', function(marker) {
+                                var latLng = marker.latLng;
+                                alert(`Lat ${latLng.lat()} & Lng ${latLng.lng()}`)
+                            });
+
         triangleCoords = <?=(($d->poligono)?:'null')?>;
 
         poligono = new google.maps.Polygon({
