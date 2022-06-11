@@ -3,11 +3,14 @@ include_once "../../config/includes.php";
 
 $doc_id = $_GET['doc_id'];
 
-$d = [];
+// $d = [];
 
 if ($doc_id) {
-    $result = mysqli_query($con, "SELECT coordenadas_temp FROM documentos WHERE codigo = '{$doc_id}'");
+    $result = mysqli_query($con, "SELECT * FROM documentos WHERE codigo = '{$doc_id}'");
     $d = mysqli_fetch_object($result);
+
+    // list($lat, $lng) = $d->coordenadas;
+
 }
 ?>
 
@@ -64,7 +67,7 @@ if ($doc_id) {
 
         //@formatter:off
         mapa = new google.maps.Map(document.getElementById("map"), {
-            center            : {lat : -3.068910, lng : -59.943659},
+            center            : <?=(($d->coordenadas)?:'{lat : 0, lng : 0}')?>,
             zoom              : 14,
             zoomControl       : true,
             mapTypeControl    : false,
@@ -77,37 +80,13 @@ if ($doc_id) {
         });
 
         marker = new google.maps.Marker({
-            position: {
-                lat: -3.068910,
-                lng: -59.943659
-            },
+            position: <?=(($d->coordenadas)?:'{lat : 0, lng : 0}')?>,
             map: mapa,
             title: "TESTE",
             draggable: true,
         });
 
-        triangleCoords = [
-    {
-        "lat": -3.1290166608296457,
-        "lng": -60.02377578828007
-    },
-    {
-        "lat": -3.129080937873819,
-        "lng": -60.02377847048909
-    },
-    {
-        "lat": -3.1290889725040736,
-        "lng": -60.02363698396355
-    },
-    {
-        "lat": -3.1290240259078232,
-        "lng": -60.02363229009777
-    },
-    {
-        "lat": -3.1290200085924607,
-        "lng": -60.02371275636822
-    }
-];
+        triangleCoords = <?=(($d->poligono)?:'null')?>;
 
         poligono = new google.maps.Polygon({
             paths : triangleCoords,

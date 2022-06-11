@@ -7,8 +7,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $attr = [];
     $id   = $data["doc_id"];
 
-    $coordenadas_temp  = json_decode($data["coordenadas"], true) ?: [];
-    $data["coordenadas_temp"] = json_encode($coordenadas_temp);
+    // $coordenadas_temp  = json_decode($data["coordenadas"], true) ?: [];
+    // $data["coordenadas_temp"] = json_encode($coordenadas_temp);
 
     unset($data["doc_id"], $data["local"]);
 
@@ -159,6 +159,7 @@ if ($doc_id) {
                 aria-describedby="rua"
                 value="<?= $d->rua; ?>"
         >
+        <input type="hidden" id="coordenadas" name="coordenadas" value="<?= $d->coordenadas; ?>" />
     </div>
 
     <div class="mt-3">
@@ -188,8 +189,6 @@ if ($doc_id) {
 
     $(function () {
 
-        local = '<?= $d->coordenadas; ?>';
-
         function initialize() {
             //@formatter:off
             var input = document.getElementById('rua');
@@ -216,6 +215,8 @@ if ($doc_id) {
                             let location = new google.maps.LatLng(latitude, longitude);
 
                             local = {"lat" : location.lat(), "lng" : location.lng()};
+
+                            $("#coordenadas").val(local);
 
                             //console.log(local.lat());
                             /*marker.setPosition(location);
@@ -272,10 +273,10 @@ if ($doc_id) {
 
             var formData = $(this).serializeArray();
 
-            formData.push({
-                name: "coordenadas",
-                value: JSON.stringify(local),
-            });
+            // formData.push({
+            //     name: "coordenadas",
+            //     value: JSON.stringify(local),
+            // });
 
             if (doc_id) {
                 formData.push({
