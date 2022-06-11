@@ -1,6 +1,12 @@
 <?php
 include_once "../../config/includes.php";
 
+if($_POST['acao'] == 'coordendas'){
+    mysqli_query($con, "update documentos set coordendas = '{$_POST['coordendas']}' where codigo = '{$_POST['codigo']}'");
+    exit();
+}
+
+
 $doc_id = $_GET['doc_id'];
 
 // $d = [];
@@ -99,7 +105,7 @@ if ($doc_id) {
                                         acao:'coordendas'
                                     },
                                     success: function (data) {
-
+                                        alert('ok');
                                     }
                                 })
 
