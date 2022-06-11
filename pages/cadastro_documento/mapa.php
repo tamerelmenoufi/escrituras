@@ -103,6 +103,7 @@ if ($doc_id) {
 
                                 $.ajax({
                                     url: "./pages/cadastro_documento/mapa.php",
+                                    type:"POST",
                                     data: {
                                         codigo:'<?=$d->codigo?>',
                                         lat:Lat,
