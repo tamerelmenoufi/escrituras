@@ -2,7 +2,8 @@
 include_once "../../config/includes.php";
 
 if($_POST['acao'] == 'coordendas'){
-    mysqli_query($con, "update documentos set coordendas = '{$_POST['coordendas']}' where codigo = '{$_POST['codigo']}'");
+    $coordendas = '{"Lat":'.$_POST['lat'].', "Lng": '.$_POST['lng'].'}';
+    mysqli_query($con, "update documentos set coordendas = '{$coordendas}' where codigo = '{$_POST['codigo']}'");
     exit();
 }
 
@@ -95,17 +96,20 @@ if ($doc_id) {
 
         google.maps.event.addListener(marker, 'dragend', function(marker) {
                                 var latLng = marker.latLng;
-                                coordendas = `{"Lat" : ${latLng.lat()} , "Lng" : ${latLng.lng()}}`;
+                                // coordendas = `{"Lat" : ${latLng.lat()} , "Lng" : ${latLng.lng()}}`;
+                                Lat = `${latLng.lat()}`;
+                                Lng = `${latLng.lng()}`;
 
                                 $.ajax({
                                     url: "./pages/cadastro_documento/mapa.php",
                                     data: {
                                         codigo:'<?=$d->codigo?>',
-                                        coordenadas:coordendas,
+                                        lat:Lat,
+                                        lng:Lng,
                                         acao:'coordendas'
                                     },
                                     success: function (data) {
-                                        alert('ok');
+                                        alert('ok novo');
                                     }
                                 })
 
