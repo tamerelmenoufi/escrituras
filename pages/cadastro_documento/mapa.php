@@ -202,7 +202,6 @@ if ($doc_id) {
 
             var polygonBounds = poligono.getPath();
             var bounds = [];
-            console.log(polygonBounds.length);
             for (var i = 0; i < polygonBounds.length; i++) {
                 var point = {
                     lat: polygonBounds.getAt(i).lat(),
@@ -210,7 +209,7 @@ if ($doc_id) {
                 };
                 bounds.push(point);
             }
-            console.log(point);
+            console.log(bounds);
 
         }
 
