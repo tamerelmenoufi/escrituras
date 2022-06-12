@@ -1,6 +1,7 @@
 <?php
 include_once "../../config/includes.php";
 
+//Ação que atualiza as coordendas no banco de dados
 if($_POST['acao'] == 'coordenadas'){
     $coordendas = '{"lat":'.$_POST['lat'].', "lng": '.$_POST['lng'].'}';
     $q = "update documentos set coordenadas = '{$coordendas}' where codigo = '{$_POST['codigo']}'";
@@ -8,6 +9,7 @@ if($_POST['acao'] == 'coordenadas'){
     exit();
 }
 
+//Ação que atualiza o polígono no banco de dados
 if($_POST['acao'] == 'poligono'){
     $q = "update documentos set poligono = '{$_POST['poligono']}' where codigo = '{$_POST['codigo']}'";
     mysqli_query($con, $q);
@@ -210,6 +212,7 @@ if ($doc_id) {
             });
         }
 
+        //função que acionada após as ações no polígono, atualiza as coordenadas e submete para a ação do banco
         function getPolygonCoords() {
 
             // var len = poligono.getPath().getLength();
