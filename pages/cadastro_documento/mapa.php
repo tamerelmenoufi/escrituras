@@ -191,13 +191,25 @@ if ($doc_id) {
         }
 
         function getPolygonCoords() {
-            var len = poligono.getPath().getLength();
-            var htmlStr = [];
-            for (var i = 0; i < len; i++) {
-                htmlStr = poligono.getPath().getAt(i).toUrlValue(5) ;
+            // var len = poligono.getPath().getLength();
+            // var htmlStr = [];
+            // for (var i = 0; i < len; i++) {
+            //     htmlStr = poligono.getPath().getAt(i).toUrlValue(5) ;
+            // }
+            // console.log(poligono.getPath());
+            // console.log(htmlStr);
+
+            var polygonBounds = poligono.getPath();
+            var bounds = [];
+            for (var i = 0; i < polygonBounds.length; i++) {
+                var point = {
+                    lat: polygonBounds.getAt(i).lat(),
+                    lng: polygonBounds.getAt(i).lng()
+                };
+                bounds.push(point);
             }
-            console.log(poligono.getPath());
-            console.log(htmlStr);
+            console.log(point);
+
         }
 
         const centerControlDiv = document.createElement("div");
