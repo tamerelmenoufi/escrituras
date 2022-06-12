@@ -209,7 +209,8 @@ if ($doc_id) {
                 };
                 bounds.push(point);
             }
-            alert(bounds);
+            resultado = JSON.stringify(bounds);
+            alert(resultado);
 
         }
 
