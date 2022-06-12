@@ -196,7 +196,7 @@ if ($doc_id) {
             for (var i = 0; i < len; i++) {
                 htmlStr = poligono.getPath().getAt(i).toUrlValue(5) ;
             }
-            console.log(poligono.getPath().getAt());
+            console.log(poligono.getPath());
             console.log(htmlStr);
         }
 
