@@ -191,6 +191,7 @@ if ($doc_id) {
         }
 
         function getPolygonCoords() {
+
             // var len = poligono.getPath().getLength();
             // var htmlStr = [];
             // for (var i = 0; i < len; i++) {
@@ -201,6 +202,7 @@ if ($doc_id) {
 
             var polygonBounds = poligono.getPath();
             var bounds = [];
+            console.log(polygonBounds.length);
             for (var i = 0; i < polygonBounds.length; i++) {
                 var point = {
                     lat: polygonBounds.getAt(i).lat(),
