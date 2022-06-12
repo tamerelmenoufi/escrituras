@@ -8,6 +8,12 @@ if($_POST['acao'] == 'coordenadas'){
     exit();
 }
 
+if($_POST['acao'] == 'poligono'){
+    $q = "update documentos set poligono = '{$_POST['poligono']}' where codigo = '{$_POST['codigo']}'";
+    mysqli_query($con, $q);
+    exit();
+}
+
 
 $doc_id = $_GET['doc_id'];
 
@@ -139,6 +145,20 @@ if ($doc_id) {
         google.maps.event.addListener(poligono, "click", function(){
             Limpa = [];
             poligono.setPath(Limpa);
+
+            $.ajax({
+                url: "./pages/cadastro_documento/mapa.php",
+                type:"POST",
+                data: {
+                    codigo:'<?=$d->codigo?>',
+                    poligono:'null',
+                    acao:'poligono'
+                },
+                success: function (data) {
+                    // alert(data);
+                }
+            })
+
         });
 
         google.maps.event.addListener(poligono, "dragend", getPolygonCoords);
@@ -210,7 +230,19 @@ if ($doc_id) {
                 bounds.push(point);
             }
             resultado = JSON.stringify(bounds);
-            alert(resultado);
+
+            $.ajax({
+                url: "./pages/cadastro_documento/mapa.php",
+                type:"POST",
+                data: {
+                    codigo:'<?=$d->codigo?>',
+                    poligono:resultado,
+                    acao:'poligono'
+                },
+                success: function (data) {
+                    // alert(data);
+                }
+            })
 
         }
 
