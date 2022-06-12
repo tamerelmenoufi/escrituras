@@ -142,7 +142,7 @@ if ($doc_id) {
         });
 
         google.maps.event.addListener(poligono, "dragend", getPolygonCoords);
-        google.maps.event.addListener(poligono, "dragend", getPolygonCoords);
+        google.maps.event.addListener(poligono, "change", getPolygonCoords);
         google.maps.event.addListener(poligono.getPath(), "insert_at", getPolygonCoords);
         google.maps.event.addListener(poligono.getPath(), "remove_at", getPolygonCoords);
         google.maps.event.addListener(poligono.getPath(), "set_at", getPolygonCoords);
