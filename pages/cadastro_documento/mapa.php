@@ -209,7 +209,7 @@ if ($doc_id) {
                 };
                 bounds.push(point);
             }
-            console.log(bounds);
+            alert(bounds);
 
         }
 
