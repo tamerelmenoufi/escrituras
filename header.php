@@ -17,7 +17,10 @@
                     <ul>
                         <li><a href="busca-escritura">Busca Grátis</a></li>
                         <li><a href="cadastro-do-tabelionato">Solicitação de Escritura</a></li>
-                        <li><a href="cadastro-documento">Cadastro de documento</a></li>
+                        <?php if ($_SESSION['usuario']) { ?>
+                            <li><a href="cadastro-documento">Cadastro de documento</a></li>
+                            <li><a href="lista-cadastros">Lista de cadastros</a></li>
+                        <?php } ?>
                     </ul>
                 </li>
                 <li><a class="nav-link scrollto" href="index.html#portfolio">Suporte</a></li>

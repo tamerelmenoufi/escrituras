@@ -53,7 +53,7 @@ $doc_id = $_GET['doc_id'];
 $d = [];
 
 if ($doc_id) {
-    $colunas = implode(", ", ["codigo", "estado", "cidade", "bairro", "cep", "rua"]);
+    $colunas = implode(", ", ["codigo", "estado", "cidade", "bairro", "cep", "rua", "coordenadas"]);
     $result = mysqli_query($con, "SELECT {$colunas} FROM documentos WHERE codigo = '{$doc_id}'");
     $d = mysqli_fetch_object($result);
 }
@@ -168,7 +168,7 @@ if ($doc_id) {
                 type="hidden"
                 id="coordenadas"
                 name="coordenadas"
-                value="<?= json_decode($d->coordenadas); ?>"
+                value=""
         />
     </div>
 
@@ -198,6 +198,8 @@ if ($doc_id) {
     /* ---------------------------------------*/
 
     $(function () {
+        local = <?= $d->coordenadas; ?>;
+
         /* ------ VALIDAÇÕES -------- */
         var form = $("#form-endereco").validate();
 
@@ -277,8 +279,6 @@ if ($doc_id) {
                 data: formData,
                 //dataType: "JSON",
                 success: function (data) {
-                    //window.localStorage.setItem('doc_id', data.codigo);
-
                     $.ajax({
                         url: "./pages/cadastro_documento/mapa.php",
                         type: "GET",
