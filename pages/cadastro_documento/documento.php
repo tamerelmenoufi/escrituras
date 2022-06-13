@@ -52,9 +52,9 @@ if ($doc_id) {
 }
 
 ?>
-<form id="form-documento" class="needs-validation" novalidate>
+<form id="form-documento">
     <div class="mb-3">
-        <label for="cartorio" class="form-label">Cartório</label>
+        <label for="cartorio" class="form-label">Cartório <span class="text-danger">*</span></label>
         <input
                 type="text"
                 class="form-control"
@@ -62,16 +62,18 @@ if ($doc_id) {
                 name="cartorio"
                 aria-describedby="cartorio"
                 value="<?= $d->cartorio; ?>"
+                required
         >
     </div>
 
     <div class="mb-3">
-        <label for="tipo_documento" class="form-label">Tipo de documento</label>
+        <label for="tipo_documento" class="form-label">Tipo de documento <span class="text-danger">*</span></label>
         <select
                 class="form-control"
                 id="tipo_documento"
                 name="tipo_documento"
                 aria-describedby="tipo_documento"
+                required
 
         >
             <option value=""></option>
@@ -92,13 +94,14 @@ if ($doc_id) {
     </div>
 
     <div class="mb-3">
-        <label for="tipo_imovel" class="form-label">Tipo de Imóvel</label>
+        <label for="tipo_imovel" class="form-label">Tipo de Imóvel <span class="text-danger">*</span></label>
         <select
                 type="text"
                 class="form-control"
                 id="tipo_imovel"
                 name="tipo_imovel"
                 aria-describedby="tipo_imovel"
+                required
         >
             <option value=""></option>
             <?php
@@ -131,26 +134,21 @@ if ($doc_id) {
 
     <div class="mb-3">
         <div class="d-flex flex-row justify-content-end">
-            <button type="submit" class="btn btn-primary btn_next">Salvar</button>
+            <button type="submit" class="btn bg-primary btn_next">Salvar</button>
         </div>
     </div>
 </form>
 
 <script>
     $(function () {
+        var form = $("#form-documento").validate();
 
         var doc_id = window.localStorage.getItem('doc_id');
 
         $("#form-documento").submit(function (e) {
             e.preventDefault();
 
-            var form = $(this)[0];
-            var isValid = form.checkValidity();
-
-            if (!isValid) {
-                form.classList.add('was-validated');
-                return false;
-            }
+            if (!form.valid()) return false;
 
             var formData = $(this).serializeArray();
 
@@ -167,7 +165,6 @@ if ($doc_id) {
                 data: formData,
                 dataType: "JSON",
                 success: function (data) {
-                    console.log(data.codigo);
                     window.localStorage.setItem('doc_id', data.codigo);
 
                     $.ajax({

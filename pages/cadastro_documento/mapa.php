@@ -2,16 +2,16 @@
 include_once "../../config/includes.php";
 
 //Ação que atualiza as coordendas no banco de dados
-if($_POST['acao'] == 'coordenadas'){
-    $coordendas = '{"lat":'.$_POST['lat'].', "lng": '.$_POST['lng'].'}';
-    $q = "update documentos set coordenadas = '{$coordendas}' where codigo = '{$_POST['codigo']}'";
+if ($_POST['acao'] == 'coordenadas') {
+    $coordendas = '{"lat":' . $_POST['lat'] . ', "lng": ' . $_POST['lng'] . '}';
+    $q = "UPDATE documentos SET coordenadas = '{$coordendas}' WHERE codigo = '{$_POST['codigo']}'";
     mysqli_query($con, $q);
     exit();
 }
 
 //Ação que atualiza o polígono no banco de dados
-if($_POST['acao'] == 'poligono'){
-    $q = "update documentos set poligono = '{$_POST['poligono']}' where codigo = '{$_POST['codigo']}'";
+if ($_POST['acao'] == 'poligono') {
+    $q = "UPDATE documentos SET poligono = '{$_POST['poligono']}' WHERE codigo = '{$_POST['codigo']}'";
     mysqli_query($con, $q);
     exit();
 }
@@ -36,10 +36,18 @@ if ($doc_id) {
         height: 500px;
         width: 100%;
     }
+
+    #mapa-content {
+        border-style: solid;
+        border-color: rgb(52, 86, 132) rgb(108, 157, 223) rgb(108, 157, 223) rgb(52, 86, 132);
+        border-width: 1px;
+        font-size: 12px;
+        font-weight: bold;
+    }
 </style>
 
 <div id="map">
-    <div style="border-style: solid; border-color: rgb(52, 86, 132) rgb(108, 157, 223) rgb(108, 157, 223) rgb(52, 86, 132); border-width: 1px; font-size: 12px; font-weight: bold;">
+    <div id="mapa-content">
         Map
     </div>
 </div>
@@ -57,7 +65,7 @@ if ($doc_id) {
             </button>
         </div>
         <div class="col-auto">
-            <button type="submit" class="btn btn-primary">Salvar</button>
+            <button type="submit" class="btn bg-primary">Salvar</button>
         </div>
     </div>
 </div>
@@ -236,11 +244,11 @@ if ($doc_id) {
 
             $.ajax({
                 url: "./pages/cadastro_documento/mapa.php",
-                type:"POST",
+                type: "POST",
                 data: {
-                    codigo:'<?=$d->codigo?>',
-                    poligono:resultado,
-                    acao:'poligono'
+                    codigo: '<?=$d->codigo?>',
+                    poligono: resultado,
+                    acao: 'poligono'
                 },
                 success: function (data) {
                     // alert(data);

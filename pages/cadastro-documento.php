@@ -39,13 +39,8 @@ include './config/includes.php';
             </nav>
 
             <div class="tab-content py-4">
-
-                <div class="tab-pane fade show active content-pane" id="">
-                </div>
-
+                <div class="tab-pane fade show active content-pane" id=""></div>
             </div>
-
-
         </div>
     </div>
 </div>
@@ -77,16 +72,31 @@ include './config/includes.php';
     }
 
     function initExibiContainer(value, id_container) {
-        console.log('teste');
         if (value === '1') $(`#${id_container}`).show();
     }
 
     $(document).ready(function () {
+        jQuery.extend(jQuery.validator.messages, {
+            required: 'Campo obrigatório',
+            email: 'Por favor insira um endereço de e-mail válido.'
+        });
+
+        jQuery.validator.setDefaults({
+            errorClass: 'text-danger is-invalid',
+            validClass: 'text-success is-valid',
+            errorElement: 'span',
+        });
+
+
         $("#nav-tab a").click(function (e) {
             e.preventDefault();
         });
 
+
         $(document).on("click", ".btn_next", function (e) {
+            var form = $('form')[0];
+
+            if (!$(form).valid()) return false;
 
             var next_tab = $('#nav-tab > .active')
 
@@ -95,7 +105,6 @@ include './config/includes.php';
         });
 
         $(document).on("click", ".btn_prev", function (e) {
-
             var prev_tab = $('#nav-tab > .active');
 
             $('#nav-tab').find('a').removeClass('active');

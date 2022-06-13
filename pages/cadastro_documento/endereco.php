@@ -20,6 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if($id){
         $sql = "UPDATE documentos SET {$attr} WHERE codigo = '{$id}'";
+        file_put_contents('debug.txt',$sql);
     }else{
         echo json_encode([
             "status"      => true,
@@ -58,11 +59,11 @@ if ($doc_id) {
 }
 ?>
 
-<form id="form-endereco" class="needs-validation" novalidate>
+<form id="form-endereco">
     <h4 class="my-2 text-center">Endereco</h4>
 
     <div class="mb-3">
-        <label for="estado" class="form-label">Estado</label>
+        <label for="estado" class="form-label">Estado <span class="text-danger">*</span></label>
         <select
                 type="text"
                 class="form-control"
@@ -70,10 +71,11 @@ if ($doc_id) {
                 name="estado"
                 aria-describedby="estado"
                 onchange="select_localidade('estado','cidade','cidades')"
+                required
         >
             <option value=""></option>
             <?php
-            $query_estados = "SELECT * FROM aux_estados WHERE situacao = '1'";
+            $query_estados = "SELECT codigo, nome FROM aux_estados WHERE situacao = '1'";
             $result = mysqli_query($con, $query_estados);
 
             while ($row = mysqli_fetch_object($result)) : ?>
@@ -86,18 +88,19 @@ if ($doc_id) {
     </div>
 
     <div class="mb-3">
-        <label for="cidade" class="form-label">Cidade</label>
+        <label for="cidade" class="form-label">Cidade <span class="text-danger">*</span></label>
         <select
                 class="form-control"
                 id="cidade"
                 name="cidade"
                 aria-describedby="cidade"
                 onchange="select_localidade('cidade','bairro','bairros')"
+                required
         >
             <option value=""></option>
 
             <?php
-            if ($d->cidade) {
+            if ($d->estado) {
                 $sql = "SELECT codigo, nome FROM aux_cidades WHERE estado = '{$d->estado}' AND situacao = '1'";
                 $result = mysqli_query($con, $sql);
 
@@ -119,7 +122,7 @@ if ($doc_id) {
             <option value=""></option>
 
             <?php
-            if ($d->bairro) {
+            if ($d->cidade) {
                 $sql = "SELECT codigo, nome FROM aux_bairros WHERE cidade = '{$d->cidade}' AND situacao = '1'";
                 $result = mysqli_query($con, $sql);
 
@@ -136,7 +139,7 @@ if ($doc_id) {
     </div>
 
     <div class="mb-3">
-        <label for="cep" class="form-label">CEP</label>
+        <label for="cep" class="form-label">CEP <span class="text-danger">*</span></label>
         <input
                 type="text"
                 class="form-control"
@@ -146,6 +149,7 @@ if ($doc_id) {
                 data-mask="00000-000"
                 data-clearifnotmatch="true"
                 value="<?= $d->cep; ?>"
+                required
         >
     </div>
 
@@ -158,8 +162,14 @@ if ($doc_id) {
                 name="rua"
                 aria-describedby="rua"
                 value="<?= $d->rua; ?>"
+                required
         >
-        <input type="hidden" id="coordenadas" name="coordenadas" value="<?= $d->coordenadas; ?>" />
+        <input
+                type="hidden"
+                id="coordenadas"
+                name="coordenadas"
+                value="<?= json_decode($d->coordenadas); ?>"
+        />
     </div>
 
     <div class="mt-3">
@@ -175,7 +185,7 @@ if ($doc_id) {
                 </button>
             </div>
             <div class="col-auto">
-                <button type="submit" class="btn btn-primary btn_next">Salvar</button>
+                <button type="submit" class="btn bg-primary btn_next">Salvar</button>
             </div>
         </div>
     </div>
@@ -188,6 +198,10 @@ if ($doc_id) {
     /* ---------------------------------------*/
 
     $(function () {
+        /* ------ VALIDAÇÕES -------- */
+        var form = $("#form-endereco").validate();
+
+        /* ------ VALIDAÇÕES -------- */
 
         function initialize() {
             //@formatter:off
@@ -197,8 +211,8 @@ if ($doc_id) {
             google.maps.event.addListener(autocomplete, 'place_changed', function() {
                 var place = autocomplete.getPlace();
 
-                place_endereco = place['formatted_address'];
-                place_latitude = place.geometry.location.lat();
+                place_endereco  = place['formatted_address'];
+                place_latitude  = place.geometry.location.lat();
                 place_longitude = place.geometry.location.lng();
 
                 var geocoder = new google.maps.Geocoder();
@@ -210,34 +224,13 @@ if ($doc_id) {
                     if (status == google.maps.GeocoderStatus.OK) {
 
                         if (results[0]) {
-                            let latitude = results[0].geometry.location.lat();
+                            let latitude  = results[0].geometry.location.lat();
                             let longitude = results[0].geometry.location.lng();
-                            let location = new google.maps.LatLng(latitude, longitude);
+                            let location  = new google.maps.LatLng(latitude, longitude);
 
                             local = {"lat" : location.lat(), "lng" : location.lng()};
 
-                            $("#coordenadas").val(local);
-
-                            //console.log(local.lat());
-                            /*marker.setPosition(location);
-                            mapa.setCenter(location);
-                            mapa.setZoom(18);
-
-                            marker = new google.maps.Marker({
-                                position: {
-                                    lat: latitude,
-                                    lng: longitude
-                                },
-                                map: mapa,
-                                title: "TESTE",
-                                draggable: true,
-                            });*/
-
-                            /*google.maps.event.addListener(marker, 'dragend', function(marker) {
-                                var latLng = marker.latLng;
-                                alert(`Lat ${latLng.lat()} & Lng ${latLng.lng()}`)
-                            });*/
-
+                            $("#coordenadas").val(JSON.stringify(local));
                         }
                     }
                 });
@@ -262,21 +255,14 @@ if ($doc_id) {
         $("#form-endereco").submit(function (e) {
             e.preventDefault();
 
-            var form = $(this)[0];
-            var isValid = form.checkValidity();
-
-
-            if (!isValid) {
-                form.classList.add('was-validated');
-                return false;
-            }
+            if (!form.valid()) return false;
 
             var formData = $(this).serializeArray();
 
-            // formData.push({
-            //     name: "coordenadas",
-            //     value: JSON.stringify(local),
-            // });
+            formData.push({
+                name: "coordenadas",
+                value: JSON.stringify(local),
+            });
 
             if (doc_id) {
                 formData.push({

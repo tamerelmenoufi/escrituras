@@ -6,7 +6,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data = $_POST;
     $attr = [];
     $id   = $data["doc_id"];
-    $data['vendedor_procurador_check'] = $data['vendedor_procurador_check'] ? '1' : '0';
 
     unset($data["doc_id"]);
 
@@ -62,16 +61,7 @@ if ($doc_id) {
         <h4 class="my-2 text-center">Vendedor</h4>
 
         <div class="mb-3">
-            <label for="vendedor_tipo" class="form-label">Tipo de vendedor</label>
-            <select class="form-control" id="vendedor_tipo" name="vendedor_tipo">
-                <option value=""></option>
-                <option value="f" <?= $d->vendedor_tipo == 'f' ? 'selected' : ''; ?>>Pessoa física</option>
-                <option value="j" <?= $d->vendedor_tipo == 'j' ? 'selected' : ''; ?>>Pessoa jurídica</option>
-            </select>
-        </div>
-
-        <div class="mb-3">
-            <label for="vendedor_nome" class="form-label">Nome do vendedor</label>
+            <label for="vendedor_nome" class="form-label">Nome do vendedor <span class="text-danger">*</span></label>
             <input
                     type="text"
                     class="form-control"
@@ -79,6 +69,8 @@ if ($doc_id) {
                     name="vendedor_nome"
                     aria-describedby="vendedor_nome"
                     value="<?= $d->vendedor_nome; ?>"
+                    maxlength="80"
+                    required
 
             >
         </div>
@@ -86,7 +78,7 @@ if ($doc_id) {
         <div class="row">
             <div class="col-md-6">
                 <div class="mb-3">
-                    <label for="vendedor_rg" class="form-label">RG</label>
+                    <label for="vendedor_rg" class="form-label">RG <span class="text-danger">*</span></label>
                     <input
                             type="text"
                             class="form-control"
@@ -94,26 +86,39 @@ if ($doc_id) {
                             name="vendedor_rg"
                             aria-describedby="vendedor_rg"
                             value="<?= $d->vendedor_rg; ?>"
+                            maxlength="20"
+                            required
                     >
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="mb-3">
-                    <label for="vendedor_cpf" class="form-label">CPF</label>
-                    <input
-                            type="text"
-                            class="form-control"
-                            id="vendedor_cpf"
-                            name="vendedor_cpf"
-                            aria-describedby="vendedor_cpf"
-                            value="<?= $d->vendedor_cpf; ?>"
-                    >
+                    <label for="vendedor_tipo" class="form-label">Tipo de vendedor <span
+                                class="text-danger">*</span></label>
+                    <select class="form-control" id="vendedor_tipo" name="vendedor_tipo" required>
+                        <option value=""></option>
+                        <option value="f" <?= $d->vendedor_tipo == 'f' ? 'selected' : ''; ?>>Pessoa física</option>
+                        <option value="j" <?= $d->vendedor_tipo == 'j' ? 'selected' : ''; ?>>Pessoa jurídica</option>
+                    </select>
                 </div>
             </div>
         </div>
 
-        <div class="mb-3">
-            <label for="vendedor_cnpj" class="form-label">CNPJ</label>
+        <div class="mb-3" id="container_vendedor_cpf" style="display: none">
+            <label for="vendedor_cpf" class="form-label">CPF <span class="text-danger">*</span></label>
+            <input
+                    type="text"
+                    class="form-control"
+                    id="vendedor_cpf"
+                    name="vendedor_cpf"
+                    aria-describedby="vendedor_cpf"
+                    value="<?= $d->vendedor_cpf; ?>"
+            >
+        </div>
+
+
+        <div class="mb-3" id="container_vendedor_cnpj" style="display: none">
+            <label for="vendedor_cnpj" class="form-label">CNPJ <span class="text-danger">*</span></label>
             <input
                     type="text"
                     class="form-control"
@@ -129,7 +134,6 @@ if ($doc_id) {
                 <div class="mb-3">
                     <label for="vendedor_inscricao_estadual" class="form-label">
                         Inscrição estadual
-
                     </label>
                     <input
                             type="text"
@@ -138,6 +142,7 @@ if ($doc_id) {
                             name="vendedor_inscricao_estadual"
                             aria-describedby="vendedor_inscricao_estadual"
                             value="<?= $d->vendedor_inscricao_estadual; ?>"
+                            maxlength="80"
                     >
                 </div>
             </div>
@@ -154,6 +159,7 @@ if ($doc_id) {
                             name="vendedor_inscricao_municipal"
                             aria-describedby="vendedor_inscricao_municipal"
                             value="<?= $d->vendedor_inscricao_municipal; ?>"
+                            maxlength="80"
                     >
                 </div>
             </div>
@@ -162,7 +168,7 @@ if ($doc_id) {
         <div class="row">
             <div class="col-md-4">
                 <div class="mb-3">
-                    <label for="vendedor_estado" class="form-label">Estado</label>
+                    <label for="vendedor_estado" class="form-label">Estado <span class="text-danger">*</span></label>
                     <select
                             type="text"
                             class="form-control"
@@ -170,6 +176,7 @@ if ($doc_id) {
                             name="vendedor_estado"
                             aria-describedby="vendedor_estado"
                             onchange="select_localidade('vendedor_estado','vendedor_cidade','cidades')"
+                            required
                     >
                         <option value=""></option>
                         <?php
@@ -186,18 +193,18 @@ if ($doc_id) {
             </div>
             <div class="col-md-4">
                 <div class="mb-3">
-                    <label for="vendedor_cidade" class="form-label">Cidade</label>
+                    <label for="vendedor_cidade" class="form-label">Cidade <span class="text-danger">*</span></label>
                     <select
                             class="form-control"
                             id="vendedor_cidade"
                             name="vendedor_cidade"
                             aria-describedby="vendedor_cidade"
                             onchange="select_localidade('vendedor_cidade','vendedor_bairro','bairros')"
-
+                            required
                     >
                         <option value=""></option>
                         <?php
-                        if ($d->vendedor_cidade) {
+                        if ($d->vendedor_estado) {
                             $sql = "SELECT codigo, nome FROM aux_cidades WHERE estado = '{$d->vendedor_estado}' AND situacao = '1'";
                             $result = mysqli_query($con, $sql);
 
@@ -221,10 +228,11 @@ if ($doc_id) {
                             id="vendedor_bairro"
                             name="vendedor_bairro"
                             aria-describedby="vendedor_bairro"
+                            maxlength="10"
                     >
                         <option value=""></option>
                         <?php
-                        if ($d->vendedor_bairro) {
+                        if ($d->vendedor_cidade) {
                             $sql = "SELECT codigo, nome FROM aux_bairros WHERE cidade = '{$d->vendedor_cidade}' AND situacao = '1'";
                             $result = mysqli_query($con, $sql);
 
@@ -251,8 +259,10 @@ if ($doc_id) {
                                 type="text"
                                 class="form-control"
                                 name="vendedor_rua"
+                                id="vendedor_rua"
                                 aria-describedby="vendedor_rua"
                                 value="<?= $d->vendedor_rua; ?>"
+                                maxlength="80"
                         >
                     </div>
                 </div>
@@ -268,6 +278,7 @@ if ($doc_id) {
                             name="vendedor_numero"
                             aria-describedby="vendedor_numero"
                             value="<?= $d->vendedor_numero; ?>"
+                            maxlength="20"
                     >
                 </div>
             </div>
@@ -284,6 +295,7 @@ if ($doc_id) {
                             name="vendedor_telefone"
                             aria-describedby="vendedor_telefone"
                             value="<?= $d->vendedor_telefone; ?>"
+                            maxlength="20"
                     >
                 </div>
             </div>
@@ -297,6 +309,7 @@ if ($doc_id) {
                             name="vendedor_email"
                             aria-describedby="vendedor_email"
                             value="<?= $d->vendedor_email; ?>"
+                            maxlength="80"
                     >
                 </div>
             </div>
@@ -323,7 +336,7 @@ if ($doc_id) {
         <h4 class="my-2 text-center">Vendedor procurador</h4>
 
         <div class="mb-3">
-            <label for="vendedor_procurador_nome" class="form-label">Nome do vendedor</label>
+            <label for="vendedor_procurador_nome" class="form-label">Nome do vendedor <span class="text-danger">*</span></label>
             <input
                     type="text"
                     class="form-control"
@@ -331,13 +344,14 @@ if ($doc_id) {
                     name="vendedor_procurador_nome"
                     aria-describedby="vendedor_procurador_nome"
                     value="<?= $d->vendedor_procurador_nome; ?>"
+                    maxlength="80"
             >
         </div>
 
         <div class="row">
             <div class="col-md-6">
                 <div class="mb-3">
-                    <label for="vendedor_procurador_rg" class="form-label">RG</label>
+                    <label for="vendedor_procurador_rg" class="form-label">RG <span class="text-danger">*</span></label>
                     <input
                             type="text"
                             class="form-control"
@@ -345,12 +359,14 @@ if ($doc_id) {
                             name="vendedor_procurador_rg"
                             aria-describedby="vendedor_procurador_rg"
                             value="<?= $d->vendedor_procurador_rg; ?>"
+                            maxlength="80"
                     >
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="mb-3">
-                    <label for="vendedor_procurador_cpf" class="form-label">CPF</label>
+                    <label for="vendedor_procurador_cpf" class="form-label">CPF <span
+                                class="text-danger">*</span></label>
                     <input
                             type="text"
                             class="form-control"
@@ -358,6 +374,7 @@ if ($doc_id) {
                             name="vendedor_procurador_cpf"
                             aria-describedby="vendedor_procurador_cpf"
                             value="<?= $d->vendedor_procurador_cpf; ?>"
+                            maxlength="20"
                     >
                 </div>
             </div>
@@ -366,7 +383,7 @@ if ($doc_id) {
         <div class="row">
             <div class="col-md-4">
                 <div class="mb-3">
-                    <label for="vendedor_procurador_estado" class="form-label">Estado</label>
+                    <label for="vendedor_procurador_estado" class="form-label">Estado <span class="text-danger">*</span></label>
                     <select
                             type="text"
                             class="form-control"
@@ -390,7 +407,7 @@ if ($doc_id) {
             </div>
             <div class="col-md-4">
                 <div class="mb-3">
-                    <label for="vendedor_procurador_cidade" class="form-label">Cidade</label>
+                    <label for="vendedor_procurador_cidade" class="form-label">Cidade <span class="text-danger">*</span></label>
                     <select
                             class="form-control"
                             id="vendedor_procurador_cidade"
@@ -425,6 +442,7 @@ if ($doc_id) {
                             id="vendedor_procurador_bairro"
                             name="vendedor_procurador_bairro"
                             aria-describedby="vendedor_procurador_bairro"
+                            maxlength="20"
                     >
                         <option value=""></option>
                         <?php
@@ -458,6 +476,7 @@ if ($doc_id) {
                                 name="vendedor_procurador_rua"
                                 aria-describedby="vendedor_procurador_rua"
                                 value="<?= $d->vendedor_procurador_rua; ?>"
+                                maxlength="80"
                         >
                     </div>
                 </div>
@@ -473,6 +492,7 @@ if ($doc_id) {
                             name="vendedor_procurador_numero"
                             aria-describedby="vendedor_procurador_numero"
                             value="<?= $d->vendedor_procurador_numero; ?>"
+                            maxlength="20"
                     >
                 </div>
             </div>
@@ -490,6 +510,7 @@ if ($doc_id) {
                             name="vendedor_procurador_telefone"
                             aria-describedby="vendedor_procurador_telefone"
                             value="<?= $d->vendedor_procurador_telefone; ?>"
+                            maxlength="20"
                     >
                 </div>
             </div>
@@ -497,12 +518,13 @@ if ($doc_id) {
                 <div class="mb-3">
                     <label for="vendedor_procurador_email" class="form-label">E-Mail</label>
                     <input
-                            type="text"
+                            type="email"
                             class="form-control"
                             id="vendedor_procurador_email"
                             name="vendedor_procurador_email"
                             aria-describedby="vendedor_procurador_email"
                             value="<?= $d->vendedor_procurador_email; ?>"
+                            maxlength="80"
                     >
                 </div>
             </div>
@@ -522,7 +544,7 @@ if ($doc_id) {
                 </button>
             </div>
             <div class="col-auto">
-                <button type="submit" class="btn btn-primary btn_next">Salvar</button>
+                <button type="submit" class="btn bg-primary btn_next">Salvar</button>
             </div>
         </div>
     </div>
@@ -530,15 +552,84 @@ if ($doc_id) {
 
 <script>
     $(function () {
+        /* ------ MASCARAS -------- */
+        $('#vendedor_cpf, #vendedor_procurador_cpf').mask('000.000.000-00', {clearIfNotMatch: true});
+
+        $('#vendedor_telefone, #vendedor_procurador_telefone').mask('(00) 90000-0000', {clearIfNotMatch: true});
+
+        $('#vendedor_cnpj').mask('00.000.000/0000-00', {reverse: true});
+        /* ------ MASCARAS -------- */
+
+        /* ------ VALIDAÇÕES -------- */
+        var form = $("#form-vendedor").validate({
+            rules: {
+                vendedor_cpf: {
+                    required: function (elem) {
+                        return $("#vendedor_tipo").val() === "f";
+                    }
+                },
+                vendedor_cnpj: {
+                    required: function (elem) {
+                        return $("#vendedor_tipo").val() === "j";
+                    }
+                },
+
+                vendedor_procurador_nome: {
+                    required: function (elem) {
+                        return $("#vendedor_procurador_check").is(":checked");
+                    }
+                },
+                vendedor_procurador_rg: {
+                    required: function (elem) {
+                        return $("#vendedor_procurador_check").is(":checked");
+                    }
+                },
+                vendedor_procurador_cpf: {
+                    required: function (elem) {
+                        return $("#vendedor_procurador_check").is(":checked");
+                    }
+                },
+                vendedor_procurador_estado: {
+                    required: function (elem) {
+                        return $("#vendedor_procurador_check").is(":checked");
+                    }
+                },
+                vendedor_procurador_cidade: {
+                    required: function (elem) {
+                        return $("#vendedor_procurador_check").is(":checked");
+                    }
+                }
+            }
+        });
+        /* ------ VALIDAÇÕES -------- */
+
+        exibeCpfCnpj("<?= $d->vendedor_tipo?>");
+
+        $("#vendedor_tipo").change(function () {
+            exibeCpfCnpj($(this).val())
+        });
+
+        function exibeCpfCnpj(valor) {
+            if (valor === "f") {
+                $("#container_vendedor_cpf").show();
+                $("#container_vendedor_cnpj").hide();
+                $("#vendedor_cnpj").val('');
+            } else if (valor === 'j') {
+                $("#container_vendedor_cnpj").show();
+                $("#container_vendedor_cpf").hide().val('');
+                $("#vendedor_cpf").val('');
+            } else {
+                $("#container_vendedor_cnpj").hide().val('');
+                $("#container_vendedor_cpf").hide().val('');
+                $("#vendedor_cnpj").val('');
+                $("#vendedor_cpf").val('');
+            }
+        }
+
         $("#vendedor_procurador_check").prop("checked", <?= $d->vendedor_procurador_check ? true : false?>);
 
         initExibiContainer("<?= $d->vendedor_procurador_check?>", "vendedor_procurador-container");
 
-        $('#vendedor_cpf, #vendedor_comprador_cpf')
-            .mask('000.000.000-00', {clearIfNotMatch: true});
-
-        $('#vendedor_telefone, #vendedor_comprador_telefone')
-            .mask('(00) 90000-0000', {clearIfNotMatch: true});
 
         var doc_id = window.localStorage.getItem('doc_id');
 
@@ -555,16 +646,9 @@ if ($doc_id) {
         $("#form-vendedor").submit(function (e) {
             e.preventDefault();
 
-            var form = $(this)[0];
-            var isValid = form.checkValidity();
-
-            if (!isValid) {
-                form.classList.add('was-validated');
-                return false;
-            }
+            if (!form.valid()) return false;
 
             var formData = $(this).serializeArray();
-
 
             if (doc_id) {
                 formData.push({
@@ -575,7 +659,7 @@ if ($doc_id) {
 
             formData.push({
                 name: "vendedor_procurador_check",
-                value: $("#vendedor_procurador_check").is(":checked"),
+                value: $("#vendedor_procurador_check").is(":checked") ? 1 : 0,
             });
 
             $.ajax({

@@ -7,7 +7,12 @@
     border-radius: 0;
 }
 
-input[type=text], input[type=email], input[type=password], textarea {
+.bg-primary {
+    background: var(--color-primary);
+    color: #FFFFFF;
+}
+
+input[type=text], input[type=email], input[type=password], textarea, select {
     border-radius: 0;
     box-shadow: none;
     font-size: 14px;
