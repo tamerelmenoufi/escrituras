@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' and $_POST['acao'] === 'login') {
     $usuario = mysqli_escape_string($con, $_POST['nome']);
     $senha = md5($_POST['senha']);
 
-    $query = "SELECT codigo FROM usuarios WHERE usuario = '{$usuario}' AND senha = '{$senha}' LIMIT 1";
+    $query = "SELECT codigo, nome FROM usuarios WHERE usuario = '{$usuario}' AND senha = '{$senha}' LIMIT 1";
     $result = mysqli_query($con, $query);
 
     if (mysqli_num_rows($result)) {
@@ -14,6 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' and $_POST['acao'] === 'login') {
 
         $_SESSION['usuario'] = [
             'codigo' => $d->codigo,
+            'nome' => $d->nome
         ];
 
         echo json_encode([

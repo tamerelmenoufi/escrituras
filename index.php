@@ -31,7 +31,7 @@ include 'config/includes.php';
     <link href="<?= $base_url; ?>assets/vendor/aos/aos.css" rel="stylesheet">
     <link href="<?= $base_url; ?>assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
     <link href="<?= $base_url; ?>assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-
+    <link href="<?= $base_url; ?>assets/vendor/jquery-confirm/css/jquery-confirm.min.css" rel="stylesheet">
     <!-- Variables CSS Files. Uncomment your preferred color scheme -->
     <link href="<?= $base_url; ?>assets/css/variables.css" rel="stylesheet">
     <!-- <link href="assets/css/variables-blue.css" rel="stylesheet"> -->
@@ -45,6 +45,7 @@ include 'config/includes.php';
     <link href="<?= $base_url; ?>assets/css/styles.css?c=<?= uniqid() ?>" rel="stylesheet">
     <link href="<?= $base_url; ?>assets/vendor/fontawesome/css/all.css" rel="stylesheet">
     <script src="<?= $base_url; ?>assets/vendor/jquery/jquery-3.6.0.min.js"></script>
+    <script src="<?= $base_url; ?>assets/vendor/jquery-confirm/js/jquery-confirm.min.js"></script>
     <script src="<?= $base_url; ?>assets/vendor/jquery/jquery.validate.min.js"></script>
     <script src="<?= $base_url; ?>assets/vendor/jquery/jquery.mask.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBSnblPMOwEdteX5UPYXf7XUtJYcbypx6w&v=weekly&language=pt&region=BR&libraries=places"></script>

@@ -16,17 +16,28 @@ if ($_POST['acao'] == 'poligono') {
     exit();
 }
 
+if ($_POST['acao'] == 'salvar') {
+    $codigo = $_POST['codigo'];
+    $q = "UPDATE documentos SET situacao = 'CONCLUIDO' WHERE codigo = '{$codigo}'";
+
+    if (mysqli_query($con, $q)) {
+        echo json_encode(["status" => true, "msg" => "Dados salvo com sucesso"]);
+    } else {
+        echo json_encode(["status" => false, "msg" => "Error ao salvar"]);
+    }
+
+    exit();
+}
+
 
 $doc_id = $_GET['doc_id'];
 
 // $d = [];
 
 if ($doc_id) {
-    $result = mysqli_query($con, "SELECT * FROM documentos WHERE codigo = '{$doc_id}'");
+    $result = mysqli_query($con, "SELECT codigo, coordenadas, poligono FROM documentos WHERE codigo = '{$doc_id}'");
     $d = mysqli_fetch_object($result);
-
     // list($lat, $lng) = $d->coordenadas;
-
 }
 ?>
 
@@ -52,6 +63,8 @@ if ($doc_id) {
     </div>
 </div>
 
+<input type="hidden" id="codigo" value="<?= $d->codigo ?>">
+
 <div class="mt-3">
     <div class="row justify-content-between">
         <div class="col-auto">
@@ -65,7 +78,7 @@ if ($doc_id) {
             </button>
         </div>
         <div class="col-auto">
-            <button type="submit" class="btn bg-primary">Salvar</button>
+            <button type="button" class="btn bg-primary salvar">Salvar</button>
         </div>
     </div>
 </div>
@@ -263,5 +276,56 @@ if ($doc_id) {
 
         mapa.controls[google.maps.ControlPosition.TOP_LEFT].push(centerControlDiv);
 
+        $(".salvar").click(function () {
+            var codigo = $("#codigo").val();
+
+            $.alert({
+                title: "Aviso",
+                content: "Tem certeza que deseja finalizar o cadastro?",
+                columnClass: "medium",
+                buttons: {
+                    sim: {
+                        text: 'sim',
+                        action: function () {
+                            $.ajax({
+                                url: "./pages/cadastro_documento/mapa.php",
+                                method: "post",
+                                data: {codigo, acao: "salvar"},
+                                dataType: "json",
+                                success: function (response) {
+                                    if (response.status) {
+                                        window.localStorage.setItem('doc_id', '');
+
+                                        $.alert({
+                                            title: 'Sucesso',
+                                            content: response.msg,
+                                            buttons: {
+                                                ok: {
+                                                    text: 'Ok',
+                                                    action: function () {
+                                                        window.location.href = './cadastro-documento';
+                                                    }
+                                                }
+                                            }
+                                        });
+
+                                    } else {
+                                        $.alert({
+                                            title: 'Error',
+                                            content: response.msg
+                                        });
+                                    }
+                                }
+                            })
+                        }
+                    },
+                    nao: {
+                        text: 'Não',
+                        action: () => {
+                        },
+                    }
+                }
+            })
+        });
     });
 </script>

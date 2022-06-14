@@ -523,6 +523,8 @@ if ($doc_id) {
 
         $('#comprador_cpf, #comprador_procurador_cpf').mask('000.000.000-00', {clearIfNotMatch: true});
 
+        $('#comprador_cnpj').mask('00.000.000/0000-00', {clearIfNotMatch: true});
+
         $('#comprador_telefone, #comprador_procurador_telefone').mask('(00) 90000-0000', {clearIfNotMatch: true});
 
         var doc_id = window.localStorage.getItem('doc_id');

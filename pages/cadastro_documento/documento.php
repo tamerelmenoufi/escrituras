@@ -78,7 +78,7 @@ if ($doc_id) {
         >
             <option value=""></option>
             <?php
-            $query_tipo_documento = "SELECT * FROM aux_tipo_documento WHERE deletado != '1'";
+            $query_tipo_documento = "SELECT * FROM aux_tipo_documento WHERE deletado != '1' ORDER BY descricao";
             $result = mysqli_query($con, $query_tipo_documento);
 
             while ($row = mysqli_fetch_object($result)): ?>
@@ -105,7 +105,7 @@ if ($doc_id) {
         >
             <option value=""></option>
             <?php
-            $query_tipo_imovel = "SELECT * FROM aux_tipo_imovel WHERE deletado != '1'";
+            $query_tipo_imovel = "SELECT * FROM aux_tipo_imovel WHERE deletado != '1' ORDER BY descricao";
             $result = mysqli_query($con, $query_tipo_imovel);
 
             while ($row = mysqli_fetch_object($result)): ?>

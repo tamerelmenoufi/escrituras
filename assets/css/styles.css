@@ -12,8 +12,8 @@
     color: #FFFFFF;
 }
 
-input[type=text], input[type=email], input[type=password], textarea, select {
-    border-radius: 0;
+input[type=text], input[type=email], input[type=password], input[type=number], textarea, select {
+    border-radius: 0 !important;
     box-shadow: none;
     font-size: 14px;
 }

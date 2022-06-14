@@ -3,48 +3,60 @@ include './config/includes.php';
 
 ?>
 
-<div class="container-fluid">
-    <h1 class="text-center">Cadastro de documento</h1>
+<style>
+    #cadastro-documento .nav-link.active {
+        background-color: var(--color-primary) !important;
+        color: #FFFFFF !important;
+    }
 
-    <div class="row justify-content-center">
-        <div class="col-md-10 col-lg-8 my-4">
+    #cadastro-documento a.nav-link {
+        color: var(--color-primary) !important;
+    }
+</style>
 
-            <nav>
-                <div class="nav nav-pills nav-fill" id="nav-tab" role="tablist">
-                    <a
-                            class="nav-link active"
-                            id="documento-tab"
-                            href="#documento">Documento</a>
+<div id="cadastro-documento">
+    <div class="container">
+        <h1 class="text-center">Cadastro de documento</h1>
 
-                    <a
-                            class="nav-link"
-                            id="vendedor-tab"
-                            href="#vendedor">Vendedor</a>
+        <div class="row justify-content-center">
+            <div class="col-md-10 col-lg-8 my-4">
 
-                    <a
-                            class="nav-link"
-                            id="comprador-tab"
-                            href="#comprador">Comprador</a>
+                <nav>
+                    <div class="nav nav-pills nav-fill" id="nav-tab" role="tablist">
+                        <a
+                                class="nav-link active"
+                                id="documento-tab"
+                                href="#documento">Documento</a>
 
-                    <a
-                            class="nav-link"
-                            id="endereco-tab"
-                            href="#endereco">Endereço</a>
+                        <a
+                                class="nav-link"
+                                id="vendedor-tab"
+                                href="#vendedor">Vendedor</a>
 
-                    <a
-                            class="nav-link"
-                            id="mapa-tab"
-                            href="#mapa">Mapa</a>
+                        <a
+                                class="nav-link"
+                                id="comprador-tab"
+                                href="#comprador">Comprador</a>
+
+                        <a
+                                class="nav-link"
+                                id="endereco-tab"
+                                href="#endereco">Endereço</a>
+
+                        <a
+                                class="nav-link"
+                                id="mapa-tab"
+                                href="#mapa">Mapa</a>
+                    </div>
+                </nav>
+
+                <div class="tab-content py-4">
+                    <div class="tab-pane fade show active content-pane" id=""></div>
                 </div>
-            </nav>
-
-            <div class="tab-content py-4">
-                <div class="tab-pane fade show active content-pane" id=""></div>
             </div>
         </div>
     </div>
 </div>
-
 <script>
 
     function select_localidade(select, select_to, url) {

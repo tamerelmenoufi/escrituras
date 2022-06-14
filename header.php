@@ -35,7 +35,11 @@
             </ul>
             <i class="bi bi-list mobile-nav-toggle d-none"></i>
         </nav><!-- .navbar -->
-        <a class="btn-getstarted scrollto" href="index.html#about">Cadastre-se</a>
+        <a
+                href="#"
+        ><i class="fa-solid fa-user"></i> <?= $_SESSION['usuario']['nome'] ?>
+        </a>
+        <!--<a class="btn-getstarted scrollto" href="index.html#about">Cadastre-se</a>-->
     </div>
 </header><!-- End Header -->
 

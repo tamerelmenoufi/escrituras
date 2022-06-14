@@ -7,8 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $attr = [];
     $id   = $data["doc_id"];
 
-    // $coordenadas_temp  = json_decode($data["coordenadas"], true) ?: [];
-    // $data["coordenadas_temp"] = json_encode($coordenadas_temp);
+    $possuiRegistro = mysqli_num_rows(mysqli_query($con, "SELECT codigo FROM documentos WHERE codigo = '{$id}' LIMIT 1"));
 
     unset($data["doc_id"], $data["local"]);
 
@@ -18,9 +17,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $attr = implode(", ", $attr);
 
-    if($id){
+    if($id and $possuiRegistro){
         $sql = "UPDATE documentos SET {$attr} WHERE codigo = '{$id}'";
-        file_put_contents('debug.txt',$sql);
     }else{
         echo json_encode([
             "status"      => true,
@@ -198,7 +196,7 @@ if ($doc_id) {
     /* ---------------------------------------*/
 
     $(function () {
-        local = <?= $d->coordenadas; ?>;
+        local = <?= $d->coordenadas ?: '{}'; ?>;
 
         /* ------ VALIDAÇÕES -------- */
         var form = $("#form-endereco").validate();

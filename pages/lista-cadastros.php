@@ -1,8 +1,27 @@
 <?php
-include './config/includes.php';
+#include '../config/includes.php';
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST' and $_POST['acao'] === "excluir") {
+    include_once "../config/ConnectionMySQL.php";
 
+    $codigo = $_POST["codigo"];
+
+    if (mysqli_query($con, "DELETE FROM documentos WHERE codigo = '{$codigo}'")) {
+        echo json_encode([
+            "status" => true,
+            "msg" => "Registro excluído com sucesso"
+        ]);
+    } else {
+        echo json_encode([
+            "status" => false,
+            "msg" => "Error ao excluir"
+        ]);
+    }
+    exit();
+}
 $colunas_array = [
+    "d.codigo",
+    "d.situacao",
     "vendedor_nome",
     "comprador_nome",
     "m.nome AS end_municipio",
@@ -26,27 +45,32 @@ $result = mysqli_query($con, $query);
         <table class="table table-bordered my-5">
             <thead style="border-width: 1px !important;">
             <tr>
-                <th class="text-center" scope="col">Vendedor</th>
-                <th class="text-center" scope="col">Comprador</th>
-                <th class="text-center" scope="col">Município</th>
-                <th class="text-center" scope="col">Bairro</th>
-                <th class="text-center" scope="col">Status</th>
-                <th class="text-center" scope="col" style="width: 10%">Ação</th>
+                <th class="text-center color-gray" scope="col">Vendedor</th>
+                <th class="text-center color-gray" scope="col">Comprador</th>
+                <th class="text-center color-gray" scope="col">Município</th>
+                <th class="text-center color-gray" scope="col">Bairro</th>
+                <th class="text-center color-gray" scope="col">Situação</th>
+                <th class="text-center color-gray" scope="col" style="width: 10%">Ação</th>
             </tr>
             </thead>
             <tbody>
-            <?php while ($d = mysqli_fetch_object($result)): ?>
-                <tr>
-                    <td><?= $d->vendedor_nome ?></td>
-                    <td><?= $d->comprador_nome ?></td>
-                    <td><?= $d->end_municipio ?></td>
-                    <td><?= $d->end_bairro ?></td>
-                    <td>Pendente</td>
-                    <td>
+            <?php
+            while ($d = mysqli_fetch_object($result)): ?>
+                <tr id="documento-<?= $d->codigo; ?>">
+                    <td><?= $d->vendedor_nome ?: 'Não definido' ?></td>
+                    <td><?= $d->comprador_nome ?: 'Não definido' ?></td>
+                    <td><?= $d->end_municipio ?: 'Não definido' ?></td>
+                    <td><?= $d->end_bairro ?: 'Não definido' ?></td>
+                    <td><?= $d->situacao; ?></td>
+                    <td class="text-center">
                         <button type="button" class="btn btn-light btn-sm">
                             <i class="fa-solid fa-pen-to-square"></i>
                         </button>
-                        <button type="button" class="btn btn-light btn-sm">
+                        <button
+                                type="button"
+                                class="btn btn-light btn-sm excluir-documento"
+                                data-codigo="<?= $d->codigo; ?>"
+                        >
                             <i class="fa-solid fa-trash-can"></i>
                         </button>
                     </td>
@@ -55,5 +79,50 @@ $result = mysqli_query($con, $query);
             </tbody>
         </table>
     </div>
-
 </div>
+
+<script>
+    $(function () {
+        $(".excluir-documento").click(function () {
+            var codigo = $(this).data("codigo");
+
+            $.alert({
+                title: "Aviso",
+                content: "Tem certeza que deseja excluir?",
+                buttons: {
+                    sim: {
+                        text: 'sim',
+                        action: function () {
+                            $.ajax({
+                                url: "./pages/lista-cadastros.php",
+                                method: "post",
+                                data: {codigo, acao: "excluir"},
+                                dataType: "json",
+                                success: function (response) {
+                                    if (response.status) {
+                                        $.alert({
+                                            title: 'Sucesso',
+                                            content: response.msg
+                                        });
+
+                                        $(`#documento-${codigo}`).remove();
+                                    } else {
+                                        $.alert({
+                                            title: 'Error',
+                                            content: response.msg
+                                        });
+                                    }
+                                }
+                            })
+                        }
+                    },
+                    nao: {
+                        text: 'Não',
+                        action: () => {
+                        },
+                    }
+                }
+            })
+        })
+    });
+</script>
