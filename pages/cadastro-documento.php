@@ -16,7 +16,7 @@ include './config/includes.php';
 
 <div id="cadastro-documento">
     <div class="container">
-        <h1 class="text-center">Cadastro de documento</h1>
+        <h2 class="text-center">Cadastro de documento</h2>
 
         <div class="row justify-content-center">
             <div class="col-md-10 col-lg-8 my-4">

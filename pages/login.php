@@ -2,13 +2,20 @@
 include_once "./config/conf.php";
 
 ?>
-<div class="container my-5">
+
+<style>
+    input[type=text], input[type=password] {
+        height: 48px !important;
+        padding: 10px 15px !important;
+    }
+</style>
+<div class="container my-5 login">
     <div class="row gy-5 gx-lg-5">
 
         <div class="offset-lg-3"
     </div>
-    <div class="col-lg-6" style="margin-top: 4rem;">
-        <form id="form-login" method="post" role="form">
+    <div class="col-lg-6" style="margin-top: 1rem;margin-bottom: 3rem">
+        <form id="form-login" method="post" role="form" class="php-email-form">
 
             <input type="hidden" name="acao" value="login">
 
@@ -29,27 +36,25 @@ include_once "./config/conf.php";
                 </div>
 
                 <div class="form-group">
-                    <label for="nome">Usuário</label>
                     <input
                             type="text"
                             name="nome"
                             class="form-control"
                             id="nome"
                             maxlength="45"
-                            placeholder=""
+                            placeholder="Usuário"
                             onfocus=""
                             style="color: rgba(var(--color-secondary-dark-rgb), 0.7)"
                             required>
                 </div>
                 <div class="form-group mt-3">
-                    <label for="senha">Senha</label>
                     <input
                             type="password"
                             class="form-control"
                             name="senha"
                             id="senha"
                             maxlength="150"
-                            placeholder=""
+                            placeholder="Senha"
                             style="color: rgba(var(--color-secondary-dark-rgb), 0.7)"
                             required
                     >
@@ -63,7 +68,7 @@ include_once "./config/conf.php";
         </form>
     </div><!-- End Contact Form -->
 </div>
-</div>
+
 
 <script>
     $(function () {
@@ -84,7 +89,6 @@ include_once "./config/conf.php";
                         }, 800);
                     } else {
                         $(".msg-error").show().find('text').text(data.msg);
-
                     }
                 }
             })

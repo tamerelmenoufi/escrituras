@@ -38,10 +38,10 @@ $result = mysqli_query($con, $query);
 
 ?>
 
-<div class="container py-4">
-    <h1 class="text-center">Lista de cadastros</h1>
+<div class="container py-5">
+    <h2 class="text-center">Lista de cadastros</h2>
 
-    <div>
+    <div style="margin-bottom: 6rem">
         <table class="table table-bordered my-5">
             <thead style="border-width: 1px !important;">
             <tr>
