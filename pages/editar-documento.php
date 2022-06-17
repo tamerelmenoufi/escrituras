@@ -1,22 +1,23 @@
 <?php
 include './config/includes.php';
 
+$doc_id = $_GET['id'];
 ?>
 
 <style>
-    #cadastro-documento .nav-link.active {
+    #editar-documento .nav-link.active {
         background-color: var(--color-primary) !important;
         color: #FFFFFF !important;
     }
 
-    #cadastro-documento a.nav-link {
+    #editar-documento a.nav-link {
         color: var(--color-primary) !important;
     }
 </style>
 
-<div id="cadastro-documento">
+<div id="editar-documento">
     <div class="container">
-        <h2 class="text-center">Cadastro de documento</h2>
+        <h2 class="text-center">Editar de documento</h2>
 
         <div class="row justify-content-center">
             <div class="col-md-10 col-lg-8 my-4">
@@ -57,6 +58,9 @@ include './config/includes.php';
         </div>
     </div>
 </div>
+
+<input type="hidden" id="doc_id" value="<?= $doc_id; ?>">
+
 <script>
 
     function select_localidade(select, select_to, url) {
@@ -100,11 +104,9 @@ include './config/includes.php';
             },
         });
 
-
         $("#nav-tab a").click(function (e) {
             e.preventDefault();
         });
-
 
         $(document).on("click", ".btn_next", function (e) {
             var form = $('form')[0];
@@ -122,13 +124,14 @@ include './config/includes.php';
 
             $('#nav-tab').find('a').removeClass('active');
             prev_tab.prev('a').addClass('active');
-
         });
 
-        var doc_id = window.localStorage.getItem('doc_id');
+        var doc_id = $("#doc_id").val();
 
+        console.log(doc_id);
+        
         $.ajax({
-            url: "./pages/cadastro_documento/documento.php",
+            url: "./pages/editar_documento/documento.php",
             data: {doc_id},
             success: function (data) {
                 $(".content-pane").html(data);
@@ -136,47 +139,5 @@ include './config/includes.php';
         });
     });
 
-    $(function () {
-
-        //Adicionar mascara de telefones
-
-
-        /*$("#form-cadastro-documento").submit(function (e) {
-            e.preventDefault();
-
-            vertices = poligono.getPath();
-
-            var formData = $(this).serializeArray();
-            var coordenadas = [];
-
-            for (let i = 0; i < vertices.getLength(); i++) {
-                const xy = vertices.getAt(i);
-
-                coordenadas.push({
-                    "lat": xy.lat(),
-                    "lng": xy.lng()
-                });
-            }
-
-            formData.push({
-                name: "coordenadas",
-                value: JSON.stringify(coordenadas)
-            });
-
-            $.ajax({
-                url: "./pages/actions/actionCadastro_documento.php",
-                method: "POST",
-                data: formData, //$(this).serializeArray(),
-                success: function (data) {
-                    if (data === "ok") {
-                        alert('Dados salvos com sucesso!');
-                        window.location.reload();
-                    } else {
-                        alert(data);
-                    }
-                }
-            });
-        });*/
-    });
 
 </script>

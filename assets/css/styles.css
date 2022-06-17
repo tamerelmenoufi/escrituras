@@ -17,8 +17,3 @@ input[type=text], input[type=email], input[type=password], input[type=number], t
     box-shadow: none;
     font-size: 14px;
 }
-
-h3 {
-    font-weight: 600;
-    font-size: 24px;
-}

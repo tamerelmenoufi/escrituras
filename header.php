@@ -36,7 +36,8 @@
             <i class="bi bi-list mobile-nav-toggle d-none"></i>
         </nav><!-- .navbar -->
 
-        <?php if (isset($_SESSION['usuario'])) { ?>
+        <?php
+        if (isset($_SESSION['usuario'])) { ?>
             <a href="#"><i class="fa-solid fa-user"></i> <?= $_SESSION['usuario']['nome'] ?></a>
         <?php } ?>
         <!--<a class="btn-getstarted scrollto" href="index.html#about">Cadastre-se</a>-->
