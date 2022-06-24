@@ -282,7 +282,7 @@ if ($doc_id) {
 
             $.alert({
                 title: "Aviso",
-                content: "Tem certeza que deseja finalizar o cadastro?",
+                content: "Deseja concluir a atualização?",
                 columnClass: "medium",
                 buttons: {
                     sim: {
