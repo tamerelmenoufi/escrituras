@@ -1,38 +1,37 @@
 <?php
 ?>
 <div class="container-fluid">
-    <h1 class="text-center">Quem somos?</h1>
-    <h5 class="text-center">SOBRE O SITE PORTAL ESCRITURAS</h5>
+    <h1 class="text-center fw-light color-secondary">Quem somos?</h1>
+    <!--<h5 class="text-center">SOBRE O SITE PORTAL ESCRITURAS</h5>-->
 
     <div class="row mt-5">
 
-        <div class="col-md-6 px-4">
-            <p class="fs-6">
-                O portal escritura foi desenvolvido com a principal finalidade de
-                localizar de maneira mais rápida e eficiente as escrituras públicas
-                de imóveis lavradas no Brasil
+        <div class="col-md-8 offset-md-2">
+            <h4 class="text-center">Sobre Nós</h4>
+
+            <p class="pb-5" style="color: var(--color-secondary-light); font-size: 18px">
+                Empresa pioneira no ramo de tecnologia da informação focada em orientar, buscar e entregar a localização
+                de diversos tipos de documentos cartorários, como por exemplo: Escritura Pública de Compra e Venda,
+                Escritura Declaratória, Atas Notariam, Procuração, Certidão Certidões de Nascimento Casamento, Óbito
+                entre outros.
             </p>
-            <p class="fs-6">
-                O portal escritura irá contribuir ainda com a redução de golpes/
-                fraudes praticados por estelionatários em nosso país onde os
-                mesmos vendem o imóvel lavrando diversas escrituras públicas
-                em vários tabelionatos distintos (golpe conhecido como dupla
-                venda) causando com isso grandes prejuízos não só econômicos
-                mas também judiciais.
-            </p>
-            <p class="fs-6">
-                O site vai ajudar nas demandas judiciais nesse tipo de fraude/
-                golpe praticadas em todo território nacional.
-            </p>
-            <p>
-                Sediado na cidade de Manaus - AM
+
+            <h4 class="text-center">Como vamos fornecer as informações</h4>
+
+            <p class="pb-5 mb-4" style="color: var(--color-secondary-light); font-size: 18px">
+                Missão: Orientar, informar e entregar a sociedade, o acesso à localização de escrituras, procurações e
+                outros documentos cartorários de maneira ágil e econômica, contribuindo à cidadania e na segurança das
+                relações sociais.
+
+                Visão: Ser reconhecida pela sociedade como o maior portal eletrônico na atuação de informação e busca de
+                certidões cartorárias.
+
+                Valores: Respeito aos colaboradores, parceiros e sociedade, Transparência com a informação,
+                Integralidade com as instituições cartorárias e judiciarias, Profissionalismo no atendimento, Inovação
+                tecnológica de referência com relevância, Confiança na efetividade da segurança de dados, com
+                engajamento na melhoria dos serviços.
             </p>
         </div>
-        <div class="col-md-6 col-sm-12">
-            <div class="d-flex flex-row justify-content-center align-items-center"
-                 style="background-color: rgba(243,242,242,0.99); width: 100%; height: 200px">
-                [IMAGE]
-            </div>
-        </div>
+
     </div>
 </div>

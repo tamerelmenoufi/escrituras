@@ -17,3 +17,7 @@ input[type=text], input[type=email], input[type=password], input[type=number], t
     box-shadow: none;
     font-size: 14px;
 }
+
+.color-secondary {
+    color: var(--color-secondary);
+}
