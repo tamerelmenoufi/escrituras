@@ -304,7 +304,7 @@ if ($doc_id) {
                                                 ok: {
                                                     text: 'Ok',
                                                     action: function () {
-                                                        window.location.href = './lista-cadastro';
+                                                        window.location.href = './lista-cadastros';
                                                     }
                                                 }
                                             }
