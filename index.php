@@ -61,9 +61,6 @@ include 'config/includes.php';
                     method: "POST",
                     data: {acao: "logout"},
                     success: function (data) {
-
-                        console.log(data);
-                        return false;
                         window.location.href = '<?= $base_url; ?>';
                     }
                 })
