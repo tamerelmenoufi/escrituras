@@ -89,14 +89,13 @@
             </div>
 
             <div class="col-lg-7">
-                <h3 class="pt-0 pt-lg-5">Neque officiis dolore maiores et exercitationem quae est seda lidera pat
-                    claero</h3>
+                <h3 class="pt-0 pt-lg-5">Seguindo o conceito da virtualização e globalização, nossos serviços atualmente são disponibilizados para 17* estados e no Distrito Federal.</h3>
 
                 <!-- Tabs -->
                 <ul class="nav nav-pills mb-3">
-                    <li><a class="nav-link active" data-bs-toggle="pill" href="#tab1">Saepe fuga</a></li>
-                    <li><a class="nav-link" data-bs-toggle="pill" href="#tab2">Voluptates</a></li>
-                    <li><a class="nav-link" data-bs-toggle="pill" href="#tab3">Corrupti</a></li>
+                    <li><a class="nav-link active" data-bs-toggle="pill" href="#tab1">Conheça-nos</a></li>
+                    <li><a class="nav-link" data-bs-toggle="pill" href="#tab2">Documentações</a></li>
+                    <li><a class="nav-link" data-bs-toggle="pill" href="#tab3">Artigos</a></li>
                 </ul><!-- End Tabs -->
 
                 <!-- Tab Content -->
@@ -104,9 +103,8 @@
 
                     <div class="tab-pane fade show active" id="tab1">
 
-                        <p class="fst-italic">Consequuntur inventore voluptates consequatur aut vel et. Eos
-                            doloribus expedita. Sapiente atque consequatur minima nihil quae aspernatur quo suscipit
-                            voluptatem.</p>
+                        <p class="fst-italic">O Cartório Imobiliário Digital foi criado para centralizar as informações dos Registros Imobiliários de todo o Brasil. É uma ferramenta destinada a facilitar e modernizar o acesso aos documentos registrados nos cartórios, permitindo realizar solicitações de certidões imobiliárias, visualizações de matrículas, pesquisa de bens e registro de protocolos de qualquer lugar do país, a um clique de distância. O prazo máximo para a finalização do pedido é de até 5 (cinco) dias úteis (prazo válido apenas para pedidos de certidão).
+                        </p>
 
                         <div class="d-flex align-items-center mt-4">
                             <i class="bi bi-check2"></i>
