@@ -47,6 +47,11 @@ include './config/includes.php';
                                 class="nav-link"
                                 id="mapa-tab"
                                 href="#mapa">Mapa</a>
+
+                        <a
+                                class="nav-link"
+                                id="anexo-tab"
+                                href="#anexo">Anexo</a>
                     </div>
                 </nav>
 
@@ -107,11 +112,13 @@ include './config/includes.php';
 
 
         $(document).on("click", ".btn_next", function (e) {
-            var form = $('form')[0];
+            var form = $('form');
 
-            if (!$(form).valid()) return false;
+            if (form.length > 0 && !$(form[0]).valid()) return false;
 
             var next_tab = $('#nav-tab > .active')
+
+            console.log('clicou');
 
             $('#nav-tab').find('a').removeClass('active');
             next_tab.next('a').addClass('active');

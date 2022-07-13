@@ -78,7 +78,7 @@ if ($doc_id) {
             </button>
         </div>
         <div class="col-auto">
-            <button type="button" class="btn bg-primary salvar">Salvar</button>
+            <button type="button" class="btn bg-primary btn_next salvar">Salvar</button>
         </div>
     </div>
 </div>
@@ -279,53 +279,30 @@ if ($doc_id) {
         $(".salvar").click(function () {
             var codigo = $("#codigo").val();
 
-            $.alert({
-                title: "Aviso",
-                content: "Tem certeza que deseja finalizar o cadastro?",
-                columnClass: "medium",
-                buttons: {
-                    sim: {
-                        text: 'sim',
-                        action: function () {
-                            $.ajax({
-                                url: "./pages/cadastro_documento/mapa.php",
-                                method: "post",
-                                data: {codigo, acao: "salvar"},
-                                dataType: "json",
-                                success: function (response) {
-                                    if (response.status) {
-                                        window.localStorage.setItem('doc_id', '');
+            $.ajax({
+                url: "./pages/cadastro_documento/mapa.php",
+                method: "post",
+                data: {codigo, acao: "salvar"},
+                dataType: "json",
+                success: function (response) {
+                    if (response.status) {
 
-                                        $.alert({
-                                            title: 'Sucesso',
-                                            content: response.msg,
-                                            buttons: {
-                                                ok: {
-                                                    text: 'Ok',
-                                                    action: function () {
-                                                        window.location.href = './cadastro-documento';
-                                                    }
-                                                }
-                                            }
-                                        });
-
-                                    } else {
-                                        $.alert({
-                                            title: 'Error',
-                                            content: response.msg
-                                        });
-                                    }
-                                }
-                            })
-                        }
-                    },
-                    nao: {
-                        text: 'Não',
-                        action: () => {
-                        },
+                        $.ajax({
+                            url: "./pages/cadastro_documento/anexo.php",
+                            type: "GET",
+                            data: {doc_id},
+                            success: function (data) {
+                                $(".content-pane").html(data);
+                            }
+                        });
+                    } else {
+                        $.alert({
+                            title: 'Error',
+                            content: response.msg
+                        });
                     }
                 }
-            })
+            });
         });
     });
 </script>
