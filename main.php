@@ -105,30 +105,7 @@
 
                         <p class="fst-italic">O Cartório Imobiliário Digital foi criado para centralizar as informações dos Registros Imobiliários de todo o Brasil. É uma ferramenta destinada a facilitar e modernizar o acesso aos documentos registrados nos cartórios, permitindo realizar solicitações de certidões imobiliárias, visualizações de matrículas, pesquisa de bens e registro de protocolos de qualquer lugar do país, a um clique de distância. O prazo máximo para a finalização do pedido é de até 5 (cinco) dias úteis (prazo válido apenas para pedidos de certidão).
                         </p>
-
-                        <div class="d-flex align-items-center mt-4">
-                            <i class="bi bi-check2"></i>
-                            <h4>Repudiandae rerum velit modi et officia quasi facilis</h4>
-                        </div>
-                        <p>Laborum omnis voluptates voluptas qui sit aliquam blanditiis. Sapiente minima commodi
-                            dolorum non eveniet magni quaerat nemo et.</p>
-
-                        <div class="d-flex align-items-center mt-4">
-                            <i class="bi bi-check2"></i>
-                            <h4>Incidunt non veritatis illum ea ut nisi</h4>
-                        </div>
-                        <p>Non quod totam minus repellendus autem sint velit. Rerum debitis facere soluta tenetur.
-                            Iure molestiae assumenda sunt qui inventore eligendi voluptates nisi at. Dolorem quo
-                            tempora. Quia et perferendis.</p>
-
-                        <div class="d-flex align-items-center mt-4">
-                            <i class="bi bi-check2"></i>
-                            <h4>Omnis ab quia nemo dignissimos rem eum quos..</h4>
-                        </div>
-                        <p>Eius alias aut cupiditate. Dolor voluptates animi ut blanditiis quos nam. Magnam officia
-                            aut ut alias quo explicabo ullam esse. Sunt magnam et dolorem eaque magnam odit enim
-                            quaerat. Vero error error voluptatem eum.</p>
-
+                       
                     </div><!-- End Tab 1 Content -->
 
                     <div class="tab-pane fade show" id="tab2">
