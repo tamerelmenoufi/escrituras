@@ -1,6 +1,6 @@
 <section id="hero-fullscreen" class="hero-fullscreen d-flex align-items-center">
     <div class="container d-flex flex-column align-items-center position-relative" data-aos="zoom-out">
-        <h2 class="text-center">PORTAL ESCRITURA ATUALIZA</h2>
+        <h2 class="text-center">PORTAL ESCRITURA</h2>
         <p>
             Sua forma mais rápida e eficiente de localizar a Escritura Pública de um imóvel
             
