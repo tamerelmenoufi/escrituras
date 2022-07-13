@@ -555,10 +555,9 @@ São feitas várias espécies de escrituras: procuração, compra e venda, doaç
             <div class="col-lg-7 d-flex flex-column justify-content-center align-items-stretch  order-2 order-lg-1">
 
                 <div class="content px-xl-5">
-                    <h3>Frequently Asked <strong>Questions</strong></h3>
+                    <h3>Principais <strong>Duvidas</strong></h3>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit
+                        Confira as principais duvidas existentes no cotidiano das pessoas.
                     </p>
                 </div>
 
@@ -569,7 +568,7 @@ São feitas várias espécies de escrituras: procuração, compra e venda, doaç
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#faq-content-1">
                                 <i class="bi bi-question-circle question-icon"></i>
-                                Non consectetur a erat nam at lectus urna duis?
+                                Quais documentos preciso para me casar?
                             </button>
                         </h3>
                         <div id="faq-content-1" class="accordion-collapse collapse" data-bs-parent="#faqlist">
@@ -586,7 +585,7 @@ São feitas várias espécies de escrituras: procuração, compra e venda, doaç
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#faq-content-2">
                                 <i class="bi bi-question-circle question-icon"></i>
-                                Feugiat scelerisque varius morbi enim nunc faucibus a pellentesque?
+                                Quais documentos preciso para comprar um imovel?
                             </button>
                         </h3>
                         <div id="faq-content-2" class="accordion-collapse collapse" data-bs-parent="#faqlist">
@@ -604,7 +603,7 @@ São feitas várias espécies de escrituras: procuração, compra e venda, doaç
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#faq-content-3">
                                 <i class="bi bi-question-circle question-icon"></i>
-                                Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi?
+                                Quais documentos preciso para tirar o passaporte?
                             </button>
                         </h3>
                         <div id="faq-content-3" class="accordion-collapse collapse" data-bs-parent="#faqlist">
@@ -622,7 +621,7 @@ São feitas várias espécies de escrituras: procuração, compra e venda, doaç
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#faq-content-4">
                                 <i class="bi bi-question-circle question-icon"></i>
-                                Ac odio tempor orci dapibus. Aliquam eleifend mi in nulla?
+                                Como faço para mudar meu sobrenome?
                             </button>
                         </h3>
                         <div id="faq-content-4" class="accordion-collapse collapse" data-bs-parent="#faqlist">
@@ -636,22 +635,7 @@ São feitas várias espécies de escrituras: procuração, compra e venda, doaç
                         </div>
                     </div><!-- # Faq item-->
 
-                    <div class="accordion-item" data-aos="fade-up" data-aos-delay="600">
-                        <h3 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#faq-content-5">
-                                <i class="bi bi-question-circle question-icon"></i>
-                                Tempus quam pellentesque nec nam aliquam sem et tortor consequat?
-                            </button>
-                        </h3>
-                        <div id="faq-content-5" class="accordion-collapse collapse" data-bs-parent="#faqlist">
-                            <div class="accordion-body">
-                                Molestie a iaculis at erat pellentesque adipiscing commodo. Dignissim suspendisse in
-                                est ante in. Nunc vel risus commodo viverra maecenas accumsan. Sit amet nisl
-                                suscipit adipiscing bibendum est. Purus gravida quis blandit turpis cursus in
-                            </div>
-                        </div>
-                    </div><!-- # Faq item-->
+                  
 
                 </div>
 
@@ -672,11 +656,8 @@ São feitas várias espécies de escrituras: procuração, compra e venda, doaç
     <div class="container">
 
         <div class="section-header">
-            <h2>Entre em contato conosco</h2>
-            <p>
-                Ela rejeita a vida, abandona o prazer, a impede, abandona a grande alma cega daqueles a quem ela poderia
-                ganhar alguma dor.
-            </p>
+            <h2>Conheça nossos cartorios </h2>
+           
         </div>
 
     </div>
@@ -694,10 +675,7 @@ São feitas várias espécies de escrituras: procuração, compra e venda, doaç
 
                 <div class="info">
                     <h3>Entrar em contato</h3>
-                    <p>
-                        Em outras palavras, seus prazeres não são nada e prazer, pois pelo menos há pelo menos uma
-                        suavidade de conveniência.
-                    </p>
+                 
 
                     <div class="info-item d-flex">
                         <i class="bi bi-geo-alt flex-shrink-0"></i>
@@ -731,28 +709,25 @@ São feitas várias espécies de escrituras: procuração, compra e venda, doaç
                 <form action="forms/contact.php" method="post" role="form" class="php-email-form">
                     <div class="row">
                         <div class="col-md-6 form-group">
-                            <input type="text" name="name" class="form-control" id="name" placeholder="Your Name"
+                            <input type="text" name="name" class="form-control" id="name" placeholder="Nome completo"
                                    required>
                         </div>
                         <div class="col-md-6 form-group mt-3 mt-md-0">
                             <input type="email" class="form-control" name="email" id="email"
-                                   placeholder="Your Email" required>
+                                   placeholder="Email" required>
                         </div>
                     </div>
+                    
                     <div class="form-group mt-3">
-                        <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject"
-                               required>
-                    </div>
-                    <div class="form-group mt-3">
-                        <textarea class="form-control" name="message" placeholder="Message" required></textarea>
+                        <textarea class="form-control" name="message" placeholder="..Digite seu assunto.." required></textarea>
                     </div>
                     <div class="my-3">
-                        <div class="loading">Loading</div>
+                        <div class="loading">Carregando</div>
                         <div class="error-message"></div>
-                        <div class="sent-message">Your message has been sent. Thank you!</div>
+                        <div class="sent-message"> Logo retornaremos, Obrigado!</div>
                     </div>
                     <div class="text-center">
-                        <button type="submit">Send Message</button>
+                        <button type="submit">Enviar</button>
                     </div>
                 </form>
             </div><!-- End Contact Form -->
