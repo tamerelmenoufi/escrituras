@@ -35,6 +35,10 @@ if ($doc_id) {
 ?>
 <!-- CSS -->
 <link rel="stylesheet" href="<?= $base_url; ?>assets/vendor/kartik-v-bootstrap-fileinput/css/fileinput.min.css">
+<link
+        rel="stylesheet"
+        href="<?= $base_url; ?>assets/vendor/kartik-v-bootstrap-fileinput/themes/explorer-fa5/theme.min.css"
+>
 <!-- CSS -->
 
 <form id="form-anexo" class="needs-validation" novalidate enctype="multipart/form-data">
@@ -95,6 +99,7 @@ if ($doc_id) {
 <script>
     $(document).ready(function () {
         $("#arquivo").fileinput({
+            'theme': 'explorer-fa5',
             language: 'pt-BR',
             allowedFileExtensions: ['pdf'],
             showUpload: false,
@@ -118,14 +123,15 @@ if ($doc_id) {
         });
 
         $(".salvar").click(function () {
-            var data = new FormData($('#form-anexo').get(0));
 
-            data.append('doc_id', doc_id);
+            var formData = new FormData($('#form-anexo')[0]);
+            formData.append('file[]', $('input[type=file]')[0].files[0]);
+            formData.append('doc_id', doc_id);
 
             $.ajax({
                 url: './pages/cadastro_documento/anexo.php',
                 method: 'post',
-                data: data,
+                data: formData,
                 cache: false,
                 processData: false,
                 contentType: false,
