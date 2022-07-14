@@ -31,6 +31,22 @@ $doc_id = $_GET['doc_id'];
 if ($doc_id) {
     $result = mysqli_query($con, "SELECT codigo, coordenadas, poligono FROM documentos WHERE codigo = '{$doc_id}'");
     $d = mysqli_fetch_object($result);
+
+    $preview = [];
+
+    $path = "../../storage/documentos/{$doc_id}";
+    $files = array_diff(scandir($path), array('.', '..'));
+
+    $i = 0;
+    foreach ($files as $file) {
+        #var_dump($file);
+        $preview[$i]['url'] = "'storage/documentos/{$file}'";
+        $preview[$i]['type'] = "pdf";
+        $preview[$i]['caption'] = $file;
+        $preview[$i]['size'] = "'{$path}/{$file}'";
+
+        $i++;
+    }
 }
 ?>
 <!-- CSS -->
@@ -106,6 +122,12 @@ if ($doc_id) {
             uploadUrl: '#',
             overwriteInitial: false,
             initialPreviewAsData: true,
+            /*initialPreview: [
+                'storage/documentos/6/Passo%20a%20passo.pdf'
+            ],
+            initialPreviewConfig: [
+                {type: 'pdf', 'caption': 'PDF File', size: 1000},
+            ]*/
         });
     });
 
