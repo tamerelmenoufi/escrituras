@@ -75,8 +75,7 @@
         <div class="section-header">
             <h2>Sobre nós</h2>
             <p>
-               O Tribunal de Justiça do Amazonas, cuja jurisdição abrange a Comarca de Manaus e mais sessenta comarcas do interior do Estado, tem um contingente de: 26 Desembargadores, 93 juízes da capital, 80 juízes do interior, 41 juízes de primeira entrância, 11 juízes auxiliares de segunda entrância e 16 juízes substitutos, servidores e estágiarios.
-                
+              Empresa pioneira no ramo de tecnologia da informação focada em orientar, buscar e entregar a localização de diversos tipos de documentos cartorários, como por exemplo: Escritura Pública de Compra e Venda, Escritura Declaratória, Atas Notariam,  Procuração, Certidão Certidões de Nascimento Casamento, Óbito entre outros.
             </p>
         </div>
 
@@ -93,9 +92,9 @@
 
                 <!-- Tabs -->
                 <ul class="nav nav-pills mb-3">
-                    <li><a class="nav-link active" data-bs-toggle="pill" href="#tab1">Conheça-nos</a></li>
-                    <li><a class="nav-link" data-bs-toggle="pill" href="#tab2">Documentações</a></li>
-                    <li><a class="nav-link" data-bs-toggle="pill" href="#tab3">Artigos</a></li>
+                    <li><a class="nav-link active" data-bs-toggle="pill" href="#tab1">Missão</a></li>
+                    <li><a class="nav-link" data-bs-toggle="pill" href="#tab2">Visão</a></li>
+                    <li><a class="nav-link" data-bs-toggle="pill" href="#tab3">Valores</a></li>
                 </ul><!-- End Tabs -->
 
                 <!-- Tab Content -->
@@ -103,70 +102,23 @@
 
                     <div class="tab-pane fade show active" id="tab1">
 
-                        <p class="fst-italic">O Cartório Imobiliário Digital foi criado para centralizar as informações dos Registros Imobiliários de todo o Brasil. É uma ferramenta destinada a facilitar e modernizar o acesso aos documentos registrados nos cartórios, permitindo realizar solicitações de certidões imobiliárias, visualizações de matrículas, pesquisa de bens e registro de protocolos de qualquer lugar do país, a um clique de distância. O prazo máximo para a finalização do pedido é de até 5 (cinco) dias úteis (prazo válido apenas para pedidos de certidão).
+                        <p class="fst-italic">Orientar, informar e entregar a sociedade, o acesso à localização de escrituras, procurações e outros documentos cartorários de maneira ágil e econômica, contribuindo à cidadania e na segurança das relações sociais. 
                         </p>
                        
                     </div><!-- End Tab 1 Content -->
 
                     <div class="tab-pane fade show" id="tab2">
 
-                        <p class="fst-italic">Consequuntur inventore voluptates consequatur aut vel et. Eos
-                            doloribus expedita. Sapiente atque consequatur minima nihil quae aspernatur quo suscipit
-                            voluptatem.</p>
-
-                        <div class="d-flex align-items-center mt-4">
-                            <i class="bi bi-check2"></i>
-                            <h4>Repudiandae rerum velit modi et officia quasi facilis</h4>
-                        </div>
-                        <p>Laborum omnis voluptates voluptas qui sit aliquam blanditiis. Sapiente minima commodi
-                            dolorum non eveniet magni quaerat nemo et.</p>
-
-                        <div class="d-flex align-items-center mt-4">
-                            <i class="bi bi-check2"></i>
-                            <h4>Incidunt non veritatis illum ea ut nisi</h4>
-                        </div>
-                        <p>Non quod totam minus repellendus autem sint velit. Rerum debitis facere soluta tenetur.
-                            Iure molestiae assumenda sunt qui inventore eligendi voluptates nisi at. Dolorem quo
-                            tempora. Quia et perferendis.</p>
-
-                        <div class="d-flex align-items-center mt-4">
-                            <i class="bi bi-check2"></i>
-                            <h4>Omnis ab quia nemo dignissimos rem eum quos..</h4>
-                        </div>
-                        <p>Eius alias aut cupiditate. Dolor voluptates animi ut blanditiis quos nam. Magnam officia
-                            aut ut alias quo explicabo ullam esse. Sunt magnam et dolorem eaque magnam odit enim
-                            quaerat. Vero error error voluptatem eum.</p>
-
+                        <p class="fst-italic">Ser reconhecida pela sociedade como o maior portal eletrônico na atuação de informação e busca de certidões cartorárias.</p>
+                        
                     </div><!-- End Tab 2 Content -->
 
+                  
                     <div class="tab-pane fade show" id="tab3">
 
-                        <p class="fst-italic">Consequuntur inventore voluptates consequatur aut vel et. Eos
-                            doloribus expedita. Sapiente atque consequatur minima nihil quae aspernatur quo suscipit
-                            voluptatem.</p>
+                        <p class="fst-italic">Respeito aos colaboradores, parceiros e sociedade, Transparência com a informação, Integralidade com as instituições cartorárias e judiciarias, Profissionalismo no atendimento, Inovação tecnológica de referência com relevância, Confiança na efetividade da segurança de dados, com engajamento na melhoria dos serviços.</p>
 
-                        <div class="d-flex align-items-center mt-4">
-                            <i class="bi bi-check2"></i>
-                            <h4>Repudiandae rerum velit modi et officia quasi facilis</h4>
-                        </div>
-                        <p>Laborum omnis voluptates voluptas qui sit aliquam blanditiis. Sapiente minima commodi
-                            dolorum non eveniet magni quaerat nemo et.</p>
-
-                        <div class="d-flex align-items-center mt-4">
-                            <i class="bi bi-check2"></i>
-                            <h4>Incidunt non veritatis illum ea ut nisi</h4>
-                        </div>
-                        <p>Non quod totam minus repellendus autem sint velit. Rerum debitis facere soluta tenetur.
-                            Iure molestiae assumenda sunt qui inventore eligendi voluptates nisi at. Dolorem quo
-                            tempora. Quia et perferendis.</p>
-
-                        <div class="d-flex align-items-center mt-4">
-                            <i class="bi bi-check2"></i>
-                            <h4>Omnis ab quia nemo dignissimos rem eum quos..</h4>
-                        </div>
-                        <p>Eius alias aut cupiditate. Dolor voluptates animi ut blanditiis quos nam. Magnam officia
-                            aut ut alias quo explicabo ullam esse. Sunt magnam et dolorem eaque magnam odit enim
-                            quaerat. Vero error error voluptatem eum.</p>
+                      
 
                     </div><!-- End Tab 3 Content -->
 
