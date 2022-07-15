@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         endif;
     endfor;
-    echo $newFilePath;
+    echo 'ok';
     exit();
 }
 
@@ -39,14 +39,21 @@ if ($doc_id) {
 
     $i = 0;
     foreach ($files as $file) {
-        #var_dump($file);
-        $preview[$i]['url'] = "'storage/documentos/{$file}'";
+        $preview[$i]['url'] = "'storage/documentos/{$doc_id}/{$file}'";
         $preview[$i]['type'] = "pdf";
         $preview[$i]['caption'] = $file;
         $preview[$i]['size'] = "'{$path}/{$file}'";
 
         $i++;
     }
+
+    $urlFiles = array_map(function ($f) {
+        return $f['url'];
+    }, $preview);
+var_dump($urlFiles);
+    $initialPreviewConfig = array_map(function ($e) {
+        return "{type : '{$e['type']}', caption : '{$e['caption']}', size : 0}";
+    }, $preview);
 }
 ?>
 <!-- CSS -->
@@ -114,6 +121,7 @@ if ($doc_id) {
 
 <script>
     $(document).ready(function () {
+
         $("#arquivo").fileinput({
             'theme': 'explorer-fa5',
             language: 'pt-BR',
@@ -122,13 +130,14 @@ if ($doc_id) {
             uploadUrl: '#',
             overwriteInitial: false,
             initialPreviewAsData: true,
-            /*initialPreview: [
-                'storage/documentos/6/Passo%20a%20passo.pdf'
+            initialPreview: [
+                <?= @implode(',', $urlFiles)?>
             ],
             initialPreviewConfig: [
-                {type: 'pdf', 'caption': 'PDF File', size: 1000},
-            ]*/
+                <?= @implode(', ', $initialPreviewConfig)?>
+            ]
         });
+
     });
 
     $(function () {
@@ -147,21 +156,10 @@ if ($doc_id) {
         $(".salvar").click(function () {
 
             var formData = new FormData($('#form-anexo')[0]);
+
             formData.append('file[]', $('input[type=file]')[0].files[0]);
             formData.append('doc_id', doc_id);
 
-            $.ajax({
-                url: './pages/cadastro_documento/anexo.php',
-                method: 'post',
-                data: formData,
-                cache: false,
-                processData: false,
-                contentType: false,
-                success: function (data) {
-                    console.log(data);
-                }
-            });
-            return false;
             $.alert({
                 title: "Aviso",
                 content: "Tem certeza que deseja finalizar o cadastro?",
@@ -172,18 +170,29 @@ if ($doc_id) {
                         action: function () {
                             window.localStorage.setItem('doc_id', '');
 
-                            $.alert({
-                                title: 'Sucesso',
-                                content: response.msg,
-                                buttons: {
-                                    ok: {
-                                        text: 'Ok',
-                                        action: function () {
-                                            window.location.href = './cadastro-documento';
+                            $.ajax({
+                                url: './pages/cadastro_documento/anexo.php',
+                                method: 'post',
+                                data: formData,
+                                cache: false,
+                                processData: false,
+                                contentType: false,
+                                success: function (data) {
+                                    $.alert({
+                                        title: 'Sucesso',
+                                        content: 'Cadastro realizado com sucesso!',
+                                        buttons: {
+                                            ok: {
+                                                text: 'Ok',
+                                                action: function () {
+                                                    window.location.href = './cadastro-documento';
+                                                }
+                                            }
                                         }
-                                    }
+                                    });
                                 }
                             });
+
 
                         }
                     },
