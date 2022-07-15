@@ -20,6 +20,7 @@
                         <?php if ($_SESSION['usuario']) { ?>
                             <li><a href="cadastro-documento">Cadastro de documento</a></li>
                             <li><a href="lista-cadastros">Lista de cadastros</a></li>
+                            <li><a href="consulta">Consulta</a></li>
                         <?php } ?>
                     </ul>
                 </li>
