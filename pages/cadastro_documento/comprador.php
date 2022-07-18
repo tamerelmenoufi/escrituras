@@ -443,7 +443,7 @@ if ($doc_id) {
                 </button>
             </div>
             <div class="col-auto">
-                <button type="submit" class="btn btn-primary btn_next">Salvar</button>
+                <button type="submit" class="btn bg-primary btn_next">Salvar</button>
             </div>
         </div>
     </div>

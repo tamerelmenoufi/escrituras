@@ -19,7 +19,7 @@ include './config/includes.php';
         <h2 class="text-center">Cadastro de documento</h2>
 
         <div class="row justify-content-center">
-            <div class="col-md-10 col-lg-8 my-4">
+            <div class="col-md-10 col-lg-10 my-4">
 
                 <nav>
                     <div class="nav nav-pills nav-fill" id="nav-tab" role="tablist">
@@ -64,20 +64,6 @@ include './config/includes.php';
 </div>
 <script>
 
-    function select_localidade(select, select_to, url) {
-        let valor = $(`#${select}`).val();
-
-        $.ajax({
-            url: `./pages/lista/${url}.php`,
-            method: 'POST',
-            data: {valor},
-            dataType: 'html',
-            success: function (data) {
-                $(`#${select_to}`).html(data);
-            }
-        });
-    }
-
     function exibiContainer(input, id_container) {
         if ($(input).is(":checked")) {
             $(`#${id_container}`).show();
@@ -117,8 +103,6 @@ include './config/includes.php';
             if (form.length > 0 && !$(form[0]).valid()) return false;
 
             var next_tab = $('#nav-tab > .active')
-
-            console.log('clicou');
 
             $('#nav-tab').find('a').removeClass('active');
             next_tab.next('a').addClass('active');
