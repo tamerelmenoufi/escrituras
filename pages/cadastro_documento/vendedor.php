@@ -94,7 +94,7 @@ if ($doc_id) {
 
                 <div class="form-vendedor">
                     <?php if (!$vendedores) {
-                        echo '<h5 class="text-center my-3">Nenhum vendedor cadastrado</h5>';
+                        #echo '<h5 class="text-center my-3">Nenhum vendedor cadastrado</h5>';
                     } ?>
                 </div>
             </div>
@@ -156,7 +156,6 @@ if ($doc_id) {
         });
 
         <?php } ?>
-
 
         $("#vendedor_procurador_check").prop("checked", <?= $d->vendedor_procurador_check ? true : false?>);
 

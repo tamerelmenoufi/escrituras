@@ -18,9 +18,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $attr = implode(", ", $attr);
 
     if($id){
-        $sql = "UPDATE vendedores SET {$attr} WHERE codigo = '{$id}' AND documento_id = '{$documento_id}'";
+        $sql = "UPDATE vendedor_comprador SET {$attr} WHERE codigo = '{$id}' AND documento_id = '{$documento_id}'";
     }else{
-        $sql = "INSERT into vendedores SET {$attr}";
+        $sql = "INSERT into vendedor_comprador SET {$attr}";
     }
 
     if (mysqli_query($con, $sql)) {
@@ -30,6 +30,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             "sql" => $sql,
         ]);
     } else {
+        file_put_contents('debug.txt',json_encode([
+                'query' => $sql,
+            'db_error' => mysqli_error($con),
+        ]));
         echo json_encode([
             "status"      => true,
             "msg"         => "Error ao salvar",
@@ -76,9 +80,6 @@ if ($documento_id) {
                 Vendedor
             </a>
             <span>
-                        <button type="submit" class="btn btn-outline-success btn-sm" style="z-index: 999">
-                           <i class="fa-solid fa-floppy-disk"></i>
-                        </button>
 
                         <button type="button" class="btn btn-outline-danger btn-sm">
                             <i class="fa-solid fa-trash-can"></i>
@@ -129,15 +130,16 @@ if ($documento_id) {
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label
-                                        for="tipo<?= $uniqued ?>"
+                                        for="tipo_pessoa<?= $uniqued ?>"
                                         class="form-label">
                                     Tipo de vendedor <span class="text-danger">*</span>
                                 </label>
-                                <select class="form-control" id="tipo<?= $uniqued ?>" name="tipo" required>
+                                <select class="form-control" id="tipo_pessoa<?= $uniqued ?>" name="tipo_pessoa"
+                                        required>
                                     <option value=""></option>
-                                    <option value="f" <?= $d->tipo == 'f' ? 'selected' : ''; ?>>Pessoa física
+                                    <option value="f" <?= $d->tipo_pessoa == 'f' ? 'selected' : ''; ?>>Pessoa física
                                     </option>
-                                    <option value="j" <?= $d->tipo == 'j' ? 'selected' : ''; ?>>Pessoa jurídica
+                                    <option value="j" <?= $d->tipo_pessoa == 'j' ? 'selected' : ''; ?>>Pessoa jurídica
                                     </option>
                                 </select>
                             </div>
@@ -366,11 +368,11 @@ if ($documento_id) {
                                 class="form-check-input"
                                 type="checkbox"
                                 value=""
-                                id="vendedor_procurador_check<?= $uniqued ?>"
-                                name="vendedor_procurador_check"
+                                id="check_procurador<?= $uniqued ?>"
+                                name="check_procurador"
                                 onclick="exibiContainer(this,'vendedor_procurador-container<?= $uniqued ?>')"
                         >
-                        <label class="form-check-label" for="vendedor_procurador_check<?= $uniqued ?>">
+                        <label class="form-check-label" for="check_procurador<?= $uniqued ?>">
                             Vendedor procurador?
                         </label>
                     </div>
@@ -382,15 +384,15 @@ if ($documento_id) {
 
                     <div id="vendedor-procurador">
                         <div class="mb-3">
-                            <label for="nome" class="form-label">Nome do vendedor <span
+                            <label for="procurador_nome" class="form-label">Nome do vendedor <span
                                         class="text-danger">*</span></label>
                             <input
                                     type="text"
                                     class="form-control"
-                                    id="nome"
-                                    name="nome"
-                                    aria-describedby="nome"
-                                    value="<?= $d->nome; ?>"
+                                    id="procurador_nome"
+                                    name="procurador_nome"
+                                    aria-describedby="procurador_nome"
+                                    value="<?= $d->procurador_nome; ?>"
                                     maxlength="80"
                                     required
 
@@ -400,15 +402,15 @@ if ($documento_id) {
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label for="rg" class="form-label">RG <span
+                                    <label for="procurador_rg" class="form-label">RG <span
                                                 class="text-danger">*</span></label>
                                     <input
                                             type="text"
                                             class="form-control"
-                                            id="rg"
-                                            name="rg"
-                                            aria-describedby="rg"
-                                            value="<?= $d->rg; ?>"
+                                            id="procurador_rg"
+                                            name="procurador_rg"
+                                            aria-describedby="procurador_rg"
+                                            value="<?= $d->procurador_rg; ?>"
                                             maxlength="20"
                                             required
                                     >
@@ -418,59 +420,72 @@ if ($documento_id) {
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label
-                                            for="tipo<?= $uniqued ?>"
+                                            for="procurador_tipo_pessoa<?= $uniqued ?>"
                                             class="form-label">
                                         Tipo de vendedor <span class="text-danger">*</span>
                                     </label>
-                                    <select class="form-control" id="tipo<?= $uniqued ?>" name="tipo" required>
+                                    <select
+                                            class="form-control"
+                                            id="procurador_tipo_pessoa<?= $uniqued ?>"
+                                            name="procurador_tipo_pessoa"
+                                            required
+                                    >
                                         <option value=""></option>
-                                        <option value="f" <?= $d->tipo == 'f' ? 'selected' : ''; ?>>Pessoa física
+                                        <option value="f" <?= $d->procurador_tipo_pessoa == 'f' ? 'selected' : ''; ?>>
+                                            Pessoa
+                                            física
                                         </option>
-                                        <option value="j" <?= $d->tipo == 'j' ? 'selected' : ''; ?>>Pessoa jurídica
+                                        <option value="j" <?= $d->procurador_tipo_pessoa == 'j' ? 'selected' : ''; ?>>
+                                            Pessoa
+                                            jurídica
                                         </option>
                                     </select>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="mb-3" id="container_cpf<?= $uniqued ?>" style="display: none">
-                            <label for="cpf" class="form-label">CPF <span class="text-danger">*</span></label>
+                        <div class="mb-3" id="procurador_container_cpf<?= $uniqued ?>" style="display: none">
+                            <label
+                                    for="procurador_cpf"
+                                    class="form-label">
+                                CPF <span class="text-danger">*</span>
+                            </label>
                             <input
                                     type="text"
                                     class="form-control"
-                                    id="cpf<?= $uniqued ?>"
-                                    name="cpf"
-                                    aria-describedby="cpf"
-                                    value="<?= $d->cpf; ?>"
+                                    id="procurador_cpf<?= $uniqued ?>"
+                                    name="procurador_cpf"
+                                    aria-describedby="procurador_cpf"
+                                    value="<?= $d->procurador_cpf; ?>"
                             >
                         </div>
 
-                        <div class="mb-3" id="container_cnpj<?= $uniqued ?>" style="display: none">
-                            <label for="cnpj<?= $uniqued ?>" class="form-label">CNPJ <span
+                        <div class="mb-3" id="procurador_container_cnpj<?= $uniqued ?>" style="display: none">
+                            <label for="procurador_cnpj<?= $uniqued ?>" class="form-label">CNPJ <span
                                         class="text-danger">*</span></label>
                             <input
                                     type="text"
                                     class="form-control"
-                                    id="cnpj<?= $uniqued ?>"
-                                    name="cnpj"
-                                    aria-describedby="cnpj"
-                                    value="<?= $d->cnpj; ?>"
+                                    id="procurador_cnpj<?= $uniqued ?>"
+                                    name="procurador_cnpj"
+                                    aria-describedby="procurador_cnpj"
+                                    value="<?= $d->procurador_cnpj; ?>"
                             >
                         </div>
 
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label for="inscricao_estadual" class="form-label">
+                                    <label for="procurador_inscricao_estadual" class="form-label">
                                         Inscrição estadual
                                     </label>
                                     <input
                                             type="text"
                                             class="form-control"
-                                            id="inscricao_estadual"
-                                            name="inscricao_estadual"
-                                            aria-describedby="inscricao_estadual"
-                                            value="<?= $d->inscricao_estadual; ?>"
+                                            id="procurador_inscricao_estadual"
+                                            name="procurador_inscricao_estadual"
+                                            aria-describedby="procurador_inscricao_estadual"
+                                            value="<?= $d->procurador_inscricao_estadual; ?>"
                                             maxlength="80"
                                     >
                                 </div>
@@ -478,16 +493,16 @@ if ($documento_id) {
 
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label for="inscricao_municipal" class="form-label">
+                                    <label for="procurador_inscricao_municipal" class="form-label">
                                         Inscrição municipal
                                     </label>
                                     <input
                                             type="text"
                                             class="form-control"
-                                            id="inscricao_municipal"
-                                            name="inscricao_municipal"
-                                            aria-describedby="inscricao_municipal"
-                                            value="<?= $d->inscricao_municipal; ?>"
+                                            id="procurador_inscricao_municipal"
+                                            name="procurador_inscricao_municipal"
+                                            aria-describedby="procurador_inscricao_municipal"
+                                            value="<?= $d->procurador_inscricao_municipal; ?>"
                                             maxlength="80"
                                     >
                                 </div>
@@ -497,15 +512,15 @@ if ($documento_id) {
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="mb-3">
-                                    <label for="estado" class="form-label">Estado <span
+                                    <label for="procurador_estado" class="form-label">Estado <span
                                                 class="text-danger">*</span></label>
                                     <select
                                             type="text"
                                             class="form-control"
-                                            id="estado<?= $uniqued ?>"
-                                            name="estado"
-                                            aria-describedby="estado"
-                                            onchange="select_localidade('estado<?= $uniqued ?>','cidade<?= $uniqued ?>','cidades')"
+                                            id="procurador_estado<?= $uniqued ?>"
+                                            name="procurador_estado"
+                                            aria-describedby="procurador_estado"
+                                            onchange="select_localidade('procurador_estado<?= $uniqued ?>','procurador_cidade<?= $uniqued ?>','cidades')"
                                             required
                                     >
                                         <option value=""></option>
@@ -515,7 +530,7 @@ if ($documento_id) {
                                         while ($row = mysqli_fetch_object($result)):?>
                                             <option
                                                     value="<?= $row->codigo ?>"
-                                                <?= $row->codigo == $d->estado ? 'selected' : ''; ?>
+                                                <?= $row->codigo == $d->procurador_estado ? 'selected' : ''; ?>
                                             ><?= $row->nome ?></option>
                                         <?php endwhile; ?>
                                     </select>
@@ -523,26 +538,26 @@ if ($documento_id) {
                             </div>
                             <div class="col-md-4">
                                 <div class="mb-3">
-                                    <label for="cidade" class="form-label">Cidade <span
+                                    <label for="procurador_cidade" class="form-label">Cidade <span
                                                 class="text-danger">*</span></label>
                                     <select
                                             class="form-control"
-                                            id="cidade<?= $uniqued ?>"
-                                            name="cidade"
-                                            aria-describedby="cidade"
-                                            onchange="select_localidade('cidade<?= $uniqued ?>','bairro<?= $uniqued ?>','bairros')"
+                                            id="procurador_cidade<?= $uniqued ?>"
+                                            name="procurador_cidade"
+                                            aria-describedby="procurador_cidade"
+                                            onchange="select_localidade('procurador_cidade<?= $uniqued ?>','procurador_bairro<?= $uniqued ?>','bairros')"
                                             required
                                     >
                                         <option value=""></option>
                                         <?php
                                         if ($d->estado) {
-                                            $sql = "SELECT codigo, nome FROM aux_cidades WHERE estado = '{$d->estado}' AND situacao = '1'";
+                                            $sql = "SELECT codigo, nome FROM aux_cidades WHERE estado = '{$d->procurador_estado}' AND situacao = '1'";
                                             $result = mysqli_query($con, $sql);
 
                                             while ($c = mysqli_fetch_object($result)):?>
                                                 <option
                                                         value="<?= $c->codigo ?>"
-                                                    <?= $c->codigo == $d->cidade ? 'selected' : '' ?>>
+                                                    <?= $c->codigo == $d->procurador_cidade ? 'selected' : '' ?>>
                                                     <?= $c->nome ?>
                                                 </option>';
                                             <?php endwhile;
@@ -554,24 +569,24 @@ if ($documento_id) {
 
                             <div class="col-md-4">
                                 <div class="mb-3">
-                                    <label for="bairro" class="form-label">Bairro</label>
+                                    <label for="procurador_bairro" class="form-label">Bairro</label>
                                     <select
                                             class="form-control"
-                                            id="bairro<?= $uniqued ?>"
-                                            name="bairro"
-                                            aria-describedby="bairro"
+                                            id="procurador_bairro<?= $uniqued ?>"
+                                            name="procurador_bairro"
+                                            aria-describedby="procurador_bairro"
                                             maxlength="10"
                                     >
                                         <option value=""></option>
                                         <?php
                                         if ($d->cidade) {
-                                            $sql = "SELECT codigo, nome FROM aux_bairros WHERE cidade = '{$d->cidade}' AND situacao = '1'";
+                                            $sql = "SELECT codigo, nome FROM aux_bairros WHERE cidade = '{$d->procurador_cidade}' AND situacao = '1'";
                                             $result = mysqli_query($con, $sql);
 
                                             while ($b = mysqli_fetch_object($result)):?>
                                                 <option
                                                         value="<?= $b->codigo ?>"
-                                                    <?= $b->codigo == $d->bairro ? 'selected' : '' ?>>
+                                                    <?= $b->codigo == $d->procurador_bairro ? 'selected' : '' ?>>
                                                     <?= $b->nome ?>
                                                 </option>';
                                             <?php endwhile;
@@ -586,14 +601,14 @@ if ($documento_id) {
                             <div class="col-md-8">
                                 <div class="co-md-3">
                                     <div class="mb-3">
-                                        <label for="rua" class="form-label">Rua</label>
+                                        <label for="procurador_rua" class="form-label">Rua</label>
                                         <input
                                                 type="text"
                                                 class="form-control"
-                                                name="rua"
-                                                id="rua"
+                                                name="procurador_rua"
+                                                id="procurador_rua"
                                                 aria-describedby="rua"
-                                                value="<?= $d->rua; ?>"
+                                                value="<?= $d->procurador_rua; ?>"
                                                 maxlength="80"
                                         >
                                     </div>
@@ -602,14 +617,14 @@ if ($documento_id) {
 
                             <div class="col-md-4">
                                 <div class="mb-3">
-                                    <label for="numero" class="form-label">Número</label>
+                                    <label for="procurador_numero" class="form-label">Número</label>
                                     <input
                                             type="text"
                                             class="form-control"
-                                            id="numero"
-                                            name="numero"
-                                            aria-describedby="numero"
-                                            value="<?= $d->numero; ?>"
+                                            id="procurador_numero"
+                                            name="procurador_numero"
+                                            aria-describedby="procurador_numero"
+                                            value="<?= $d->procurador_numero; ?>"
                                             maxlength="20"
                                     >
                                 </div>
@@ -619,14 +634,14 @@ if ($documento_id) {
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="mb-3">
-                                    <label for="telefone" class="form-label">Telefone</label>
+                                    <label for="procurador_telefone" class="form-label">Telefone</label>
                                     <input
                                             type="text"
                                             class="form-control"
-                                            id="telefone"
-                                            name="telefone"
-                                            aria-describedby="telefone"
-                                            value="<?= $d->telefone; ?>"
+                                            id="procurador_telefone"
+                                            name="procurador_telefone"
+                                            aria-describedby="procurador_telefone"
+                                            value="<?= $d->procurador_telefone; ?>"
                                             maxlength="20"
                                     >
                                 </div>
@@ -647,6 +662,15 @@ if ($documento_id) {
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <div class="my-3 d-flex flex-row justify-content-center">
+                    <button type="reset" class="btn btn-danger btn-sm me-1">
+                        <i class="fa-solid fa-floppy-disk"></i> Limpar
+                    </button>
+                    <button type="submit" class="btn btn-success btn-sm ms-1">
+                        <i class="fa-solid fa-floppy-disk"></i> Salvar
+                    </button>
                 </div>
             </div>
         </div>
@@ -686,6 +710,25 @@ if ($documento_id) {
         }
     }
 
+    function exibeCpfCnpjProcurador(valor) {
+        if (valor) {
+            if (valor === "f") {
+                $("#procurador_container_cpf<?= $uniqued ?>").show();
+                $("#procurador_container_cnpj<?= $uniqued ?>").hide();
+                $("#procurador_cnpj<?= $uniqued ?>").val('');
+            } else if (valor === 'j') {
+                $("#procurador_container_cnpj<?= $uniqued ?>").show();
+                $("#procurador_container_cpf<?= $uniqued ?>").hide().val('');
+                $("#procurador_cpf<?= $uniqued ?>").val('');
+            } else {
+                $("#procurador_container_cnpj<?= $uniqued ?>").hide().val('');
+                $("#procurador_container_cpf<?= $uniqued ?>").hide().val('');
+                $("#procurador_cnpj<?= $uniqued ?>").val('');
+                $("#procurador_cpf<?= $uniqued ?>").val('');
+            }
+        }
+    }
+
     function exibiContainer(input, id_container) {
         if ($(input).is(":checked")) {
             $(`#${id_container}`).show();
@@ -696,13 +739,18 @@ if ($documento_id) {
         }
     }
 
-    /*function initExibiContainer(value, id_container) {
+    function initExibiContainer(value, id_container) {
         if (value === '1') $(`#${id_container}`).show();
-    }*/
+    }
 
-    exibeCpfCnpj("<?= $d->tipo?>");
+    initExibiContainer("<?= $d->check_procurador?>", "vendedor_procurador-container<?= $uniqued ?>");
+    exibeCpfCnpj("<?= $d->tipo_pessoa?>");
+    exibeCpfCnpjProcurador("<?= $d->procurador_tipo_pessoa?>");
 
     $(function () {
+
+        $("#check_procurador<?= $uniqued ?>").prop("checked", <?= $d->check_procurador ? true : false?>);
+
         /* ------ MASCARAS -------- */
         $('#cpf<?= $uniqued ?>, #procurador_cpf').mask('000.000.000-00', {clearIfNotMatch: true});
 
@@ -727,29 +775,30 @@ if ($documento_id) {
 
                 procurador_nome: {
                     required: function (elem) {
-                        return $("#procurador_check").is(":checked");
+                        return $("#check_procurador<?= $uniqued ?>").is(":checked");
                     }
                 },
                 procurador_rg: {
                     required: function (elem) {
-                        return $("#procurador_check").is(":checked");
+                        return $("#check_procurador<?= $uniqued ?>").is(":checked");
                     }
                 },
                 procurador_cpf: {
                     required: function (elem) {
-                        return $("#procurador_check").is(":checked");
+                        return $("#check_procurador<?= $uniqued ?>").is(":checked");
                     }
                 },
                 procurador_estado: {
                     required: function (elem) {
-                        return $("#procurador_check").is(":checked");
+                        return $("#check_procurador<?= $uniqued ?>").is(":checked");
                     }
                 },
                 procurador_cidade: {
                     required: function (elem) {
-                        return $("#procurador_check").is(":checked");
+                        return $("#check_procurador<?= $uniqued ?>").is(":checked");
                     }
                 }
+
             }
         });
         /* ------ VALIDAÇÕES -------- */
@@ -757,12 +806,16 @@ if ($documento_id) {
         $("#form-vendedor<?= $uniqued?>").submit(function (e) {
             e.preventDefault();
 
-            var doc_id = $("#documento_id").val();
+            //var doc_id = $("#documento_id").val();
 
             if (!form.valid()) return false;
 
             var formData = $(this).serializeArray();
 
+            formData.push({
+                name: "check_procurador",
+                value: $("#check_procurador<?= $uniqued ?>").is(":checked") ? 1 : 0,
+            });
             $.ajax({
                 url: "./pages/cadastro_documento/_form_vendedor.php",
                 type: "POST",
@@ -771,10 +824,9 @@ if ($documento_id) {
                 success: function (data) {
                     //window.localStorage.setItem('doc_id', data.codigo);
 
-
                     $.alert({
-                        title: "Aviso",
-                        content: "Vendedor salvo com sucesso!",
+                        title: 'Aviso',
+                        content: data.msg
                     });
                     /*$.ajax({
                         url: "./pages/cadastro_documento/comprador.php",
