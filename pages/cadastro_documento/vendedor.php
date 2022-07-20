@@ -51,11 +51,12 @@ $doc_id = $_GET['doc_id'];
 $d = [];
 
 if ($doc_id) {
-    $result = mysqli_query($con, "SELECT * FROM documentos WHERE codigo = '{$doc_id}'");
+    $result = mysqli_query($con, "SELECT codigo, vendedor_procurador_check FROM documentos WHERE codigo = '{$doc_id}'");
     $d = mysqli_fetch_object($result);
 
-    $query_vendedor = "SELECT * FROM vendedores "
-        . "WHERE documento_id = '{$d->codigo}' ORDER BY tipo_vendedor";
+    $query_vendedor = "SELECT * FROM vendedor_comprador "
+        . "WHERE documento_id = '{$d->codigo}' ORDER BY tipo = 'v'";
+
     $result_vendedores = mysqli_query($con, $query_vendedor);
 
     $vendedores = [];
@@ -63,70 +64,40 @@ if ($doc_id) {
 
     while ($d_vendedor = mysqli_fetch_object($result_vendedores)) {
 
-        if ($d_vendedor->tipo_vendedor == 'v') {
+        if ($d_vendedor->tipo == 'v') {
             $vendedores[] = $d_vendedor;
-        } elseif ($d_vendedor->tipo_vendedor == 'p') {
+        } elseif ($d_vendedor->tipo == 'p') {
             $vendedores_procurador[] = $d_vendedor;
         }
-
     }
 }
+
 ?>
+
 <form id="form-vendedor" class="needs-validation" novalidate>
 
-    <div id="vendedor-container">
-        <h4 class="my-2 text-center">Vendedor</h4>
+    <div class="card rounded-0">
+        <div class="card-body">
+            <div id="vendedor-container">
+                <div class="d-flex flex-row justify-content-between mb-2">
+                    <h4 class="my-2 text-center">Vendedores</h4>
 
-        <div class="mb-2 d-inline-block">
-            <button
-                    type="button"
-                    class="btn bg-primary text-white float-end adicionar_vendedor"
-                    tipo="v"
-            >
-                <i class="fa-solid fa-plus"></i> Cadastrar Vendedor
-            </button>
-        </div>
+                    <button
+                            type="button"
+                            class="btn bg-primary btn-sm text-white adicionar_vendedor"
+                            tipo="v"
+                    >
+                        <i class="fa-solid fa-plus"></i> Adicionar novo
+                    </button>
 
-        <div class="form-vendedor">
-            <?php if (!$vendedores) {
-                echo '<h4 class="text-center">Nenhum vendedor cadastrado</h4>';
-            } ?>
-        </div>
-    </div>
+                </div>
 
-    <div class="my-4">
-        <div class="form-check">
-            <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="vendedor_procurador_check"
-                    name="vendedor_procurador_check"
-                    onclick="exibiContainer(this,'vendedor_procurador-container')"
-            >
-            <label class="form-check-label" for="vendedor_procurador_check">
-                Vendedor procurador?
-            </label>
-        </div>
-    </div>
-
-    <div id="vendedor_procurador-container" style="display: none">
-        <h4 class="my-2 text-center">Vendedor procurador</h4>
-
-        <div class="mb-2 d-inline-block">
-            <button
-                    type="button"
-                    class="btn bg-primary text-white float-end adicionar_vendedor"
-                    tipo="p"
-            >
-                <i class="fa-solid fa-plus"></i> Cadastrar Vendedor procurador
-            </button>
-        </div>
-
-        <div class="form-vendedor-procurador">
-            <?php if (!$vendedores_procurador) {
-                echo '<h4 class="text-center">Nenhum vendedor procurador cadastrado</h4>';
-            } ?>
+                <div class="form-vendedor">
+                    <?php if (!$vendedores) {
+                        echo '<h5 class="text-center my-3">Nenhum vendedor cadastrado</h5>';
+                    } ?>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -159,7 +130,7 @@ if ($doc_id) {
             data: {
                 vendedor_id: '<?= $vendedor->codigo ?>',
                 documento_id: '<?= $vendedor->documento_id; ?>',
-                tipo_vendedor: '<?= $vendedor->tipo_vendedor ?>'
+                tipo: '<?= $vendedor->tipo ?>'
             },
             dataType: "html",
             success: function (data) {
@@ -176,7 +147,7 @@ if ($doc_id) {
             data: {
                 vendedor_id: '<?= $vendedor_proc->codigo ?>',
                 documento_id: '<?= $vendedor_proc->documento_id; ?>',
-                tipo_vendedor: '<?= $vendedor_proc->tipo_vendedor ?>'
+                tipo: '<?= $vendedor_proc->tipo ?>'
             },
             dataType: "html",
             success: function (data) {
@@ -204,21 +175,21 @@ if ($doc_id) {
         });
 
         $(".adicionar_vendedor").click(function () {
-            let tipo_vendedor = $(this).attr('tipo');
+            let tipo = $(this).attr('tipo');
 
             $.ajax({
                 url: "./pages/cadastro_documento/_form_vendedor.php",
                 data: {
                     documento_id: '<?= $d->codigo ?>',
-                    tipo_vendedor
+                    tipo
                 },
                 dataType: "html",
                 success: function (data) {
 
-                    if (tipo_vendedor == 'v') {
-                        $(".form-vendedor").find('h4').remove();
+                    if (tipo == 'v') {
+                        //$(".form-vendedor").find('h4').remove();
                         $(".form-vendedor").append(data);
-                    } else if (tipo_vendedor == 'p') {
+                    } else if (tipo == 'p') {
                         $(".form-vendedor-procurador").find('h4').remove();
                         $(".form-vendedor-procurador").append(data);
                     }

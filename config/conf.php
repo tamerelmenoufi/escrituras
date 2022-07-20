@@ -11,7 +11,7 @@ if (session_id() === "") {
 date_default_timezone_set('America/Manaus');
 header('Content-Type: text/html; charset=utf-8');
 
-$random = random_string();
+$uniqued = random_string();
 
 function random_string()
 {
