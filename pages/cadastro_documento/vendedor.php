@@ -51,30 +51,24 @@ $doc_id = $_GET['doc_id'];
 $d = [];
 
 if ($doc_id) {
-    $result = mysqli_query($con, "SELECT codigo, vendedor_procurador_check FROM documentos WHERE codigo = '{$doc_id}'");
-    $d = mysqli_fetch_object($result);
 
     $query_vendedor = "SELECT * FROM vendedor_comprador "
-        . "WHERE documento_id = '{$d->codigo}' ORDER BY tipo = 'v'";
+        . "WHERE documento_id = '{$doc_id}' ORDER BY tipo = 'v'";
 
     $result_vendedores = mysqli_query($con, $query_vendedor);
 
     $vendedores = [];
-    $vendedores_procurador = [];
 
     while ($d_vendedor = mysqli_fetch_object($result_vendedores)) {
-
-        if ($d_vendedor->tipo == 'v') {
-            $vendedores[] = $d_vendedor;
-        } elseif ($d_vendedor->tipo == 'p') {
-            $vendedores_procurador[] = $d_vendedor;
-        }
+        $vendedores[] = $d_vendedor;
     }
 }
 
 ?>
 
 <form id="form-vendedor" class="needs-validation" novalidate>
+
+    <input type="hidden" id="doc_id" name="doc_id" value="<?= $doc_id ?>">
 
     <div class="card rounded-0">
         <div class="card-body">
@@ -92,11 +86,7 @@ if ($doc_id) {
 
                 </div>
 
-                <div class="form-vendedor">
-                    <?php if (!$vendedores) {
-                        #echo '<h5 class="text-center my-3">Nenhum vendedor cadastrado</h5>';
-                    } ?>
-                </div>
+                <div class="form-vendedor"></div>
             </div>
         </div>
     </div>
@@ -140,27 +130,6 @@ if ($doc_id) {
 
         <?php } ?>
 
-        <?php foreach ($vendedores_procurador as $vendedor_proc){?>
-
-        $.ajax({
-            url: "./pages/cadastro_documento/_form_vendedor.php",
-            data: {
-                vendedor_id: '<?= $vendedor_proc->codigo ?>',
-                documento_id: '<?= $vendedor_proc->documento_id; ?>',
-                tipo: '<?= $vendedor_proc->tipo ?>'
-            },
-            dataType: "html",
-            success: function (data) {
-                $(".form-vendedor-procurador").append(data);
-            }
-        });
-
-        <?php } ?>
-
-        $("#vendedor_procurador_check").prop("checked", <?= $d->vendedor_procurador_check ? true : false?>);
-
-        initExibiContainer("<?= $d->vendedor_procurador_check?>", "vendedor_procurador-container");
-
         var doc_id = window.localStorage.getItem('doc_id');
 
         $("button[voltar]").click(function () {
@@ -175,32 +144,23 @@ if ($doc_id) {
 
         $(".adicionar_vendedor").click(function () {
             let tipo = $(this).attr('tipo');
+            let documento_id = $("#doc_id").val();
 
             $.ajax({
                 url: "./pages/cadastro_documento/_form_vendedor.php",
                 data: {
-                    documento_id: '<?= $d->codigo ?>',
+                    documento_id,
                     tipo
                 },
                 dataType: "html",
                 success: function (data) {
-
-                    if (tipo == 'v') {
-                        //$(".form-vendedor").find('h4').remove();
-                        $(".form-vendedor").append(data);
-                    } else if (tipo == 'p') {
-                        $(".form-vendedor-procurador").find('h4').remove();
-                        $(".form-vendedor-procurador").append(data);
-                    }
-
+                    $(".form-vendedor").append(data);
                 }
             })
         });
 
         $("#form-vendedor").submit(function (e) {
             e.preventDefault();
-
-            //if (!form.valid()) return false;
 
             var formData = $(this).serializeArray();
 
@@ -211,23 +171,16 @@ if ($doc_id) {
                 });
             }
 
-            formData.push({
-                name: "vendedor_procurador_check",
-                value: $("#vendedor_procurador_check").is(":checked") ? 1 : 0,
-            });
-
             $.ajax({
                 url: "./pages/cadastro_documento/vendedor.php",
-                type: "POST",
+                type: "post",
                 data: formData,
-                dataType: "JSON",
+                dataType: "json",
                 success: function (data) {
-                    //window.localStorage.setItem('doc_id', data.codigo);
-
 
                     $.ajax({
                         url: "./pages/cadastro_documento/comprador.php",
-                        type: "GET",
+                        type: "get",
                         data: {doc_id},
                         success: function (data) {
                             $(".content-pane").html(data);

@@ -53,7 +53,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' and $_POST['acao'] === 'excluir'){
 }
 
 $documento_id = $_GET['documento_id'];
-$id           = $_GET['vendedor_id'];
+$id           = $_GET['comprador_id'];
 $tipo         = $_GET['tipo'];
 #@formatter:on
 
@@ -67,7 +67,7 @@ if ($documento_id) {
 
 ?>
 
-<form id="form-vendedor<?= $uniqued ?>" class="needs-validation mb-2" novalidate>
+<form id="form-comprador<?= $uniqued ?>" class="needs-validation mb-2" novalidate>
 
     <input type="hidden" id="id<?= $uniqued ?>" name="id" value="<?= $id; ?>">
 
@@ -79,30 +79,32 @@ if ($documento_id) {
 
         <div class="card-header d-flex flex-row justify-content-between align-items-center border-bottom-0 bg-white">
             <a data-bs-toggle="collapse"
-               href="#collapseVendedor<?= $uniqued ?>"
+               href="#collapseComprador<?= $uniqued ?>"
                role="button"
                aria-expanded="false"
-               aria-controls="collapseVendedor"
+               aria-controls="collapseComprador"
                style="flex: 1"
             >
-                Vendedor
+                Comprador
             </a>
             <span>
-                <button type="button" class="btn btn-outline-danger btn-sm remover_vendedor">
+                <button type="button" class="btn btn-outline-danger btn-sm remover_comprador">
                     <i class="fa-solid fa-trash-can"></i>
                 </button>
             </span>
         </div>
 
-        <div class="card-body collapse" id="collapseVendedor<?= $uniqued ?>">
-            <h5 class="text-center">Formulário vendedor</h5>
+        <div class="card-body collapse" id="collapseComprador<?= $uniqued ?>">
+            <h5 class="text-center">Formulário Comprador</h5>
 
-            <div id="vendedor-container">
+            <div id="comprador-container">
 
-                <div id="vendedor">
+                <div id="comprador">
                     <div class="mb-3">
-                        <label for="nome" class="form-label">Nome do vendedor <span
-                                    class="text-danger">*</span></label>
+                        <label for="nome" class="form-label">
+                            Nome do comprador <span class="text-danger">*</span>
+                        </label>
+
                         <input
                                 type="text"
                                 class="form-control"
@@ -112,15 +114,15 @@ if ($documento_id) {
                                 value="<?= $d->nome; ?>"
                                 maxlength="80"
                                 required
-
                         >
                     </div>
 
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label for="rg" class="form-label">RG <span
-                                            class="text-danger">*</span></label>
+                                <label for="rg" class="form-label">
+                                    RG <span class="text-danger">*</span>
+                                </label>
                                 <input
                                         type="text"
                                         class="form-control"
@@ -141,12 +143,18 @@ if ($documento_id) {
                                         class="form-label">
                                     Tipo de pessoa <span class="text-danger">*</span>
                                 </label>
-                                <select class="form-control" id="tipo_pessoa<?= $uniqued ?>" name="tipo_pessoa"
-                                        required>
+                                <select
+                                        class="form-control"
+                                        id="tipo_pessoa<?= $uniqued ?>"
+                                        name="tipo_pessoa"
+                                        required
+                                >
                                     <option value=""></option>
-                                    <option value="f" <?= $d->tipo_pessoa == 'f' ? 'selected' : ''; ?>>Pessoa física
+                                    <option value="f" <?= $d->tipo_pessoa == 'f' ? 'selected' : ''; ?>>
+                                        Pessoa física
                                     </option>
-                                    <option value="j" <?= $d->tipo_pessoa == 'j' ? 'selected' : ''; ?>>Pessoa jurídica
+                                    <option value="j" <?= $d->tipo_pessoa == 'j' ? 'selected' : ''; ?>>
+                                        Pessoa jurídica
                                     </option>
                                 </select>
                             </div>
@@ -166,8 +174,9 @@ if ($documento_id) {
                     </div>
 
                     <div class="mb-3" id="container_cnpj<?= $uniqued ?>" style="display: none">
-                        <label for="cnpj<?= $uniqued ?>" class="form-label">CNPJ <span
-                                    class="text-danger">*</span></label>
+                        <label for="cnpj<?= $uniqued ?>" class="form-label">
+                            CNPJ <span class="text-danger">*</span>
+                        </label>
                         <input
                                 type="text"
                                 class="form-control"
@@ -217,8 +226,9 @@ if ($documento_id) {
                     <div class="row">
                         <div class="col-md-4">
                             <div class="mb-3">
-                                <label for="estado" class="form-label">Estado <span
-                                            class="text-danger">*</span></label>
+                                <label for="estado" class="form-label">
+                                    Estado <span class="text-danger">*</span>
+                                </label>
                                 <select
                                         type="text"
                                         class="form-control"
@@ -243,8 +253,9 @@ if ($documento_id) {
                         </div>
                         <div class="col-md-4">
                             <div class="mb-3">
-                                <label for="cidade" class="form-label">Cidade <span
-                                            class="text-danger">*</span></label>
+                                <label for="cidade" class="form-label">
+                                    Cidade <span class="text-danger">*</span>
+                                </label>
                                 <select
                                         class="form-control"
                                         id="cidade<?= $uniqued ?>"
@@ -274,7 +285,7 @@ if ($documento_id) {
 
                         <div class="col-md-4">
                             <div class="mb-3">
-                                <label for="bairro" class="form-label">Bairro</label>
+                                <label for="bairro<?= $uniqued ?>" class="form-label">Bairro</label>
                                 <select
                                         class="form-control"
                                         id="bairro<?= $uniqued ?>"
@@ -377,22 +388,22 @@ if ($documento_id) {
                                 value=""
                                 id="check_procurador<?= $uniqued ?>"
                                 name="check_procurador"
-                                onclick="exibiContainer(this,'vendedor_procurador-container<?= $uniqued ?>')"
+                                onclick="exibiContainer(this,'comprador_procurador-container<?= $uniqued ?>')"
                         >
                         <label class="form-check-label" for="check_procurador<?= $uniqued ?>">
-                            Vendedor procurador?
+                            Comprador procurador?
                         </label>
                     </div>
                 </div>
                 <!-- Checkbox -->
 
-                <div id="vendedor_procurador-container<?= $uniqued ?>" style="display: none">
-                    <h5 class="my-2 text-center">Vendedor procurador</h5>
+                <div id="comprador_procurador-container<?= $uniqued ?>" style="display: none">
+                    <h5 class="my-2 text-center">Comprador procurador</h5>
 
-                    <div id="vendedor-procurador">
+                    <div id="comprador-procurador">
                         <div class="mb-3">
                             <label for="procurador_nome" class="form-label">
-                                Nome do vendedor <span class="text-danger">*</span>
+                                Nome do comprador <span class="text-danger">*</span>
                             </label>
                             <input
                                     type="text"
@@ -403,15 +414,15 @@ if ($documento_id) {
                                     value="<?= $d->procurador_nome; ?>"
                                     maxlength="80"
                                     required
-
                             >
                         </div>
 
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label for="procurador_rg" class="form-label">RG <span
-                                                class="text-danger">*</span></label>
+                                    <label for="procurador_rg" class="form-label">
+                                        RG <span class="text-danger">*</span>
+                                    </label>
                                     <input
                                             type="text"
                                             class="form-control"
@@ -430,7 +441,7 @@ if ($documento_id) {
                                     <label
                                             for="procurador_tipo_pessoa<?= $uniqued ?>"
                                             class="form-label">
-                                        Tipo de vendedor <span class="text-danger">*</span>
+                                        Tipo de pessoa <span class="text-danger">*</span>
                                     </label>
                                     <select
                                             class="form-control"
@@ -440,12 +451,10 @@ if ($documento_id) {
                                     >
                                         <option value=""></option>
                                         <option value="f" <?= $d->procurador_tipo_pessoa == 'f' ? 'selected' : ''; ?>>
-                                            Pessoa
-                                            física
+                                            Pessoa física
                                         </option>
                                         <option value="j" <?= $d->procurador_tipo_pessoa == 'j' ? 'selected' : ''; ?>>
-                                            Pessoa
-                                            jurídica
+                                            Pessoa jurídica
                                         </option>
                                     </select>
                                 </div>
@@ -469,8 +478,9 @@ if ($documento_id) {
                         </div>
 
                         <div class="mb-3" id="procurador_container_cnpj<?= $uniqued ?>" style="display: none">
-                            <label for="procurador_cnpj<?= $uniqued ?>" class="form-label">CNPJ <span
-                                        class="text-danger">*</span></label>
+                            <label for="procurador_cnpj<?= $uniqued ?>" class="form-label">
+                                CNPJ <span class="text-danger">*</span>
+                            </label>
                             <input
                                     type="text"
                                     class="form-control"
@@ -520,8 +530,9 @@ if ($documento_id) {
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="mb-3">
-                                    <label for="procurador_estado" class="form-label">Estado <span
-                                                class="text-danger">*</span></label>
+                                    <label for="procurador_estado" class="form-label">
+                                        Estado <span class="text-danger">*</span>
+                                    </label>
                                     <select
                                             type="text"
                                             class="form-control"
@@ -546,8 +557,9 @@ if ($documento_id) {
                             </div>
                             <div class="col-md-4">
                                 <div class="mb-3">
-                                    <label for="procurador_cidade" class="form-label">Cidade <span
-                                                class="text-danger">*</span></label>
+                                    <label for="procurador_cidade<?= $uniqued ?>" class="form-label">
+                                        Cidade <span class="text-danger">*</span>
+                                    </label>
                                     <select
                                             class="form-control"
                                             id="procurador_cidade<?= $uniqued ?>"
@@ -751,7 +763,7 @@ if ($documento_id) {
         if (value === '1') $(`#${id_container}`).show();
     }
 
-    initExibiContainer("<?= $d->check_procurador?>", "vendedor_procurador-container<?= $uniqued ?>");
+    initExibiContainer("<?= $d->check_procurador?>", "comprador_procurador-container<?= $uniqued ?>");
     exibeCpfCnpj("<?= $d->tipo_pessoa?>");
     exibeCpfCnpjProcurador("<?= $d->procurador_tipo_pessoa?>");
 
@@ -759,16 +771,16 @@ if ($documento_id) {
 
         $("#check_procurador<?= $uniqued ?>").prop("checked", <?= $d->check_procurador ? true : false?>);
 
-        /* ------ MASCARAS -------- */
-        $('#cpf<?= $uniqued ?>, #procurador_cpf').mask('000.000.000-00', {clearIfNotMatch: true});
+        /* ------ Mascaras -------- */
+        $('#cpf<?= $uniqued ?>, #procurador_cpf<?= $uniqued ?>').mask('000.000.000-00', {clearIfNotMatch: true});
 
         $('#telefone, #procurador_telefone').mask('(00) 90000-0000', {clearIfNotMatch: true});
 
         $('#cnpj<?= $uniqued ?>').mask('00.000.000/0000-00', {reverse: true});
-        /* ------ MASCARAS -------- */
+        /* ------ Mascaras -------- */
 
-        /* ------ VALIDAÇÕES -------- */
-        var form = $("#form-vendedor<?= $uniqued?>").validate({
+        /* ------ Validações -------- */
+        var form = $("#form-comprador<?= $uniqued?>").validate({
             rules: {
                 cpf: {
                     required: function (elem) {
@@ -809,9 +821,9 @@ if ($documento_id) {
 
             }
         });
-        /* ------ VALIDAÇÕES -------- */
+        /* ------ Validações -------- */
 
-        $("#form-vendedor<?= $uniqued?>").submit(function (e) {
+        $("#form-comprador<?= $uniqued?>").submit(function (e) {
             e.preventDefault();
 
             //var doc_id = $("#documento_id").val();
@@ -831,12 +843,11 @@ if ($documento_id) {
             });
 
             $.ajax({
-                url: "./pages/cadastro_documento/_form_vendedor.php",
+                url: "./pages/cadastro_documento/_form_comprador.php",
                 type: "POST",
                 data: formData,
                 dataType: "JSON",
                 success: function (data) {
-                    //window.localStorage.setItem('doc_id', data.codigo);
 
                     if (data.status) {
                         $.alert({
@@ -846,7 +857,6 @@ if ($documento_id) {
                             type: 'green',
                             icon: 'fa fa-check',
                         });
-
                     } else {
                         $.alert({
                             title: 'Erro',
@@ -861,14 +871,17 @@ if ($documento_id) {
             });
 
             return false;
-
         });
 
         $("#tipo_pessoa<?= $uniqued ?>").change(function () {
             exibeCpfCnpj($(this).val())
         });
 
-        $(".remover_vendedor").click(function () {
+        $("#procurador_tipo_pessoa<?= $uniqued ?>").change(function () {
+            exibeCpfCnpjProcurador($(this).val())
+        });
+
+        $(".remover_procurador").click(function () {
             var id = $("#id<?= $uniqued ?>").val();
 
             $.alert({
@@ -881,26 +894,25 @@ if ($documento_id) {
                     sim: {
                         text: 'Sim',
                         action: function () {
-
                             if (id) {
                                 $.ajax({
-                                    url: './pages/cadastro_documento/_form_vendedor.php',
+                                    url: './pages/cadastro_documento/_form_comprador.php',
                                     method: 'post',
                                     dataType: 'json',
                                     data: {id, acao: 'excluir'},
                                     success: function (data) {
                                         if (data.status) {
                                             $.alert({
-                                                title: 'Aviso',
+                                                title: 'Sucesso',
                                                 content: data.msg,
                                                 theme: 'bootstrap',
                                                 type: 'green',
                                                 icon: 'fa fa-check',
                                             });
-                                            $("#form-vendedor<?= $uniqued ?>").remove();
+                                            $("#form-comprador<?= $uniqued ?>").remove();
                                         } else {
                                             $.alert({
-                                                title: 'Aviso',
+                                                title: 'Erro',
                                                 content: data.msg,
                                                 theme: 'bootstrap',
                                                 type: 'red',
@@ -910,7 +922,7 @@ if ($documento_id) {
                                     }
                                 });
                             } else {
-                                $("#form-vendedor<?= $uniqued ?>").remove();
+                                $("#form-comprador<?= $uniqued ?>").remove();
 
                                 $.alert({
                                     title: 'Aviso',
