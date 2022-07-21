@@ -2,12 +2,11 @@
 include_once "../../config/includes.php";
 
 #@formatter:off
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
+if ($_SERVER['REQUEST_METHOD'] === 'POST' and $_POST['acao'] === 'salvar') {
     $data = $_POST;
     $attr = [];
     $id   = $data['id'];
-    $documento_id   = $data["documento_id"];
+    $documento_id = $data["documento_id"];
 
     unset($data["id"]);
 
@@ -30,10 +29,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             "sql" => $sql,
         ]);
     } else {
-        file_put_contents('debug.txt',json_encode([
-                'query' => $sql,
-            'db_error' => mysqli_error($con),
-        ]));
         echo json_encode([
             "status"      => true,
             "msg"         => "Error ao salvar",
@@ -44,6 +39,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     exit();
 
+}
+
+if($_SERVER['REQUEST_METHOD'] === 'POST' and $_POST['acao'] === 'excluir'){
+    $codigo = $_POST['id'];
+
+    $sql = "DELETE FROM vendedor_comprador WHERE codigo = '{$codigo}'";
+
+    if(mysqli_query($con, $sql)){
+        echo json_encode(['status' => true,'msg' => 'Excluído com sucesso!']);
+    }else{
+        echo json_encode(['status' => false,'msg' => 'Error ao excluir!']);
+    }
+    exit();
 }
 
 $documento_id = $_GET['documento_id'];
@@ -63,8 +71,10 @@ if ($documento_id) {
 
 <form id="form-vendedor<?= $uniqued ?>" class="needs-validation mb-2" novalidate>
 
-    <input type="hidden" id="id" name="id" value="<?= $id; ?>">
+    <input type="hidden" id="id<?= $uniqued ?>" name="id" value="<?= $id; ?>">
+
     <input type="hidden" id="documento_id" name="documento_id" value="<?= $documento_id; ?>">
+
     <input type="hidden" id="tipo" name="tipo" value="<?= $tipo; ?>">
 
     <div class="card rounded-0" style="width: 100%">
@@ -80,11 +90,10 @@ if ($documento_id) {
                 Vendedor
             </a>
             <span>
-
-                        <button type="button" class="btn btn-outline-danger btn-sm">
-                            <i class="fa-solid fa-trash-can"></i>
-                        </button>
-                    </span>
+                <button type="button" class="btn btn-outline-danger btn-sm remover_vendedor">
+                    <i class="fa-solid fa-trash-can"></i>
+                </button>
+            </span>
         </div>
 
         <div class="card-body collapse" id="collapseVendedor<?= $uniqued ?>">
@@ -384,8 +393,9 @@ if ($documento_id) {
 
                     <div id="vendedor-procurador">
                         <div class="mb-3">
-                            <label for="procurador_nome" class="form-label">Nome do vendedor <span
-                                        class="text-danger">*</span></label>
+                            <label for="procurador_nome" class="form-label">
+                                Nome do vendedor <span class="text-danger">*</span>
+                            </label>
                             <input
                                     type="text"
                                     class="form-control"
@@ -816,6 +826,7 @@ if ($documento_id) {
                 name: "check_procurador",
                 value: $("#check_procurador<?= $uniqued ?>").is(":checked") ? 1 : 0,
             });
+
             $.ajax({
                 url: "./pages/cadastro_documento/_form_vendedor.php",
                 type: "POST",
@@ -848,6 +859,68 @@ if ($documento_id) {
         });
 
         $(".remover_vendedor").click(function () {
+            var id = $("#id<?= $uniqued ?>").val();
+
+            $.alert({
+                title: 'Aviso',
+                content: 'Deseja realmente excluir?',
+                theme: 'bootstrap',
+                type: 'red',
+                icon: 'fa fa-warning',
+                buttons: {
+                    sim: {
+                        text: 'Sim',
+                        action: function () {
+
+                            if (id) {
+                                $.ajax({
+                                    url: './pages/cadastro_documento/_form_vendedor.php',
+                                    method: 'post',
+                                    dataType: 'json',
+                                    data: {id, acao: 'excluir'},
+                                    success: function (data) {
+                                        if (data.status) {
+                                            $.alert({
+                                                title: 'Aviso',
+                                                content: data.msg,
+                                                theme: 'bootstrap',
+                                                type: 'green',
+                                                icon: 'fa fa-check',
+                                            });
+                                            $("#form-vendedor<?= $uniqued ?>").remove();
+                                        } else {
+                                            $.alert({
+                                                title: 'Aviso',
+                                                content: data.msg,
+                                                theme: 'bootstrap',
+                                                type: 'red',
+                                                icon: 'fa fa-warning',
+                                            });
+                                        }
+                                    }
+                                });
+                            } else {
+                                $("#form-vendedor<?= $uniqued ?>").remove();
+
+                                $.alert({
+                                    title: 'Aviso',
+                                    content: 'Excluído com sucesso!',
+                                    theme: 'bootstrap',
+                                    type: 'green',
+                                    icon: 'fa fa-check',
+                                });
+                            }
+
+                        },
+                        btnClass: 'btn-red',
+                    },
+                    nao: {
+                        text: 'Não',
+                        action: function () {
+                        }
+                    }
+                }
+            })
 
         });
     });

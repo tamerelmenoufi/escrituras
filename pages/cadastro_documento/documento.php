@@ -67,69 +67,72 @@ if ($doc_id) {
     </div>
 
     <div class="mb-3">
-        <label for="tipo_documento" class="form-label">Tipo de documento <span class="text-danger">*</span></label>
-        <select
-                class="form-control"
-                id="tipo_documento"
-                name="tipo_documento"
-                aria-describedby="tipo_documento"
-                required
+        <div class="row">
+            <div class="col-md-4">
+                <label for="tipo_documento" class="form-label">Tipo de documento <span
+                            class="text-danger">*</span></label>
+                <select
+                        class="form-control"
+                        id="tipo_documento"
+                        name="tipo_documento"
+                        aria-describedby="tipo_documento"
+                        required
 
-        >
-            <option value=""></option>
-            <?php
-            $query_tipo_documento = "SELECT * FROM aux_tipo_documento WHERE deletado != '1' ORDER BY descricao";
-            $result = mysqli_query($con, $query_tipo_documento);
-
-            while ($row = mysqli_fetch_object($result)): ?>
-                <option
-                        value="<?= $row->codigo ?>"
-                    <?= $row->codigo = $d->tipo_documento ? 'selected ' : ''; ?>
                 >
-                    <?= $row->descricao ?>
-                </option>
-            <?php endwhile; ?>
-        </select>
+                    <option value=""></option>
+                    <?php
+                    $query_tipo_documento = "SELECT * FROM aux_tipo_documento WHERE deletado != '1' ORDER BY descricao";
+                    $result = mysqli_query($con, $query_tipo_documento);
 
-    </div>
-
-    <div class="mb-3">
-        <label for="tipo_imovel" class="form-label">Tipo de Imóvel <span class="text-danger">*</span></label>
-        <select
-                type="text"
-                class="form-control"
-                id="tipo_imovel"
-                name="tipo_imovel"
-                aria-describedby="tipo_imovel"
-                required
-        >
-            <option value=""></option>
-            <?php
-            $query_tipo_imovel = "SELECT * FROM aux_tipo_imovel WHERE deletado != '1' ORDER BY descricao";
-            $result = mysqli_query($con, $query_tipo_imovel);
-
-            while ($row = mysqli_fetch_object($result)): ?>
-                <option
-                        value="<?= $row->codigo ?>"
-                    <?= $row->codigo = $d->tipo_imovel ? 'selected ' : ''; ?>
+                    while ($row = mysqli_fetch_object($result)): ?>
+                        <option
+                                value="<?= $row->codigo ?>"
+                            <?= $row->codigo = $d->tipo_documento ? 'selected ' : ''; ?>
+                        >
+                            <?= $row->descricao ?>
+                        </option>
+                    <?php endwhile; ?>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label for="tipo_imovel" class="form-label">Tipo de Imóvel <span class="text-danger">*</span></label>
+                <select
+                        type="text"
+                        class="form-control"
+                        id="tipo_imovel"
+                        name="tipo_imovel"
+                        aria-describedby="tipo_imovel"
+                        required
                 >
-                    <?= $row->descricao ?>
-                </option>
-            <?php endwhile; ?>
-        </select>
-    </div>
+                    <option value=""></option>
+                    <?php
+                    $query_tipo_imovel = "SELECT * FROM aux_tipo_imovel WHERE deletado != '1' ORDER BY descricao";
+                    $result = mysqli_query($con, $query_tipo_imovel);
 
-    <div class="mb-3">
-        <label for="nivel_imovel" class="form-label">Nivel do imóvel</label>
-        <input
-                type="number"
-                min="0"
-                class="form-control"
-                id="nivel_imovel"
-                name="nivel_imovel"
-                aria-describedby="nivel_imovel"
-                value="<?= $d->nivel_imovel; ?>"
-        >
+                    while ($row = mysqli_fetch_object($result)): ?>
+                        <option
+                                value="<?= $row->codigo ?>"
+                            <?= $row->codigo = $d->tipo_imovel ? 'selected ' : ''; ?>
+                        >
+                            <?= $row->descricao ?>
+                        </option>
+                    <?php endwhile; ?>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label for="nivel_imovel" class="form-label">Nivel do imóvel</label>
+                <input
+                        type="number"
+                        min="0"
+                        class="form-control"
+                        id="nivel_imovel"
+                        name="nivel_imovel"
+                        aria-describedby="nivel_imovel"
+                        value="<?= $d->nivel_imovel; ?>"
+                >
+            </div>
+        </div>
+
     </div>
 
     <div class="mb-3">
