@@ -47,7 +47,9 @@ $doc_id = $_GET['doc_id'];
 $d = [];
 
 if ($doc_id) {
-    $result = mysqli_query($con, "SELECT * FROM documentos WHERE codigo = '{$doc_id}'");
+    $colunas = "cartorio, tipo_documento, tipo_imovel, nivel_imovel, resumo, livro, folha";
+
+    $result = mysqli_query($con, "SELECT {$colunas} FROM documentos WHERE codigo = '{$doc_id}'");
     $d = mysqli_fetch_object($result);
 }
 
@@ -67,34 +69,36 @@ if ($doc_id) {
     </div>
 
     <div class="mb-3">
-        <div class="row">
-            <div class="col-md-4">
-                <label for="tipo_documento" class="form-label">Tipo de documento <span
-                            class="text-danger">*</span></label>
-                <select
-                        class="form-control"
-                        id="tipo_documento"
-                        name="tipo_documento"
-                        aria-describedby="tipo_documento"
-                        required
+        <label for="tipo_documento" class="form-label">Tipo de documento <span
+                    class="text-danger">*</span></label>
+        <select
+                class="form-control"
+                id="tipo_documento"
+                name="tipo_documento"
+                aria-describedby="tipo_documento"
+                required
 
+        >
+            <option value=""></option>
+            <?php
+            $query_tipo_documento = "SELECT * FROM aux_tipo_documento WHERE deletado != '1' ORDER BY descricao";
+            $result = mysqli_query($con, $query_tipo_documento);
+
+            while ($row = mysqli_fetch_object($result)): ?>
+                <option
+                        value="<?= $row->codigo ?>"
+                    <?= $row->codigo = $d->tipo_documento ? 'selected ' : ''; ?>
                 >
-                    <option value=""></option>
-                    <?php
-                    $query_tipo_documento = "SELECT * FROM aux_tipo_documento WHERE deletado != '1' ORDER BY descricao";
-                    $result = mysqli_query($con, $query_tipo_documento);
+                    <?= $row->descricao ?>
+                </option>
+            <?php endwhile; ?>
+        </select>
+    </div>
 
-                    while ($row = mysqli_fetch_object($result)): ?>
-                        <option
-                                value="<?= $row->codigo ?>"
-                            <?= $row->codigo = $d->tipo_documento ? 'selected ' : ''; ?>
-                        >
-                            <?= $row->descricao ?>
-                        </option>
-                    <?php endwhile; ?>
-                </select>
-            </div>
-            <div class="col-md-4">
+    <div class="mb-3">
+        <div class="row">
+
+            <div class="col-md-6">
                 <label for="tipo_imovel" class="form-label">Tipo de Imóvel <span class="text-danger">*</span></label>
                 <select
                         type="text"
@@ -119,7 +123,7 @@ if ($doc_id) {
                     <?php endwhile; ?>
                 </select>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <label for="nivel_imovel" class="form-label">Nivel do imóvel</label>
                 <input
                         type="number"
@@ -135,6 +139,54 @@ if ($doc_id) {
 
     </div>
 
+    <div class="mb-3">
+        <div class="row">
+            <div class="col-md-6">
+                <label for="livro" class="form-label">
+                    Livro <span class="text-danger">*</span>
+                </label>
+                <input
+                        type="text"
+                        class="form-control"
+                        id="livro"
+                        name="livro"
+                        aria-describedby="livro"
+                        value="<?= $d->livro; ?>"
+                        required
+                >
+            </div>
+
+            <div class="col-md-6">
+                <label for="folha" class="form-label">
+                    Folha <span class="text-danger">*</span>
+                </label>
+                <input
+                        type="text"
+                        class="form-control"
+                        id="folha"
+                        name="folha"
+                        aria-describedby="folha"
+                        value="<?= $d->folha; ?>"
+                        required
+                >
+            </div>
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label for="resumo" class="form-label">
+            Resumo <span class="text-danger">*</span>
+        </label>
+        <textarea
+                class="form-control"
+                id="resumo"
+                name="resumo"
+                aria-describedby="resumo"
+                rows="2"
+                required
+        ><?= $d->resumo; ?></textarea>
+    </div>
+    <br>
     <div class="mb-3">
         <div class="d-flex flex-row justify-content-end">
             <button type="submit" class="btn bg-primary btn_next">Salvar</button>
