@@ -891,7 +891,7 @@ if ($documento_id) {
                                     success: function (data) {
                                         if (data.status) {
                                             $.alert({
-                                                title: 'Aviso',
+                                                title: 'Sucesso',
                                                 content: data.msg,
                                                 theme: 'bootstrap',
                                                 type: 'green',
@@ -900,7 +900,7 @@ if ($documento_id) {
                                             $("#form-vendedor<?= $uniqued ?>").remove();
                                         } else {
                                             $.alert({
-                                                title: 'Aviso',
+                                                title: 'Erro',
                                                 content: data.msg,
                                                 theme: 'bootstrap',
                                                 type: 'red',

@@ -5,9 +5,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $doc_id = $_POST['doc_id'];
     $file = $_FILES;
 
-    $total = count($_FILES['arquivo']['name']);
+    $totalFile = count($file);
 
-    for ($i = 0; $i < $total; $i++):
+    for ($i = 0; $i < $totalFile; $i++):
         $tmpFilePath = $_FILES['arquivo']['tmp_name'][$i];
 
         if ($tmpFilePath != "") :
@@ -15,11 +15,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             if (!is_dir("{$path}/{$doc_id}")) mkdir("{$path}/{$doc_id}");
 
-            $newFilePath = "{$path}/{$doc_id}/{$_FILES['arquivo']['name'][$i]}";
+            $newFilePath = "{$path}/{$doc_id}/{$file['arquivo']['name'][$i]}";
 
-            if (move_uploaded_file($tmpFilePath, $newFilePath)) {
-                return true;
-            }
+            if (move_uploaded_file($tmpFilePath, $newFilePath)) continue;
+
         endif;
     endfor;
     echo 'ok';
@@ -38,11 +37,14 @@ if ($doc_id) {
     $files = array_diff(scandir($path), array('.', '..'));
 
     $i = 0;
+
     foreach ($files as $file) {
+        $preview[$i]['key'] = $i;
         $preview[$i]['url'] = "'storage/documentos/{$doc_id}/{$file}'";
         $preview[$i]['type'] = "pdf";
         $preview[$i]['caption'] = $file;
-        $preview[$i]['size'] = "'{$path}/{$file}'";
+
+        //$preview[$i]['size'] = "'{$path}/{$file}'";
 
         $i++;
     }
@@ -50,9 +52,9 @@ if ($doc_id) {
     $urlFiles = array_map(function ($f) {
         return $f['url'];
     }, $preview);
-var_dump($urlFiles);
+
     $initialPreviewConfig = array_map(function ($e) {
-        return "{type : '{$e['type']}', caption : '{$e['caption']}', size : 0}";
+        return "{type : '{$e['type']}', caption : '{$e['caption']}', key : '{$e['key']}', extra : {path : {$e['url']}}}";
     }, $preview);
 }
 ?>
@@ -68,7 +70,7 @@ var_dump($urlFiles);
     <div id="anexo-container">
         <h3 class="text-center">Anexos de documentos</h3>
 
-        <div class="col-md-12">
+        <div class="col-md-12 text-center">
             <h6>
                 incluir uma cópia do documento original contendo todas as informações inseridas nas etapas dos
                 cadastros
@@ -135,7 +137,8 @@ var_dump($urlFiles);
             ],
             initialPreviewConfig: [
                 <?= @implode(', ', $initialPreviewConfig)?>
-            ]
+            ],
+            deleteUrl: './pages/actions/actionFile_delete.php'
         });
 
     });
@@ -162,14 +165,15 @@ var_dump($urlFiles);
 
             $.alert({
                 title: "Aviso",
+                theme: 'bootstrap',
+                type: 'orange',
+                icon: 'fa fa-question',
                 content: "Tem certeza que deseja finalizar o cadastro?",
                 columnClass: "medium",
                 buttons: {
                     sim: {
                         text: 'sim',
                         action: function () {
-                            window.localStorage.setItem('doc_id', '');
-
                             $.ajax({
                                 url: './pages/cadastro_documento/anexo.php',
                                 method: 'post',
@@ -178,13 +182,30 @@ var_dump($urlFiles);
                                 processData: false,
                                 contentType: false,
                                 success: function (data) {
+
+                                    if (data !== "ok") {
+                                        $.alert({
+                                            title: 'Erro',
+                                            content: "Erro ao anexar o arquivo!",
+                                            theme: 'bootstrap',
+                                            type: 'red',
+                                            icon: 'fa fa-warning',
+                                        });
+
+                                        return false;
+                                    }
+
                                     $.alert({
                                         title: 'Sucesso',
+                                        theme: 'bootstrap',
+                                        type: 'green',
+                                        icon: 'fa fa-check',
                                         content: 'Cadastro realizado com sucesso!',
                                         buttons: {
                                             ok: {
                                                 text: 'Ok',
                                                 action: function () {
+                                                    window.localStorage.setItem('doc_id', '');
                                                     window.location.href = './cadastro-documento';
                                                 }
                                             }

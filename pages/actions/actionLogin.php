@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' and $_POST['acao'] === 'login') {
     } else {
         echo json_encode([
             "status" => false,
-            "msg" => "Usuário não encontrado",
+            "msg" => "Usuário ou senha incorreto",
         ]);
     }
     exit();

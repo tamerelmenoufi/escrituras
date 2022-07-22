@@ -85,7 +85,14 @@ include_once "./config/conf.php";
                             window.location.href = "<?= $base_url?>";
                         }, 800);
                     } else {
-                        $(".msg-error").show().find('text').text(data.msg);
+                        //$(".msg-error").show().find('text').text(data.msg);
+                        $.alert({
+                            title: 'Erro',
+                            content: data.msg,
+                            theme: 'bootstrap',
+                            type: 'red',
+                            icon: 'fa fa-warning',
+                        });
                     }
                 }
             })
