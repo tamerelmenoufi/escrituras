@@ -43,6 +43,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' and $_GET['acao'] === 'pesquisar') {
 
 $colunas_array = [
     "d.codigo",
+    "d.cartorio",
+    "ti.descricao AS ti_descricao",
     "d.situacao",
     "vendedor_nome",
     "comprador_nome",
@@ -53,6 +55,7 @@ $colunas_array = [
 $colunas = implode(", ", $colunas_array);
 
 $query = "SELECT {$colunas} FROM documentos d "
+    . "LEFT JOIN aux_tipo_imovel ti ON ti.codigo = d.tipo_imovel "
     . "LEFT JOIN aux_cidades c ON c.codigo = d.cidade "
     . "LEFT JOIN aux_bairros b ON b.codigo = d.bairro "
     . "LEFT JOIN aux_estados e ON e.codigo = d.estado "
@@ -62,6 +65,11 @@ $result = mysqli_query($con, $query);
 
 ?>
 
+<style>
+    table#tabela_lista_cadastro tbody{
+       font-size:14px
+    }
+</style>
 <div class="container py-5">
     <h2 class="text-center">Lista de cadastros</h2>
 
@@ -131,11 +139,11 @@ $result = mysqli_query($con, $query);
     </div>
 
     <div style="margin-bottom: 6rem">
-        <table class="table my-5">
+        <table class="table my-5" id="tabela_lista_cadastro">
             <thead>
             <tr>
-                <th class="color-gray" scope="col">Vendedor</th>
-                <th class="color-gray" scope="col">Comprador</th>
+                <th class="color-gray" scope="col">Cartório</th>
+                <th class="color-gray" scope="col">Tipo de imóvel</th>
                 <th class="color-gray" scope="col">Município</th>
                 <th class="color-gray" scope="col">Bairro</th>
                 <th class="color-gray" scope="col">Situação</th>
@@ -146,8 +154,8 @@ $result = mysqli_query($con, $query);
             <?php
             while ($d = mysqli_fetch_object($result)): ?>
                 <tr id="documento-<?= $d->codigo; ?>">
-                    <td><?= $d->vendedor_nome ?: 'Não definido' ?></td>
-                    <td><?= $d->comprador_nome ?: 'Não definido' ?></td>
+                    <td><?= $d->cartorio ?: 'Não definido' ?></td>
+                    <td><?= $d->ti_descricao ?: 'Não definido' ?></td>
                     <td><?= $d->end_municipio ?: 'Não definido' ?></td>
                     <td><?= $d->end_bairro ?: 'Não definido' ?></td>
                     <td><?= $d->situacao; ?></td>

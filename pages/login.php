@@ -45,6 +45,7 @@ include_once "./config/conf.php";
                                 style="color: rgba(var(--color-secondary-dark-rgb), 0.7)"
                                 required>
                     </div>
+
                     <div class="form-group mt-3">
                         <input
                                 type="password"
@@ -74,18 +75,22 @@ include_once "./config/conf.php";
         $("#form-login").submit(function (e) {
             e.preventDefault();
 
+            $("button[type=submit]").attr("disabled", "disabled");
+
             $.ajax({
                 url: "./pages/actions/actionLogin.php",
                 data: $(this).serialize(),
                 type: 'POST',
                 dataType: 'JSON',
                 success: function (data) {
+
                     if (data.status) {
                         setTimeout(function () {
                             window.location.href = "<?= $base_url?>";
                         }, 800);
                     } else {
-                        //$(".msg-error").show().find('text').text(data.msg);
+                        $("button[type=submit]").removeAttr("disabled");
+
                         $.alert({
                             title: 'Erro',
                             content: data.msg,

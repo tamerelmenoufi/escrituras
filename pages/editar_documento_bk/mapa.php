@@ -29,7 +29,6 @@ if ($_POST['acao'] == 'salvar') {
     exit();
 }
 
-
 $doc_id = $_GET['doc_id'];
 
 // $d = [];
@@ -65,6 +64,8 @@ if ($doc_id) {
 
 <input type="hidden" id="codigo" value="<?= $d->codigo ?>">
 
+<input type="hidden" value="<?= $d->codigo ?>" id="doc_id">
+
 <div class="mt-3">
     <div class="row justify-content-between">
         <div class="col-auto">
@@ -78,7 +79,7 @@ if ($doc_id) {
             </button>
         </div>
         <div class="col-auto">
-            <button type="button" class="btn bg-primary btn_next salvar">Salvar</button>
+            <button type="button" class="btn bg-primary salvar">Salvar</button>
         </div>
     </div>
 </div>
@@ -86,7 +87,7 @@ if ($doc_id) {
 <script>
     $(function () {
         //@formatter:off
-        var doc_id = window.localStorage.getItem('doc_id');
+        var doc_id = $("#doc_id").val();
 
         $("button[voltar]").click(function () {
             $.ajax({
@@ -279,30 +280,53 @@ if ($doc_id) {
         $(".salvar").click(function () {
             var codigo = $("#codigo").val();
 
-            $.ajax({
-                url: "./pages/editar_documento/mapa.php",
-                method: "post",
-                data: {codigo, acao: "salvar"},
-                dataType: "json",
-                success: function (response) {
-                    if (response.status) {
+            $.alert({
+                title: "Aviso",
+                content: "Deseja concluir a atualização?",
+                columnClass: "medium",
+                buttons: {
+                    sim: {
+                        text: 'sim',
+                        action: function () {
+                            $.ajax({
+                                url: "./pages/editar_documento/mapa.php",
+                                method: "post",
+                                data: {codigo, acao: "salvar"},
+                                dataType: "json",
+                                success: function (response) {
+                                    if (response.status) {
+                                        //window.localStorage.setItem('doc_id', '');
 
-                        $.ajax({
-                            url: "./pages/editar_documento/anexo.php",
-                            type: "GET",
-                            data: {doc_id},
-                            success: function (data) {
-                                $(".content-pane").html(data);
-                            }
-                        });
-                    } else {
-                        $.alert({
-                            title: 'Error',
-                            content: response.msg
-                        });
+                                        $.alert({
+                                            title: 'Sucesso',
+                                            content: response.msg,
+                                            buttons: {
+                                                ok: {
+                                                    text: 'Ok',
+                                                    action: function () {
+                                                        window.location.href = './lista-cadastros';
+                                                    }
+                                                }
+                                            }
+                                        });
+
+                                    } else {
+                                        $.alert({
+                                            title: 'Error',
+                                            content: response.msg
+                                        });
+                                    }
+                                }
+                            })
+                        }
+                    },
+                    nao: {
+                        text: 'Não',
+                        action: () => {
+                        },
                     }
                 }
-            });
+            })
         });
     });
 </script>

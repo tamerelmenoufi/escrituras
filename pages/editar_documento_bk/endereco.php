@@ -52,8 +52,10 @@ $d = [];
 
 if ($doc_id) {
     $colunas = implode(", ", ["codigo", "estado", "cidade", "bairro", "cep", "rua", "coordenadas"]);
+
     $result = mysqli_query($con, "SELECT {$colunas} FROM documentos WHERE codigo = '{$doc_id}'");
     $d = mysqli_fetch_object($result);
+    #echo "SELECT {$colunas} FROM documentos WHERE codigo = '{$doc_id}'";
 }
 ?>
 
@@ -187,6 +189,8 @@ if ($doc_id) {
             </div>
         </div>
     </div>
+
+    <input type="hidden" value="<?= $d->codigo ?>" id="doc_id">
 </form>
 
 <script>
@@ -240,7 +244,7 @@ if ($doc_id) {
 
         initialize();
 
-        var doc_id = window.localStorage.getItem('doc_id');
+        var doc_id = $("#doc_id").val();
 
         $("button[voltar]").click(function () {
             $.ajax({

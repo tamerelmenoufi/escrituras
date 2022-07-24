@@ -16,7 +16,7 @@ $doc_id = $_GET['id'];
 </style>
 
 <div id="editar-documento">
-    <div class="container">
+    <div class="container-fluid">
         <h2 class="text-center">Editar de documento</h2>
 
         <div class="row justify-content-center">
@@ -129,7 +129,7 @@ $doc_id = $_GET['id'];
         var doc_id = $("#doc_id").val();
 
         console.log(doc_id);
-        
+
         $.ajax({
             url: "./pages/editar_documento/documento.php",
             data: {doc_id},
