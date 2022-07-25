@@ -46,8 +46,23 @@ $doc_id = $_GET['doc_id'];
 
 $d = [];
 
+
 if ($doc_id) {
-    $colunas = "cartorio, tipo_documento, tipo_imovel, nivel_imovel, resumo, livro, folha";
+
+    $colunas = [
+        'cartorio',
+        'tipo_documento',
+        'tipo_imovel',
+        'nivel_imovel',
+        'resumo',
+        'livro',
+        'folha',
+        'tipo_doc_cartorio',
+        'registro',
+        'data_registro'
+    ];
+
+    $colunas = implode(', ', $colunas);
 
     $result = mysqli_query($con, "SELECT {$colunas} FROM documentos WHERE codigo = '{$doc_id}'");
     $d = mysqli_fetch_object($result);
@@ -123,6 +138,7 @@ if ($doc_id) {
                     <?php endwhile; ?>
                 </select>
             </div>
+
             <div class="col-md-6">
                 <label for="nivel_imovel" class="form-label">Nivel do imóvel</label>
                 <input
@@ -141,9 +157,63 @@ if ($doc_id) {
 
     <div class="mb-3">
         <div class="row">
+
+            <div class="col-md-4">
+                <label for="tipo_doc_cartorio" class="form-label">Tipo</label>
+                <select
+                        class="form-control"
+                        name="tipo_doc_cartorio"
+                        id="tipo_doc_cartorio"
+                >
+                    <option value=""></option>
+                    <option
+                            value="termo"
+                        <?= ($doc_id and $d->tipo_doc_cartorio == 'termo') ? 'selected' : '' ?>
+                    >
+                        Termo
+                    </option>
+                    <option
+                            value="protocolo"
+                        <?= ($doc_id and $d->tipo_doc_cartorio == 'protocolo') ? 'selected' : '' ?>
+                    >
+                        Protocolo
+                    </option>
+                </select>
+            </div>
+
+            <div class="col-md-4">
+                <label for="registro" class="form-label">Registro</label>
+
+                <input
+                        type="text"
+                        class="form-control"
+                        id="registro"
+                        name="registro"
+                        aria-describedby="registro"
+                        value="<?= $d->registro; ?>"
+                        maxlength="30"
+                >
+            </div>
+
+            <div class="col-md-4">
+                <label for="data_registro" class="form-label">Data do registro</label>
+                <input
+                        type="date"
+                        class="form-control"
+                        id="data_registro"
+                        name="data_registro"
+                        aria-describedby="data_registro"
+                        value="<?= $d->data_registro; ?>"
+                >
+            </div>
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <div class="row">
             <div class="col-md-6">
                 <label for="livro" class="form-label">
-                    Livro <span class="text-danger">*</span>
+                    Livro
                 </label>
                 <input
                         type="text"
@@ -157,7 +227,7 @@ if ($doc_id) {
 
             <div class="col-md-6">
                 <label for="folha" class="form-label">
-                    Folha <span class="text-danger">*</span>
+                    Folha
                 </label>
                 <input
                         type="text"
@@ -173,7 +243,7 @@ if ($doc_id) {
 
     <div class="mb-3">
         <label for="resumo" class="form-label">
-            Resumo <span class="text-danger">*</span>
+            Resumo
         </label>
         <textarea
                 class="form-control"
