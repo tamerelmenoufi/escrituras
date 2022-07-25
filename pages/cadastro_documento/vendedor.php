@@ -53,7 +53,7 @@ $d = [];
 if ($doc_id) {
 
     $query_vendedor = "SELECT * FROM vendedor_comprador "
-        . "WHERE documento_id = '{$doc_id}' ORDER BY tipo = 'v'";
+        . "WHERE documento_id = '{$doc_id}' AND tipo = 'v' ORDER BY codigo";
 
     $result_vendedores = mysqli_query($con, $query_vendedor);
 

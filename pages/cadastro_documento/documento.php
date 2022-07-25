@@ -87,7 +87,7 @@ if ($doc_id) {
             while ($row = mysqli_fetch_object($result)): ?>
                 <option
                         value="<?= $row->codigo ?>"
-                    <?= $row->codigo = $d->tipo_documento ? 'selected ' : ''; ?>
+                    <?= $row->codigo == $d->tipo_documento ? 'selected ' : ''; ?>
                 >
                     <?= $row->descricao ?>
                 </option>
@@ -116,7 +116,7 @@ if ($doc_id) {
                     while ($row = mysqli_fetch_object($result)): ?>
                         <option
                                 value="<?= $row->codigo ?>"
-                            <?= $row->codigo = $d->tipo_imovel ? 'selected ' : ''; ?>
+                            <?= $row->codigo == $d->tipo_imovel ? 'selected ' : ''; ?>
                         >
                             <?= $row->descricao ?>
                         </option>
@@ -152,7 +152,6 @@ if ($doc_id) {
                         name="livro"
                         aria-describedby="livro"
                         value="<?= $d->livro; ?>"
-                        required
                 >
             </div>
 
@@ -167,7 +166,6 @@ if ($doc_id) {
                         name="folha"
                         aria-describedby="folha"
                         value="<?= $d->folha; ?>"
-                        required
                 >
             </div>
         </div>
@@ -183,10 +181,11 @@ if ($doc_id) {
                 name="resumo"
                 aria-describedby="resumo"
                 rows="2"
-                required
         ><?= $d->resumo; ?></textarea>
     </div>
+
     <br>
+
     <div class="mb-3">
         <div class="d-flex flex-row justify-content-end">
             <button type="submit" class="btn bg-primary btn_next">Salvar</button>

@@ -49,10 +49,10 @@ $doc_id = $_GET['doc_id'];
 $d = [];
 
 if ($doc_id) {
-    $query_vendedor = "SELECT * FROM vendedor_comprador "
-        . "WHERE documento_id = '{$doc_id}' ORDER BY tipo = 'c'";
+    $query_comprador = "SELECT * FROM vendedor_comprador "
+        . "WHERE documento_id = '{$doc_id}' AND tipo = 'c' ORDER BY codigo";
 
-    $result_compradores = mysqli_query($con, $query_vendedor);
+    $result_compradores = mysqli_query($con, $query_comprador);
 
     $compradores = [];
 
@@ -63,6 +63,8 @@ if ($doc_id) {
 ?>
 
 <form id="form-comprador" class="needs-validation" novalidate>
+
+    <input type="hidden" id="doc_id" name="doc_id" value="<?= $doc_id ?>">
 
     <div class="card rounded-0">
         <div class="card-body">
@@ -110,7 +112,7 @@ if ($doc_id) {
         <?php foreach ($compradores as $comprador){?>
 
         $.ajax({
-            url: "./pages/editar_documento/_form_vendedor.php",
+            url: "./pages/editar_documento/_form_comprador.php",
             data: {
                 comprador_id: '<?= $comprador->codigo ?>',
                 documento_id: '<?= $comprador->documento_id; ?>',
@@ -124,7 +126,7 @@ if ($doc_id) {
 
         <?php } ?>
 
-        var doc_id = window.localStorage.getItem('doc_id');
+        var doc_id = $("#doc_id").val();
 
         $(".adicionar_comprador").click(function () {
             let tipo = $(this).attr('tipo');

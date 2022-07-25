@@ -34,28 +34,33 @@ if ($doc_id) {
     $preview = [];
 
     $path = "../../storage/documentos/{$doc_id}";
-    $files = array_diff(scandir($path), array('.', '..'));
+    $isExistsFile = "";
 
-    $i = 0;
+    if (is_dir($path)) {
+        $isExistsFile = true;
 
-    foreach ($files as $file) {
-        $preview[$i]['key'] = $i;
-        $preview[$i]['url'] = "'storage/documentos/{$doc_id}/{$file}'";
-        $preview[$i]['type'] = "pdf";
-        $preview[$i]['caption'] = $file;
+        $files = array_diff(scandir($path), array('.', '..'));
 
-        //$preview[$i]['size'] = "'{$path}/{$file}'";
+        $i = 0;
 
-        $i++;
+        foreach ($files as $file) {
+            $preview[$i]['key'] = $i;
+            $preview[$i]['url'] = "'storage/documentos/{$doc_id}/{$file}'";
+            $preview[$i]['type'] = "pdf";
+            $preview[$i]['caption'] = $file;
+            $i++;
+        }
+
+        $urlFiles = array_map(function ($f) {
+            return $f['url'];
+        }, $preview);
+
+        $initialPreviewConfig = array_map(function ($e) {
+            return "{type : '{$e['type']}', caption : '{$e['caption']}', key : '{$e['key']}', extra : {path : {$e['url']}}}";
+        }, $preview);
+    } else {
+        $isExistsFile = false;
     }
-
-    $urlFiles = array_map(function ($f) {
-        return $f['url'];
-    }, $preview);
-
-    $initialPreviewConfig = array_map(function ($e) {
-        return "{type : '{$e['type']}', caption : '{$e['caption']}', key : '{$e['key']}', extra : {path : {$e['url']}}}";
-    }, $preview);
 }
 ?>
 <!-- CSS -->
@@ -67,6 +72,9 @@ if ($doc_id) {
 <!-- CSS -->
 
 <form id="form-anexo" class="needs-validation" novalidate enctype="multipart/form-data">
+
+    <input type="hidden" id="doc_id" name="doc_id" value="<?= $doc_id ?>">
+
     <div id="anexo-container">
         <h3 class="text-center">Anexos de documentos</h3>
 
@@ -101,12 +109,10 @@ if ($doc_id) {
                 </button>
             </div>
             <div class="col-auto">
-                <button type="button" class="btn bg-primary salvar">Salvar</button>
+                <button type="button" class="btn bg-primary salvar text-white">Salvar</button>
             </div>
         </div>
     </div>
-
-    <input type="hidden" id="codigo" value="<?= $d->codigo ?>">
 
 </form>
 
@@ -123,7 +129,6 @@ if ($doc_id) {
 
 <script>
     $(document).ready(function () {
-
         $("#arquivo").fileinput({
             'theme': 'explorer-fa5',
             language: 'pt-BR',
@@ -140,11 +145,10 @@ if ($doc_id) {
             ],
             deleteUrl: './pages/actions/actionFile_delete.php'
         });
-
     });
 
     $(function () {
-        var doc_id = window.localStorage.getItem('doc_id');
+        var doc_id = $("#doc_id").val();
 
         $("button[voltar]").click(function () {
             $.ajax({
@@ -168,7 +172,7 @@ if ($doc_id) {
                 theme: 'bootstrap',
                 type: 'orange',
                 icon: 'fa fa-question',
-                content: "Tem certeza que deseja finalizar o cadastro?",
+                content: "Deseja concluir a atualização?",
                 columnClass: "medium",
                 buttons: {
                     sim: {
@@ -200,13 +204,12 @@ if ($doc_id) {
                                         theme: 'bootstrap',
                                         type: 'green',
                                         icon: 'fa fa-check',
-                                        content: 'Cadastro realizado com sucesso!',
+                                        content: 'Dados salvo com sucesso',
                                         buttons: {
                                             ok: {
                                                 text: 'Ok',
                                                 action: function () {
-                                                    window.localStorage.setItem('doc_id', '');
-                                                    window.location.href = './cadastro-documento';
+                                                    window.location.href = './lista-cadastros';
                                                 }
                                             }
                                         }

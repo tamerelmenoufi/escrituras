@@ -6,6 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data = $_POST;
     $attr = [];
     $id   = $data["doc_id"];
+
     unset($data["doc_id"]);
 
     foreach ($data as $name => $value) {
@@ -14,17 +15,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $attr = implode(", ", $attr);
 
-    if($id){
-        $sql = "UPDATE documentos SET {$attr} WHERE codigo = '{$id}'";
-    }
+    $sql = "UPDATE documentos SET {$attr} WHERE codigo = '{$id}'";
 
-    if (mysqli_query($con, $sql)) {
-        $codigo = $id ?:mysqli_insert_id($con);
+    if (@mysqli_query($con, $sql)) {
 
         echo json_encode([
             "status" => true,
             "msg"    => "Dados salvo com sucesso",
-            "codigo" => $codigo,
+            "codigo" => $id,
         ]);
     } else {
         echo json_encode([
@@ -54,7 +52,7 @@ if ($doc_id) {
 ?>
 <form id="form-documento">
 
-    <input type="hidden" value="<?= $d->codigo; ?>" id="doc_id">
+    <input type="hidden" name="doc_id" value="<?= $d->codigo; ?>" id="doc_id">
 
     <div class="mb-3">
         <label for="cartorio" class="form-label">Cartório <span class="text-danger">*</span></label>
@@ -88,7 +86,7 @@ if ($doc_id) {
             while ($row = mysqli_fetch_object($result)): ?>
                 <option
                         value="<?= $row->codigo ?>"
-                    <?= $row->codigo = $d->tipo_documento ? 'selected ' : ''; ?>
+                    <?= $row->codigo == $d->tipo_documento ? 'selected ' : ''; ?>
                 >
                     <?= $row->descricao ?>
                 </option>
@@ -117,13 +115,14 @@ if ($doc_id) {
                     while ($row = mysqli_fetch_object($result)): ?>
                         <option
                                 value="<?= $row->codigo ?>"
-                            <?= $row->codigo = $d->tipo_imovel ? 'selected ' : ''; ?>
+                            <?= $row->codigo == $d->tipo_imovel ? 'selected ' : ''; ?>
                         >
                             <?= $row->descricao ?>
                         </option>
                     <?php endwhile; ?>
                 </select>
             </div>
+
             <div class="col-md-6">
                 <label for="nivel_imovel" class="form-label">Nivel do imóvel</label>
                 <input
@@ -144,7 +143,7 @@ if ($doc_id) {
         <div class="row">
             <div class="col-md-6">
                 <label for="livro" class="form-label">
-                    Livro <span class="text-danger">*</span>
+                    Livro
                 </label>
                 <input
                         type="text"
@@ -153,13 +152,12 @@ if ($doc_id) {
                         name="livro"
                         aria-describedby="livro"
                         value="<?= $d->livro; ?>"
-                        required
                 >
             </div>
 
             <div class="col-md-6">
                 <label for="folha" class="form-label">
-                    Folha <span class="text-danger">*</span>
+                    Folha
                 </label>
                 <input
                         type="text"
@@ -168,7 +166,6 @@ if ($doc_id) {
                         name="folha"
                         aria-describedby="folha"
                         value="<?= $d->folha; ?>"
-                        required
                 >
             </div>
         </div>
@@ -176,7 +173,7 @@ if ($doc_id) {
 
     <div class="mb-3">
         <label for="resumo" class="form-label">
-            Resumo <span class="text-danger">*</span>
+            Resumo
         </label>
         <textarea
                 class="form-control"
@@ -184,7 +181,6 @@ if ($doc_id) {
                 name="resumo"
                 aria-describedby="resumo"
                 rows="2"
-                required
         ><?= $d->resumo; ?></textarea>
     </div>
 
@@ -192,8 +188,8 @@ if ($doc_id) {
 
     <div class="mb-3">
         <div class="d-flex flex-row justify-content-between">
-            <button type="button" class="btn bg-primary" onclick="window.history.back()">Voltar</button>
-            <button type="submit" class="btn bg-primary btn_next">Salvar</button>
+            <button type="button" class="btn bg-secondary text-white" onclick="window.history.back()">Voltar</button>
+            <button type="submit" class="btn bg-primary btn_next text-white">Salvar</button>
         </div>
     </div>
 </form>
@@ -202,8 +198,6 @@ if ($doc_id) {
     $(function () {
         var form = $("#form-documento").validate();
 
-        var doc_id = window.localStorage.getItem('doc_id');
-
         $("#form-documento").submit(function (e) {
             e.preventDefault();
 
@@ -211,29 +205,32 @@ if ($doc_id) {
 
             var formData = $(this).serializeArray();
 
-            if (doc_id) {
-                formData.push({
-                    name: "doc_id",
-                    value: doc_id,
-                });
-            }
-
             $.ajax({
                 url: "./pages/editar_documento/documento.php",
                 type: "POST",
                 data: formData,
                 dataType: "JSON",
                 success: function (data) {
-                    window.localStorage.setItem('doc_id', data.codigo);
+                    //window.localStorage.setItem('doc_id', data.codigo);
 
-                    $.ajax({
-                        url: "./pages/editar_documento/vendedor.php",
-                        type: "GET",
-                        data: {doc_id: data.codigo},
-                        success: function (data) {
-                            $(".content-pane").html(data);
-                        }
-                    })
+                    if (data.status) {
+                        $.ajax({
+                            url: "./pages/editar_documento/vendedor.php",
+                            type: "GET",
+                            data: {doc_id: data.codigo},
+                            success: function (data) {
+                                $(".content-pane").html(data);
+                            }
+                        })
+                    } else {
+                        $.alert({
+                            title: 'Erro',
+                            content: data.msg,
+                            theme: 'bootstrap',
+                            type: 'red',
+                            icon: 'fa fa-warning',
+                        });
+                    }
                 }
             });
 

@@ -60,6 +60,8 @@ if ($doc_id) {
 <form id="form-endereco">
     <h4 class="my-2 text-center">Endereco</h4>
 
+    <input type="hidden" id="doc_id" name="doc_id" value="<?= $doc_id ?>">
+
     <div class="mb-3">
         <label for="estado" class="form-label">Estado <span class="text-danger">*</span></label>
         <select
@@ -183,7 +185,7 @@ if ($doc_id) {
                 </button>
             </div>
             <div class="col-auto">
-                <button type="submit" class="btn bg-primary btn_next">Salvar</button>
+                <button type="submit" class="btn bg-primary btn_next text-white">Salvar</button>
             </div>
         </div>
     </div>
@@ -240,7 +242,7 @@ if ($doc_id) {
 
         initialize();
 
-        var doc_id = window.localStorage.getItem('doc_id');
+        var doc_id = $("#doc_id").val();
 
         $("button[voltar]").click(function () {
             $.ajax({

@@ -50,7 +50,7 @@ $d = [];
 
 if ($doc_id) {
     $query_vendedor = "SELECT * FROM vendedor_comprador "
-        . "WHERE documento_id = '{$doc_id}' ORDER BY tipo = 'c'";
+        . "WHERE documento_id = '{$doc_id}' AND tipo = 'c' ORDER BY codigo";
 
     $result_compradores = mysqli_query($con, $query_vendedor);
 
@@ -110,7 +110,7 @@ if ($doc_id) {
         <?php foreach ($compradores as $comprador){?>
 
         $.ajax({
-            url: "./pages/cadastro_documento/_form_vendedor.php",
+            url: "./pages/cadastro_documento/_form_comprador.php",
             data: {
                 comprador_id: '<?= $comprador->codigo ?>',
                 documento_id: '<?= $comprador->documento_id; ?>',
@@ -155,9 +155,7 @@ if ($doc_id) {
 
         $("#form-comprador").submit(function (e) {
             e.preventDefault();
-
             //if (!form.valid()) return false;
-
             var formData = $(this).serializeArray();
 
             if (doc_id) {

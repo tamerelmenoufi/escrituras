@@ -53,7 +53,7 @@ $d = [];
 if ($doc_id) {
 
     $query_vendedor = "SELECT * FROM vendedor_comprador "
-        . "WHERE documento_id = '{$doc_id}' ORDER BY tipo = 'v'";
+        . "WHERE documento_id = '{$doc_id}' AND tipo = 'v' ORDER BY codigo";
 
     $result_vendedores = mysqli_query($con, $query_vendedor);
 
@@ -104,7 +104,11 @@ if ($doc_id) {
                 </button>
             </div>
             <div class="col-auto">
-                <button type="submit" class="btn bg-primary text-white btn_next">Salvar</button>
+                <button
+                        type="button"
+                        class="btn bg-primary text-white btn_next proximo"
+                >Salvar
+                </button>
             </div>
         </div>
     </div>
@@ -112,6 +116,8 @@ if ($doc_id) {
 
 <script>
     $(function () {
+
+        var doc_id = $("#doc_id").val();
 
         <?php foreach ($vendedores as $vendedor){?>
 
@@ -129,8 +135,6 @@ if ($doc_id) {
         });
 
         <?php } ?>
-
-        var doc_id = window.localStorage.getItem('doc_id');
 
         $("button[voltar]").click(function () {
             $.ajax({
@@ -159,35 +163,46 @@ if ($doc_id) {
             })
         });
 
-        $("#form-vendedor").submit(function (e) {
-            e.preventDefault();
-
-            var formData = $(this).serializeArray();
-
-            if (doc_id) {
-                formData.push({
-                    name: "doc_id",
-                    value: doc_id,
-                });
-            }
-
+        $(".proximo").click(function () {
             $.ajax({
-                url: "./pages/editar_documento/vendedor.php",
-                type: "post",
-                data: formData,
-                dataType: "json",
+                url: "./pages/editar_documento/comprador.php",
+                type: "get",
+                data: {doc_id},
                 success: function (data) {
-
-                    $.ajax({
-                        url: "./pages/editar_documento/comprador.php",
-                        type: "get",
-                        data: {doc_id},
-                        success: function (data) {
-                            $(".content-pane").html(data);
-                        }
-                    });
+                    $(".content-pane").html(data);
                 }
             });
         });
+
+        /* $("#form-vendedor").submit(function (e) {
+             e.preventDefault();
+
+             var formData = $(this).serializeArray();
+
+             if (doc_id) {
+                 formData.push({
+                     name: "doc_id",
+                     value: doc_id,
+                 });
+             }
+
+             $.ajax({
+                 url: "./pages/editar_documento/vendedor.php",
+                 type: "post",
+                 data: formData,
+                 dataType: "json",
+                 success: function (data) {
+
+                     $.ajax({
+                         url: "./pages/editar_documento/comprador.php",
+                         type: "get",
+                         data: {doc_id},
+                         success: function (data) {
+                             $(".content-pane").html(data);
+                         }
+                     });
+                 }
+             });
+         });*/
     });
 </script>

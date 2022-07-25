@@ -48,6 +48,10 @@ $doc_id = $_GET['id'];
                                 class="nav-link"
                                 id="mapa-tab"
                                 href="#mapa">Mapa</a>
+                        <a
+                                class="nav-link"
+                                id="anexo-tab"
+                                href="#anexo">Anexo</a>
                     </div>
                 </nav>
 
