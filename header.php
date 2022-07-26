@@ -30,17 +30,25 @@
                 <li><a class="nav-link scrollto" href="contato">Contato</a></li>
                 <?php if (!isset($_SESSION['usuario'])) { ?>
                     <li><a class="nav-link scrollto" href="login">Login</a></li>
-                <?php } else { ?>
-                    <li><a class="nav-link logout" href="#">Sair</a></li>
+                <?php } ?>
+
+                <?php
+                if (isset($_SESSION['usuario'])) { ?>
+                    <li class="dropdown">
+                        <a class="nav-link" href="#">
+                            <i class="fa-solid fa-user me-1"></i>
+                            <?= $_SESSION['usuario']['nome'] ?>
+                            <i class="bi bi-chevron-down dropdown-indicator"></i>
+                        </a>
+                        <ul>
+                            <li style="min-width: 100%"><a class="nav-link logout" href="#">Sair</a></li>
+                        </ul>
+                    </li>
                 <?php } ?>
             </ul>
             <i class="bi bi-list mobile-nav-toggle d-none"></i>
         </nav><!-- .navbar -->
 
-        <?php
-        if (isset($_SESSION['usuario'])) { ?>
-            <a href="#"><i class="fa-solid fa-user"></i> <?= $_SESSION['usuario']['nome'] ?></a>
-        <?php } ?>
         <!--<a class="btn-getstarted scrollto" href="index.html#about">Cadastre-se</a>-->
     </div>
 </header><!-- End Header -->

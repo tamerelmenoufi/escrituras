@@ -25,11 +25,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' and $_GET['acao'] === 'pesquisar') {
     $data = $_GET;
 
     if (!empty($data['vendedor'])) {
-        $search_array[] = "(d.vendedor_nome LIKE '%{$data['vendedor']}%' OR d.vendedor_cpf LIKE '%{$data['vendedor']}%' OR d.vendedor_cnpj LIKE '%{$data['vendedor']}%')";
+        $search_array[] = "(vendedor.nome LIKE '%{$data['vendedor']}%' OR vendedor.cpf LIKE '%{$data['vendedor']}%' OR vendedor.cnpj LIKE '%{$data['vendedor']}%')";
     }
 
     if (!empty($data['comprador'])) {
-        $search_array[] = "(d.comprador_nome LIKE '%{$data['comprador']}%' OR d.comprador_cpf LIKE '%{$data['comprador']}%')";
+        $search_array[] = "(comprador.nome LIKE '%{$data['comprador']}%' OR comprador.cpf LIKE '%{$data['comprador']}%' OR comprador.cnpj LIKE '%{$data['comprador']}%')";
     }
 
     if (!empty($data['localidade'])) {
@@ -46,8 +46,6 @@ $colunas_array = [
     "d.cartorio",
     "ti.descricao AS ti_descricao",
     "d.situacao",
-    "vendedor_nome",
-    "comprador_nome",
     "c.nome AS end_municipio",
     "b.nome AS end_bairro",
 ];
@@ -55,21 +53,28 @@ $colunas_array = [
 $colunas = implode(", ", $colunas_array);
 
 $query = "SELECT {$colunas} FROM documentos d "
+    . "LEFT JOIN vendedor_comprador vendedor ON d.codigo = vendedor.documento_id AND vendedor.tipo = 'v' "
+    . "LEFT JOIN vendedor_comprador comprador ON d.codigo = comprador.documento_id AND comprador.tipo = 'c' "
     . "LEFT JOIN aux_tipo_imovel ti ON ti.codigo = d.tipo_imovel "
     . "LEFT JOIN aux_cidades c ON c.codigo = d.cidade "
     . "LEFT JOIN aux_bairros b ON b.codigo = d.bairro "
     . "LEFT JOIN aux_estados e ON e.codigo = d.estado "
-    . "WHERE true {$search} LIMIT 10";
+    . "WHERE true {$search} "
+    . "GROUP BY d.codigo "
+    . "LIMIT 10";
+
 #echo $query;
+
 $result = mysqli_query($con, $query);
 
 ?>
 
 <style>
-    table#tabela_lista_cadastro tbody{
-       font-size:14px
+    table#tabela_lista_cadastro tbody {
+        font-size: 14px
     }
 </style>
+
 <div class="container py-5">
     <h2 class="text-center">Lista de cadastros</h2>
 
@@ -130,15 +135,16 @@ $result = mysqli_query($con, $query);
 
 
             </div>
+
             <div class="row">
                 <div class="col-md-12 mt-2">
-                    <button class="btn btn-success float-end ">Buscar</button>
+                    <button class="btn bg-primary float-end text-white">Buscar</button>
                 </div>
             </div>
         </form>
     </div>
 
-    <div style="margin-bottom: 6rem">
+    <div class="table-responsive" style="margin-bottom: 6rem">
         <table class="table my-5" id="tabela_lista_cadastro">
             <thead>
             <tr>
@@ -186,6 +192,9 @@ $result = mysqli_query($con, $query);
             $.alert({
                 title: "Aviso",
                 content: "Tem certeza que deseja excluir?",
+                theme: 'bootstrap',
+                type: 'orange',
+                icon: 'fa fa-question',
                 buttons: {
                     sim: {
                         text: 'sim',
@@ -199,14 +208,20 @@ $result = mysqli_query($con, $query);
                                     if (response.status) {
                                         $.alert({
                                             title: 'Sucesso',
-                                            content: response.msg
+                                            content: response.msg,
+                                            theme: 'bootstrap',
+                                            type: 'green',
+                                            icon: 'fa fa-check',
                                         });
 
                                         $(`#documento-${codigo}`).remove();
                                     } else {
                                         $.alert({
                                             title: 'Error',
-                                            content: response.msg
+                                            content: response.msg,
+                                            theme: 'bootstrap',
+                                            type: 'red',
+                                            icon: 'fa fa-warning',
                                         });
                                     }
                                 }
