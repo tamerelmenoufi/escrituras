@@ -27,31 +27,31 @@ $doc_id = $_GET['id'];
                         <a
                                 class="nav-link active"
                                 id="documento-tab"
-                                href="#documento">Documento</a>
+                                href="documento">Documento</a>
 
                         <a
                                 class="nav-link"
                                 id="vendedor-tab"
-                                href="#vendedor">Vendedor</a>
+                                href="vendedor">Vendedor</a>
 
                         <a
                                 class="nav-link"
                                 id="comprador-tab"
-                                href="#comprador">Comprador</a>
+                                href="comprador">Comprador</a>
 
                         <a
                                 class="nav-link"
                                 id="endereco-tab"
-                                href="#endereco">Endereço</a>
+                                href="endereco">Endereço</a>
 
                         <a
                                 class="nav-link"
                                 id="mapa-tab"
-                                href="#mapa">Mapa</a>
+                                href="mapa">Mapa</a>
                         <a
                                 class="nav-link"
                                 id="anexo-tab"
-                                href="#anexo">Anexo</a>
+                                href="anexo">Anexo</a>
                     </div>
                 </nav>
 
