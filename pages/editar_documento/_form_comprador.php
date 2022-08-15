@@ -56,7 +56,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' and $_POST['acao'] === 'excluir'){
 
 
 if($_GET['acao'] == 'novo'){
-    $q = "INSERT INTO vendedor_comprador set documento_id = '{$_SESSION['id']}', tipo = 'c'";
+    echo $q = "INSERT INTO vendedor_comprador set documento_id = '{$_SESSION['id']}', tipo = 'c'";
     mysqli_query($con, $q);
     $_GET['comprador_id'] = mysqli_insert_id();
 }
