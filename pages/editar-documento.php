@@ -113,7 +113,7 @@ $doc_id = $_GET['id'];
         });
 
         $(".nav-link").click(function(){
-            $("#nav-link").removeClass('active');
+            $(".nav-link").removeClass('active');
             $(this).addClass('active');
             console.log('clicando na TAB');
         });
