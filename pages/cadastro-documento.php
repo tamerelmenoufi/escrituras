@@ -94,6 +94,11 @@ include './config/includes.php';
 
         $("#nav-tab a").click(function (e) {
             e.preventDefault();
+
+            $("#nav-tab a").removeClass('active');
+            $(this).addClass('active');
+            console.log('clicando na TAB');
+
         });
 
 
@@ -108,12 +113,6 @@ include './config/includes.php';
             next_tab.next('a').addClass('active');
         });
 
-
-        $("#nav-tab").click(function(){
-            $("#nav-tab a").removeClass('active');
-            $(this).find("a").addClass('active');
-            console.log('clicando na TAB');
-        });
 
 
         $(document).on("click", ".btn_prev", function (e) {
