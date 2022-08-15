@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit();
 }
 
-$doc_id = $_GET['doc_id'];
+$doc_id = $_SESSION['id'];;
 
 if ($doc_id) {
     $result = mysqli_query($con, "SELECT codigo, coordenadas, poligono FROM documentos WHERE codigo = '{$doc_id}'");

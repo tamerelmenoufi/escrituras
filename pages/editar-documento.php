@@ -1,7 +1,11 @@
 <?php
 include './config/includes.php';
 
-$doc_id = $_GET['id'];
+if($_GET['id'])  $_SESSION['id'];
+
+$doc_id = $_SESSION['id'];
+
+
 ?>
 
 <style>

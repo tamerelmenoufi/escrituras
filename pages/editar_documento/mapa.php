@@ -29,7 +29,7 @@ if ($_POST['acao'] == 'salvar') {
     exit();
 }
 
-$doc_id = $_GET['doc_id'];
+$doc_id = $_SESSION['id'];
 
 $d = [];
 
