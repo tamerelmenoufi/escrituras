@@ -154,7 +154,8 @@ if ($doc_id) {
                 url: "./pages/editar_documento/_form_vendedor.php",
                 data: {
                     documento_id,
-                    tipo
+                    tipo,
+                    acao:'novo'
                 },
                 dataType: "html",
                 success: function (data) {
