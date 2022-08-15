@@ -163,7 +163,7 @@ $doc_id = $_GET['id'];
         });
 
 
-        $("button[ocp]").click(function(){
+        $("button[opc]").click(function(){
             opc = $(this).attr("opc");
 
             window.location.href=`./${opc}`;
