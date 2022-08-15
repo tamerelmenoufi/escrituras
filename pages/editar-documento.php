@@ -115,7 +115,8 @@ $doc_id = $_GET['id'];
         $(".nav-link").click(function(){
             $(".nav-link").removeClass('active');
             $(this).addClass('active');
-            console.log('clicando na TAB');
+            local = $(this).attr("href");
+            console.log('clicando na TAB' + local);
         });
 
 
