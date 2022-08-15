@@ -21,7 +21,7 @@ $doc_id = $_GET['id'];
 
         <div class="row justify-content-center">
             <div class="col-md-10 col-lg-8 my-4">
-                <div style="text-align:right" >
+                <div style="text-align:right" class="my-4">
                     <button opc="lista-cadastros" class="btn btn-success">Lista de Cadastros</button>
                 </div>
                 <nav>
