@@ -117,6 +117,15 @@ $doc_id = $_GET['id'];
             $(this).addClass('active');
             local = $(this).attr("href");
             console.log('clicando na TAB' + local);
+
+            $.ajax({
+                url: `./pages/editar_documento/${local}.php`,
+                // data: {doc_id},
+                success: function (data) {
+                    $(".content-pane").html(data);
+                }
+            });
+
         });
 
 
