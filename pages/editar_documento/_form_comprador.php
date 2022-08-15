@@ -54,13 +54,19 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' and $_POST['acao'] === 'excluir'){
     exit();
 }
 
-$documento_id = $_GET['documento_id'];
-$id           = $_GET['comprador_id'];
-$tipo         = $_GET['tipo'];
-#@formatter:on
 
 print_r($_GET);
 
+if($_GET['novo']){
+    $q = "INSERT INTO vendedor_comprador set documento_id = '{$_SESSION['id']}', tipo = 'c'";
+    mysqli_query($con, $q);
+    $_GET['comprador_id'] = mysqli_insert_id();
+}
+
+$documento_id = $_SESSION['id'];
+$id           = $_GET['comprador_id'];
+$tipo         = 'c';
+#@formatter:on
 
 $d = [];
 
