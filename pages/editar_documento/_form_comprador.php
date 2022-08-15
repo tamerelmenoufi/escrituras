@@ -26,6 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' and $_POST['acao'] === 'salvar') {
         echo json_encode([
             "status" => true,
             "msg"    => "Dados salvo com sucesso!",
+            "query"    => $sql,
         ]);
     } else {
         echo json_encode([
@@ -855,7 +856,7 @@ if ($documento_id) {
                     if (data.status) {
                         $.alert({
                             title: 'Sucesso',
-                            content: data.msg,
+                            content: data.query,
                             theme: 'bootstrap',
                             type: 'green',
                             icon: 'fa fa-check',
