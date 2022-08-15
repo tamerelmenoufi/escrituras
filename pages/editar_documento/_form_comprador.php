@@ -57,6 +57,9 @@ $id           = $_GET['comprador_id'];
 $tipo         = $_GET['tipo'];
 #@formatter:on
 
+print_r($_GET);
+
+
 $d = [];
 
 if ($documento_id) {
