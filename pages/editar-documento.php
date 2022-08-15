@@ -161,6 +161,15 @@ $doc_id = $_GET['id'];
                 $(".content-pane").html(data);
             }
         });
+
+
+        $("button[ocp]").click(function(){
+            opc = $(this).attr("opc");
+
+            window.location.href=`./${opc}`;
+        });
+
+
     });
 
 
