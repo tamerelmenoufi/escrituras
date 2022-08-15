@@ -33,6 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' and $_POST['acao'] === 'salvar') {
             "status"      => true,
             "msg"         => "Error ao salvar!",
             "mysql_error" => mysqli_error($con),
+            "query"    => $sql,
         ]);
     }
 
