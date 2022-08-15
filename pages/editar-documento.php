@@ -20,6 +20,9 @@ $doc_id = $_GET['id'];
         <h2 class="text-center">Editar de documento</h2>
 
         <div class="row justify-content-center">
+            <div class="col-md-12 my-3">
+                <button class="btn btn-success">Lista de Cadastros</button>
+            </div>
             <div class="col-md-10 col-lg-8 my-4">
 
                 <nav>
