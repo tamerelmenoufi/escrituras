@@ -677,14 +677,14 @@ if ($documento_id) {
                             </div>
                             <div class="col-md-8">
                                 <div class="mb-3">
-                                    <label for="procurador_telefone" class="form-label">E-Mail</label>
+                                    <label for="procurador_email" class="form-label">E-Mail</label>
                                     <input
-                                            type="procurador_telefone"
+                                            type="procurador_email"
                                             class="form-control"
-                                            id="procurador_telefone"
-                                            name="procurador_telefone"
-                                            aria-describedby="procurador_telefone"
-                                            value="<?= $d->procurador_telefone; ?>"
+                                            id="procurador_email"
+                                            name="procurador_email"
+                                            aria-describedby="procurador_email"
+                                            value="<?= $d->procurador_email; ?>"
                                             maxlength="80"
                                     >
                                 </div>
