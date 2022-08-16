@@ -96,7 +96,7 @@ $d = [];
                aria-controls="collapseComprador"
                style="flex: 1"
             >
-                Comprador
+                Vendedor
             </a>
             <span>
                 <button type="button" class="btn btn-outline-danger btn-sm remover_comprador<?= $uniqued ?>">
@@ -106,7 +106,7 @@ $d = [];
         </div>
 
         <div class="card-body collapse" id="collapseComprador<?= $uniqued ?>">
-            <h5 class="text-center">Formulário Comprador</h5>
+            <h5 class="text-center">Formulário Vendedor</h5>
 
             <div id="comprador-container">
 
@@ -413,7 +413,7 @@ $d = [];
                                 onclick="exibiContainer(this,'comprador_procurador-container<?= $uniqued ?>')"
                         >
                         <label class="form-check-label" for="check_procurador<?= $uniqued ?>">
-                            Comprador procurador?
+                            Vendedor procurador?
                         </label>
                     </div>
                 </div>
