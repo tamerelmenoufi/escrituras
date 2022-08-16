@@ -192,7 +192,7 @@ $d = [];
 
                     <div class="row">
                         <div class="col-md-4">
-                            <div class="mb-3" id="container_cnpj<?= $uniqued ?>" style="display: none">
+                            <div class="mb-3" id="container_cnpj<?= $uniqued ?>">
                                 <label for="cnpj<?= $uniqued ?>" class="form-label">
                                     CNPJ <span class="text-danger">*</span>
                                 </label>
