@@ -454,24 +454,21 @@ $d = [];
                             <div class="row">
                                     <div class="col-md-6">
 
-                                        <div class="mb-3" id="procurador_container_cnpj<?= $uniqued ?>" style="display: none">
-                                        <label for="procurador_cnpj<?= $uniqued ?>" class="form-label">
-                                            CNPJ <span class="text-danger">*</span>
+                                        <label for="procurador_cpf<?= $uniqued ?>" class="form-label">
+                                            CPF <span class="text-danger">*</span>
                                         </label>
                                         <input
                                                 type="text"
                                                 class="form-control"
-                                                id="procurador_cnpj<?= $uniqued ?>"
-                                                name="procurador_cnpj"
-                                                aria-describedby="procurador_cnpj"
-                                                value="<?= $d->procurador_cnpj; ?>"
+                                                id="procurador_cpf<?= $uniqued ?>"
+                                                name="procurador_cpf"
+                                                aria-describedby="procurador_cpf"
+                                                value="<?= $d->procurador_cpf; ?>"
                                         >
-                                        </div>
 
                                     </div>
 
                                     <div class="col-md-6">
-                                        <div class="mb-3">
                                             <label for="procurador_rg" class="form-label">
                                                 RG <span class="text-danger">*</span>
                                             </label>
@@ -485,14 +482,30 @@ $d = [];
                                                     maxlength="20"
                                                     required
                                             >
-                                        </div>
                                     </div>
 
                             </div>
 
 
                             <div class="row">
-                                <div class="col-md-6">
+
+                                <div class="col-md-4">
+
+                                    <label for="procurador_cnpj<?= $uniqued ?>" class="form-label">
+                                        CNPJ <span class="text-danger">*</span>
+                                    </label>
+                                    <input
+                                            type="text"
+                                            class="form-control"
+                                            id="procurador_cnpj<?= $uniqued ?>"
+                                            name="procurador_cnpj"
+                                            aria-describedby="procurador_cnpj"
+                                            value="<?= $d->procurador_cnpj; ?>"
+                                    >
+
+                                </div>
+
+                                <div class="col-md-4">
                                     <div class="mb-3">
                                         <label for="procurador_inscricao_estadual" class="form-label">
                                             Inscrição estadual
@@ -509,7 +522,7 @@ $d = [];
                                     </div>
                                 </div>
 
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="mb-3">
                                         <label for="procurador_inscricao_municipal" class="form-label">
                                             Inscrição municipal
