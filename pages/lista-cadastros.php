@@ -5,6 +5,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' and $_POST['acao'] === "novo") {
     include_once "../config/ConnectionMySQL.php";
 
     mysqli_query($con, "INSERT INTO documentos SET cartorio = '_NOVO REGISTRO'");
+
+    echo json_encode([
+        "status" => true,
+        "msg" => "Registro excluído com sucesso"
+    ]);
+
     exit();
 }
 
@@ -220,7 +226,6 @@ $result = mysqli_query($con, $query);
                                 dataType: "json",
                                 success: function (response) {
 
-                                    alert('ok')
                                     // window.location.href='./lista-cadastros';
 
                                     // if (response.status) {
