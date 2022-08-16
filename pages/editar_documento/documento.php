@@ -66,6 +66,8 @@ if ($doc_id) {
 
     $result = mysqli_query($con, "SELECT {$colunas} FROM documentos WHERE codigo = '{$doc_id}'");
     $d = mysqli_fetch_object($result);
+
+
 }
 
 ?>
