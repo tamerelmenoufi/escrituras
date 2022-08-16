@@ -239,7 +239,7 @@ $result = mysqli_query($con, $query);
                                                 ok:{
                                                     text:'ok',
                                                     action:function(){
-                                                        alert('chegou aqui');
+                                                        window.location.href='./lista-cadastros'
                                                     }
                                                 }
                                             }
