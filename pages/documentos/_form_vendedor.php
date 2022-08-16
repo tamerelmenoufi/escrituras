@@ -914,7 +914,7 @@ $d = [];
 
             $.alert({
                 title: 'Aviso',
-                content: 'Deseja realmente excluir?',
+                content: 'Deseja realmente excluir XXX?',
                 theme: 'bootstrap',
                 type: 'red',
                 icon: 'fa fa-warning',
