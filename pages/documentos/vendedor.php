@@ -159,7 +159,8 @@ if ($doc_id) {
                 },
                 dataType: "html",
                 success: function (data) {
-                    $(".form-vendedor").append(data);
+                    $(".form-vendedor").load("./pages/documentos/_form_vendedor.php");
+                    // $(".form-vendedor").append(data);
                 }
             })
         });
