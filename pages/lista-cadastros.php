@@ -220,7 +220,8 @@ $result = mysqli_query($con, $query);
                                 dataType: "json",
                                 success: function (response) {
 
-                                    window.location.href='./lista-cadastros';
+                                    alert('ok')
+                                    // window.location.href='./lista-cadastros';
 
                                     // if (response.status) {
 
