@@ -786,7 +786,7 @@ $d = [];
     }
 
     initExibiContainer("<?= $d->check_procurador?>", "comprador_procurador-container<?= $uniqued ?>");
-    exibeCpfCnpj("<?= $d->tipo_pessoa?>");
+    // exibeCpfCnpj("<?= $d->tipo_pessoa?>");
     exibeCpfCnpjProcurador("<?= $d->procurador_tipo_pessoa?>");
 
     $(function () {
