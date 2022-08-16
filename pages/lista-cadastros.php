@@ -219,22 +219,11 @@ $result = mysqli_query($con, $query);
                                 data: {acao: "novo"},
                                 dataType: "json",
                                 success: function (response) {
+
+                                    window.location.href='./lista-cadastros';
+
                                     // if (response.status) {
-                                        $.alert({
-                                            title: 'Sucesso',
-                                            content: 'Cadastro realizado com sucesso!',
-                                            theme: 'bootstrap',
-                                            type: 'green',
-                                            icon: 'fa fa-check',
-                                            buttons:{
-                                                ok:{
-                                                    text:'ok',
-                                                    action:function(){
-                                                        window.location.href='./lista-cadastros';
-                                                    }
-                                                }
-                                            }
-                                        });
+
 
                                     // } else {
                                     //     $.alert({
