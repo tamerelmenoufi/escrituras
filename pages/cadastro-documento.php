@@ -127,7 +127,7 @@ include './config/includes.php';
         var doc_id = window.localStorage.getItem('doc_id');
 
         $.ajax({
-            url: "./pages/cadastro_documento/documento.php",
+            url: "./pages/documentos/documento.php",
             data: {doc_id},
             success: function (data) {
                 $(".content-pane").html(data);

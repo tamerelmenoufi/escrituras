@@ -125,7 +125,7 @@ $doc_id = $_SESSION['id'];
             console.log('clicando na TAB' + local);
 
             $.ajax({
-                url: `./pages/editar_documento/${local}.php`,
+                url: `./pages/documentos/${local}.php`,
                 // data: {doc_id},
                 success: function (data) {
                     $(".content-pane").html(data);
@@ -158,7 +158,7 @@ $doc_id = $_SESSION['id'];
         console.log(doc_id);
 
         $.ajax({
-            url: "./pages/editar_documento/documento.php",
+            url: "./pages/documentos/documento.php",
             data: {doc_id},
             success: function (data) {
                 $(".content-pane").html(data);
