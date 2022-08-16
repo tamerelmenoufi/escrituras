@@ -94,7 +94,7 @@ if ($documento_id) {
                 Vendedor
             </a>
             <span>
-                <button type="button" class="btn btn-outline-danger btn-sm remover_vendedor">
+                <button type="button" class="btn btn-outline-danger btn-sm remover_vendedor<?= $uniqued ?>">
                     <i class="fa-solid fa-trash-can"></i>
                 </button>
             </span>
@@ -874,7 +874,7 @@ if ($documento_id) {
             exibeCpfCnpj($(this).val())
         });
 
-        $(".remover_vendedor").click(function () {
+        $(".remover_vendedor<?= $uniqued ?>").click(function () {
             var id = $("#id<?= $uniqued ?>").val();
 
             $.alert({
