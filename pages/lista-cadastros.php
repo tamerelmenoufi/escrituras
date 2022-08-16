@@ -137,7 +137,10 @@ $result = mysqli_query($con, $query);
             </div>
 
             <div class="row">
-                <div class="col-md-12 mt-2">
+                <div class="col-md-6 mt-2">
+                    <button class="btn bg-success float-start text-white">Novo</button>
+                </div>
+                <div class="col-md-6 mt-2">
                     <button class="btn bg-primary float-end text-white">Buscar</button>
                 </div>
             </div>
