@@ -72,7 +72,7 @@ if ($doc_id) {
 
 
     <div class="mb-3">
-        <label for="municipio_cartorio" class="form-label">Tipo de documento <span
+        <label for="municipio_cartorio" class="form-label">município em foi lavrado a escritura <span
                     class="text-danger">*</span></label>
         <select
                 class="form-control"
@@ -84,7 +84,7 @@ if ($doc_id) {
         >
             <option value=""></option>
             <?php
-            $query_municipio_cartorio = "SELECT * FROM aux_cidades WHERE deletado != '1' and estado = '3' ORDER BY nome";
+            $query_municipio_cartorio = "SELECT * FROM aux_cidades WHERE estado = '3' ORDER BY nome";
             $result = mysqli_query($con, $query_municipio_cartorio);
 
             while ($row = mysqli_fetch_object($result)): ?>
