@@ -26,12 +26,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' and $_POST['acao'] === 'salvar') {
         echo json_encode([
             "status" => true,
             "msg"    => "Dados salvo com sucesso!",
+            "query"    => $sql,
         ]);
     } else {
         echo json_encode([
             "status"      => true,
             "msg"         => "Error ao salvar!",
             "mysql_error" => mysqli_error($con),
+            "query"    => $sql,
         ]);
     }
 
@@ -52,16 +54,17 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' and $_POST['acao'] === 'excluir'){
     exit();
 }
 
+
 if($_GET['acao'] == 'novo'){
-    $q = "INSERT INTO vendedor_comprador set documento_id = '{$_SESSION['id']}', tipo = 'v'";
+    $q = "INSERT INTO vendedor_comprador set documento_id = '{$_SESSION['id']}', tipo = 'c'";
     mysqli_query($con, $q);
-    $_GET['vendedor_id'] = mysqli_insert_id();
-    echo $_GET['vendedor_id'];
+    $_GET['comprador_id'] = mysqli_insert_id();
+    echo $_GET['comprador_id'];
     exit();
 }
 
 $documento_id = $_SESSION['id'];
-$id           = $_GET['vendedor_id'];
+$id           = $_GET['comprador_id'];
 $tipo         = 'v';
 #@formatter:on
 
@@ -75,7 +78,7 @@ $d = [];
 
 ?>
 
-<form id="form-vendedor<?= $uniqued ?>" class="needs-validation mb-2" novalidate>
+<form id="form-comprador<?= $uniqued ?>" class="needs-validation mb-2" novalidate>
 
     <input type="hidden" id="id<?= $uniqued ?>" name="id" value="<?= $d->codigo; ?>">
 
@@ -87,48 +90,92 @@ $d = [];
 
         <div class="card-header d-flex flex-row justify-content-between align-items-center border-bottom-0 bg-white">
             <a data-bs-toggle="collapse"
-               href="#collapseVendedor<?= $uniqued ?>"
+               href="#collapseComprador<?= $uniqued ?>"
                role="button"
                aria-expanded="false"
-               aria-controls="collapseVendedor"
+               aria-controls="collapseComprador"
                style="flex: 1"
             >
-                Vendedor
+                Comprador
             </a>
             <span>
-                <button type="button" class="btn btn-outline-danger btn-sm remover_vendedor<?= $uniqued ?>">
+                <button type="button" class="btn btn-outline-danger btn-sm remover_comprador<?= $uniqued ?>">
                     <i class="fa-solid fa-trash-can"></i>
                 </button>
             </span>
         </div>
 
-        <div class="card-body collapse" id="collapseVendedor<?= $uniqued ?>">
-            <h5 class="text-center">Formulário vendedor</h5>
+        <div class="card-body collapse" id="collapseComprador<?= $uniqued ?>">
+            <h5 class="text-center">Formulário Comprador</h5>
 
-            <div id="vendedor-container">
+            <div id="comprador-container">
 
-                <div id="vendedor">
-                    <div class="mb-3">
-                        <label for="nome" class="form-label">Nome do vendedor <span
-                                    class="text-danger">*</span></label>
-                        <input
-                                type="text"
-                                class="form-control"
-                                id="nome"
-                                name="nome"
-                                aria-describedby="nome"
-                                value="<?= $d->nome; ?>"
-                                maxlength="80"
-                                required
+                <div id="comprador">
 
-                        >
+
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="mb-3">
+                            <label for="nome" class="form-label">
+                                Nome do vendedor <span class="text-danger">*</span>
+                            </label>
+                            <input
+                                    type="text"
+                                    class="form-control"
+                                    id="nome"
+                                    name="nome"
+                                    aria-describedby="nome"
+                                    value="<?= $d->nome; ?>"
+                                    maxlength="80"
+                                    required
+                            >
+                        </div>
                     </div>
-
+                    <div class="col-md-3">
+                        <div class="mb-3">
+                                <label
+                                        for="tipo_pessoa<?= $uniqued ?>"
+                                        class="form-label">
+                                    Tipo de pessoa <span class="text-danger">*</span>
+                                </label>
+                                <select
+                                        class="form-control"
+                                        id="tipo_pessoa<?= $uniqued ?>"
+                                        name="tipo_pessoa"
+                                        required
+                                >
+                                    <option value=""></option>
+                                    <option value="f" <?= $d->tipo_pessoa == 'f' ? 'selected' : ''; ?>>
+                                        Pessoa física
+                                    </option>
+                                    <option value="j" <?= $d->tipo_pessoa == 'j' ? 'selected' : ''; ?>>
+                                        Pessoa jurídica
+                                    </option>
+                                </select>
+                        </div>
+                    </div>
+                </div>
+                <div opc='f<?= $uniqued ?>'>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label for="rg" class="form-label">RG <span
-                                            class="text-danger">*</span></label>
+                                <label for="cpf" class="form-label">CPF <span class="text-danger">*</span></label>
+                                <input
+                                        type="text"
+                                        class="form-control"
+                                        id="cpf<?= $uniqued ?>"
+                                        name="cpf"
+                                        aria-describedby="cpf"
+                                        value="<?= $d->cpf; ?>"
+                                >
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="rg" class="form-label">
+                                    RG <span class="text-danger">*</span>
+                                </label>
                                 <input
                                         type="text"
                                         class="form-control"
@@ -141,53 +188,27 @@ $d = [];
                                 >
                             </div>
                         </div>
+                    </div>
+                </div>
 
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label
-                                        for="tipo_pessoa<?= $uniqued ?>"
-                                        class="form-label">
-                                    Tipo de pessoa <span class="text-danger">*</span>
+                <div opc='j<?= $uniqued ?>'>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="mb-3" id="container_cnpj<?= $uniqued ?>">
+                                <label for="cnpj<?= $uniqued ?>" class="form-label">
+                                    CNPJ <span class="text-danger">*</span>
                                 </label>
-                                <select class="form-control" id="tipo_pessoa<?= $uniqued ?>" name="tipo_pessoa"
-                                        required>
-                                    <option value=""></option>
-                                    <option value="f" <?= $d->tipo_pessoa == 'f' ? 'selected' : ''; ?>>Pessoa física
-                                    </option>
-                                    <option value="j" <?= $d->tipo_pessoa == 'j' ? 'selected' : ''; ?>>Pessoa jurídica
-                                    </option>
-                                </select>
+                                <input
+                                        type="text"
+                                        class="form-control"
+                                        id="cnpj<?= $uniqued ?>"
+                                        name="cnpj"
+                                        aria-describedby="cnpj"
+                                        value="<?= $d->cnpj; ?>"
+                                >
                             </div>
                         </div>
-                    </div>
-
-                    <div class="mb-3" id="container_cpf<?= $uniqued ?>" style="display: none">
-                        <label for="cpf" class="form-label">CPF <span class="text-danger">*</span></label>
-                        <input
-                                type="text"
-                                class="form-control"
-                                id="cpf<?= $uniqued ?>"
-                                name="cpf"
-                                aria-describedby="cpf"
-                                value="<?= $d->cpf; ?>"
-                        >
-                    </div>
-
-                    <div class="mb-3" id="container_cnpj<?= $uniqued ?>" style="display: none">
-                        <label for="cnpj<?= $uniqued ?>" class="form-label">CNPJ <span
-                                    class="text-danger">*</span></label>
-                        <input
-                                type="text"
-                                class="form-control"
-                                id="cnpj<?= $uniqued ?>"
-                                name="cnpj"
-                                aria-describedby="cnpj"
-                                value="<?= $d->cnpj; ?>"
-                        >
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="mb-3">
                                 <label for="inscricao_estadual" class="form-label">
                                     Inscrição estadual
@@ -204,7 +225,7 @@ $d = [];
                             </div>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="mb-3">
                                 <label for="inscricao_municipal" class="form-label">
                                     Inscrição municipal
@@ -221,12 +242,15 @@ $d = [];
                             </div>
                         </div>
                     </div>
+                </div>
+
 
                     <div class="row">
                         <div class="col-md-4">
                             <div class="mb-3">
-                                <label for="estado" class="form-label">Estado <span
-                                            class="text-danger">*</span></label>
+                                <label for="estado" class="form-label">
+                                    Estado <span class="text-danger">*</span>
+                                </label>
                                 <select
                                         type="text"
                                         class="form-control"
@@ -251,8 +275,9 @@ $d = [];
                         </div>
                         <div class="col-md-4">
                             <div class="mb-3">
-                                <label for="cidade" class="form-label">Cidade <span
-                                            class="text-danger">*</span></label>
+                                <label for="cidade" class="form-label">
+                                    Cidade <span class="text-danger">*</span>
+                                </label>
                                 <select
                                         class="form-control"
                                         id="cidade<?= $uniqued ?>"
@@ -282,7 +307,7 @@ $d = [];
 
                         <div class="col-md-4">
                             <div class="mb-3">
-                                <label for="bairro" class="form-label">Bairro</label>
+                                <label for="bairro<?= $uniqued ?>" class="form-label">Bairro</label>
                                 <select
                                         class="form-control"
                                         id="bairro<?= $uniqued ?>"
@@ -385,23 +410,23 @@ $d = [];
                                 value=""
                                 id="check_procurador<?= $uniqued ?>"
                                 name="check_procurador"
-                                onclick="exibiContainer(this,'vendedor_procurador-container<?= $uniqued ?>')"
+                                onclick="exibiContainer(this,'comprador_procurador-container<?= $uniqued ?>')"
                         >
                         <label class="form-check-label" for="check_procurador<?= $uniqued ?>">
-                            Vendedor procurador?
+                            Comprador procurador?
                         </label>
                     </div>
                 </div>
                 <!-- Checkbox -->
 
-                <div id="vendedor_procurador-container<?= $uniqued ?>" style="display: none">
-                    <h5 class="my-2 text-center">Vendedor procurador</h5>
+                <div id="comprador_procurador-container<?= $uniqued ?>" style="display: none">
+                    <h5 class="my-2 text-center">Comprador procurador</h5>
 
-                    <div id="vendedor-procurador">
+                    <div id="comprador-procurador">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-9">
                                 <label for="procurador_nome" class="form-label">
-                                    Nome do Vendedor <span class="text-danger">*</span>
+                                    Nome do procurador <span class="text-danger">*</span>
                                 </label>
                                 <input
                                         type="text"
@@ -410,11 +435,10 @@ $d = [];
                                         name="procurador_nome"
                                         aria-describedby="procurador_nome"
                                         value="<?= $d->procurador_nome; ?>"
-                                        maxlength="80"
                                         required
                                 >
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-3">
                                 <label
                                         for="procurador_tipo_pessoa<?= $uniqued ?>"
                                         class="form-label">
@@ -436,28 +460,25 @@ $d = [];
                                 </select>
                             </div>
                         </div>
-                        <div opc="f">
+                        <div opc="pf<?= $uniqued ?>" class="mb-3">
                             <div class="row">
                                     <div class="col-md-6">
 
-                                        <div class="mb-3" id="procurador_container_cnpj<?= $uniqued ?>" style="display: none">
-                                        <label for="procurador_cnpj<?= $uniqued ?>" class="form-label">
-                                            CNPJ <span class="text-danger">*</span>
+                                        <label for="procurador_cpf<?= $uniqued ?>" class="form-label">
+                                            CPF <span class="text-danger">*</span>
                                         </label>
                                         <input
                                                 type="text"
                                                 class="form-control"
-                                                id="procurador_cnpj<?= $uniqued ?>"
-                                                name="procurador_cnpj"
-                                                aria-describedby="procurador_cnpj"
-                                                value="<?= $d->procurador_cnpj; ?>"
+                                                id="procurador_cpf<?= $uniqued ?>"
+                                                name="procurador_cpf"
+                                                aria-describedby="procurador_cpf"
+                                                value="<?= $d->procurador_cpf; ?>"
                                         >
-                                        </div>
 
                                     </div>
 
                                     <div class="col-md-6">
-                                        <div class="mb-3">
                                             <label for="procurador_rg" class="form-label">
                                                 RG <span class="text-danger">*</span>
                                             </label>
@@ -471,14 +492,30 @@ $d = [];
                                                     maxlength="20"
                                                     required
                                             >
-                                        </div>
                                     </div>
 
-                            </div>
+                        </div>
 
-
+                        <div opc="pj<?= $uniqued ?>">
                             <div class="row">
-                                <div class="col-md-6">
+
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label for="procurador_cnpj<?= $uniqued ?>" class="form-label">
+                                            CNPJ <span class="text-danger">*</span>
+                                        </label>
+                                        <input
+                                                type="text"
+                                                class="form-control"
+                                                id="procurador_cnpj<?= $uniqued ?>"
+                                                name="procurador_cnpj"
+                                                aria-describedby="procurador_cnpj"
+                                                value="<?= $d->procurador_cnpj; ?>"
+                                        >
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
                                     <div class="mb-3">
                                         <label for="procurador_inscricao_estadual" class="form-label">
                                             Inscrição estadual
@@ -495,7 +532,7 @@ $d = [];
                                     </div>
                                 </div>
 
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="mb-3">
                                         <label for="procurador_inscricao_municipal" class="form-label">
                                             Inscrição municipal
@@ -512,14 +549,16 @@ $d = [];
                                     </div>
                                 </div>
                             </div>
+                            </div>
 
                         </div>
 
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="mb-3">
-                                    <label for="procurador_estado" class="form-label">Estado <span
-                                                class="text-danger">*</span></label>
+                                    <label for="procurador_estado" class="form-label">
+                                        Estado <span class="text-danger">*</span>
+                                    </label>
                                     <select
                                             type="text"
                                             class="form-control"
@@ -544,8 +583,9 @@ $d = [];
                             </div>
                             <div class="col-md-4">
                                 <div class="mb-3">
-                                    <label for="procurador_cidade" class="form-label">Cidade <span
-                                                class="text-danger">*</span></label>
+                                    <label for="procurador_cidade<?= $uniqued ?>" class="form-label">
+                                        Cidade <span class="text-danger">*</span>
+                                    </label>
                                     <select
                                             class="form-control"
                                             id="procurador_cidade<?= $uniqued ?>"
@@ -699,38 +739,38 @@ $d = [];
         });
     }
 
-    function exibeCpfCnpj(valor) {
+    function exibeCpfCnpj<?= $uniqued ?>(valor) {
         if (valor === "f") {
-            $("#container_cpf<?= $uniqued ?>").show();
-            $("#container_cnpj<?= $uniqued ?>").hide();
-            $("#cnpj<?= $uniqued ?>").val('');
+            $("div[opc='f<?= $uniqued ?>']").show();
+            $("div[opc='j<?= $uniqued ?>']").hide();
+            // $("#cnpj<?= $uniqued ?>").val('');
         } else if (valor === 'j') {
-            $("#container_cnpj<?= $uniqued ?>").show();
-            $("#container_cpf<?= $uniqued ?>").hide().val('');
-            $("#cpf<?= $uniqued ?>").val('');
+            $("div[opc='f<?= $uniqued ?>']").hide();
+            $("div[opc='j<?= $uniqued ?>']").show();
+            // $("#cpf<?= $uniqued ?>").val('');
         } else {
-            $("#container_cnpj<?= $uniqued ?>").hide().val('');
-            $("#container_cpf<?= $uniqued ?>").hide().val('');
-            $("#cnpj<?= $uniqued ?>").val('');
-            $("#cpf<?= $uniqued ?>").val('');
+            $("div[opc='f<?= $uniqued ?>']").hide();
+            $("div[opc='j<?= $uniqued ?>']").hide();
+            // $("#cnpj<?= $uniqued ?>").val('');
+            // $("#cpf<?= $uniqued ?>").val('');
         }
     }
 
-    function exibeCpfCnpjProcurador(valor) {
+    function exibeCpfCnpjProcurador<?= $uniqued ?>(valor) {
         if (valor) {
             if (valor === "f") {
-                $("#procurador_container_cpf<?= $uniqued ?>").show();
-                $("#procurador_container_cnpj<?= $uniqued ?>").hide();
-                $("#procurador_cnpj<?= $uniqued ?>").val('');
+                $("div[opc='pf<?= $uniqued ?>']").show();
+                $("div[opc='pj<?= $uniqued ?>']").hide();
+                // $("#cnpj<?= $uniqued ?>").val('');
             } else if (valor === 'j') {
-                $("#procurador_container_cnpj<?= $uniqued ?>").show();
-                $("#procurador_container_cpf<?= $uniqued ?>").hide().val('');
-                $("#procurador_cpf<?= $uniqued ?>").val('');
+                $("div[opc='pf<?= $uniqued ?>']").hide();
+                $("div[opc='pj<?= $uniqued ?>']").show();
+                // $("#cpf<?= $uniqued ?>").val('');
             } else {
-                $("#procurador_container_cnpj<?= $uniqued ?>").hide().val('');
-                $("#procurador_container_cpf<?= $uniqued ?>").hide().val('');
-                $("#procurador_cnpj<?= $uniqued ?>").val('');
-                $("#procurador_cpf<?= $uniqued ?>").val('');
+                $("div[opc='f<?= $uniqued ?>']").hide();
+                $("div[opc='j<?= $uniqued ?>']").hide();
+                // $("#cnpj<?= $uniqued ?>").val('');
+                // $("#cpf<?= $uniqued ?>").val('');
             }
         }
     }
@@ -749,24 +789,24 @@ $d = [];
         if (value === '1') $(`#${id_container}`).show();
     }
 
-    initExibiContainer("<?= $d->check_procurador?>", "vendedor_procurador-container<?= $uniqued ?>");
-    exibeCpfCnpj("<?= $d->tipo_pessoa?>");
-    exibeCpfCnpjProcurador("<?= $d->procurador_tipo_pessoa?>");
+    initExibiContainer("<?= $d->check_procurador?>", "comprador_procurador-container<?= $uniqued ?>");
+    exibeCpfCnpj<?= $uniqued ?>("<?= $d->tipo_pessoa?>");
+    exibeCpfCnpjProcurador<?= $uniqued ?>("<?= $d->procurador_tipo_pessoa?>");
 
     $(function () {
 
         $("#check_procurador<?= $uniqued ?>").prop("checked", <?= $d->check_procurador ? true : false?>);
 
-        /* ------ MASCARAS -------- */
-        $('#cpf<?= $uniqued ?>, #procurador_cpf').mask('000.000.000-00', {clearIfNotMatch: true});
+        /* ------ Mascaras -------- */
+        $('#cpf<?= $uniqued ?>, #procurador_cpf<?= $uniqued ?>').mask('000.000.000-00', {clearIfNotMatch: true});
 
         $('#telefone, #procurador_telefone').mask('(00) 90000-0000', {clearIfNotMatch: true});
 
         $('#cnpj<?= $uniqued ?>').mask('00.000.000/0000-00', {reverse: true});
-        /* ------ MASCARAS -------- */
+        /* ------ Mascaras -------- */
 
-        /* ------ VALIDAÇÕES -------- */
-        var form = $("#form-vendedor<?= $uniqued?>").validate({
+        /* ------ Validações -------- */
+        var form = $("#form-comprador<?= $uniqued?>").validate({
             rules: {
                 cpf: {
                     required: function (elem) {
@@ -807,9 +847,9 @@ $d = [];
 
             }
         });
-        /* ------ VALIDAÇÕES -------- */
+        /* ------ Validações -------- */
 
-        $("#form-vendedor<?= $uniqued?>").submit(function (e) {
+        $("#form-comprador<?= $uniqued?>").submit(function (e) {
             e.preventDefault();
 
             //var doc_id = $("#documento_id").val();
@@ -834,17 +874,15 @@ $d = [];
                 data: formData,
                 dataType: "JSON",
                 success: function (data) {
-                    //window.localStorage.setItem('doc_id', data.codigo);
 
                     if (data.status) {
                         $.alert({
                             title: 'Sucesso',
-                            content: data.msg,
+                            content: data.query,
                             theme: 'bootstrap',
                             type: 'green',
                             icon: 'fa fa-check',
                         });
-
                     } else {
                         $.alert({
                             title: 'Erro',
@@ -859,14 +897,19 @@ $d = [];
             });
 
             return false;
-
         });
 
         $("#tipo_pessoa<?= $uniqued ?>").change(function () {
-            exibeCpfCnpj($(this).val())
+            exibeCpfCnpj<?= $uniqued ?>($(this).val())
         });
 
-        $(".remover_vendedor<?= $uniqued ?>").click(function () {
+        $("#procurador_tipo_pessoa<?= $uniqued ?>").change(function () {
+            exibeCpfCnpjProcurador<?= $uniqued ?>($(this).val())
+        });
+
+
+
+        $(".remover_comprador<?= $uniqued ?>").click(function () {
             var id = $("#id<?= $uniqued ?>").val();
 
             $.alert({
@@ -895,7 +938,7 @@ $d = [];
                                                 type: 'green',
                                                 icon: 'fa fa-check',
                                             });
-                                            $("#form-vendedor<?= $uniqued ?>").remove();
+                                            $("#form-comprador<?= $uniqued ?>").remove();
                                         } else {
                                             $.alert({
                                                 title: 'Erro',
@@ -908,7 +951,74 @@ $d = [];
                                     }
                                 });
                             } else {
-                                $("#form-vendedor<?= $uniqued ?>").remove();
+                                $("#form-comprador<?= $uniqued ?>").remove();
+
+                                $.alert({
+                                    title: 'Aviso',
+                                    content: 'Excluído com sucesso!',
+                                    theme: 'bootstrap',
+                                    type: 'green',
+                                    icon: 'fa fa-check',
+                                });
+                            }
+
+                        },
+                        btnClass: 'btn-red',
+                    },
+                    nao: {
+                        text: 'Não',
+                        action: function () {
+                        }
+                    }
+                }
+            })
+
+        });
+
+
+
+        $(".remover_procurador<?= $uniqued ?>").click(function () {
+            var id = $("#id<?= $uniqued ?>").val();
+
+            $.alert({
+                title: 'Aviso',
+                content: 'Deseja realmente excluir?',
+                theme: 'bootstrap',
+                type: 'red',
+                icon: 'fa fa-warning',
+                buttons: {
+                    sim: {
+                        text: 'Sim',
+                        action: function () {
+                            if (id) {
+                                $.ajax({
+                                    url: './pages/documentos/_form_vendedor.php',
+                                    method: 'post',
+                                    dataType: 'json',
+                                    data: {id, acao: 'excluir'},
+                                    success: function (data) {
+                                        if (data.status) {
+                                            $.alert({
+                                                title: 'Sucesso',
+                                                content: data.msg,
+                                                theme: 'bootstrap',
+                                                type: 'green',
+                                                icon: 'fa fa-check',
+                                            });
+                                            $("#form-comprador<?= $uniqued ?>").remove();
+                                        } else {
+                                            $.alert({
+                                                title: 'Erro',
+                                                content: data.msg,
+                                                theme: 'bootstrap',
+                                                type: 'red',
+                                                icon: 'fa fa-warning',
+                                            });
+                                        }
+                                    }
+                                });
+                            } else {
+                                $("#form-comprador<?= $uniqued ?>").remove();
 
                                 $.alert({
                                     title: 'Aviso',
