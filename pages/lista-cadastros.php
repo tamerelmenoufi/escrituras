@@ -1,6 +1,23 @@
 <?php
 #include '../config/includes.php';
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST' and $_POST['acao'] === "novo") {
+    include_once "../config/ConnectionMySQL.php";
+
+    if (mysqli_query($con, "INSERT INTO documentos SET cartorio = '_NOVO REGISTRO'")) {
+        echo json_encode([
+            "status" => true,
+            "msg" => "Registro criado com sucesso"
+        ]);
+    } else {
+        echo json_encode([
+            "status" => false,
+            "msg" => "Error ao criar o registro"
+        ]);
+    }
+}
+
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' and $_POST['acao'] === "excluir") {
     include_once "../config/ConnectionMySQL.php";
 
@@ -19,6 +36,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' and $_POST['acao'] === "excluir") {
     }
     exit();
 }
+
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET' and $_GET['acao'] === 'pesquisar') {
     $search_array = [];
@@ -191,7 +210,55 @@ $result = mysqli_query($con, $query);
     $(function () {
 
         $("button[novo]").click(function(){
-            $.alert('Novo registro!');
+
+            $.alert({
+                title: "Aviso",
+                content: "Confirma a criação de um novo registro?",
+                theme: 'bootstrap',
+                type: 'orange',
+                icon: 'fa fa-question',
+                buttons: {
+                    sim: {
+                        text: 'sim',
+                        action: function () {
+                            $.ajax({
+                                url: "./pages/lista-cadastros.php",
+                                method: "post",
+                                data: {acao: "novo"},
+                                dataType: "json",
+                                success: function (response) {
+                                    if (response.status) {
+                                        $.alert({
+                                            title: 'Sucesso',
+                                            content: response.msg,
+                                            theme: 'bootstrap',
+                                            type: 'green',
+                                            icon: 'fa fa-check',
+                                        });
+
+                                    } else {
+                                        $.alert({
+                                            title: 'Error',
+                                            content: response.msg,
+                                            theme: 'bootstrap',
+                                            type: 'red',
+                                            icon: 'fa fa-warning',
+                                        });
+                                    }
+                                }
+                            })
+                        }
+                    },
+                    nao: {
+                        text: 'Não',
+                        action: () => {
+                        },
+                    }
+                }
+            })
+
+
+
         });
 
 
