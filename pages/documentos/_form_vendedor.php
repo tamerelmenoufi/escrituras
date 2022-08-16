@@ -400,7 +400,7 @@ $d = [];
                     <div id="vendedor-procurador">
                         <div class="mb-3">
                             <label for="procurador_nome" class="form-label">
-                                Nome do vendedor <span class="text-danger">*</span>
+                                Nome do Procurador <span class="text-danger">*</span>
                             </label>
                             <input
                                     type="text"
@@ -416,22 +416,6 @@ $d = [];
                         </div>
 
                         <div class="row">
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label for="procurador_rg" class="form-label">RG <span
-                                                class="text-danger">*</span></label>
-                                    <input
-                                            type="text"
-                                            class="form-control"
-                                            id="procurador_rg"
-                                            name="procurador_rg"
-                                            aria-describedby="procurador_rg"
-                                            value="<?= $d->procurador_rg; ?>"
-                                            maxlength="20"
-                                            required
-                                    >
-                                </div>
-                            </div>
 
                             <div class="col-md-6">
                                 <div class="mb-3">
@@ -458,6 +442,25 @@ $d = [];
                                     </select>
                                 </div>
                             </div>
+
+
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="procurador_rg" class="form-label">RG <span
+                                                class="text-danger">*</span></label>
+                                    <input
+                                            type="text"
+                                            class="form-control"
+                                            id="procurador_rg"
+                                            name="procurador_rg"
+                                            aria-describedby="procurador_rg"
+                                            value="<?= $d->procurador_rg; ?>"
+                                            maxlength="20"
+                                            required
+                                    >
+                                </div>
+                            </div>
+
                         </div>
 
                         <div class="mb-3" id="procurador_container_cpf<?= $uniqued ?>" style="display: none">

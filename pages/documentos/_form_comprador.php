@@ -429,23 +429,6 @@ $d = [];
                         </div>
 
                         <div class="row">
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label for="procurador_rg" class="form-label">
-                                        RG <span class="text-danger">*</span>
-                                    </label>
-                                    <input
-                                            type="text"
-                                            class="form-control"
-                                            id="procurador_rg"
-                                            name="procurador_rg"
-                                            aria-describedby="procurador_rg"
-                                            value="<?= $d->procurador_rg; ?>"
-                                            maxlength="20"
-                                            required
-                                    >
-                                </div>
-                            </div>
 
                             <div class="col-md-6">
                                 <div class="mb-3">
@@ -470,74 +453,97 @@ $d = [];
                                     </select>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="mb-3" id="procurador_container_cpf<?= $uniqued ?>" style="display: none">
-                            <label
-                                    for="procurador_cpf"
-                                    class="form-label">
-                                CPF <span class="text-danger">*</span>
-                            </label>
-                            <input
-                                    type="text"
-                                    class="form-control"
-                                    id="procurador_cpf<?= $uniqued ?>"
-                                    name="procurador_cpf"
-                                    aria-describedby="procurador_cpf"
-                                    value="<?= $d->procurador_cpf; ?>"
-                            >
-                        </div>
-
-                        <div class="mb-3" id="procurador_container_cnpj<?= $uniqued ?>" style="display: none">
-                            <label for="procurador_cnpj<?= $uniqued ?>" class="form-label">
-                                CNPJ <span class="text-danger">*</span>
-                            </label>
-                            <input
-                                    type="text"
-                                    class="form-control"
-                                    id="procurador_cnpj<?= $uniqued ?>"
-                                    name="procurador_cnpj"
-                                    aria-describedby="procurador_cnpj"
-                                    value="<?= $d->procurador_cnpj; ?>"
-                            >
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label for="procurador_inscricao_estadual" class="form-label">
-                                        Inscrição estadual
-                                    </label>
-                                    <input
-                                            type="text"
-                                            class="form-control"
-                                            id="procurador_inscricao_estadual"
-                                            name="procurador_inscricao_estadual"
-                                            aria-describedby="procurador_inscricao_estadual"
-                                            value="<?= $d->procurador_inscricao_estadual; ?>"
-                                            maxlength="80"
-                                    >
+                            <div opc="f">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="procurador_rg" class="form-label">
+                                            RG <span class="text-danger">*</span>
+                                        </label>
+                                        <input
+                                                type="text"
+                                                class="form-control"
+                                                id="procurador_rg"
+                                                name="procurador_rg"
+                                                aria-describedby="procurador_rg"
+                                                value="<?= $d->procurador_rg; ?>"
+                                                maxlength="20"
+                                                required
+                                        >
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label for="procurador_inscricao_municipal" class="form-label">
-                                        Inscrição municipal
-                                    </label>
-                                    <input
-                                            type="text"
-                                            class="form-control"
-                                            id="procurador_inscricao_municipal"
-                                            name="procurador_inscricao_municipal"
-                                            aria-describedby="procurador_inscricao_municipal"
-                                            value="<?= $d->procurador_inscricao_municipal; ?>"
-                                            maxlength="80"
-                                    >
+                        </div>
+                        <div opc="f">
+                            <div class="mb-3" id="procurador_container_cpf<?= $uniqued ?>" style="display: none">
+                                <label
+                                        for="procurador_cpf"
+                                        class="form-label">
+                                    CPF <span class="text-danger">*</span>
+                                </label>
+                                <input
+                                        type="text"
+                                        class="form-control"
+                                        id="procurador_cpf<?= $uniqued ?>"
+                                        name="procurador_cpf"
+                                        aria-describedby="procurador_cpf"
+                                        value="<?= $d->procurador_cpf; ?>"
+                                >
+                            </div>
+                        </div>
+                        <div opc="cnpj">
+                            <div class="mb-3" id="procurador_container_cnpj<?= $uniqued ?>" style="display: none">
+                                <label for="procurador_cnpj<?= $uniqued ?>" class="form-label">
+                                    CNPJ <span class="text-danger">*</span>
+                                </label>
+                                <input
+                                        type="text"
+                                        class="form-control"
+                                        id="procurador_cnpj<?= $uniqued ?>"
+                                        name="procurador_cnpj"
+                                        aria-describedby="procurador_cnpj"
+                                        value="<?= $d->procurador_cnpj; ?>"
+                                >
+                            </div>
+                        </div>
+                        <div opc="j">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="procurador_inscricao_estadual" class="form-label">
+                                            Inscrição estadual
+                                        </label>
+                                        <input
+                                                type="text"
+                                                class="form-control"
+                                                id="procurador_inscricao_estadual"
+                                                name="procurador_inscricao_estadual"
+                                                aria-describedby="procurador_inscricao_estadual"
+                                                value="<?= $d->procurador_inscricao_estadual; ?>"
+                                                maxlength="80"
+                                        >
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="procurador_inscricao_municipal" class="form-label">
+                                            Inscrição municipal
+                                        </label>
+                                        <input
+                                                type="text"
+                                                class="form-control"
+                                                id="procurador_inscricao_municipal"
+                                                name="procurador_inscricao_municipal"
+                                                aria-describedby="procurador_inscricao_municipal"
+                                                value="<?= $d->procurador_inscricao_municipal; ?>"
+                                                maxlength="80"
+                                        >
+                                    </div>
                                 </div>
                             </div>
                         </div>
-
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="mb-3">
