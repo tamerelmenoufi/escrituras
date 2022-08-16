@@ -147,7 +147,7 @@ if ($doc_id) {
             let documento_id = $("#doc_id").val();
 
             $.ajax({
-                url: "./pages/cadastro_documento/_form_vendedor.php",
+                url: "./pages/editar_documento/_form_vendedor.php",
                 data: {
                     documento_id,
                     tipo
