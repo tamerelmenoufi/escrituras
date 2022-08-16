@@ -890,6 +890,76 @@ if ($documento_id) {
             exibeCpfCnpjProcurador($(this).val())
         });
 
+
+
+        $(".remover_comprador").click(function () {
+            var id = $("#id<?= $uniqued ?>").val();
+
+            $.alert({
+                title: 'Aviso',
+                content: 'Deseja realmente excluir?',
+                theme: 'bootstrap',
+                type: 'red',
+                icon: 'fa fa-warning',
+                buttons: {
+                    sim: {
+                        text: 'Sim',
+                        action: function () {
+
+                            if (id) {
+                                $.ajax({
+                                    url: './pages/editar_documento/_form_comprador.php',
+                                    method: 'post',
+                                    dataType: 'json',
+                                    data: {id, acao: 'excluir'},
+                                    success: function (data) {
+                                        if (data.status) {
+                                            $.alert({
+                                                title: 'Sucesso',
+                                                content: data.msg,
+                                                theme: 'bootstrap',
+                                                type: 'green',
+                                                icon: 'fa fa-check',
+                                            });
+                                            $("#form-vendedor<?= $uniqued ?>").remove();
+                                        } else {
+                                            $.alert({
+                                                title: 'Erro',
+                                                content: data.msg,
+                                                theme: 'bootstrap',
+                                                type: 'red',
+                                                icon: 'fa fa-warning',
+                                            });
+                                        }
+                                    }
+                                });
+                            } else {
+                                $("#form-comprador<?= $uniqued ?>").remove();
+
+                                $.alert({
+                                    title: 'Aviso',
+                                    content: 'Excluído com sucesso!',
+                                    theme: 'bootstrap',
+                                    type: 'green',
+                                    icon: 'fa fa-check',
+                                });
+                            }
+
+                        },
+                        btnClass: 'btn-red',
+                    },
+                    nao: {
+                        text: 'Não',
+                        action: function () {
+                        }
+                    }
+                }
+            })
+
+        });
+
+
+
         $(".remover_procurador").click(function () {
             var id = $("#id<?= $uniqued ?>").val();
 
