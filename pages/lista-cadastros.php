@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' and $_POST['acao'] === "novo") {
 
     echo json_encode([
         "status" => true,
-        "msg" => "Registro excluído com sucesso"
+        "msg" => "Registro cadastrado com sucesso"
     ]);
 
     exit();
@@ -230,11 +230,19 @@ $result = mysqli_query($con, $query);
 
                                     if (response.status) {
                                         $.alert({
-                                            title: 'Error',
+                                            title: 'Sucesso',
                                             content: response.msg,
                                             theme: 'bootstrap',
-                                            type: 'red',
+                                            type: 'green',
                                             icon: 'fa fa-warning',
+                                            buttons:{
+                                                ok:{
+                                                    text:'ok',
+                                                    action:function(){
+                                                        alert('chegou aqui');
+                                                    }
+                                                }
+                                            }
                                         });
                                     } else {
                                         $.alert({
