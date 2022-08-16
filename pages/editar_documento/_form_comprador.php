@@ -921,7 +921,7 @@ if ($documento_id) {
                                                 type: 'green',
                                                 icon: 'fa fa-check',
                                             });
-                                            $("#form-vendedor<?= $uniqued ?>").remove();
+                                            $("#form-comprador<?= $uniqued ?>").remove();
                                         } else {
                                             $.alert({
                                                 title: 'Erro',
