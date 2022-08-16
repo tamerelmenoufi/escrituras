@@ -22,6 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         endif;
     endfor;
-    // echo 'ok';
+    $retorno = ['status' => true];
+    echo json_encode($retorno);
     exit();
 }
