@@ -97,7 +97,7 @@ if ($documento_id) {
                 Comprador
             </a>
             <span>
-                <button type="button" class="btn btn-outline-danger btn-sm remover_comprador">
+                <button type="button" class="btn btn-outline-danger btn-sm remover_comprador<?= $uniqued ?>">
                     <i class="fa-solid fa-trash-can"></i>
                 </button>
             </span>
@@ -892,7 +892,7 @@ if ($documento_id) {
 
 
 
-        $(".remover_comprador").click(function () {
+        $(".remover_comprador<?= $uniqued ?>").click(function () {
             var id = $("#id<?= $uniqued ?>").val();
 
             $.alert({
@@ -960,7 +960,7 @@ if ($documento_id) {
 
 
 
-        $(".remover_procurador").click(function () {
+        $(".remover_procurador<?= $uniqued ?>").click(function () {
             var id = $("#id<?= $uniqued ?>").val();
 
             $.alert({
