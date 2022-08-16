@@ -219,7 +219,7 @@ $result = mysqli_query($con, $query);
                                 data: {acao: "novo"},
                                 dataType: "json",
                                 success: function (response) {
-                                    if (response.status) {
+                                    // if (response.status) {
                                         $.alert({
                                             title: 'Sucesso',
                                             content: response.msg,
@@ -233,15 +233,15 @@ $result = mysqli_query($con, $query);
                                             }
                                         });
 
-                                    } else {
-                                        $.alert({
-                                            title: 'Error',
-                                            content: response.msg,
-                                            theme: 'bootstrap',
-                                            type: 'red',
-                                            icon: 'fa fa-warning',
-                                        });
-                                    }
+                                    // } else {
+                                    //     $.alert({
+                                    //         title: 'Error',
+                                    //         content: response.msg,
+                                    //         theme: 'bootstrap',
+                                    //         type: 'red',
+                                    //         icon: 'fa fa-warning',
+                                    //     });
+                                    // }
                                 }
                             })
                         }
