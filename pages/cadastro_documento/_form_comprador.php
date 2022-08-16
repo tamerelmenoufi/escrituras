@@ -52,8 +52,8 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' and $_POST['acao'] === 'excluir'){
     exit();
 }
 
-$documento_id = $_GET['documento_id'];
-$id           = $_GET['comprador_id'];
+$documento_id = $_SESSION['id'];
+$id           = $_GET['vendedor_id'];
 $tipo         = $_GET['tipo'];
 #@formatter:on
 
