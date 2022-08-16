@@ -790,8 +790,8 @@ $d = [];
     }
 
     initExibiContainer("<?= $d->check_procurador?>", "comprador_procurador-container<?= $uniqued ?>");
-    exibeCpfCnpj("<?= $d->tipo_pessoa?>");
-    exibeCpfCnpjProcurador("<?= $d->procurador_tipo_pessoa?>");
+    exibeCpfCnpj<?= $uniqued ?>("<?= $d->tipo_pessoa?>");
+    exibeCpfCnpjProcurador<?= $uniqued ?>("<?= $d->procurador_tipo_pessoa?>");
 
     $(function () {
 
@@ -900,11 +900,11 @@ $d = [];
         });
 
         $("#tipo_pessoa<?= $uniqued ?>").change(function () {
-            exibeCpfCnpj($(this).val())
+            exibeCpfCnpj<?= $uniqued ?>($(this).val())
         });
 
         $("#procurador_tipo_pessoa<?= $uniqued ?>").change(function () {
-            exibeCpfCnpjProcurador($(this).val())
+            exibeCpfCnpjProcurador<?= $uniqued ?>($(this).val())
         });
 
 
