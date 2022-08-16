@@ -58,6 +58,10 @@ if ($doc_id) {
         'data_registro'
     ];
 
+    $colunas = [
+        "*",
+    ];
+
     $colunas = implode(', ', $colunas);
 
     $result = mysqli_query($con, "SELECT {$colunas} FROM documentos WHERE codigo = '{$doc_id}'");
