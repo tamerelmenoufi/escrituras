@@ -141,7 +141,7 @@ if ($doc_id) {
                 },
                 dataType: "html",
                 success: function (data) {
-                    $(".form-comprador").load("./pages/documentos/_form_comprador.php?comprador_id="+data);
+                    $(".form-comprador").load("./pages/documentos/comprador.php");
                     // $(".form-comprador").append(data);
                 }
             })
