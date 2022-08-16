@@ -246,7 +246,7 @@ if ($doc_id) {
 
         $("button[voltar]").click(function () {
             $.ajax({
-                url: "./pages/editar_documento/comprador.php",
+                url: "./pages/documentos/comprador.php",
                 data: {doc_id},
                 success: function (data) {
                     $(".content-pane").html(data);
@@ -274,13 +274,13 @@ if ($doc_id) {
             }
 
             $.ajax({
-                url: "./pages/editar_documento/endereco.php",
+                url: "./pages/documentos/endereco.php",
                 type: "POST",
                 data: formData,
                 //dataType: "JSON",
                 success: function (data) {
                     $.ajax({
-                        url: "./pages/editar_documento/mapa.php",
+                        url: "./pages/documentos/mapa.php",
                         type: "GET",
                         data: {doc_id},
                         success: function (data) {

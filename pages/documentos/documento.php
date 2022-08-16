@@ -311,7 +311,7 @@ if ($doc_id) {
             var formData = $(this).serializeArray();
 
             $.ajax({
-                url: "./pages/editar_documento/documento.php",
+                url: "./pages/documentos/documento.php",
                 type: "POST",
                 data: formData,
                 dataType: "JSON",
@@ -320,7 +320,7 @@ if ($doc_id) {
 
                     if (data.status) {
                         $.ajax({
-                            url: "./pages/editar_documento/vendedor.php",
+                            url: "./pages/documentos/vendedor.php",
                             type: "GET",
                             data: {doc_id: data.codigo},
                             success: function (data) {

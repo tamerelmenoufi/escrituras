@@ -837,7 +837,7 @@ if ($documento_id) {
             });
 
             $.ajax({
-                url: "./pages/editar_documento/_form_vendedor.php",
+                url: "./pages/documentos/_form_vendedor.php",
                 type: "POST",
                 data: formData,
                 dataType: "JSON",
@@ -890,7 +890,7 @@ if ($documento_id) {
 
                             if (id) {
                                 $.ajax({
-                                    url: './pages/editar_documento/_form_vendedor.php',
+                                    url: './pages/documentos/_form_vendedor.php',
                                     method: 'post',
                                     dataType: 'json',
                                     data: {id, acao: 'excluir'},

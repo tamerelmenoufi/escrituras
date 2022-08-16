@@ -152,7 +152,7 @@ if ($doc_id) {
 
         $("button[voltar]").click(function () {
             $.ajax({
-                url: "./pages/editar_documento/mapa.php",
+                url: "./pages/documentos/mapa.php",
                 data: {doc_id},
                 success: function (data) {
                     $(".content-pane").html(data);
@@ -179,7 +179,7 @@ if ($doc_id) {
                         text: 'sim',
                         action: function () {
                             $.ajax({
-                                url: './pages/editar_documento/anexo.php',
+                                url: './pages/documentos/anexo.php',
                                 method: 'post',
                                 data: formData,
                                 cache: false,

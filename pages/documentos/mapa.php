@@ -88,7 +88,7 @@ if ($doc_id) {
 
         $("button[voltar]").click(function () {
             $.ajax({
-                url: "./pages/editar_documento/endereco.php",
+                url: "./pages/documentos/endereco.php",
                 data: {doc_id},
                 success: function (data) {
                     $(".content-pane").html(data);
@@ -131,7 +131,7 @@ if ($doc_id) {
                                 Lng = `${latLng.lng()}`;
 
                                 $.ajax({
-                                    url: "./pages/editar_documento/mapa.php",
+                                    url: "./pages/documentos/mapa.php",
                                     type:"POST",
                                     data: {
                                         codigo:'<?=$d->codigo?>',
@@ -168,7 +168,7 @@ if ($doc_id) {
             poligono.setPath(Limpa);
 
             $.ajax({
-                url: "./pages/editar_documento/mapa.php",
+                url: "./pages/documentos/mapa.php",
                 type:"POST",
                 data: {
                     codigo:'<?=$d->codigo?>',
@@ -254,7 +254,7 @@ if ($doc_id) {
             resultado = JSON.stringify(bounds);
 
             $.ajax({
-                url: "./pages/editar_documento/mapa.php",
+                url: "./pages/documentos/mapa.php",
                 type: "POST",
                 data: {
                     codigo: '<?=$d->codigo?>',
@@ -278,7 +278,7 @@ if ($doc_id) {
             var codigo = $("#codigo").val();
 
             $.ajax({
-                url: "./pages/editar_documento/mapa.php",
+                url: "./pages/documentos/mapa.php",
                 method: "post",
                 data: {codigo, acao: "salvar"},
                 dataType: "json",
@@ -286,7 +286,7 @@ if ($doc_id) {
                     if (response.status) {
 
                         $.ajax({
-                            url: "./pages/editar_documento/anexo.php",
+                            url: "./pages/documentos/anexo.php",
                             type: "GET",
                             data: {doc_id},
                             success: function (data) {

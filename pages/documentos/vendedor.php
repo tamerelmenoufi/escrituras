@@ -122,7 +122,7 @@ if ($doc_id) {
         <?php foreach ($vendedores as $vendedor){?>
 
         $.ajax({
-            url: "./pages/editar_documento/_form_vendedor.php",
+            url: "./pages/documentos/_form_vendedor.php",
             data: {
                 vendedor_id: '<?= $vendedor->codigo ?>',
                 documento_id: '<?= $vendedor->documento_id; ?>',
@@ -138,7 +138,7 @@ if ($doc_id) {
 
         $("button[voltar]").click(function () {
             $.ajax({
-                url: "./pages/editar_documento/documento.php",
+                url: "./pages/documentos/documento.php",
                 data: {doc_id},
                 success: function (data) {
                     $(".content-pane").html(data);
@@ -151,7 +151,7 @@ if ($doc_id) {
             let documento_id = $("#doc_id").val();
 
             $.ajax({
-                url: "./pages/editar_documento/_form_vendedor.php",
+                url: "./pages/documentos/_form_vendedor.php",
                 data: {
                     documento_id,
                     tipo,
@@ -166,7 +166,7 @@ if ($doc_id) {
 
         $(".proximo").click(function () {
             $.ajax({
-                url: "./pages/editar_documento/comprador.php",
+                url: "./pages/documentos/comprador.php",
                 type: "get",
                 data: {doc_id},
                 success: function (data) {

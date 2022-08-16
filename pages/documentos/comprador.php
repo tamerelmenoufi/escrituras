@@ -112,7 +112,7 @@ if ($doc_id) {
         <?php foreach ($compradores as $comprador){?>
 
         $.ajax({
-            url: "./pages/editar_documento/_form_comprador.php",
+            url: "./pages/documentos/_form_comprador.php",
             data: {
                 comprador_id: '<?= $comprador->codigo ?>',
                 documento_id: '<?= $comprador->documento_id; ?>',
@@ -133,7 +133,7 @@ if ($doc_id) {
             let documento_id = $("#doc_id").val();
 
             $.ajax({
-                url: "./pages/editar_documento/_form_comprador.php",
+                url: "./pages/documentos/_form_comprador.php",
                 data: {
                     documento_id,
                     tipo,
@@ -148,7 +148,7 @@ if ($doc_id) {
 
         $("button[voltar]").click(function () {
             $.ajax({
-                url: "./pages/editar_documento/vendedor.php",
+                url: "./pages/documentos/vendedor.php",
                 data: {doc_id},
                 success: function (data) {
                     $(".content-pane").html(data);
@@ -171,7 +171,7 @@ if ($doc_id) {
             }
 
             $.ajax({
-                url: "./pages/editar_documento/comprador.php",
+                url: "./pages/documentos/comprador.php",
                 type: "POST",
                 data: formData,
                 dataType: "JSON",
@@ -179,7 +179,7 @@ if ($doc_id) {
                     //window.localStorage.setItem('doc_id', data.codigo);
 
                     $.ajax({
-                        url: "./pages/editar_documento/endereco.php",
+                        url: "./pages/documentos/endereco.php",
                         type: "GET",
                         data: {doc_id},
                         success: function (data) {

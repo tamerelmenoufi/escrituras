@@ -852,7 +852,7 @@ if ($documento_id) {
             });
 
             $.ajax({
-                url: "./pages/editar_documento/_form_comprador.php",
+                url: "./pages/documentos/_form_comprador.php",
                 type: "POST",
                 data: formData,
                 dataType: "JSON",
@@ -908,7 +908,7 @@ if ($documento_id) {
 
                             if (id) {
                                 $.ajax({
-                                    url: './pages/editar_documento/_form_comprador.php',
+                                    url: './pages/documentos/_form_comprador.php',
                                     method: 'post',
                                     dataType: 'json',
                                     data: {id, acao: 'excluir'},
@@ -975,7 +975,7 @@ if ($documento_id) {
                         action: function () {
                             if (id) {
                                 $.ajax({
-                                    url: './pages/editar_documento/_form_comprador.php',
+                                    url: './pages/documentos/_form_comprador.php',
                                     method: 'post',
                                     dataType: 'json',
                                     data: {id, acao: 'excluir'},
