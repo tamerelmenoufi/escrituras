@@ -737,18 +737,18 @@ $d = [];
 
     function exibeCpfCnpj(valor) {
         if (valor === "f") {
-            $("#container_cpf<?= $uniqued ?>").show();
-            $("#container_cnpj<?= $uniqued ?>").hide();
-            $("#cnpj<?= $uniqued ?>").val('');
+            $("div[opc='f']").show();
+            $("div[opc='j']").hide();
+            // $("#cnpj<?= $uniqued ?>").val('');
         } else if (valor === 'j') {
-            $("#container_cnpj<?= $uniqued ?>").show();
-            $("#container_cpf<?= $uniqued ?>").hide().val('');
-            $("#cpf<?= $uniqued ?>").val('');
+            $("div[opc='f']").hide();
+            $("div[opc='j']").show();
+            // $("#cpf<?= $uniqued ?>").val('');
         } else {
-            $("#container_cnpj<?= $uniqued ?>").hide().val('');
-            $("#container_cpf<?= $uniqued ?>").hide().val('');
-            $("#cnpj<?= $uniqued ?>").val('');
-            $("#cpf<?= $uniqued ?>").val('');
+            $("div[opc='f']").hide();
+            $("div[opc='j']").hide();
+            // $("#cnpj<?= $uniqued ?>").val('');
+            // $("#cpf<?= $uniqued ?>").val('');
         }
     }
 
@@ -786,7 +786,7 @@ $d = [];
     }
 
     initExibiContainer("<?= $d->check_procurador?>", "comprador_procurador-container<?= $uniqued ?>");
-    // exibeCpfCnpj("<?= $d->tipo_pessoa?>");
+    exibeCpfCnpj("<?= $d->tipo_pessoa?>");
     exibeCpfCnpjProcurador("<?= $d->procurador_tipo_pessoa?>");
 
     $(function () {
