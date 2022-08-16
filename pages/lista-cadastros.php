@@ -138,7 +138,7 @@ $result = mysqli_query($con, $query);
 
             <div class="row">
                 <div class="col-md-6 mt-2">
-                    <button class="btn bg-success float-start text-white">Novo</button>
+                    <button novo type="button" class="btn bg-success float-start text-white">Novo</button>
                 </div>
                 <div class="col-md-6 mt-2">
                     <button class="btn bg-primary float-end text-white">Buscar</button>
@@ -189,6 +189,12 @@ $result = mysqli_query($con, $query);
 
 <script>
     $(function () {
+
+        $("button[novo]").click(function(){
+            $.alert('Novo registro!');
+        });
+
+
         $(".excluir-documento").click(function () {
             var codigo = $(this).data("codigo");
 
