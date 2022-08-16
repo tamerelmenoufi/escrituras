@@ -134,7 +134,7 @@ if ($doc_id) {
             language: 'pt-BR',
             allowedFileExtensions: ['pdf'],
             showUpload: false,
-            uploadUrl: '#',
+            // uploadUrl: './pages/actions/actionFile_upload.php',
             overwriteInitial: false,
             initialPreviewAsData: true,
             initialPreview: [
