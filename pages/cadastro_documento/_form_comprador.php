@@ -88,7 +88,7 @@ if ($documento_id) {
                 Comprador
             </a>
             <span>
-                <button type="button" class="btn btn-outline-danger btn-sm remover_comprador">
+                <button type="button" class="btn btn-outline-danger btn-sm remover_comprador<?= $uniqued ?>">
                     <i class="fa-solid fa-trash-can"></i>
                 </button>
             </span>
@@ -880,6 +880,75 @@ if ($documento_id) {
         $("#procurador_tipo_pessoa<?= $uniqued ?>").change(function () {
             exibeCpfCnpjProcurador($(this).val())
         });
+
+
+
+        $(".remover_comprador<?= $uniqued ?>").click(function () {
+            var id = $("#id<?= $uniqued ?>").val();
+
+            $.alert({
+                title: 'Aviso',
+                content: 'Deseja realmente excluir?',
+                theme: 'bootstrap',
+                type: 'red',
+                icon: 'fa fa-warning',
+                buttons: {
+                    sim: {
+                        text: 'Sim',
+                        action: function () {
+
+                            if (id) {
+                                $.ajax({
+                                    url: './pages/cadastro_documento/_form_comprador.php',
+                                    method: 'post',
+                                    dataType: 'json',
+                                    data: {id, acao: 'excluir'},
+                                    success: function (data) {
+                                        if (data.status) {
+                                            $.alert({
+                                                title: 'Sucesso',
+                                                content: data.msg,
+                                                theme: 'bootstrap',
+                                                type: 'green',
+                                                icon: 'fa fa-check',
+                                            });
+                                            $("#form-comprador<?= $uniqued ?>").remove();
+                                        } else {
+                                            $.alert({
+                                                title: 'Erro',
+                                                content: data.msg,
+                                                theme: 'bootstrap',
+                                                type: 'red',
+                                                icon: 'fa fa-warning',
+                                            });
+                                        }
+                                    }
+                                });
+                            } else {
+                                $("#form-comprador<?= $uniqued ?>").remove();
+
+                                $.alert({
+                                    title: 'Aviso',
+                                    content: 'Excluído com sucesso!',
+                                    theme: 'bootstrap',
+                                    type: 'green',
+                                    icon: 'fa fa-check',
+                                });
+                            }
+
+                        },
+                        btnClass: 'btn-red',
+                    },
+                    nao: {
+                        text: 'Não',
+                        action: function () {
+                        }
+                    }
+                }
+            })
+
+        });
+
 
         $(".remover_procurador").click(function () {
             var id = $("#id<?= $uniqued ?>").val();
