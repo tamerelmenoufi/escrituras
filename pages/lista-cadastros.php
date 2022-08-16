@@ -4,17 +4,7 @@
 if ($_SERVER['REQUEST_METHOD'] === 'POST' and $_POST['acao'] === "novo") {
     include_once "../config/ConnectionMySQL.php";
 
-    if (mysqli_query($con, "INSERT INTO documentos SET cartorio = '_NOVO REGISTRO'")) {
-        echo json_encode([
-            "status" => true,
-            "msg" => "Registro criado com sucesso"
-        ]);
-    } else {
-        echo json_encode([
-            "status" => false,
-            "msg" => "Error ao criar o registro"
-        ]);
-    }
+    mysqli_query($con, "INSERT INTO documentos SET cartorio = '_NOVO REGISTRO'");
 }
 
 
@@ -80,6 +70,7 @@ $query = "SELECT {$colunas} FROM documentos d "
     . "LEFT JOIN aux_estados e ON e.codigo = d.estado "
     . "WHERE true {$search} "
     . "GROUP BY d.codigo "
+    . "ORDER BY d.cartorio "
     . "LIMIT 10";
 
 #echo $query;
