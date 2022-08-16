@@ -64,7 +64,7 @@ if($_GET['acao'] == 'novo'){
 }
 
 $documento_id = $_SESSION['id'];
-$id           = $_GET['comprador_id'];
+$id           = $_GET['vendedor_id'];
 $tipo         = 'v';
 #@formatter:on
 
