@@ -111,44 +111,28 @@ $d = [];
             <div id="comprador-container">
 
                 <div id="comprador">
-                    <div class="mb-3">
-                        <label for="nome" class="form-label">
-                            Nome do comprador <span class="text-danger">*</span>
-                        </label>
 
-                        <input
-                                type="text"
-                                class="form-control"
-                                id="nome"
-                                name="nome"
-                                aria-describedby="nome"
-                                value="<?= $d->nome; ?>"
-                                maxlength="80"
-                                required
-                        >
-                    </div>
 
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label for="rg" class="form-label">
-                                    RG <span class="text-danger">*</span>
-                                </label>
-                                <input
-                                        type="text"
-                                        class="form-control"
-                                        id="rg"
-                                        name="rg"
-                                        aria-describedby="rg"
-                                        value="<?= $d->rg; ?>"
-                                        maxlength="20"
-                                        required
-                                >
-                            </div>
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="mb-3">
+                            <label for="nome" class="form-label">
+                                Nome do comprador <span class="text-danger">*</span>
+                            </label>
+                            <input
+                                    type="text"
+                                    class="form-control"
+                                    id="nome"
+                                    name="nome"
+                                    aria-describedby="nome"
+                                    value="<?= $d->nome; ?>"
+                                    maxlength="80"
+                                    required
+                            >
                         </div>
-
-                        <div class="col-md-6">
-                            <div class="mb-3">
+                    </div>
+                    <div class="col-md-3">
+                        <div class="mb-3">
                                 <label
                                         for="tipo_pessoa<?= $uniqued ?>"
                                         class="form-label">
@@ -168,38 +152,61 @@ $d = [];
                                         Pessoa jurídica
                                     </option>
                                 </select>
+                        </div>
+                    </div>
+                </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="cpf" class="form-label">CPF <span class="text-danger">*</span></label>
+                                <input
+                                        type="text"
+                                        class="form-control"
+                                        id="cpf<?= $uniqued ?>"
+                                        name="cpf"
+                                        aria-describedby="cpf"
+                                        value="<?= $d->cpf; ?>"
+                                >
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="rg" class="form-label">
+                                    RG <span class="text-danger">*</span>
+                                </label>
+                                <input
+                                        type="text"
+                                        class="form-control"
+                                        id="rg"
+                                        name="rg"
+                                        aria-describedby="rg"
+                                        value="<?= $d->rg; ?>"
+                                        maxlength="20"
+                                        required
+                                >
                             </div>
                         </div>
                     </div>
 
-                    <div class="mb-3" id="container_cpf<?= $uniqued ?>" style="display: none">
-                        <label for="cpf" class="form-label">CPF <span class="text-danger">*</span></label>
-                        <input
-                                type="text"
-                                class="form-control"
-                                id="cpf<?= $uniqued ?>"
-                                name="cpf"
-                                aria-describedby="cpf"
-                                value="<?= $d->cpf; ?>"
-                        >
-                    </div>
-
-                    <div class="mb-3" id="container_cnpj<?= $uniqued ?>" style="display: none">
-                        <label for="cnpj<?= $uniqued ?>" class="form-label">
-                            CNPJ <span class="text-danger">*</span>
-                        </label>
-                        <input
-                                type="text"
-                                class="form-control"
-                                id="cnpj<?= $uniqued ?>"
-                                name="cnpj"
-                                aria-describedby="cnpj"
-                                value="<?= $d->cnpj; ?>"
-                        >
-                    </div>
-
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
+                            <div class="mb-3" id="container_cnpj<?= $uniqued ?>" style="display: none">
+                                <label for="cnpj<?= $uniqued ?>" class="form-label">
+                                    CNPJ <span class="text-danger">*</span>
+                                </label>
+                                <input
+                                        type="text"
+                                        class="form-control"
+                                        id="cnpj<?= $uniqued ?>"
+                                        name="cnpj"
+                                        aria-describedby="cnpj"
+                                        value="<?= $d->cnpj; ?>"
+                                >
+                            </div>
+                        </div>
+                        <div class="col-md-4">
                             <div class="mb-3">
                                 <label for="inscricao_estadual" class="form-label">
                                     Inscrição estadual
@@ -216,7 +223,7 @@ $d = [];
                             </div>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="mb-3">
                                 <label for="inscricao_municipal" class="form-label">
                                     Inscrição municipal
