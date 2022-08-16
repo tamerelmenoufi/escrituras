@@ -228,18 +228,23 @@ $result = mysqli_query($con, $query);
 
                                     // window.location.href='./lista-cadastros';
 
-                                    // if (response.status) {
-
-
-                                    // } else {
-                                    //     $.alert({
-                                    //         title: 'Error',
-                                    //         content: response.msg,
-                                    //         theme: 'bootstrap',
-                                    //         type: 'red',
-                                    //         icon: 'fa fa-warning',
-                                    //     });
-                                    // }
+                                    if (response.status) {
+                                        $.alert({
+                                            title: 'Error',
+                                            content: response.msg,
+                                            theme: 'bootstrap',
+                                            type: 'red',
+                                            icon: 'fa fa-warning',
+                                        });
+                                    } else {
+                                        $.alert({
+                                            title: 'Error',
+                                            content: response.msg,
+                                            theme: 'bootstrap',
+                                            type: 'red',
+                                            icon: 'fa fa-warning',
+                                        });
+                                    }
                                 }
                             })
                         }
