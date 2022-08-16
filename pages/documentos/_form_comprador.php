@@ -71,7 +71,7 @@ $tipo         = 'c';
 $d = [];
 
 // if ($documento_id) {
-    $result = mysqli_query($con, "SELECT * FROM vendedor_comprador "
+    echo $result = mysqli_query($con, "SELECT * FROM vendedor_comprador "
         . "WHERE codigo = '{$id}' AND documento_id = '{$documento_id}'");
     $d = mysqli_fetch_object($result);
 // }
