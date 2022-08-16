@@ -56,7 +56,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' and $_POST['acao'] === 'excluir'){
 
 
 if($_GET['acao'] == 'novo'){
-    $q = "INSERT INTO vendedor_comprador set documento_id = '{$_SESSION['id']}', tipo = 'c'";
+    $q = "INSERT INTO vendedor_comprador set documento_id = '{$_SESSION['id']}', tipo = 'v'";
     mysqli_query($con, $q);
     $_GET['comprador_id'] = mysqli_insert_id();
     echo $_GET['comprador_id'];
@@ -420,7 +420,7 @@ $d = [];
                 <!-- Checkbox -->
 
                 <div id="comprador_procurador-container<?= $uniqued ?>" style="display: none">
-                    <h5 class="my-2 text-center">Comprador procurador</h5>
+                    <h5 class="my-2 text-center">Vendedor procurador</h5>
 
                     <div id="comprador-procurador">
                         <div class="row">
