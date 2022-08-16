@@ -92,7 +92,7 @@ if ($doc_id) {
                         value="<?= $row->codigo ?>"
                     <?= $row->codigo == $d->municipio_cartorio ? 'selected ' : ''; ?>
                 >
-                    <?= $row->descricao ?>
+                    <?= $row->nome ?>
                 </option>
             <?php endwhile; ?>
         </select>
