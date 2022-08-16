@@ -70,7 +70,7 @@ $query = "SELECT {$colunas} FROM documentos d "
     . "LEFT JOIN aux_estados e ON e.codigo = d.estado "
     . "WHERE true {$search} "
     . "GROUP BY d.codigo "
-    . "ORDER BY d.cartorio "
+    . "ORDER BY d.codigo desc "
     . "LIMIT 10";
 
 #echo $query;
