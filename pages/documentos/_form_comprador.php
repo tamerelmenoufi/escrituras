@@ -155,7 +155,7 @@ $d = [];
                         </div>
                     </div>
                 </div>
-
+                <div opc='f<?= $uniqued ?>'>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3">
@@ -189,7 +189,9 @@ $d = [];
                             </div>
                         </div>
                     </div>
+                </div>
 
+                <div opc='j<?= $uniqued ?>'>
                     <div class="row">
                         <div class="col-md-4">
                             <div class="mb-3" id="container_cnpj<?= $uniqued ?>">
@@ -240,6 +242,8 @@ $d = [];
                             </div>
                         </div>
                     </div>
+                </div>
+
 
                     <div class="row">
                         <div class="col-md-4">
@@ -456,7 +460,7 @@ $d = [];
                                 </select>
                             </div>
                         </div>
-                        <div opc="f" class="mb-3">
+                        <div opc="pf<?= $uniqued ?>" class="mb-3">
                             <div class="row">
                                     <div class="col-md-6">
 
@@ -490,9 +494,9 @@ $d = [];
                                             >
                                     </div>
 
-                            </div>
+                        </div>
 
-                            <div opc="j">
+                        <div opc="pj<?= $uniqued ?>">
                             <div class="row">
 
                                 <div class="col-md-4">
@@ -735,38 +739,38 @@ $d = [];
         });
     }
 
-    function exibeCpfCnpj(valor) {
+    function exibeCpfCnpj<?= $uniqued ?>(valor) {
         if (valor === "f") {
-            $("div[opc='f']").show();
-            $("div[opc='j']").hide();
+            $("div[opc='f<?= $uniqued ?>']").show();
+            $("div[opc='j<?= $uniqued ?>']").hide();
             // $("#cnpj<?= $uniqued ?>").val('');
         } else if (valor === 'j') {
-            $("div[opc='f']").hide();
-            $("div[opc='j']").show();
+            $("div[opc='f<?= $uniqued ?>']").hide();
+            $("div[opc='j<?= $uniqued ?>']").show();
             // $("#cpf<?= $uniqued ?>").val('');
         } else {
-            $("div[opc='f']").hide();
-            $("div[opc='j']").hide();
+            $("div[opc='f<?= $uniqued ?>']").hide();
+            $("div[opc='j<?= $uniqued ?>']").hide();
             // $("#cnpj<?= $uniqued ?>").val('');
             // $("#cpf<?= $uniqued ?>").val('');
         }
     }
 
-    function exibeCpfCnpjProcurador(valor) {
+    function exibeCpfCnpjProcurador<?= $uniqued ?>(valor) {
         if (valor) {
             if (valor === "f") {
-                $("#procurador_container_cpf<?= $uniqued ?>").show();
-                $("#procurador_container_cnpj<?= $uniqued ?>").hide();
-                $("#procurador_cnpj<?= $uniqued ?>").val('');
+                $("div[opc='pf<?= $uniqued ?>']").show();
+                $("div[opc='pj<?= $uniqued ?>']").hide();
+                // $("#cnpj<?= $uniqued ?>").val('');
             } else if (valor === 'j') {
-                $("#procurador_container_cnpj<?= $uniqued ?>").show();
-                $("#procurador_container_cpf<?= $uniqued ?>").hide().val('');
-                $("#procurador_cpf<?= $uniqued ?>").val('');
+                $("div[opc='pf<?= $uniqued ?>']").hide();
+                $("div[opc='pj<?= $uniqued ?>']").show();
+                // $("#cpf<?= $uniqued ?>").val('');
             } else {
-                $("#procurador_container_cnpj<?= $uniqued ?>").hide().val('');
-                $("#procurador_container_cpf<?= $uniqued ?>").hide().val('');
-                $("#procurador_cnpj<?= $uniqued ?>").val('');
-                $("#procurador_cpf<?= $uniqued ?>").val('');
+                $("div[opc='f<?= $uniqued ?>']").hide();
+                $("div[opc='j<?= $uniqued ?>']").hide();
+                // $("#cnpj<?= $uniqued ?>").val('');
+                // $("#cpf<?= $uniqued ?>").val('');
             }
         }
     }
