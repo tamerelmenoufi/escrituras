@@ -80,9 +80,9 @@ $d = [];
 
 <form id="form-comprador<?= $uniqued ?>" class="needs-validation mb-2" novalidate>
 
-    <input type="hidden" id="id<?= $uniqued ?>" name="id" value="<?= $id; ?>">
+    <input type="hidden" id="id<?= $uniqued ?>" name="id" value="<?= $d->codigo; ?>">
 
-    <input type="hidden" id="documento_id" name="documento_id" value="<?= $d->codigo; ?>">
+    <input type="hidden" id="documento_id" name="documento_id" value="<?= $d->documento_id; ?>">
 
     <input type="hidden" id="tipo" name="tipo" value="<?= $tipo; ?>">
 
