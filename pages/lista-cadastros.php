@@ -222,7 +222,7 @@ $result = mysqli_query($con, $query);
                                     // if (response.status) {
                                         $.alert({
                                             title: 'Sucesso',
-                                            content: response.msg,
+                                            content: 'Cadastro realizado com sucesso!',
                                             theme: 'bootstrap',
                                             type: 'green',
                                             icon: 'fa fa-check',
