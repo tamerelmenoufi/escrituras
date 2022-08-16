@@ -159,7 +159,7 @@ if ($doc_id) {
                 },
                 dataType: "html",
                 success: function (data) {
-                    $(".form-vendedor").load("./pages/documentos/vendedor.php");
+                    $(".content-pane").load("./pages/documentos/vendedor.php");
                     // $(".form-vendedor").append(data);
                 }
             })
