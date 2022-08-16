@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit();
 }
 
-$doc_id = $_SESSION['id'];;
+$doc_id = $_SESSION['id'];
 
 if ($doc_id) {
     $result = mysqli_query($con, "SELECT codigo, coordenadas, poligono FROM documentos WHERE codigo = '{$doc_id}'");
@@ -134,7 +134,7 @@ if ($doc_id) {
             language: 'pt-BR',
             allowedFileExtensions: ['pdf'],
             showUpload: false,
-            // uploadUrl: './pages/actions/actionFile_upload.php',
+            uploadUrl: './pages/actions/actionFile_upload.php',
             overwriteInitial: false,
             initialPreviewAsData: true,
             initialPreview: [
@@ -209,7 +209,7 @@ if ($doc_id) {
                                             ok: {
                                                 text: 'Ok',
                                                 action: function () {
-                                                    window.location.href = './lista-cadastros';
+                                                    // window.location.href = './lista-cadastros';
                                                 }
                                             }
                                         }
