@@ -59,7 +59,7 @@ if($_GET['acao'] == 'novo'){
 }
 
 $documento_id = $_GET['documento_id'];
-$id           = $_GET['vendedor_id'];
+$id           = $_GET['comprador_id'];
 $tipo         = $_GET['tipo'];
 #@formatter:on
 
