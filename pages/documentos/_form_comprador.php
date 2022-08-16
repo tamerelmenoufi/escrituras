@@ -80,7 +80,7 @@ if ($documento_id) {
 
     <input type="hidden" id="id<?= $uniqued ?>" name="id" value="<?= $id; ?>">
 
-    <input type="hidden" id="documento_id" name="documento_id" value="<?= $documento_id; ?>">
+    <input type="hidden" id="documento_id" name="documento_id" value="<?= $d->codigo; ?>">
 
     <input type="hidden" id="tipo" name="tipo" value="<?= $tipo; ?>">
 
