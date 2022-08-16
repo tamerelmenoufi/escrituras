@@ -413,7 +413,7 @@ $d = [];
 
                     <div id="comprador-procurador">
                         <div class="row">
-                            <div class="col-md-10">
+                            <div class="col-md-9">
                                 <label for="procurador_nome" class="form-label">
                                     Nome do comprador <span class="text-danger">*</span>
                                 </label>
@@ -427,7 +427,7 @@ $d = [];
                                         required
                                 >
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-3">
                                 <label
                                         for="procurador_tipo_pessoa<?= $uniqued ?>"
                                         class="form-label">
