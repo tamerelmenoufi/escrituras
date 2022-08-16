@@ -18,8 +18,8 @@
                         <li><a href="busca-escritura">Busca Grátis</a></li>
                         <li><a href="cadastro-do-tabelionato">Solicitação de Escritura</a></li>
                         <?php if ($_SESSION['usuario']) { ?>
-                            <li><a href="documentos">Cadastro de documento</a></li>
-                            <li><a href="lista-cadastros">Lista de cadastros</a></li>
+                            <!-- <li><a href="documentos">Cadastro de documento</a></li> -->
+                            <li><a href="lista-cadastros">Listar e cadastrar</a></li>
                             <li><a href="consulta">Consulta</a></li>
                         <?php } ?>
                     </ul>
