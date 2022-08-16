@@ -449,7 +449,7 @@ $d = [];
                                 </select>
                             </div>
                         </div>
-                        <div opc="f">
+                        <div opc="f" class="mb-3">
                             <div class="row">
                                     <div class="col-md-6">
 
@@ -485,23 +485,23 @@ $d = [];
 
                             </div>
 
-
+                            <div opc="j">
                             <div class="row">
 
                                 <div class="col-md-4">
-
-                                    <label for="procurador_cnpj<?= $uniqued ?>" class="form-label">
-                                        CNPJ <span class="text-danger">*</span>
-                                    </label>
-                                    <input
-                                            type="text"
-                                            class="form-control"
-                                            id="procurador_cnpj<?= $uniqued ?>"
-                                            name="procurador_cnpj"
-                                            aria-describedby="procurador_cnpj"
-                                            value="<?= $d->procurador_cnpj; ?>"
-                                    >
-
+                                    <div class="mb-3">
+                                        <label for="procurador_cnpj<?= $uniqued ?>" class="form-label">
+                                            CNPJ <span class="text-danger">*</span>
+                                        </label>
+                                        <input
+                                                type="text"
+                                                class="form-control"
+                                                id="procurador_cnpj<?= $uniqued ?>"
+                                                name="procurador_cnpj"
+                                                aria-describedby="procurador_cnpj"
+                                                value="<?= $d->procurador_cnpj; ?>"
+                                        >
+                                    </div>
                                 </div>
 
                                 <div class="col-md-4">
@@ -537,6 +537,7 @@ $d = [];
                                         >
                                     </div>
                                 </div>
+                            </div>
                             </div>
 
                         </div>
