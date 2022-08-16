@@ -47,7 +47,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' and $_POST['acao'] === 'excluir'){
     $sql = "DELETE FROM vendedor_comprador WHERE codigo = '{$codigo}'";
 
     if(mysqli_query($con, $sql)){
-        echo json_encode(['status' => true,'msg' => 'Excluído com sucesso! '.$sql]);
+        echo json_encode(['status' => true,'msg' => 'Excluído com sucesso XXXX! '.$sql]);
     }else{
         echo json_encode(['status' => false,'msg' => 'Error ao excluir! '.$sql]);
     }
@@ -914,7 +914,7 @@ $d = [];
 
             $.alert({
                 title: 'Aviso',
-                content: 'Deseja realmente excluir XXX?',
+                content: 'Deseja realmente excluir?',
                 theme: 'bootstrap',
                 type: 'red',
                 icon: 'fa fa-warning',
