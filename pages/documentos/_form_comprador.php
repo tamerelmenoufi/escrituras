@@ -413,7 +413,7 @@ $d = [];
 
                     <div id="comprador-procurador">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-10">
                                 <label for="procurador_nome" class="form-label">
                                     Nome do comprador <span class="text-danger">*</span>
                                 </label>
@@ -424,11 +424,10 @@ $d = [];
                                         name="procurador_nome"
                                         aria-describedby="procurador_nome"
                                         value="<?= $d->procurador_nome; ?>"
-                                        maxlength="80"
                                         required
                                 >
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-2">
                                 <label
                                         for="procurador_tipo_pessoa<?= $uniqued ?>"
                                         class="form-label">
