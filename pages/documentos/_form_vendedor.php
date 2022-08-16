@@ -398,41 +398,43 @@ $d = [];
                     <h5 class="my-2 text-center">Vendedor procurador</h5>
 
                     <div id="vendedor-procurador">
-                        <div class="col-md-6">
-                            <label for="procurador_nome" class="form-label">
-                                Nome do comprador <span class="text-danger">*</span>
-                            </label>
-                            <input
-                                    type="text"
-                                    class="form-control"
-                                    id="procurador_nome"
-                                    name="procurador_nome"
-                                    aria-describedby="procurador_nome"
-                                    value="<?= $d->procurador_nome; ?>"
-                                    maxlength="80"
-                                    required
-                            >
-                        </div>
-                        <div class="col-md-6">
-                            <label
-                                    for="procurador_tipo_pessoa<?= $uniqued ?>"
-                                    class="form-label">
-                                Tipo de pessoa <span class="text-danger">*</span>
-                            </label>
-                            <select
-                                    class="form-control"
-                                    id="procurador_tipo_pessoa<?= $uniqued ?>"
-                                    name="procurador_tipo_pessoa"
-                                    required
-                            >
-                                <option value=""></option>
-                                <option value="f" <?= $d->procurador_tipo_pessoa == 'f' ? 'selected' : ''; ?>>
-                                    Pessoa física
-                                </option>
-                                <option value="j" <?= $d->procurador_tipo_pessoa == 'j' ? 'selected' : ''; ?>>
-                                    Pessoa jurídica
-                                </option>
-                            </select>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="procurador_nome" class="form-label">
+                                    Nome do Vendedor <span class="text-danger">*</span>
+                                </label>
+                                <input
+                                        type="text"
+                                        class="form-control"
+                                        id="procurador_nome"
+                                        name="procurador_nome"
+                                        aria-describedby="procurador_nome"
+                                        value="<?= $d->procurador_nome; ?>"
+                                        maxlength="80"
+                                        required
+                                >
+                            </div>
+                            <div class="col-md-6">
+                                <label
+                                        for="procurador_tipo_pessoa<?= $uniqued ?>"
+                                        class="form-label">
+                                    Tipo de pessoa <span class="text-danger">*</span>
+                                </label>
+                                <select
+                                        class="form-control"
+                                        id="procurador_tipo_pessoa<?= $uniqued ?>"
+                                        name="procurador_tipo_pessoa"
+                                        required
+                                >
+                                    <option value=""></option>
+                                    <option value="f" <?= $d->procurador_tipo_pessoa == 'f' ? 'selected' : ''; ?>>
+                                        Pessoa física
+                                    </option>
+                                    <option value="j" <?= $d->procurador_tipo_pessoa == 'j' ? 'selected' : ''; ?>>
+                                        Pessoa jurídica
+                                    </option>
+                                </select>
+                            </div>
                         </div>
                         <div opc="f">
                             <div class="row">
