@@ -227,8 +227,11 @@ $result = mysqli_query($con, $query);
                                             type: 'green',
                                             icon: 'fa fa-check',
                                             buttons:{
-                                                'ok':function(){
-                                                    window.location.href='./lista-cadastros';
+                                                ok:{
+                                                    text:'ok',
+                                                    action:function(){
+                                                        window.location.href='./lista-cadastros';
+                                                    }
                                                 }
                                             }
                                         });
