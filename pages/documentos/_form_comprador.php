@@ -412,102 +412,87 @@ $d = [];
                     <h5 class="my-2 text-center">Comprador procurador</h5>
 
                     <div id="comprador-procurador">
-                        <div class="mb-3">
-                            <label for="procurador_nome" class="form-label">
-                                Nome do comprador <span class="text-danger">*</span>
-                            </label>
-                            <input
-                                    type="text"
-                                    class="form-control"
-                                    id="procurador_nome"
-                                    name="procurador_nome"
-                                    aria-describedby="procurador_nome"
-                                    value="<?= $d->procurador_nome; ?>"
-                                    maxlength="80"
-                                    required
-                            >
-                        </div>
-
-                        <div class="row">
-
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label
-                                            for="procurador_tipo_pessoa<?= $uniqued ?>"
-                                            class="form-label">
-                                        Tipo de pessoa <span class="text-danger">*</span>
-                                    </label>
-                                    <select
-                                            class="form-control"
-                                            id="procurador_tipo_pessoa<?= $uniqued ?>"
-                                            name="procurador_tipo_pessoa"
-                                            required
-                                    >
-                                        <option value=""></option>
-                                        <option value="f" <?= $d->procurador_tipo_pessoa == 'f' ? 'selected' : ''; ?>>
-                                            Pessoa física
-                                        </option>
-                                        <option value="j" <?= $d->procurador_tipo_pessoa == 'j' ? 'selected' : ''; ?>>
-                                            Pessoa jurídica
-                                        </option>
-                                    </select>
-                                </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="procurador_nome" class="form-label">
+                                    Nome do comprador <span class="text-danger">*</span>
+                                </label>
+                                <input
+                                        type="text"
+                                        class="form-control"
+                                        id="procurador_nome"
+                                        name="procurador_nome"
+                                        aria-describedby="procurador_nome"
+                                        value="<?= $d->procurador_nome; ?>"
+                                        maxlength="80"
+                                        required
+                                >
                             </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label
+                                        for="procurador_tipo_pessoa<?= $uniqued ?>"
+                                        class="form-label">
+                                    Tipo de pessoa <span class="text-danger">*</span>
+                                </label>
+                                <select
+                                        class="form-control"
+                                        id="procurador_tipo_pessoa<?= $uniqued ?>"
+                                        name="procurador_tipo_pessoa"
+                                        required
+                                >
+                                    <option value=""></option>
+                                    <option value="f" <?= $d->procurador_tipo_pessoa == 'f' ? 'selected' : ''; ?>>
+                                        Pessoa física
+                                    </option>
+                                    <option value="j" <?= $d->procurador_tipo_pessoa == 'j' ? 'selected' : ''; ?>>
+                                        Pessoa jurídica
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div opc="f">
+                            <div class="row">
+                                    <div class="col-md-6">
 
-                            <div opc="f">
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label for="procurador_rg" class="form-label">
-                                            RG <span class="text-danger">*</span>
+                                        <div class="mb-3" id="procurador_container_cnpj<?= $uniqued ?>" style="display: none">
+                                        <label for="procurador_cnpj<?= $uniqued ?>" class="form-label">
+                                            CNPJ <span class="text-danger">*</span>
                                         </label>
                                         <input
                                                 type="text"
                                                 class="form-control"
-                                                id="procurador_rg"
-                                                name="procurador_rg"
-                                                aria-describedby="procurador_rg"
-                                                value="<?= $d->procurador_rg; ?>"
-                                                maxlength="20"
-                                                required
+                                                id="procurador_cnpj<?= $uniqued ?>"
+                                                name="procurador_cnpj"
+                                                aria-describedby="procurador_cnpj"
+                                                value="<?= $d->procurador_cnpj; ?>"
                                         >
+                                        </div>
+
                                     </div>
-                                </div>
+
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="procurador_rg" class="form-label">
+                                                RG <span class="text-danger">*</span>
+                                            </label>
+                                            <input
+                                                    type="text"
+                                                    class="form-control"
+                                                    id="procurador_rg"
+                                                    name="procurador_rg"
+                                                    aria-describedby="procurador_rg"
+                                                    value="<?= $d->procurador_rg; ?>"
+                                                    maxlength="20"
+                                                    required
+                                            >
+                                        </div>
+                                    </div>
+
                             </div>
 
-                        </div>
-                        <div opc="f">
-                            <div class="mb-3" id="procurador_container_cpf<?= $uniqued ?>" style="display: none">
-                                <label
-                                        for="procurador_cpf"
-                                        class="form-label">
-                                    CPF <span class="text-danger">*</span>
-                                </label>
-                                <input
-                                        type="text"
-                                        class="form-control"
-                                        id="procurador_cpf<?= $uniqued ?>"
-                                        name="procurador_cpf"
-                                        aria-describedby="procurador_cpf"
-                                        value="<?= $d->procurador_cpf; ?>"
-                                >
-                            </div>
-                        </div>
-                        <div opc="cnpj">
-                            <div class="mb-3" id="procurador_container_cnpj<?= $uniqued ?>" style="display: none">
-                                <label for="procurador_cnpj<?= $uniqued ?>" class="form-label">
-                                    CNPJ <span class="text-danger">*</span>
-                                </label>
-                                <input
-                                        type="text"
-                                        class="form-control"
-                                        id="procurador_cnpj<?= $uniqued ?>"
-                                        name="procurador_cnpj"
-                                        aria-describedby="procurador_cnpj"
-                                        value="<?= $d->procurador_cnpj; ?>"
-                                >
-                            </div>
-                        </div>
-                        <div opc="j">
+
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="mb-3">
@@ -543,7 +528,9 @@ $d = [];
                                     </div>
                                 </div>
                             </div>
+
                         </div>
+
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="mb-3">
