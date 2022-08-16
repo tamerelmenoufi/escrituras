@@ -69,6 +69,36 @@ if ($doc_id) {
 
     <input type="hidden" name="doc_id" value="<?= $doc_id; ?>" id="doc_id">
 
+
+
+    <div class="mb-3">
+        <label for="municipio_cartorio" class="form-label">Tipo de documento <span
+                    class="text-danger">*</span></label>
+        <select
+                class="form-control"
+                id="municipio_cartorio"
+                name="municipio_cartorio"
+                aria-describedby="municipio_cartorio"
+                required
+
+        >
+            <option value=""></option>
+            <?php
+            $query_municipio_cartorio = "SELECT * FROM aux_cidades WHERE deletado != '1' and estado = '3' ORDER BY nome";
+            $result = mysqli_query($con, $query_municipio_cartorio);
+
+            while ($row = mysqli_fetch_object($result)): ?>
+                <option
+                        value="<?= $row->codigo ?>"
+                    <?= $row->codigo == $d->municipio_cartorio ? 'selected ' : ''; ?>
+                >
+                    <?= $row->descricao ?>
+                </option>
+            <?php endwhile; ?>
+        </select>
+    </div>
+
+
     <div class="mb-3">
         <label for="cartorio" class="form-label">Cartório <span class="text-danger">*</span></label>
         <input
