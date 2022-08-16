@@ -5,6 +5,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' and $_POST['acao'] === "novo") {
     include_once "../config/ConnectionMySQL.php";
 
     mysqli_query($con, "INSERT INTO documentos SET cartorio = '_NOVO REGISTRO'");
+    exit();
 }
 
 
@@ -225,6 +226,11 @@ $result = mysqli_query($con, $query);
                                             theme: 'bootstrap',
                                             type: 'green',
                                             icon: 'fa fa-check',
+                                            buttons:{
+                                                'ok':function(){
+                                                    window.location.href='./lista-cadastros';
+                                                }
+                                            }
                                         });
 
                                     } else {
