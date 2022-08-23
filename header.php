@@ -16,15 +16,15 @@
                     </a>
                     <ul>
                         <li><a href="<?=(($_SESSION['usuario'])?'busca-escritura':'login')?>">Busca Grátis</a></li>
-                        <li><a href="cadastro-do-tabelionato">Solicitação de Escritura</a></li>
+                        <!-- <li><a href="cadastro-do-tabelionato">Solicitação de Escritura</a></li> -->
                         <?php if ($_SESSION['usuario']) { ?>
                             <!-- <li><a href="documentos">Cadastro de documento</a></li> -->
                             <li><a href="lista-cadastros">Listar e cadastrar</a></li>
-                            <li><a href="consulta">Consulta</a></li>
+                            <!-- <li><a href="consulta">Consulta</a></li> -->
                         <?php } ?>
                     </ul>
                 </li>
-                <li><a class="nav-link scrollto" href="index.php#portfolio">Suporte</a></li>
+                <!-- <li><a class="nav-link scrollto" href="index.php#portfolio">Suporte</a></li> -->
                 <!-- <li><a class="nav-link scrollto" href="seja-membro">Seja membro</a></li> -->
                 <li><a class="nav-link scrollto" href="quem-somos">Quem somos</a></li>
                 <li><a class="nav-link scrollto" href="index.php#contact">Contato</a></li>
