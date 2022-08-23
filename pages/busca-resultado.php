@@ -17,14 +17,14 @@ echo "COMANDO : ".$Comando;
                                 e.nome as estado,
                                 d.descricao as tipo_documento,
                                 i.descricao as tipo_imovel
-
+                            from documentos
                                 left join aux_bairros b on a.bairro = b.codigo
                                 left join aux_cidades c on a.cidade = c.codigo
                                 left join aux_estados e on a.estado = e.codigo
 
                                 left join aux_tipo_documento d on a.tipo_documento = d.codigo
                                 left join aux_tipo_imovel i on a.tipo_imovel = i.codigo
-                            from documentos";
+                            ";
                 $result = mysqli_query($con, $query);
                 while(mysqli_fetch_object($result)){
             ?>
