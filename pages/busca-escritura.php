@@ -10,7 +10,7 @@
                 <div class="input-group mb-3">
                     <button class="btn btn-outline-secondary dropdown-toggle rotulo_busca" type="button" data-bs-toggle="dropdown" aria-expanded="false">Buscar por</button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#"><b>Comprador</b></a></li>
+                        <li><b>Comprador</b></li>
                         <li><a class="dropdown-item opc" href="#">Nome</a></li>
                         <li><a class="dropdown-item opc" href="#">CPF</a></li>
                         <li><a class="dropdown-item opc" href="#">Razão Social</a></li>
