@@ -73,7 +73,7 @@ include_once "./config/conf.php";
                     <div class="text-right mt-3">
                         <button class="button-primary" type="submit" style="width:100%;">Entrar</button>
                     </div>
-                    <p><a href='#'>Esqueceu a senha? Clique aqui!</a></p>
+                    <p><a href='#' style="color:#fff">Esqueceu a senha? Clique aqui!</a></p>
                 </form>
             </div>
         </div>
