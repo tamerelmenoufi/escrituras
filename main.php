@@ -622,8 +622,10 @@ São feitas várias espécies de escrituras: procuração, compra e venda, doaç
 
 <section id="contact" class="contact">
     <div class="container">
-
-        <div class="row gy-5 gx-lg-5">
+        <div class="section-header">
+            <h2>Contato</h2>
+        </div>
+        <div class="row gx-lg-5">
 
             <div class="col-lg-4">
 
