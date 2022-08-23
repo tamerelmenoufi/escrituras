@@ -33,7 +33,7 @@
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item opc" mask="unmask" info="Rua, número, bairro, cidade, cep" rotulo="Endereço do Imóvel " href="#">Endereço do Imóvel</a></li>
                     </ul>
-                    <input type="text" id="texto_busca" class="form-control" placeholder="Rua, número, bairro, cidade, cep">
+                    <input type="text" id="texto_busca" class="form-control" placeholder="Digite a informação desejada para realizar a busca">
                     <button type="submit" class="btn btn-success px-4">Buscar</button>
                 </div>
             </div>
