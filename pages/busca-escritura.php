@@ -58,7 +58,7 @@
             }else{
                 $('#texto_busca').mask(mask);
             }
-            $('#texto_busca').attr(info);
+            $('#texto_busca').attr("placeholder",info);
             $('#texto_busca').val('');
         })
 
