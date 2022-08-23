@@ -57,7 +57,7 @@ include_once "./config/conf.php";
                                     id="senha"
                                     maxlength="150"
                                     placeholder="Senha"
-                                    style="color: rgba(var(--color-secondary-dark-rgb), 0.7)"
+                                    style="color: rgba(var(--color-secondary-dark-rgb), 0.7); width:100%;"
                                     required
                             >
                         </div>
