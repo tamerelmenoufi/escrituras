@@ -11,7 +11,7 @@ include_once "./config/conf.php";
 </style>
 <div class="container my-5">
     <div class="row">
-        <div class="col-md-6" style="justify-contents:center;">
+        <div class="col-md-6" style="dipaly:flex; justify-contents:center;">
             TESTE
         </div>
         <div class="col-md-6">
