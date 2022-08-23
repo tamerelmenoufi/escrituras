@@ -65,7 +65,7 @@
 
         $(".buscar").click(function(){
             busca = $('#texto_busca').val();
-            campo = $('#rotulo_busca').attr("campo");
+            campo = $('.rotulo_busca').attr("campo");
             if(busca){
                 $.ajax({
                     url:"pages/busca-resultado.php",
