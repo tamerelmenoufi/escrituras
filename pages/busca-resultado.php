@@ -17,7 +17,7 @@ echo "COMANDO : ".$Comando;
                                 e.nome as estado,
                                 d.descricao as tipo_documento,
                                 i.descricao as tipo_imovel
-                            from documentos
+                            from documentos a
                                 left join aux_bairros b on a.bairro = b.codigo
                                 left join aux_cidades c on a.cidade = c.codigo
                                 left join aux_estados e on a.estado = e.codigo
