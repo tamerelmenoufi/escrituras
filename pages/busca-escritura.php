@@ -61,6 +61,7 @@
             }
             $('#texto_busca').attr("placeholder",info);
             $('#texto_busca').val('');
+            $(".resultado_busca").html('');
         })
 
         $(".buscar").click(function(){
