@@ -1,5 +1,83 @@
 <?php
 include_once "../config/includes.php";
+
+
+switch($_POST['campo']){
+
+    case 'aleatorio':{
+        $busca = explode(',', $_POST['busca']);
+        $w = [
+                    'a.rua',
+                    'a.cep',
+                    'b.nome',
+                    'c.nome',
+                    'e.nome',
+                    'v.nome',
+                    'v.rg',
+                    'v.cpf',
+                    'v.cnpj'
+                ];
+        $where = [];
+        for($i=0;$i<count($busca);$i++){
+            for($j = 0;$j<count($w); $j++){
+                $where[] = "{$w[$j]} like '%{$busca[$j]}%'";
+            }
+        }
+        $where = implode(" or ", $where);
+    }
+    case 'comprador_nome':{
+        $where = "v.tipo = 'c' and v.nome LIKE '%{$_POST['busca']}%'";
+    }
+    case 'comprador_cpf':{
+        $busca = str_replace(array('-','.'), false, $_POST['busca']);
+        $where = "v.tipo = 'c' and (v.cpf = '{$busca}' or v.cpf = '{$_POST['busca']}')";
+    }
+    case 'comprador_razao_social':{
+        $where = "v.tipo = 'c' and v.nome LIKE '%{$_POST['busca']}%'";
+    }
+    case 'comprador_cnpj':{
+        $busca = str_replace(array('-','.','/'), false,$_POST['busca']);
+        $where = "v.tipo = 'c' and (v.cnpj = '{$_POST['busca']}' or v.cnpj = '{$busca}')";
+    }
+    case 'vendedor_nome':{
+        $where = "v.tipo = 'v' and v.nome LIKE '%{$_POST['busca']}%'";
+    }
+    case 'vendedor_cpf':{
+        $busca = str_replace(array('-','.'), false, $_POST['busca']);
+        $where = "v.tipo = 'v' and (v.cpf = '{$busca}' or v.cpf = '{$_POST['busca']}')";
+    }
+    case 'vendedor_razao_social':{
+        $where = "v.tipo = 'v' and v.nome LIKE '%{$_POST['busca']}%'";
+    }
+    case 'vendedor_cnpj':{
+        $busca = str_replace(array('-','.','/'), false,$_POST['busca']);
+        $where = "v.tipo = 'v' and (v.cnpj = '{$_POST['busca']}' or v.cnpj = '{$busca}')";
+    }
+    case 'endereco':{
+        $busca = explode(',', $_POST['busca']);
+        $w = [
+                    'a.rua',
+                    'a.cep',
+                    'b.nome',
+                    'c.nome',
+                    'e.nome'
+                ];
+        $where = [];
+        for($i=0;$i<count($busca);$i++){
+            for($j = 0;$j<count($w); $j++){
+                $where[] = "{$w[$j]} like '%{$busca[$j]}%'";
+            }
+        }
+        $where = implode(" or ", $where);
+    }
+    default:{
+        exit();
+    }
+
+    $where = (($where)?" and ({$where})":false);
+};
+
+
 ?>
 <div class="container py-4">
     <b class="text-left mb-3">Resultado da busca por <?=$_POST['busca']?> no campo <?=$_POST['campo']?></b>
@@ -8,7 +86,7 @@ include_once "../config/includes.php";
         <div class="list-group">
             <?php
 
-                $query = "select
+                echo $query = "select
                                 a.*,
                                 b.nome as bairro,
                                 c.nome as cidade,
@@ -22,7 +100,10 @@ include_once "../config/includes.php";
 
                                 left join aux_tipo_documento d on a.tipo_documento = d.codigo
                                 left join aux_tipo_imovel i on a.tipo_imovel = i.codigo
-                            ";
+
+                                left join vendedor_comprador v on a.codigo = v.documento_id
+
+                            where 1 {$where}";
                 $result = mysqli_query($con, $query);
                 while($d = mysqli_fetch_object($result)){
             ?>
