@@ -15,18 +15,18 @@
                     <button class="btn btn-outline-secondary dropdown-toggle rotulo_busca" type="button" data-bs-toggle="dropdown" aria-expanded="false">Buscar por</button>
                     <ul class="dropdown-menu">
                         <li class="topico"><b>Comprador</b></li>
-                        <li><a class="dropdown-item opc" href="#">Nome</a></li>
-                        <li><a class="dropdown-item opc" href="#">CPF</a></li>
-                        <li><a class="dropdown-item opc" href="#">Razão Social</a></li>
-                        <li><a class="dropdown-item opc" href="#">CNPJ</a></li>
+                        <li><a class="dropdown-item opc" rotulo="Comprador Nome" href="#">Nome</a></li>
+                        <li><a class="dropdown-item opc" rotulo="Comprador CPF" href="#">CPF</a></li>
+                        <li><a class="dropdown-item opc" rotulo="Comprador Razão Social" href="#">Razão Social</a></li>
+                        <li><a class="dropdown-item opc" rotulo="Comprador CNPJ" href="#">CNPJ</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li class="topico"><b>Vendedor</b></li>
-                        <li><a class="dropdown-item opc" href="#">Nome</a></li>
-                        <li><a class="dropdown-item opc" href="#">CPF</a></li>
-                        <li><a class="dropdown-item opc" href="#">Razão Social</a></li>
-                        <li><a class="dropdown-item opc" href="#">CNPJ</a></li>
+                        <li><a class="dropdown-item opc" rotulo="Vendedor Nome" href="#">Nome</a></li>
+                        <li><a class="dropdown-item opc" rotulo="Vendedor CPF" href="#">CPF</a></li>
+                        <li><a class="dropdown-item opc" rotulo="Vendedor Razão Social" href="#">Razão Social</a></li>
+                        <li><a class="dropdown-item opc" rotulo="Vendedor CNPJ" href="#">CNPJ</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item opc" href="#">Busca Aleatória</a></li>
+                        <li><a class="dropdown-item opc" rotulo="Busca Aleatória " href="#">Busca Aleatória</a></li>
                     </ul>
                     <input type="text" class="form-control" aria-label="Text input with dropdown button">
                 </div>
@@ -37,7 +37,7 @@
 <script>
     $(function(){
         $(".opc").click(function(){
-            opc = $(this).text();
+            opc = $(this).attr("rotulo");
             $(".rotulo_busca").text(opc);
         })
     })
