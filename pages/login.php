@@ -25,7 +25,7 @@ include_once "./config/conf.php";
                                 class="text-center"
                                 style="color: rgba(var(--color-secondary-dark-rgb), 1);"
                         >
-                            Área de login
+                            Faça seu login
                         </h3>
 
                         <div class="form-group mt-3">
@@ -61,6 +61,7 @@ include_once "./config/conf.php";
                                     required
                             >
                         </div>
+                        <p>Esqueceu a senha? Clique aqui!</p>
                     </div>
 
                     <div class="text-center mt-4 mt-3">
