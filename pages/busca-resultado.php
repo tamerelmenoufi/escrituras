@@ -88,13 +88,13 @@ $where = (($where)?" and ({$where})":false);
 
 ?>
 <div class="container py-4">
-    <b class="text-left mb-3">Resultado da busca por <?=$_POST['busca']?> no campo <?=$_POST['campo']?></b>
+    <b class="text-left mb-3">Resultado da busca por <?=$_POST['busca']?></b>
     <div class="info p-4">
 
         <div class="list-group">
             <?php
 
-                echo $query = "select
+                $query = "select
                                 a.*,
                                 b.nome as bairro,
                                 c.nome as cidade,
