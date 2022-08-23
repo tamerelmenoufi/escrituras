@@ -17,7 +17,7 @@
                 <div class="input-group mb-3">
                     <button class="btn btn-outline-secondary dropdown-toggle rotulo_busca" type="button" data-bs-toggle="dropdown" aria-expanded="false">Busca Aleatória</button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item opc" mask="unmask" rotulo="Busca Aleatória " href="#">Busca Aleatória</a></li>
+                        <li><a class="dropdown-item opc" mask="unmask" info="Digite a informação desejada para realizar a busca" rotulo="Busca Aleatória " href="#">Busca Aleatória</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li class="topico"><b>Comprador</b></li>
                         <li><a class="dropdown-item opc" mask="unmask" info="Digite o nome completo" rotulo="Comprador Nome" href="#">Nome</a></li>
