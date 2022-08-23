@@ -17,7 +17,7 @@
                 <div class="input-group mb-3">
                     <button class="btn btn-outline-secondary dropdown-toggle rotulo_busca" campo="aleatorio" type="button" data-bs-toggle="dropdown" aria-expanded="false">Busca Aleatória</button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item opc" mask="unmask" info="Digite a informação desejada para realizar a busca" rotulo="Busca Aleatória " href="#">Busca Aleatória</a></li>
+                        <li><a class="dropdown-item opc" mask="unmask" info="Digite a informação desejada separando por vírgula. Ex: cpf, nome, edereço, etc" rotulo="Busca Aleatória " href="#">Busca Aleatória</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li class="topico"><b>Comprador</b></li>
                         <li><a class="dropdown-item opc" mask="unmask" info="Digite o nome completo" campo='comprador_nome' rotulo="Comprador Nome" href="#">Nome</a></li>
@@ -33,7 +33,7 @@
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item opc" mask="unmask" info="Rua, número, bairro, cidade, cep" campo='aleatorio' rotulo="Endereço do Imóvel " href="#">Endereço do Imóvel</a></li>
                     </ul>
-                    <input type="text" id="texto_busca" class="form-control" placeholder="Digite a informação desejada para realizar a busca">
+                    <input type="text" id="texto_busca" class="form-control" placeholder="Digite a informação desejada separando por vírgula. Ex: cpf, nome, edereço, etc">
                     <button type="button" class="btn btn-success px-4 buscar">Buscar</button>
                 </div>
             </div>
