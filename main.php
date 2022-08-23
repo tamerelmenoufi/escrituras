@@ -3,7 +3,7 @@
         <h2 class="text-center">PORTAL ESCRITURA</h2>
         <p>
             Sua forma mais rápida e eficiente de localizar a Escritura Pública de um imóvel
-            
+
         </p>
         <div class="d-flex">
             <a href="#about" class="btn scrollto btn-lg">Busca Grátis</a>
@@ -102,23 +102,23 @@
 
                     <div class="tab-pane fade show active" id="tab1">
 
-                        <p class="fst-italic">Orientar, informar e entregar a sociedade, o acesso à localização de escrituras, procurações e outros documentos cartorários de maneira ágil e econômica, contribuindo à cidadania e na segurança das relações sociais. 
+                        <p class="fst-italic">Orientar, informar e entregar a sociedade, o acesso à localização de escrituras, procurações e outros documentos cartorários de maneira ágil e econômica, contribuindo à cidadania e na segurança das relações sociais.
                         </p>
-                       
+
                     </div><!-- End Tab 1 Content -->
 
                     <div class="tab-pane fade show" id="tab2">
 
                         <p class="fst-italic">Ser reconhecida pela sociedade como o maior portal eletrônico na atuação de informação e busca de certidões cartorárias.</p>
-                        
+
                     </div><!-- End Tab 2 Content -->
 
-                  
+
                     <div class="tab-pane fade show" id="tab3">
 
                         <p class="fst-italic">Respeito aos colaboradores, parceiros e sociedade, Transparência com a informação, Integralidade com as instituições cartorárias e judiciarias, Profissionalismo no atendimento, Inovação tecnológica de referência com relevância, Confiança na efetividade da segurança de dados, com engajamento na melhoria dos serviços.</p>
 
-                      
+
 
                     </div><!-- End Tab 3 Content -->
 
@@ -141,7 +141,7 @@
                 <div class="swiper-slide"><img src="assets/img/clients/client-2.png" class="img-fluid" alt=""></div>
                 <div class="swiper-slide"><img src="assets/img/clients/client-3.png" class="img-fluid" alt=""></div>
                 <div class="swiper-slide"><img src="assets/img/clients/client-4.png" class="img-fluid" alt=""></div>
-                
+
             </div>
         </div>
 
@@ -233,10 +233,10 @@
                             A escritura pública é o instrumento que comprova a celebração de um negócio jurídico. É o instrumento lavrado por tabelião, no Livro de Notas, que a escreve de forma descritiva, qualificando as partes contratantes e descrevendo e caracterizando o negócio que os participantes desejam celebrar.
 
 São feitas várias espécies de escrituras: procuração, compra e venda, doação, permuta, pacto antenupcial, pacto de convivência (união estável), emancipação, hipoteca, instituição de usufruto, testamento e muitas outras. Cada tipo de escritura tem a sua documentação específica.
-                            
+
                         </p>
-                       
-                      
+
+
                     </div>
                     <div class="col-lg-4 order-1 order-lg-2 text-center" data-aos="fade-up" data-aos-delay="200">
                         <img src="assets/img/features-1.jpg" alt="" class="img-fluid">
@@ -432,7 +432,7 @@ São feitas várias espécies de escrituras: procuração, compra e venda, doaç
 
         <div class="section-header">
             <h2>Outros serviços </h2>
-           
+
         </div>
 
         <div class="row gy-5">
@@ -467,7 +467,7 @@ São feitas várias espécies de escrituras: procuração, compra e venda, doaç
                         <a href="#" class="stretched-link">
                             <h3>Certidão de imovel</h3>
                         </a>
-                        <p>A Certidão de Imóvel é o documento no qual é anotado o registro do imóvel, e que comprova que o ato foi realizado. É a partir do registro (feito por ato cartorial) que é possível declarar quem é o proprietário do imóvel. 
+                        <p>A Certidão de Imóvel é o documento no qual é anotado o registro do imóvel, e que comprova que o ato foi realizado. É a partir do registro (feito por ato cartorial) que é possível declarar quem é o proprietário do imóvel.
                         </p>
                     </div>
                 </div>
@@ -490,7 +490,7 @@ São feitas várias espécies de escrituras: procuração, compra e venda, doaç
                 </div>
             </div><!-- End Service Item -->
 
-            
+
 
         </div>
 
@@ -587,7 +587,7 @@ São feitas várias espécies de escrituras: procuração, compra e venda, doaç
                         </div>
                     </div><!-- # Faq item-->
 
-                  
+
 
                 </div>
 
@@ -604,12 +604,12 @@ São feitas várias espécies de escrituras: procuração, compra e venda, doaç
 
 
 <!-- ======= Contact Section ======= -->
-<section id="contact" class="contact">
+<section id="mapa" class="mapa">
     <div class="container">
 
         <div class="section-header">
             <h2>Conheça nossos cartorios </h2>
-           
+
         </div>
 
     </div>
@@ -618,7 +618,9 @@ São feitas várias espécies de escrituras: procuração, compra e venda, doaç
         <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621"
                 frameborder="0" allowfullscreen></iframe>
     </div><!-- End Google Maps -->
+</section>
 
+<section id="contact" class="contact">
     <div class="container">
 
         <div class="row gy-5 gx-lg-5">
@@ -627,7 +629,7 @@ São feitas várias espécies de escrituras: procuração, compra e venda, doaç
 
                 <div class="info">
                     <h3>Entrar em contato</h3>
-                 
+
 
                     <div class="info-item d-flex">
                         <i class="bi bi-geo-alt flex-shrink-0"></i>
@@ -669,7 +671,7 @@ São feitas várias espécies de escrituras: procuração, compra e venda, doaç
                                    placeholder="Email" required>
                         </div>
                     </div>
-                    
+
                     <div class="form-group mt-3">
                         <textarea class="form-control" name="message" placeholder="..Digite seu assunto.." required></textarea>
                     </div>
