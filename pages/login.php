@@ -12,7 +12,7 @@ include_once "./config/conf.php";
 <div class="container my-5">
     <div class="row">
         <div class="col-md-6">
-
+            <h3>Cadastre-se</h3>
         </div>
         <div class="col-md-6">
             <div class="card">
