@@ -22,5 +22,3 @@ function random_string()
     $c = substr($c, 0, 5);
     return $c;
 }
-
-include("ConnectionMySQL.php");

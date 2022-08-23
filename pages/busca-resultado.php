@@ -1,5 +1,5 @@
 <?php
-include_once "./config/conf.php";
+include_once "../../config/includes.php";
 ?>
 <div class="container py-4">
     <b class="text-left mb-3">Resultado da busca por <?=$_POST['busca']?> no campo <?=$_POST['campo']?></b>
