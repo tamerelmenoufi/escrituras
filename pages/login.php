@@ -57,7 +57,7 @@ include_once "./config/conf.php";
                                     id="senha"
                                     maxlength="150"
                                     placeholder="Senha"
-                                    style="color: rgba(var(--color-secondary-dark-rgb), 0.7); width:100% !important;"
+                                    style="color: rgba(var(--color-secondary-dark-rgb), 0.7);"
                                     required
                             >
                         </div>
@@ -69,7 +69,7 @@ include_once "./config/conf.php";
                         </div>
                     </div>
                     <div class="text-right mt-3">
-                        <button class="button-primary" type="submit">Entrar</button>
+                        <button class="button-primary" type="submit" style="width:100%;">Entrar</button>
                     </div>
                     <p><a href='#'>Esqueceu a senha? Clique aqui!</a></p>
                 </form>
