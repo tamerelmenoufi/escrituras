@@ -62,8 +62,8 @@ include_once "./config/conf.php";
                             >
                         </div>
                     </div>
-                    <p>Esqueceu a senha? Clique aqui!</p>
-                    <div class="text-center mt-4 mt-3">
+                    <p style="margin-top:10px;">Esqueceu a senha? Clique aqui!</p>
+                    <div class="text-center">
                         <button class="button-primary" type="submit" style="width: 50%">Entrar</button>
                     </div>
 
