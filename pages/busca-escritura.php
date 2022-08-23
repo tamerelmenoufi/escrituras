@@ -46,7 +46,7 @@
     })
 </script>
 
-    <form method="post" action="actions/teste.php">
+    <!-- <form method="post" action="actions/teste.php">
         <div class="row">
             <div class="col-md-6 offset-md-3">
                 <div class="mb-3">
@@ -101,6 +101,6 @@
                 </div>
             </div>
         </div>
-    </form>
+    </form> -->
 
 </div>
