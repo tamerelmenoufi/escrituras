@@ -20,18 +20,18 @@
                         <li><a class="dropdown-item opc" mask="unmask" rotulo="Busca Aleatória " href="#">Busca Aleatória</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li class="topico"><b>Comprador</b></li>
-                        <li><a class="dropdown-item opc" mask="unmask" rotulo="Comprador Nome" href="#">Nome</a></li>
-                        <li><a class="dropdown-item opc" mask="999.999.999-99" rotulo="Comprador CPF" href="#">CPF</a></li>
-                        <li><a class="dropdown-item opc" mask="unmask" rotulo="Comprador Razão Social" href="#">Razão Social</a></li>
-                        <li><a class="dropdown-item opc" mask="99.999.999/9999-99" rotulo="Comprador CNPJ" href="#">CNPJ</a></li>
+                        <li><a class="dropdown-item opc" mask="unmask" info="Digite o nome completo" rotulo="Comprador Nome" href="#">Nome</a></li>
+                        <li><a class="dropdown-item opc" mask="999.999.999-99" info="Digite o número do CPF" rotulo="Comprador CPF" href="#">CPF</a></li>
+                        <li><a class="dropdown-item opc" mask="unmask" rotulo="Comprador Razão Social" info="Digite o nome da Razão Social" href="#">Razão Social</a></li>
+                        <li><a class="dropdown-item opc" mask="99.999.999/9999-99" info="Digite o número do CNPJ" rotulo="Comprador CNPJ" href="#">CNPJ</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li class="topico"><b>Vendedor</b></li>
-                        <li><a class="dropdown-item opc" mask="unmask" rotulo="Vendedor Nome" href="#">Nome</a></li>
-                        <li><a class="dropdown-item opc" mask="999.999.999-99" rotulo="Vendedor CPF" href="#">CPF</a></li>
-                        <li><a class="dropdown-item opc" mask="unmask" rotulo="Vendedor Razão Social" href="#">Razão Social</a></li>
-                        <li><a class="dropdown-item opc" mask="99.999.999/9999-99" rotulo="Vendedor CNPJ" href="#">CNPJ</a></li>
+                        <li><a class="dropdown-item opc" mask="unmask" info="Digite o nome completo" rotulo="Vendedor Nome" href="#">Nome</a></li>
+                        <li><a class="dropdown-item opc" mask="999.999.999-99" info="Digite o número do CPF" rotulo="Vendedor CPF" href="#">CPF</a></li>
+                        <li><a class="dropdown-item opc" mask="unmask" rotulo="Comprador Razão Social" rotulo="Vendedor Razão Social" href="#">Razão Social</a></li>
+                        <li><a class="dropdown-item opc" mask="99.999.999/9999-99" info="Digite o número do CNPJ" rotulo="Vendedor CNPJ" href="#">CNPJ</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item opc" mask="unmask" rotulo="Endereço do Imóvel " href="#">Endereço do Imóvel</a></li>
+                        <li><a class="dropdown-item opc" mask="unmask" info="Rua, número, bairro, cidade, cep" rotulo="Endereço do Imóvel " href="#">Endereço do Imóvel</a></li>
                     </ul>
                     <input type="text" id="texto_busca" class="form-control" placeholder="Rua, número, bairro, cidade, cep">
                     <button type="submit" class="btn btn-success px-4">Buscar</button>
@@ -50,6 +50,7 @@
         $(".opc").click(function(){
             opc = $(this).attr("rotulo");
             mask = $(this).attr("mask");
+            info = $(this).attr("info");
             $(".rotulo_busca").text(opc);
 
             if(mask == 'unmask'){
@@ -57,7 +58,8 @@
             }else{
                 $('#texto_busca').mask(mask);
             }
-
+            $('#texto_busca').attr(info);
+            $('#texto_busca').val('');
         })
 
 
