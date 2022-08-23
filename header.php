@@ -25,7 +25,7 @@
                     </ul>
                 </li>
                 <li><a class="nav-link scrollto" href="index.php#portfolio">Suporte</a></li>
-                <li><a class="nav-link scrollto" href="seja-membro">Seja membro</a></li>
+                <!-- <li><a class="nav-link scrollto" href="seja-membro">Seja membro</a></li> -->
                 <li><a class="nav-link scrollto" href="quem-somos">Quem somos</a></li>
                 <li><a class="nav-link scrollto" href="index.php#contact">Contato</a></li>
                 <?php if (!isset($_SESSION['usuario'])) { ?>
