@@ -2,6 +2,9 @@
     .topico{
         padding-left:10px;
     }
+    .resultado_busca{
+        min-height:300px;
+    }
 </style>
 <div class="container-fluid py-4">
     <h1 class="text-center">Busca Grátis</h1>
@@ -12,37 +15,52 @@
         <div class="row">
             <div class="col">
                 <div class="input-group mb-3">
-                    <button class="btn btn-outline-secondary dropdown-toggle rotulo_busca" type="button" data-bs-toggle="dropdown" aria-expanded="false">Buscar por</button>
+                    <button class="btn btn-outline-secondary dropdown-toggle rotulo_busca" type="button" data-bs-toggle="dropdown" aria-expanded="false">Busca Aleatória</button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item opc" rotulo="Busca Aleatória " href="#">Busca Aleatória</a></li>
+                        <li><a class="dropdown-item opc" mask="unmask" rotulo="Busca Aleatória " href="#">Busca Aleatória</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li class="topico"><b>Comprador</b></li>
-                        <li><a class="dropdown-item opc" rotulo="Comprador Nome" href="#">Nome</a></li>
-                        <li><a class="dropdown-item opc" rotulo="Comprador CPF" href="#">CPF</a></li>
-                        <li><a class="dropdown-item opc" rotulo="Comprador Razão Social" href="#">Razão Social</a></li>
-                        <li><a class="dropdown-item opc" rotulo="Comprador CNPJ" href="#">CNPJ</a></li>
+                        <li><a class="dropdown-item opc" mask="unmask" rotulo="Comprador Nome" href="#">Nome</a></li>
+                        <li><a class="dropdown-item opc" mask="999.999.999-99" rotulo="Comprador CPF" href="#">CPF</a></li>
+                        <li><a class="dropdown-item opc" mask="unmask" rotulo="Comprador Razão Social" href="#">Razão Social</a></li>
+                        <li><a class="dropdown-item opc" mask="99.999.999/9999-99" rotulo="Comprador CNPJ" href="#">CNPJ</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li class="topico"><b>Vendedor</b></li>
-                        <li><a class="dropdown-item opc" rotulo="Vendedor Nome" href="#">Nome</a></li>
-                        <li><a class="dropdown-item opc" rotulo="Vendedor CPF" href="#">CPF</a></li>
-                        <li><a class="dropdown-item opc" rotulo="Vendedor Razão Social" href="#">Razão Social</a></li>
-                        <li><a class="dropdown-item opc" rotulo="Vendedor CNPJ" href="#">CNPJ</a></li>
+                        <li><a class="dropdown-item opc" mask="unmask" rotulo="Vendedor Nome" href="#">Nome</a></li>
+                        <li><a class="dropdown-item opc" mask="999.999.999-99" rotulo="Vendedor CPF" href="#">CPF</a></li>
+                        <li><a class="dropdown-item opc" mask="unmask" rotulo="Vendedor Razão Social" href="#">Razão Social</a></li>
+                        <li><a class="dropdown-item opc" mask="99.999.999/9999-99" rotulo="Vendedor CNPJ" href="#">CNPJ</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item opc" rotulo="Endereço do Imóvel " href="#">Endereço do Imóvel</a></li>
+                        <li><a class="dropdown-item opc" mask="unmask" rotulo="Endereço do Imóvel " href="#">Endereço do Imóvel</a></li>
                     </ul>
-                    <input type="text" class="form-control" aria-label="Text input with dropdown button">
+                    <input type="text" id="texto_busca" class="form-control" placeholder="Rua, número, bairro, cidade, cep">
                     <button type="submit" class="btn btn-success px-4">Buscar</button>
                 </div>
             </div>
         </div>
+
+        <div class="resultado_busca">
+
+        </div>
+
     </div>
 
 <script>
     $(function(){
         $(".opc").click(function(){
             opc = $(this).attr("rotulo");
+            mask = $(this).attr("mask");
             $(".rotulo_busca").text(opc);
+
+            if(mask == 'unmask'){
+                $('#texto_busca').unmask();
+            }else{
+                $('#texto_busca').mask(mask);
+            }
+
         })
+
+
     })
 </script>
 
