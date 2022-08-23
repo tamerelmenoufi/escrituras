@@ -34,14 +34,12 @@
                         <li><a class="dropdown-item opc" mask="unmask" info="Rua, número, bairro, cidade, cep" rotulo="Endereço do Imóvel " href="#">Endereço do Imóvel</a></li>
                     </ul>
                     <input type="text" id="texto_busca" class="form-control" placeholder="Digite a informação desejada para realizar a busca">
-                    <button type="submit" class="btn btn-success px-4">Buscar</button>
+                    <button type="button" class="btn btn-success px-4 buscar">Buscar</button>
                 </div>
             </div>
         </div>
 
-        <div class="resultado_busca">
-
-        </div>
+        <div class="resultado_busca"></div>
 
     </div>
 
@@ -62,6 +60,19 @@
             $('#texto_busca').val('');
         })
 
+        $(".buscar").click(function()
+            busca = $('#texto_busca').val();
+            $.ajax({
+                url:"pages/busca-resultado.php",
+                type:"POST",
+                data:{
+                    busca
+                },
+                success:function(dados){
+                    $(".resultado_busca").html(dados);
+                }
+            });
+        });
 
     })
 </script>
