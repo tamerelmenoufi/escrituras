@@ -16,7 +16,7 @@ include_once "./config/conf.php";
         </div>
         <div class="col-md-6">
             <div class="card">
-                <div class="offset-lg-3 col-lg-6" style="margin-top: 1rem;margin-bottom: 3rem">
+                <div class="col-lg-12" style="margin-top: 1rem;margin-bottom: 3rem">
                     <form id="form-login" method="post" role="form" class="">
 
                         <input type="hidden" name="acao" value="login">
