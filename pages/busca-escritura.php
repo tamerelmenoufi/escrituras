@@ -1,6 +1,6 @@
 <style>
     .topico{
-        padding-left:20px;
+        padding-left:10px;
     }
 </style>
 <div class="container-fluid py-4">
@@ -20,7 +20,7 @@
                         <li><a class="dropdown-item opc" href="#">Razão Social</a></li>
                         <li><a class="dropdown-item opc" href="#">CNPJ</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#"><b>Vendedor</b></a></li>
+                        <li class="topico"><b>Vendedor</b></li>
                         <li><a class="dropdown-item opc" href="#">Nome</a></li>
                         <li><a class="dropdown-item opc" href="#">CPF</a></li>
                         <li><a class="dropdown-item opc" href="#">Razão Social</a></li>
