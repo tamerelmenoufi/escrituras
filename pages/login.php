@@ -89,7 +89,7 @@ include_once "./config/conf.php";
             if($("#lgpd").prop("checked") == false){
                 $.alert({
                     title:'Dados incompletos',
-                    content:'<center>Favor confirme a declaração dos Termos de Privacidade!</center>',
+                    content:'<center>Favor confirme a declaração da Lei Geral de Termos de Privacidade!</center>',
                 });
                 return false;
             }
