@@ -15,7 +15,7 @@ include_once "./config/conf.php";
             <h3>Cadastre-se</h3>
         </div>
         <div class="col-md-6">
-            <div class="card m-3">
+            <div class="card" style="padding:20px;">
                 <form id="form-login" method="post" role="form" class="">
 
                     <input type="hidden" name="acao" value="login">
