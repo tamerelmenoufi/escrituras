@@ -68,10 +68,10 @@ include_once "./config/conf.php";
                             </div>
                         </div>
                     </div>
-                    <div class="text-center">
-                        <button class="button-primary" type="submit" style="width: 50%">Entrar</button>
+                    <div class="text-right mt-3">
+                        <button class="button-primary" type="submit">Entrar</button>
                     </div>
-                    <p style="margin-top:10px;">Esqueceu a senha? Clique aqui!</p>
+                    <p style="margin-top:15px;">Esqueceu a senha? Clique aqui!</p>
                 </form>
             </div>
         </div>
