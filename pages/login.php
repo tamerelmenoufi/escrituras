@@ -64,7 +64,7 @@ include_once "./config/conf.php";
                         <div class="form-group mt-3">
                             <div class="form-group form-check">
                                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                <label class="form-check-label" for="exampleCheck1" style="font-size:10px;"> Declaro que concordo com os Termos de Privacidade conforme a Lei Geral de Proteção de Dados.</label>
+                                <label class="form-check-label" for="exampleCheck1" style="font-size:11px;"> Declaro que concordo com os Termos de Privacidade conforme a Lei Geral de Proteção de Dados.</label>
                             </div>
                         </div>
                     </div>
