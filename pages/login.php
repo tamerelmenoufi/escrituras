@@ -12,7 +12,7 @@ include_once "./config/conf.php";
 <div class="container my-5">
     <div class="row">
         <div class="col-md-6">
-            <div style="width:100%; height:120px; background-color:#ccc; margin-top:25%;">
+            <div style="width:100%; height:80px; background-color:#ccc; margin-top:25%; padding:20px;">
                 TESTE
             </div>
         </div>
