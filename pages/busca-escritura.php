@@ -1,6 +1,10 @@
+<style>
+    .topico{
+        padding-left:20px;
+    }
+</style>
 <div class="container-fluid py-4">
     <h1 class="text-center">Busca Grátis</h1>
-
     <h5 class="text-center mb-5">
         Seja bem vindo, selecione uma das opções abaixo e digite as informações para a busca!
     </h5>
@@ -10,7 +14,7 @@
                 <div class="input-group mb-3">
                     <button class="btn btn-outline-secondary dropdown-toggle rotulo_busca" type="button" data-bs-toggle="dropdown" aria-expanded="false">Buscar por</button>
                     <ul class="dropdown-menu">
-                        <li><b>Comprador</b></li>
+                        <li class="topico"><b>Comprador</b></li>
                         <li><a class="dropdown-item opc" href="#">Nome</a></li>
                         <li><a class="dropdown-item opc" href="#">CPF</a></li>
                         <li><a class="dropdown-item opc" href="#">Razão Social</a></li>
