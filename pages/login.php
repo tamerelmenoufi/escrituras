@@ -22,7 +22,7 @@ include_once "./config/conf.php";
 
                     <div class="row">
                         <h5
-                                class="text-center"
+                                class="text-left"
                                 style="color: rgba(var(--color-secondary-dark-rgb), 1);"
                         >
                             Faça seu login
