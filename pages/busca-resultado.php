@@ -20,7 +20,7 @@ switch($_POST['campo']){
         $where = [];
         for($i=0;$i<count($busca);$i++){
             for($j = 0;$j<count($w); $j++){
-                $where[] = "{$w[$j]} like '%{$busca[$j]}%'";
+                $where[] = "{$w[$j]} like '%{$busca[$i]}%'";
             }
         }
         $where = implode(" or ", $where);
@@ -74,7 +74,7 @@ switch($_POST['campo']){
         $where = [];
         for($i=0;$i<count($busca);$i++){
             for($j = 0;$j<count($w); $j++){
-                $where[] = "{$w[$j]} like '%{$busca[$j]}%'";
+                $where[] = "{$w[$j]} like '%{$busca[$i]}%'";
             }
         }
         $where = implode(" or ", $where);
