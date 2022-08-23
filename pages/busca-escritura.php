@@ -31,6 +31,7 @@
                         <li><a class="dropdown-item opc" rotulo="Endereço do Imóvel " href="#">Endereço do Imóvel</a></li>
                     </ul>
                     <input type="text" class="form-control" aria-label="Text input with dropdown button">
+                    <button type="submit" class="btn btn-success px-4">Buscar</button>
                 </div>
             </div>
         </div>
