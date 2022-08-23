@@ -111,7 +111,7 @@ $where = (($where)?" and ({$where})":false);
 
                                 left join vendedor_comprador v on a.codigo = v.documento_id
 
-                            where 1 {$where}";
+                            where 1 {$where} group by a.codigo";
                 $result = mysqli_query($con, $query);
                 while($d = mysqli_fetch_object($result)){
             ?>
