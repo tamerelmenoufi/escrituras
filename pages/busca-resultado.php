@@ -24,34 +24,43 @@ switch($_POST['campo']){
             }
         }
         $where = implode(" or ", $where);
+        break;
     }
     case 'comprador_nome':{
         $where = "v.tipo = 'c' and v.nome LIKE '%{$_POST['busca']}%'";
+        break;
     }
     case 'comprador_cpf':{
         $busca = str_replace(array('-','.'), false, $_POST['busca']);
         $where = "v.tipo = 'c' and (v.cpf = '{$busca}' or v.cpf = '{$_POST['busca']}')";
+        break;
     }
     case 'comprador_razao_social':{
         $where = "v.tipo = 'c' and v.nome LIKE '%{$_POST['busca']}%'";
+        break;
     }
     case 'comprador_cnpj':{
         $busca = str_replace(array('-','.','/'), false,$_POST['busca']);
         $where = "v.tipo = 'c' and (v.cnpj = '{$_POST['busca']}' or v.cnpj = '{$busca}')";
+        break;
     }
     case 'vendedor_nome':{
         $where = "v.tipo = 'v' and v.nome LIKE '%{$_POST['busca']}%'";
+        break;
     }
     case 'vendedor_cpf':{
         $busca = str_replace(array('-','.'), false, $_POST['busca']);
         $where = "v.tipo = 'v' and (v.cpf = '{$busca}' or v.cpf = '{$_POST['busca']}')";
+        break;
     }
     case 'vendedor_razao_social':{
         $where = "v.tipo = 'v' and v.nome LIKE '%{$_POST['busca']}%'";
+        break;
     }
     case 'vendedor_cnpj':{
         $busca = str_replace(array('-','.','/'), false,$_POST['busca']);
         $where = "v.tipo = 'v' and (v.cnpj = '{$_POST['busca']}' or v.cnpj = '{$busca}')";
+        break;
     }
     case 'endereco':{
         $busca = explode(',', $_POST['busca']);
@@ -69,6 +78,7 @@ switch($_POST['campo']){
             }
         }
         $where = implode(" or ", $where);
+        break;
     }
     default:{
         exit();
