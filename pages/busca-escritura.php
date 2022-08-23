@@ -60,7 +60,7 @@
             $('#texto_busca').val('');
         })
 
-        $(".buscar").click(function()
+        $(".buscar").click(function(){
             busca = $('#texto_busca').val();
             $.ajax({
                 url:"pages/busca-resultado.php",
