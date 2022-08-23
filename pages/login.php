@@ -11,8 +11,8 @@ include_once "./config/conf.php";
 </style>
 <div class="container my-5">
     <div class="row">
-        <div class="col-md-6">
-            <h3>Cadastre-se</h3>
+        <div class="col-md-6" style="justify-contents:center;">
+            TESTE
         </div>
         <div class="col-md-6">
             <div class="card" style="padding:20px;">
