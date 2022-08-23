@@ -15,23 +15,23 @@
         <div class="row">
             <div class="col">
                 <div class="input-group mb-3">
-                    <button class="btn btn-outline-secondary dropdown-toggle rotulo_busca" type="button" data-bs-toggle="dropdown" aria-expanded="false">Busca Aleatória</button>
+                    <button class="btn btn-outline-secondary dropdown-toggle rotulo_busca" campo="aleatorio" type="button" data-bs-toggle="dropdown" aria-expanded="false">Busca Aleatória</button>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item opc" mask="unmask" info="Digite a informação desejada para realizar a busca" rotulo="Busca Aleatória " href="#">Busca Aleatória</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li class="topico"><b>Comprador</b></li>
-                        <li><a class="dropdown-item opc" mask="unmask" info="Digite o nome completo" rotulo="Comprador Nome" href="#">Nome</a></li>
-                        <li><a class="dropdown-item opc" mask="999.999.999-99" info="Digite o número do CPF" rotulo="Comprador CPF" href="#">CPF</a></li>
-                        <li><a class="dropdown-item opc" mask="unmask" rotulo="Comprador Razão Social" info="Digite o nome da Razão Social" href="#">Razão Social</a></li>
-                        <li><a class="dropdown-item opc" mask="99.999.999/9999-99" info="Digite o número do CNPJ" rotulo="Comprador CNPJ" href="#">CNPJ</a></li>
+                        <li><a class="dropdown-item opc" mask="unmask" info="Digite o nome completo" campo='comprador_nome' rotulo="Comprador Nome" href="#">Nome</a></li>
+                        <li><a class="dropdown-item opc" mask="999.999.999-99" info="Digite o número do CPF" campo='comprador_cpf' rotulo="Comprador CPF" href="#">CPF</a></li>
+                        <li><a class="dropdown-item opc" mask="unmask" rotulo="Comprador Razão Social" campo='comprador_razao_social' info="Digite o nome da Razão Social" href="#">Razão Social</a></li>
+                        <li><a class="dropdown-item opc" mask="99.999.999/9999-99" info="Digite o número do CNPJ" campo='comprador_cnpj' rotulo="Comprador CNPJ" href="#">CNPJ</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li class="topico"><b>Vendedor</b></li>
-                        <li><a class="dropdown-item opc" mask="unmask" info="Digite o nome completo" rotulo="Vendedor Nome" href="#">Nome</a></li>
-                        <li><a class="dropdown-item opc" mask="999.999.999-99" info="Digite o número do CPF" rotulo="Vendedor CPF" href="#">CPF</a></li>
-                        <li><a class="dropdown-item opc" mask="unmask" rotulo="Comprador Razão Social" rotulo="Vendedor Razão Social" href="#">Razão Social</a></li>
-                        <li><a class="dropdown-item opc" mask="99.999.999/9999-99" info="Digite o número do CNPJ" rotulo="Vendedor CNPJ" href="#">CNPJ</a></li>
+                        <li><a class="dropdown-item opc" mask="unmask" info="Digite o nome completo" campo='vendedor_nome' rotulo="Vendedor Nome" href="#">Nome</a></li>
+                        <li><a class="dropdown-item opc" mask="999.999.999-99" info="Digite o número do CPF" campo='vendedor_cpf' rotulo="Vendedor CPF" href="#">CPF</a></li>
+                        <li><a class="dropdown-item opc" mask="unmask" rotulo="Comprador Razão Social" campo='vendedor_razao_social' rotulo="Vendedor Razão Social" href="#">Razão Social</a></li>
+                        <li><a class="dropdown-item opc" mask="99.999.999/9999-99" info="Digite o número do CNPJ" campo='vendedor_cnpj' rotulo="Vendedor CNPJ" href="#">CNPJ</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item opc" mask="unmask" info="Rua, número, bairro, cidade, cep" rotulo="Endereço do Imóvel " href="#">Endereço do Imóvel</a></li>
+                        <li><a class="dropdown-item opc" mask="unmask" info="Rua, número, bairro, cidade, cep" campo='aleatorio' rotulo="Endereço do Imóvel " href="#">Endereço do Imóvel</a></li>
                     </ul>
                     <input type="text" id="texto_busca" class="form-control" placeholder="Digite a informação desejada para realizar a busca">
                     <button type="button" class="btn btn-success px-4 buscar">Buscar</button>
@@ -49,7 +49,10 @@
             opc = $(this).attr("rotulo");
             mask = $(this).attr("mask");
             info = $(this).attr("info");
+            campo = $(this).attr("campo");
+
             $(".rotulo_busca").text(opc);
+            $(".rotulo_busca").attr("campo",campo);
 
             if(mask == 'unmask'){
                 $('#texto_busca').unmask();
@@ -62,16 +65,22 @@
 
         $(".buscar").click(function(){
             busca = $('#texto_busca').val();
-            $.ajax({
-                url:"pages/busca-resultado.php",
-                type:"POST",
-                data:{
-                    busca
-                },
-                success:function(dados){
-                    $(".resultado_busca").html(dados);
-                }
-            });
+            campo = $('#rotulo_busca').attr("campo");
+            if(busca){
+                $.ajax({
+                    url:"pages/busca-resultado.php",
+                    type:"POST",
+                    data:{
+                        busca,
+                        campo
+                    },
+                    success:function(dados){
+                        $(".resultado_busca").html(dados);
+                    }
+                });
+            }else{
+                $.alert('Preencha o campo de busca !!!')
+            }
         });
 
     })
