@@ -15,7 +15,7 @@
                         <span>Serviços</span> <i class="bi bi-chevron-down dropdown-indicator"></i>
                     </a>
                     <ul>
-                        <li><a href="busca-escritura">Busca Grátis</a></li>
+                        <li><a href="<?=(($_SESSION['usuario'])?'busca-escritura':'login')?>">Busca Grátis</a></li>
                         <li><a href="cadastro-do-tabelionato">Solicitação de Escritura</a></li>
                         <?php if ($_SESSION['usuario']) { ?>
                             <!-- <li><a href="documentos">Cadastro de documento</a></li> -->
