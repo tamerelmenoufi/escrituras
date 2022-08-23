@@ -13,7 +13,7 @@ include_once "./config/conf.php";
     <div class="row">
         <div class="col-md-6">
             <div style="margin-left:50px; width:100%; height:150px; background-color:#0ea2bd; margin-top:15%; padding:20px;">
-                TESTE
+                <button class="button-success" type="button" style="width:100%;">FAÇA SEU CADASTRO</button>
             </div>
         </div>
         <div class="col-md-6">
