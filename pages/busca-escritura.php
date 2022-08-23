@@ -14,6 +14,8 @@
                 <div class="input-group mb-3">
                     <button class="btn btn-outline-secondary dropdown-toggle rotulo_busca" type="button" data-bs-toggle="dropdown" aria-expanded="false">Buscar por</button>
                     <ul class="dropdown-menu">
+                        <li><a class="dropdown-item opc" rotulo="Busca Aleatória " href="#">Busca Aleatória</a></li>
+                        <li><hr class="dropdown-divider"></li>
                         <li class="topico"><b>Comprador</b></li>
                         <li><a class="dropdown-item opc" rotulo="Comprador Nome" href="#">Nome</a></li>
                         <li><a class="dropdown-item opc" rotulo="Comprador CPF" href="#">CPF</a></li>
@@ -26,7 +28,7 @@
                         <li><a class="dropdown-item opc" rotulo="Vendedor Razão Social" href="#">Razão Social</a></li>
                         <li><a class="dropdown-item opc" rotulo="Vendedor CNPJ" href="#">CNPJ</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item opc" rotulo="Busca Aleatória " href="#">Busca Aleatória</a></li>
+                        <li><a class="dropdown-item opc" rotulo="Endereço do Imóvel " href="#">Endereço do Imóvel</a></li>
                     </ul>
                     <input type="text" class="form-control" aria-label="Text input with dropdown button">
                 </div>
