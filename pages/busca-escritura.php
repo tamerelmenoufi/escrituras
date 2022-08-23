@@ -2,19 +2,27 @@
     <h1 class="text-center">Busca Grátis</h1>
 
     <h5 class="text-center mb-5">
-        Seja bem vindo, preencha alguns parâmetros para fazermos sua busca!
+        Seja bem vindo, selecione uma das opções abaixo e digite as informações para a busca!
     </h5>
     <div class="container">
         <div class="row">
             <div class="col">
                 <div class="input-group mb-3">
-                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</button>
+                    <button class="btn btn-outline-secondary dropdown-toggle rotulo_busca" type="button" data-bs-toggle="dropdown" aria-expanded="false">Buscar por</button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        <li><a class="dropdown-item" href="#"><b>Comprador</b></a></li>
+                        <li><a class="dropdown-item opc" href="#">Nome</a></li>
+                        <li><a class="dropdown-item opc" href="#">CPF</a></li>
+                        <li><a class="dropdown-item opc" href="#">Razão Social</a></li>
+                        <li><a class="dropdown-item opc" href="#">CNPJ</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Separated link</a></li>
+                        <li><a class="dropdown-item" href="#"><b>Vendedor</b></a></li>
+                        <li><a class="dropdown-item opc" href="#">Nome</a></li>
+                        <li><a class="dropdown-item opc" href="#">CPF</a></li>
+                        <li><a class="dropdown-item opc" href="#">Razão Social</a></li>
+                        <li><a class="dropdown-item opc" href="#">CNPJ</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item opc" href="#">Busca Aleatória</a></li>
                     </ul>
                     <input type="text" class="form-control" aria-label="Text input with dropdown button">
                 </div>
@@ -22,7 +30,14 @@
         </div>
     </div>
 
-
+<script>
+    $(function(){
+        $(".opc").click(function(){
+            opc = $(this).text();
+            $(".rotulo_busca").text(opc);
+        })
+    })
+</script>
 
     <form method="post" action="actions/teste.php">
         <div class="row">
