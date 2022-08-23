@@ -12,9 +12,9 @@ include_once "./config/conf.php";
 <div class="container my-5">
     <div class="row">
         <div class="col-md-6">
-            <div style="border-radius:8px; margin-left:50px; width:100%; height:150px; background-color:#00000059; margin-top:15%; margin-bottom:15%; padding:20px;">
+            <div style="border-radius:8px; margin-left:50px; width:100%; height:150px; background-color:##1a1f24; margin-top:15%; margin-bottom:15%; padding:20px;">
                 <p style=" margin-top:5px; color:#fff;">Ainda não tem cadastro?</p>
-                <button class="btn btn-success" type="button" style="width:calc(100% - 50px);">FAÇA SEU CADASTRO</button>
+                <button class="btn btn-primary" type="button" style="width:calc(100% - 50px);">FAÇA SEU CADASTRO</button>
             </div>
         </div>
         <div class="col-md-6">
