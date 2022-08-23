@@ -21,12 +21,12 @@ include_once "./config/conf.php";
                     <input type="hidden" name="acao" value="login">
 
                     <div class="row">
-                        <h3
+                        <h5
                                 class="text-center"
                                 style="color: rgba(var(--color-secondary-dark-rgb), 1);"
                         >
                             Faça seu login
-                        </h3>
+                        </h5>
 
                         <div class="form-group mt-3">
                             <div class="alert alert-danger alert-dismissible msg-error" role="alert"
