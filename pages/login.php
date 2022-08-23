@@ -65,8 +65,8 @@ include_once "./config/conf.php";
                         </div>
                         <div class="form-group mt-3">
                             <div class="form-group form-check">
-                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                <label class="form-check-label" for="exampleCheck1" style="font-size:12px;"> Declaro que concordo com os Termos de Privacidade conforme a Lei Geral de Proteção de Dados.</label>
+                                <input type="checkbox" class="form-check-input" id="lgpd">
+                                <label class="form-check-label" for="lgpd" style="font-size:12px;"> Declaro que concordo com os Termos de Privacidade conforme a Lei Geral de Proteção de Dados.</label>
                             </div>
                         </div>
                     </div>
@@ -85,6 +85,11 @@ include_once "./config/conf.php";
     $(function () {
         $("#form-login").submit(function (e) {
             e.preventDefault();
+
+            if($("#lgpd").prop("checked") == false){
+                $.dialog('Favor confirme a declaração dos Termos de Privacidade');
+                return false;
+            }
 
             $("button[type=submit]").attr("disabled", "disabled");
 
