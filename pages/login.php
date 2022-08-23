@@ -87,7 +87,10 @@ include_once "./config/conf.php";
             e.preventDefault();
 
             if($("#lgpd").prop("checked") == false){
-                $.dialog('Favor confirme a declaração dos Termos de Privacidade');
+                $.alert({
+                    title:'Dados incompletos'
+                    contnet:'<center>Favor confirme a declaração dos Termos de Privacidade!</center>'
+                });
                 return false;
             }
 
