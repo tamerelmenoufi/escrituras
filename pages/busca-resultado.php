@@ -8,9 +8,7 @@ include_once "../config/includes.php";
         <div class="list-group">
             <?php
 
-echo "COMANDO : ".$Comando;
-
-                echo $query = "select
+                $query = "select
                                 a.*,
                                 b.nome as bairro,
                                 c.nome as cidade,
@@ -26,7 +24,7 @@ echo "COMANDO : ".$Comando;
                                 left join aux_tipo_imovel i on a.tipo_imovel = i.codigo
                             ";
                 $result = mysqli_query($con, $query);
-                while(mysqli_fetch_object($result)){
+                while($d = mysqli_fetch_object($result)){
             ?>
 
 
