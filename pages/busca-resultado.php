@@ -7,7 +7,10 @@ include_once "../../config/includes.php";
 
         <div class="list-group">
             <?php
-                $query = "select
+
+echo "COMANDO : ".$Comando;
+
+                echo $query = "select
                                 a.*,
                                 b.nome as bairro,
                                 c.nome as cidade,
