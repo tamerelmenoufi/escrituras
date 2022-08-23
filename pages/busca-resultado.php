@@ -6,32 +6,53 @@ include_once "./config/conf.php";
     <div class="info p-4">
 
         <div class="list-group">
-            <a href="#" class="list-group-item list-group-item-action">
-                <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1">List group item heading</h5>
-                <small>3 days ago</small>
-                </div>
-                <p class="mb-1">Some placeholder content in a paragraph.</p>
-                <small>And some small print.</small>
-            </a>
-            <a href="#" class="list-group-item list-group-item-action">
-                <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1">List group item heading</h5>
-                <small class="text-muted">3 days ago</small>
-                </div>
-                <p class="mb-1">Some placeholder content in a paragraph.</p>
-                <small class="text-muted">And some muted small print.</small>
-            </a>
-            <a href="#" class="list-group-item list-group-item-action">
-                <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1">List group item heading</h5>
-                <small class="text-muted">3 days ago</small>
-                </div>
-                <p class="mb-1">Some placeholder content in a paragraph.</p>
-                <small class="text-muted">And some muted small print.</small>
-            </a>
-        </div>
+            <?php
+                $query = "select
+                                a.*,
+                                b.nome as bairro,
+                                c.nome as cidade,
+                                e.nome as estado,
+                                d.descricao as tipo_documento,
+                                i.descricao as tipo_imovel
 
+                                left join aux_bairros b on a.bairro = b.codigo
+                                left join aux_cidades c on a.cidade = c.codigo
+                                left join aux_estados e on a.estado = e.codigo
+
+                                left join aux_tipo_documento d on a.tipo_documento = d.codigo
+                                left join aux_tipo_imovel i on a.tipo_imovel = i.codigo
+                            from documentos";
+                $result = mysqli_query($con, $query);
+                while(mysqli_fetch_object($result)){
+            ?>
+
+
+            <a href="#" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1"><?=$d->rua?>, <?=$d->numero?>, <?=$d->bairro?>, <?=$d->cidade?> - <?=$d->estado?> <?=$d->cep?> </h5>
+                <small><?=$d->data_registro?></small>
+                </div>
+                <?php
+                $query1 = "select * from vendedor_comprador where documento_id = '{$d->codigo}' order by tipo desc";
+                $result1 = mysqli_query($con, $query1);
+                $vc = false;
+                while($d1 = mysqli_fetch_object($result1)){
+                    if($vc != $d1->tipo){
+                        $vc = $d1->tipo;
+                ?>
+                    <p class="mb-1"><?=(($d1->tipo == 'v')?'Vendedor':'Comprador')?></p>
+                <?php
+                    }
+                ?>
+                <small><?=$d1->nome?> - <?=$d1->cpf?></small><br>
+                <?php
+                }
+                ?>
+            </a>
+            <?php
+                }
+            ?>
+        </div>
 
     </div>
 </div>
