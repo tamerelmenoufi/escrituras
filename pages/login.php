@@ -61,12 +61,17 @@ include_once "./config/conf.php";
                                     required
                             >
                         </div>
+
+                        <div class="form-group form-check">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="form-check-label" for="exampleCheck1"> Declaro que concordo com os Termos de Privacidade conforme a Lei Geral de Proteção de Dados.</label>
+                        </div>
+
                     </div>
-                    <p style="margin-top:10px;">Esqueceu a senha? Clique aqui!</p>
                     <div class="text-center">
                         <button class="button-primary" type="submit" style="width: 50%">Entrar</button>
                     </div>
-
+                    <p style="margin-top:10px;">Esqueceu a senha? Clique aqui!</p>
                 </form>
             </div>
         </div>
