@@ -83,10 +83,8 @@ switch($_POST['campo']){
     default:{
         exit();
     }
-
-    $where = (($where)?" and ({$where})":false);
 };
-
+$where = (($where)?" and ({$where})":false);
 
 ?>
 <div class="container py-4">
