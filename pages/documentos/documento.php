@@ -175,7 +175,7 @@ if ($doc_id) {
             </div>
 
 
-            <div class="mb-3">
+            <div class="col-md-6">
                 <label for="nivel_imovel" class="form-label">Nivel do imóvel <span
                             class="text-danger">*</span></label>
                 <select
