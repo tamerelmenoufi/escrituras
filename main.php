@@ -6,7 +6,11 @@
 
         </p>
         <div class="d-flex">
-            <a href="<?=(($_SESSION['usuario'])?'busca-escritura':'login')?>" class="btn scrollto btn-lg">Busca Grátis</a>
+            <a
+                href="<?=(($_SESSION['usuario'])?'busca-escritura':'login')?>"
+                class="glightbox btn btn-lg text-white"
+                style="background: var(--color-primary)"
+            >Busca Grátis</a>
             <!-- <a
                     href="#"
                     class="glightbox btn btn-lg text-white"
