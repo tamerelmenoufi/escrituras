@@ -160,7 +160,7 @@ if ($doc_id) {
                 >
                     <option value=""></option>
                     <?php
-                    $query_tipo_imovel = "SELECT * FROM aux_tipo_imovel WHERE deletado != '1' ORDER BY descricao";
+                    $query_tipo_imovel = "SELECT * FROM aux_tipo_imovel WHERE deletado != '1' ORDER BY codigo desc";
                     $result = mysqli_query($con, $query_tipo_imovel);
 
                     while ($row = mysqli_fetch_object($result)): ?>
