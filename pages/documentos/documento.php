@@ -174,7 +174,36 @@ if ($doc_id) {
                 </select>
             </div>
 
-            <div class="col-md-6">
+
+            <div class="mb-3">
+                <label for="nivel_imovel" class="form-label">Nivel do imóvel <span
+                            class="text-danger">*</span></label>
+                <select
+                        class="form-control"
+                        id="nivel_imovel"
+                        name="nivel_imovel"
+                        aria-describedby="nivel_imovel"
+                        required
+
+                >
+                    <option value=""></option>
+                    <?php
+                    $query_nivel_imovel = "SELECT * FROM aux_nivel_imovel WHERE deletado != '1' ORDER BY descricao";
+                    $result = mysqli_query($con, $query_nivel_imovel);
+
+                    while ($row = mysqli_fetch_object($result)): ?>
+                        <option
+                                value="<?= $row->codigo ?>"
+                            <?= $row->codigo == $d->nivel_imovel ? 'selected ' : ''; ?>
+                        >
+                            <?= $row->descricao ?>
+                        </option>
+                    <?php endwhile; ?>
+                </select>
+            </div>
+
+
+            <!-- <div class="col-md-6">
                 <label for="nivel_imovel" class="form-label">Nivel do imóvel</label>
                 <input
                         type="number"
@@ -185,7 +214,7 @@ if ($doc_id) {
                         aria-describedby="nivel_imovel"
                         value="<?= $d->nivel_imovel; ?>"
                 >
-            </div>
+            </div> -->
         </div>
 
     </div>
