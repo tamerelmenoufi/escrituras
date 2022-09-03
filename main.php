@@ -8,7 +8,7 @@
         <div class="d-flex">
             <a
                 href="<?=(($_SESSION['usuario'])?'busca-escritura':'login')?>"
-                class="glightbox btn btn-lg text-white"
+                class="btn btn-lg text-white"
                 style="background: var(--color-primary)"
             >Busca Grátis</a>
             <!-- <a
