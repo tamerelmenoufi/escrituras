@@ -99,7 +99,7 @@ $where = (($where)?" and ({$where})":false);
         <div class="list-group">
             <?php
 
-                echo $query = "select
+                $query = "select
                                 a.*,
                                 b.nome as bairro,
                                 c.nome as cidade,
