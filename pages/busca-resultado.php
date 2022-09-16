@@ -21,7 +21,7 @@ switch($_POST['campo']){
         for($i=0;$i<count($busca);$i++){
             for($j = 0;$j<count($w); $j++){
                 if($w[$j] == 'v.cpf' or $w[$j] == 'v.cnpj'){
-                    $where[] = "replace(replace(replace({$w[$j]},'/',''),'-',''),'.','') like '%{$busca[$i]}%'";
+                    $where[] = "replace(replace(replace({$w[$j]},'/',''),'-',''),'.','') like '%".str_replace(array('/','.','-'),false,$busca[$i])."%'";
                 }
                     $where[] = "{$w[$j]} like '%{$busca[$i]}%'";
 
