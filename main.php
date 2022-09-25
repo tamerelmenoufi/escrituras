@@ -21,7 +21,9 @@
         </div>
     </div>
 </section>
-
+<?php
+    exit();
+?>
 <!-- ======= Featured Services Section ======= -->
 <section id="featured-services" class="featured-services">
     <div class="container">
