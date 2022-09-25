@@ -259,8 +259,32 @@ if ($doc_id) {
                 >
             </div>
 
+
             <div class="col-md-4">
-                <label for="data_registro" class="form-label">Data do registro</label>
+                <label for="folha" class="form-label">
+                    Matricula/Transcrição
+                </label>
+                <input
+                        type="text"
+                        class="form-control"
+                        id="matricula"
+                        name="matricula"
+                        aria-describedby="matricula"
+                        value="<?= $d->matricula; ?>"
+                >
+            </div>
+
+
+
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <div class="row">
+
+
+            <div class="col-md-4">
+                <label for="data_registro" class="form-label">Data da Lavratura da Escritura</label>
                 <input
                         type="date"
                         class="form-control"
@@ -270,12 +294,8 @@ if ($doc_id) {
                         value="<?= $d->data_registro; ?>"
                 >
             </div>
-        </div>
-    </div>
 
-    <div class="mb-3">
-        <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <label for="livro" class="form-label">
                     Livro
                 </label>
@@ -289,7 +309,7 @@ if ($doc_id) {
                 >
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <label for="folha" class="form-label">
                     Folha
                 </label>
