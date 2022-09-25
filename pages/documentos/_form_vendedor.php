@@ -413,7 +413,7 @@ $d = [];
                                 onclick="exibiContainer(this,'comprador_procurador-container<?= $uniqued ?>')"
                         >
                         <label class="form-check-label" for="check_procurador<?= $uniqued ?>">
-                            Vendedor procurador?
+                            <span class="texto_procurador">Neste ato representado por:</span>
                         </label>
                     </div>
                 </div>
@@ -744,15 +744,18 @@ $d = [];
             $("div[opc='f<?= $uniqued ?>']").show();
             $("div[opc='j<?= $uniqued ?>']").hide();
             // $("#cnpj<?= $uniqued ?>").val('');
+            $(".texto_procurador").text("Neste ato representado pelo seu procurador:");
         } else if (valor === 'j') {
             $("div[opc='f<?= $uniqued ?>']").hide();
             $("div[opc='j<?= $uniqued ?>']").show();
             // $("#cpf<?= $uniqued ?>").val('');
+            $(".texto_procurador").text("Neste ato representado por:");
         } else {
             $("div[opc='f<?= $uniqued ?>']").hide();
             $("div[opc='j<?= $uniqued ?>']").hide();
             // $("#cnpj<?= $uniqued ?>").val('');
             // $("#cpf<?= $uniqued ?>").val('');
+            $(".texto_procurador").text("Neste ato representado pelo seu procurador:");
         }
     }
 
