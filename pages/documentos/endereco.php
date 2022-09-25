@@ -58,7 +58,7 @@ if ($doc_id) {
 ?>
 
 <form id="form-endereco">
-    <h4 class="my-2 text-center">Endereco</h4>
+    <h4 class="my-2 text-center">Localização do Imóvel</h4>
 
     <input type="hidden" id="doc_id" name="doc_id" value="<?= $doc_id ?>">
 
