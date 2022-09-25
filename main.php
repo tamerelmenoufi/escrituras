@@ -22,7 +22,7 @@
     </div>
 </section>
 <?php
-    exit();
+    /*
 ?>
 <!-- ======= Featured Services Section ======= -->
 <section id="featured-services" class="featured-services">
@@ -698,3 +698,6 @@ São feitas várias espécies de escrituras: procuração, compra e venda, doaç
 
     </div>
 </section><!-- End Contact Section -->
+<?php
+    //*/
+?>
